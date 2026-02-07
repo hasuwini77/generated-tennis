@@ -13,8 +13,9 @@
  */
 
 import { GoogleGenAI } from '@google/genai';
+import Groq from 'groq-sdk';
 import fetch from 'node-fetch';
-import { writeFileSync } from 'fs';
+import { writeFileSync, readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import dotenv from 'dotenv';
@@ -32,6 +33,7 @@ dotenv.config({ path: join(__dirname, '..', '.env.local') });
 const API_BASE_URL = "https://api.the-odds-api.com/v4";
 const ODDS_API_KEY = process.env.VITE_THE_ODDS_API_KEY || process.env.THE_ODDS_API_KEY;
 const GEMINI_API_KEY = process.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+const GROQ_API_KEY = process.env.VITE_GROQ_API_KEY || process.env.GROQ_API_KEY;
 const DISCORD_WEBHOOK_URL = process.env.VITE_DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL;
 
 // EV Tier System (professional sports betting standards)
@@ -515,18 +517,21 @@ Return ONLY the JSON array, no other text.`;
       error.message.includes('UNAVAILABLE')
     );
     
+    const isQuotaExceeded = error.message && (
+      error.message.includes('429') ||
+      error.message.includes('quota') ||
+      error.message.includes('RESOURCE_EXHAUSTED')
+    );
+    
     const isTimeout = error.message && error.message.includes('timeout');
     const isParsingError = error.message && error.message.includes('parse');
     
-    console.error('[AI] Error with model:', GEMINI_MODELS[modelIndex]);
-    console.error('[AI] Error message:', error.message);
+    console.error('[Gemini] Error:', error.message.substring(0, 150));
     
-    // Try next model if current one is overloaded OR parsing fails
-    if ((isOverloaded || isParsingError) && modelIndex < GEMINI_MODELS.length - 1) {
-      const reason = isOverloaded ? 'overloaded' : 'parsing failed';
-      console.log(`[AI] Model ${reason}, trying fallback: ${GEMINI_MODELS[modelIndex + 1]}...`);
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Small delay
-      return analyzeWithAI(matches, modelIndex + 1);
+    // If Gemini fails due to quota/overload, try Groq as fallback
+    if ((isQuotaExceeded || isOverloaded || isParsingError) && GROQ_API_KEY) {
+      console.log('[AI] Gemini unavailable, trying Groq fallback...');
+      return analyzeWithGroq(matches);
     }
     
     // Retry same model on timeout (with exponential backoff)
@@ -541,7 +546,7 @@ Return ONLY the JSON array, no other text.`;
       return analyzeWithAI(matches, modelIndex);
     }
     
-    console.error('[AI] All models/retries exhausted. Skipping AI analysis.');
+    console.error('[AI] All AI providers exhausted. Skipping analysis.');
     
     // Return matches without AI enrichment on error
     return matches.map(match => ({
@@ -555,6 +560,129 @@ Return ONLY the JSON array, no other text.`;
         expectedValue: 0,
         aiProbability: null,
         reasoning: 'AI analysis failed',
+        confidence: 'low',
+      }))
+    }));
+  }
+}
+
+/**
+ * Analyze matches with Groq AI (fallback provider)
+ */
+async function analyzeWithGroq(matches) {
+  if (!GROQ_API_KEY) {
+    console.error('[Groq] No API key found');
+    return matches;
+  }
+  
+  console.log(`\n=== GROQ FALLBACK ===`);
+  console.log(`Analyzing ${matches.length} matches with Groq AI...\n`);
+  
+  try {
+    const groq = new Groq({ apiKey: GROQ_API_KEY });
+    
+    // Build the prompt (same format as Gemini)
+    const prompt = `You are an elite tennis betting analyst. Analyze these ${matches.length} tennis matches and provide realistic win probability predictions.
+
+${matches.map((m, i) => `
+**Match ${i + 1}: ${m.homeTeam} vs ${m.awayTeam}**
+   - Start Time: ${m.startTimeFormatted}
+   - Current Odds: ${m.marketOdd} (implied probability: ${m.marketProb.toFixed(1)}%)
+   - Tour: ${m.league}
+`).join('\n')}
+
+**Your Task:**
+For each match, provide:
+1. **Player 1 Win Probability** (0-100%)
+2. **Reasoning** (2-3 sentences)
+3. **Confidence** (high/medium/low)
+
+Return ONLY a JSON array with exactly ${matches.length} predictions:
+[
+  {
+    "gameIndex": 0,
+    "homeWinProbability": 58,
+    "reasoning": "Player has strong form on hard court.",
+    "confidence": "medium"
+  }
+]`;
+
+    const response = await groq.chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'system', content: 'You are an elite tennis betting analyst. Return ONLY valid JSON.' },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.3,
+      max_tokens: 4096,
+    });
+    
+    const text = response.choices[0]?.message?.content || '';
+    console.log('[Groq] Raw response received, parsing...');
+    
+    // Extract JSON from response
+    let jsonText = text;
+    const codeBlockMatch = jsonText.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+    if (codeBlockMatch) {
+      jsonText = codeBlockMatch[1].trim();
+      console.log('[Groq] Extracted JSON from markdown');
+    }
+    
+    const jsonMatch = jsonText.match(/\[[\s\S]*\]/);
+    if (!jsonMatch) {
+      throw new Error('Failed to parse Groq response - no JSON array found');
+    }
+    
+    const aiPredictions = JSON.parse(jsonMatch[0]);
+    console.log(`[Groq] Successfully parsed ${aiPredictions.length} predictions`);
+    
+    // Enrich matches with AI data
+    const enrichedMatches = matches.map((match, index) => {
+      const prediction = aiPredictions.find(p => p.gameIndex === index);
+      if (!prediction) return { ...match, expectedValue: 0 };
+      
+      const aiProb = prediction.homeWinProbability / 100;
+      const marketOdds = match.marketOdd;
+      const expectedValue = (aiProb * marketOdds) - 1;
+      const expectedValuePercent = Number((expectedValue * 100).toFixed(1));
+      
+      return {
+        ...match,
+        aiProbability: aiProb,
+        reasoning: prediction.reasoning || 'No reasoning',
+        confidence: prediction.confidence || 'medium',
+        expectedValue: expectedValuePercent,
+        markets: match.markets.map(m => ({
+          ...m,
+          expectedValue: expectedValuePercent,
+          aiProbability: aiProb,
+          reasoning: prediction.reasoning,
+          confidence: prediction.confidence,
+        }))
+      };
+    });
+    
+    enrichedMatches.forEach((match, i) => {
+      const ev = match.expectedValue >= 0 ? `+${match.expectedValue}` : match.expectedValue;
+      console.log(`  Game ${i + 1}: ${match.homeTeam} - AI: ${(match.aiProbability * 100).toFixed(0)}%, EV: ${ev}%`);
+    });
+    
+    console.log('[Groq] Analysis complete');
+    return enrichedMatches;
+    
+  } catch (error) {
+    console.error('[Groq] Error:', error.message);
+    return matches.map(match => ({
+      ...match,
+      expectedValue: 0,
+      aiProbability: null,
+      reasoning: 'All AI providers failed',
+      confidence: 'low',
+      markets: match.markets.map(m => ({
+        ...m,
+        expectedValue: 0,
+        aiProbability: null,
+        reasoning: 'AI unavailable',
         confidence: 'low',
       }))
     }));
