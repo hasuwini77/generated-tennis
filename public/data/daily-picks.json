@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-07T20:22:11.291Z",
+  "timestamp": "2026-02-07T20:47:19.307Z",
   "scanDateCET": "2026-02-07",
   "scanDateET": "2/7/2026",
-  "scanTimeCET": "2026-02-07 21:22:11",
+  "scanTimeCET": "2026-02-07 21:47:19",
   "leagueStats": {
     "atp": {
       "hasGames": false,
@@ -15,13 +15,533 @@
   },
   "summary": {
     "totalGamesAnalyzed": 14,
-    "valueBetsFound": 0,
-    "hasBetOfTheDay": false,
-    "avgEV": 0
+    "valueBetsFound": 8,
+    "hasBetOfTheDay": true,
+    "avgEV": 35.5
   },
-  "betOfTheDay": null,
-  "featuredBets": [],
-  "allBets": [],
+  "betOfTheDay": {
+    "id": "e5fa281ef81a8331128b02bf23a6c6d0",
+    "league": "WTA",
+    "homeTeam": "Marie Bouzkova",
+    "awayTeam": "Victoria Mboko",
+    "startTime": "2026-02-08T15:00:00Z",
+    "startTimeFormatted": "Feb 8, 16:00",
+    "marketOdd": 2.76,
+    "marketProb": 36.2,
+    "markets": [
+      {
+        "type": "h2h",
+        "outcome": "Marie Bouzkova",
+        "odds": 2.76,
+        "impliedProb": 36.2,
+        "expectedValue": 107,
+        "aiProbability": 75,
+        "reasoning": "The odds of 2.76 for Bouzkova against a young prospect like Mboko represent massive value. Bouzkova is a top-tier defender who rarely beats herself, which is usually enough to frustrate an inexperienced opponent.",
+        "confidence": "high"
+      }
+    ],
+    "homeForm": "No recent matches",
+    "awayForm": "No recent matches",
+    "formData": {},
+    "aiProbability": 75,
+    "reasoning": "The odds of 2.76 for Bouzkova against a young prospect like Mboko represent massive value. Bouzkova is a top-tier defender who rarely beats herself, which is usually enough to frustrate an inexperienced opponent.",
+    "confidence": "high",
+    "expectedValue": 107,
+    "evTier": {
+      "min": 10,
+      "max": null,
+      "label": "Sick Edge",
+      "emoji": "🔥",
+      "color": "red",
+      "tier": "SICK"
+    },
+    "score": 128.45
+  },
+  "featuredBets": [
+    {
+      "id": "e5fa281ef81a8331128b02bf23a6c6d0",
+      "league": "WTA",
+      "homeTeam": "Marie Bouzkova",
+      "awayTeam": "Victoria Mboko",
+      "startTime": "2026-02-08T15:00:00Z",
+      "startTimeFormatted": "Feb 8, 16:00",
+      "marketOdd": 2.76,
+      "marketProb": 36.2,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Marie Bouzkova",
+          "odds": 2.76,
+          "impliedProb": 36.2,
+          "expectedValue": 107,
+          "aiProbability": 75,
+          "reasoning": "The odds of 2.76 for Bouzkova against a young prospect like Mboko represent massive value. Bouzkova is a top-tier defender who rarely beats herself, which is usually enough to frustrate an inexperienced opponent.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 75,
+      "reasoning": "The odds of 2.76 for Bouzkova against a young prospect like Mboko represent massive value. Bouzkova is a top-tier defender who rarely beats herself, which is usually enough to frustrate an inexperienced opponent.",
+      "confidence": "high",
+      "expectedValue": 107,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1faa739416304be09cac48f3e70d0cc3",
+      "league": "WTA",
+      "homeTeam": "Anastasia Pavlyuchenkova",
+      "awayTeam": "Elise Mertens",
+      "startTime": "2026-02-08T12:00:00Z",
+      "startTimeFormatted": "Feb 8, 13:00",
+      "marketOdd": 4.61,
+      "marketProb": 21.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Anastasia Pavlyuchenkova",
+          "odds": 4.61,
+          "impliedProb": 21.7,
+          "expectedValue": 102.8,
+          "aiProbability": 44,
+          "reasoning": "The odds of 4.61 for Pavlyuchenkova are a significant market outlier. While Mertens is the model of consistency, Pavlyuchenkova has a much higher ceiling and the power to dictate terms, making the 21.7% implied probability far too low.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 44,
+      "reasoning": "The odds of 4.61 for Pavlyuchenkova are a significant market outlier. While Mertens is the model of consistency, Pavlyuchenkova has a much higher ceiling and the power to dictate terms, making the 21.7% implied probability far too low.",
+      "confidence": "medium",
+      "expectedValue": 102.8,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "8182c52b3d3cba77c3df06c84e49b60e",
+      "league": "WTA",
+      "homeTeam": "Daria Kasatkina",
+      "awayTeam": "Moyuka Uchijima",
+      "startTime": "2026-02-08T14:30:00Z",
+      "startTimeFormatted": "Feb 8, 15:30",
+      "marketOdd": 1.5,
+      "marketProb": 66.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Daria Kasatkina",
+          "odds": 1.5,
+          "impliedProb": 66.7,
+          "expectedValue": 23,
+          "aiProbability": 82,
+          "reasoning": "Kasatkina's elite court coverage and tactical intelligence make her a nightmare for lower-ranked players like Uchijima. Uchijima lacks the overwhelming power necessary to hit through Kasatkina's defense consistently.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 82,
+      "reasoning": "Kasatkina's elite court coverage and tactical intelligence make her a nightmare for lower-ranked players like Uchijima. Uchijima lacks the overwhelming power necessary to hit through Kasatkina's defense consistently.",
+      "confidence": "high",
+      "expectedValue": 23,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "5d1e84eb0827488a65f8dbfe0d0a7483",
+      "league": "WTA",
+      "homeTeam": "Laura Siegemund",
+      "awayTeam": "Varvara Gracheva",
+      "startTime": "2026-02-08T10:35:00Z",
+      "startTimeFormatted": "Feb 8, 11:35",
+      "marketOdd": 2.9,
+      "marketProb": 34.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Laura Siegemund",
+          "odds": 2.9,
+          "impliedProb": 34.5,
+          "expectedValue": 21.8,
+          "aiProbability": 42,
+          "reasoning": "Siegemund's junk-balling and frequent net rushes can disrupt Gracheva's rhythm. While Gracheva is the more stable baseline player, Siegemund offers value as an underdog in a matchup that favors her craftiness.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 42,
+      "reasoning": "Siegemund's junk-balling and frequent net rushes can disrupt Gracheva's rhythm. While Gracheva is the more stable baseline player, Siegemund offers value as an underdog in a matchup that favors her craftiness.",
+      "confidence": "medium",
+      "expectedValue": 21.8,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "0ab56fa222353824dbfac4fbe4c3f485",
+      "league": "WTA",
+      "homeTeam": "Liudmila Samsonova",
+      "awayTeam": "Magdalena Frech",
+      "startTime": "2026-02-08T10:00:00Z",
+      "startTimeFormatted": "Feb 8, 11:00",
+      "marketOdd": 1.47,
+      "marketProb": 68,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Liudmila Samsonova",
+          "odds": 1.47,
+          "impliedProb": 68,
+          "expectedValue": 8.8,
+          "aiProbability": 74,
+          "reasoning": "Samsonova is one of the premier hard-court players when her serve is clicking. Frech is a resilient counter-puncher but lacks the weapons to hurt Samsonova, making this a matchup dependent almost entirely on Samsonova's unforced error count.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 74,
+      "reasoning": "Samsonova is one of the premier hard-court players when her serve is clicking. Frech is a resilient counter-puncher but lacks the weapons to hurt Samsonova, making this a matchup dependent almost entirely on Samsonova's unforced error count.",
+      "confidence": "high",
+      "expectedValue": 8.8,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    }
+  ],
+  "allBets": [
+    {
+      "id": "e5fa281ef81a8331128b02bf23a6c6d0",
+      "league": "WTA",
+      "homeTeam": "Marie Bouzkova",
+      "awayTeam": "Victoria Mboko",
+      "startTime": "2026-02-08T15:00:00Z",
+      "startTimeFormatted": "Feb 8, 16:00",
+      "marketOdd": 2.76,
+      "marketProb": 36.2,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Marie Bouzkova",
+          "odds": 2.76,
+          "impliedProb": 36.2,
+          "expectedValue": 107,
+          "aiProbability": 75,
+          "reasoning": "The odds of 2.76 for Bouzkova against a young prospect like Mboko represent massive value. Bouzkova is a top-tier defender who rarely beats herself, which is usually enough to frustrate an inexperienced opponent.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 75,
+      "reasoning": "The odds of 2.76 for Bouzkova against a young prospect like Mboko represent massive value. Bouzkova is a top-tier defender who rarely beats herself, which is usually enough to frustrate an inexperienced opponent.",
+      "confidence": "high",
+      "expectedValue": 107,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1faa739416304be09cac48f3e70d0cc3",
+      "league": "WTA",
+      "homeTeam": "Anastasia Pavlyuchenkova",
+      "awayTeam": "Elise Mertens",
+      "startTime": "2026-02-08T12:00:00Z",
+      "startTimeFormatted": "Feb 8, 13:00",
+      "marketOdd": 4.61,
+      "marketProb": 21.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Anastasia Pavlyuchenkova",
+          "odds": 4.61,
+          "impliedProb": 21.7,
+          "expectedValue": 102.8,
+          "aiProbability": 44,
+          "reasoning": "The odds of 4.61 for Pavlyuchenkova are a significant market outlier. While Mertens is the model of consistency, Pavlyuchenkova has a much higher ceiling and the power to dictate terms, making the 21.7% implied probability far too low.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 44,
+      "reasoning": "The odds of 4.61 for Pavlyuchenkova are a significant market outlier. While Mertens is the model of consistency, Pavlyuchenkova has a much higher ceiling and the power to dictate terms, making the 21.7% implied probability far too low.",
+      "confidence": "medium",
+      "expectedValue": 102.8,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "8182c52b3d3cba77c3df06c84e49b60e",
+      "league": "WTA",
+      "homeTeam": "Daria Kasatkina",
+      "awayTeam": "Moyuka Uchijima",
+      "startTime": "2026-02-08T14:30:00Z",
+      "startTimeFormatted": "Feb 8, 15:30",
+      "marketOdd": 1.5,
+      "marketProb": 66.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Daria Kasatkina",
+          "odds": 1.5,
+          "impliedProb": 66.7,
+          "expectedValue": 23,
+          "aiProbability": 82,
+          "reasoning": "Kasatkina's elite court coverage and tactical intelligence make her a nightmare for lower-ranked players like Uchijima. Uchijima lacks the overwhelming power necessary to hit through Kasatkina's defense consistently.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 82,
+      "reasoning": "Kasatkina's elite court coverage and tactical intelligence make her a nightmare for lower-ranked players like Uchijima. Uchijima lacks the overwhelming power necessary to hit through Kasatkina's defense consistently.",
+      "confidence": "high",
+      "expectedValue": 23,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "5d1e84eb0827488a65f8dbfe0d0a7483",
+      "league": "WTA",
+      "homeTeam": "Laura Siegemund",
+      "awayTeam": "Varvara Gracheva",
+      "startTime": "2026-02-08T10:35:00Z",
+      "startTimeFormatted": "Feb 8, 11:35",
+      "marketOdd": 2.9,
+      "marketProb": 34.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Laura Siegemund",
+          "odds": 2.9,
+          "impliedProb": 34.5,
+          "expectedValue": 21.8,
+          "aiProbability": 42,
+          "reasoning": "Siegemund's junk-balling and frequent net rushes can disrupt Gracheva's rhythm. While Gracheva is the more stable baseline player, Siegemund offers value as an underdog in a matchup that favors her craftiness.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 42,
+      "reasoning": "Siegemund's junk-balling and frequent net rushes can disrupt Gracheva's rhythm. While Gracheva is the more stable baseline player, Siegemund offers value as an underdog in a matchup that favors her craftiness.",
+      "confidence": "medium",
+      "expectedValue": 21.8,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "0ab56fa222353824dbfac4fbe4c3f485",
+      "league": "WTA",
+      "homeTeam": "Liudmila Samsonova",
+      "awayTeam": "Magdalena Frech",
+      "startTime": "2026-02-08T10:00:00Z",
+      "startTimeFormatted": "Feb 8, 11:00",
+      "marketOdd": 1.47,
+      "marketProb": 68,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Liudmila Samsonova",
+          "odds": 1.47,
+          "impliedProb": 68,
+          "expectedValue": 8.8,
+          "aiProbability": 74,
+          "reasoning": "Samsonova is one of the premier hard-court players when her serve is clicking. Frech is a resilient counter-puncher but lacks the weapons to hurt Samsonova, making this a matchup dependent almost entirely on Samsonova's unforced error count.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 74,
+      "reasoning": "Samsonova is one of the premier hard-court players when her serve is clicking. Frech is a resilient counter-puncher but lacks the weapons to hurt Samsonova, making this a matchup dependent almost entirely on Samsonova's unforced error count.",
+      "confidence": "high",
+      "expectedValue": 8.8,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "8958fbd4dd6b37923666905ef5845adf",
+      "league": "WTA",
+      "homeTeam": "Jaqueline Cristian",
+      "awayTeam": "Karolina Muchova",
+      "startTime": "2026-02-08T16:30:00Z",
+      "startTimeFormatted": "Feb 8, 17:30",
+      "marketOdd": 5.4,
+      "marketProb": 18.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Jaqueline Cristian",
+          "odds": 5.4,
+          "impliedProb": 18.5,
+          "expectedValue": 8,
+          "aiProbability": 20,
+          "reasoning": "Muchova is a top-10 talent when healthy, possessing a complete all-court game. While Cristian is a solid competitor, she lacks the variety and transition game to disrupt Muchova's rhythm.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 20,
+      "reasoning": "Muchova is a top-10 talent when healthy, possessing a complete all-court game. While Cristian is a solid competitor, she lacks the variety and transition game to disrupt Muchova's rhythm.",
+      "confidence": "medium",
+      "expectedValue": 8,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "53b42456c6e8756969577fb2fb34d154",
+      "league": "WTA",
+      "homeTeam": "Peyton Stearns",
+      "awayTeam": "Vera Zvonareva",
+      "startTime": "2026-02-08T10:30:00Z",
+      "startTimeFormatted": "Feb 8, 11:30",
+      "marketOdd": 1.49,
+      "marketProb": 67.1,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Peyton Stearns",
+          "odds": 1.49,
+          "impliedProb": 67.1,
+          "expectedValue": 7.3,
+          "aiProbability": 72,
+          "reasoning": "Zvonareva is a legend of the game but at this stage of her career, she struggles with the lateral movement required to defend against Stearns' heavy forehand. Stearns should win the physical battle over three sets.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 72,
+      "reasoning": "Zvonareva is a legend of the game but at this stage of her career, she struggles with the lateral movement required to defend against Stearns' heavy forehand. Stearns should win the physical battle over three sets.",
+      "confidence": "medium",
+      "expectedValue": 7.3,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "63d1804d984b7ceeb22d886263b009fe",
+      "league": "WTA",
+      "homeTeam": "Diana Shnaider",
+      "awayTeam": "Alycia Parks",
+      "startTime": "2026-02-08T11:30:00Z",
+      "startTimeFormatted": "Feb 8, 12:30",
+      "marketOdd": 1.35,
+      "marketProb": 74.1,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Diana Shnaider",
+          "odds": 1.35,
+          "impliedProb": 74.1,
+          "expectedValue": 5.3,
+          "aiProbability": 78,
+          "reasoning": "Shnaider is a rising talent with a heavy lefty game that is difficult to time. Parks has a massive serve but her high double-fault rate and lack of a 'Plan B' make her highly unreliable against disciplined opponents.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 78,
+      "reasoning": "Shnaider is a rising talent with a heavy lefty game that is difficult to time. Parks has a massive serve but her high double-fault rate and lack of a 'Plan B' make her highly unreliable against disciplined opponents.",
+      "confidence": "high",
+      "expectedValue": 5.3,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    }
+  ],
   "metadata": {
     "minEVThreshold": 3,
     "version": "2.0.0",

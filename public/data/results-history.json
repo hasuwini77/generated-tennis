@@ -1,6 +1,57 @@
 {
   "bets": [
     {
+      "id": "53b42456c6e8756969577fb2fb34d154",
+      "date": "2026-02-07",
+      "matchTime": "2026-02-08T10:30:00Z",
+      "league": "WTA",
+      "homeTeam": "Peyton Stearns",
+      "awayTeam": "Vera Zvonareva",
+      "outcome": "Peyton Stearns",
+      "odds": 1.49,
+      "expectedValue": 7.3,
+      "confidence": "medium",
+      "reasoning": "Zvonareva is a legend of the game but at this stage of her career, she struggles with the lateral movement required to defend against Stearns' heavy forehand. Stearns should win the physical battle over three sets.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-07T20:47:19.310Z"
+    },
+    {
+      "id": "8958fbd4dd6b37923666905ef5845adf",
+      "date": "2026-02-07",
+      "matchTime": "2026-02-08T16:30:00Z",
+      "league": "WTA",
+      "homeTeam": "Jaqueline Cristian",
+      "awayTeam": "Karolina Muchova",
+      "outcome": "Jaqueline Cristian",
+      "odds": 5.4,
+      "expectedValue": 8,
+      "confidence": "medium",
+      "reasoning": "Muchova is a top-10 talent when healthy, possessing a complete all-court game. While Cristian is a solid competitor, she lacks the variety and transition game to disrupt Muchova's rhythm.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-07T20:47:19.310Z"
+    },
+    {
+      "id": "5d1e84eb0827488a65f8dbfe0d0a7483",
+      "date": "2026-02-07",
+      "matchTime": "2026-02-08T10:35:00Z",
+      "league": "WTA",
+      "homeTeam": "Laura Siegemund",
+      "awayTeam": "Varvara Gracheva",
+      "outcome": "Laura Siegemund",
+      "odds": 2.9,
+      "expectedValue": 21.8,
+      "confidence": "medium",
+      "reasoning": "Siegemund's junk-balling and frequent net rushes can disrupt Gracheva's rhythm. While Gracheva is the more stable baseline player, Siegemund offers value as an underdog in a matchup that favors her craftiness.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-07T20:47:19.310Z"
+    },
+    {
       "id": "0ab56fa222353824dbfac4fbe4c3f485",
       "date": "2026-02-07",
       "matchTime": "2026-02-08T10:00:00Z",
@@ -104,10 +155,10 @@
     }
   ],
   "stats": {
-    "totalBets": 6,
+    "totalBets": 9,
     "wins": 0,
     "losses": 0,
-    "pending": 6,
+    "pending": 9,
     "totalROI": 0
   }
 }
