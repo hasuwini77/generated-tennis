@@ -2,20 +2,21 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# 🏒 PuckTrend - AI-Powered Hockey Betting Terminal
+# 🎾 TennTrend - AI-Powered Tennis Betting Terminal
 
-**Professional-grade betting insights with automated daily analysis**
+**Professional-grade tennis betting insights with automated daily analysis**
 
-PuckTrend analyzes NHL, SHL, and Allsvenskan hockey games using AI to identify high-value betting opportunities. The system runs automated scans daily at 8:00 AM CET and only recommends bets with ≥15% Expected Value.
+TennTrend analyzes ATP (men's) and WTA (women's) tennis matches using AI to identify high-value betting opportunities. The system runs automated scans daily at 8:00 AM CET and only recommends bets with ≥3% Expected Value.
 
 ## ✨ Features
 
 - 🤖 **Automated Daily Scans** - GitHub Actions runs analysis at 8 AM CET
-- 🎯 **Smart EV Filtering** - Only shows bets with ≥15% Expected Value
+- 🎯 **Smart EV Filtering** - Only shows bets with ≥3% Expected Value
 - 🏆 **Bet of the Day** - AI-selected top pick with golden frame
-- 🌍 **Smart Timezone Handling** - NHL (next 36 hours) vs Swedish leagues (same-day only)
+- 🎾 **ATP & WTA Coverage** - Max 15 ATP + 15 WTA matches per day
+- ⏰ **24-Hour Window** - Analyzes matches in the next 24 hours
 - 💬 **Discord Notifications** - Once per day with best picks
-- 📊 **Minimal API Usage** - 2-4 calls/day (vs 100+ in old system)
+- 📊 **Minimal API Usage** - 2 calls/day (ATP + WTA)
 - 🔒 **Professional Quality** - No bets on weak days (quality over quantity)
 
 ## 🏗️ Architecture
@@ -23,7 +24,7 @@ PuckTrend analyzes NHL, SHL, and Allsvenskan hockey games using AI to identify h
 ```
 GitHub Actions (8 AM CET Daily)
   ↓
-Fetch Odds → AI Analysis → Filter (≥15% EV) → Save to JSON
+Fetch Tennis Odds (ATP/WTA) → AI Analysis → Filter (≥3% EV) → Save to JSON
   ↓
 Frontend fetches pre-analyzed data (instant loading)
 ```
@@ -75,8 +76,8 @@ This runs the backend script locally and saves results to `data/daily-picks.json
 
 ## 📊 API Usage
 
-- **The-Odds-API**: 1-3 calls/day (only leagues with games)
-- **Gemini AI**: 1 batch call/day (all games analyzed together)
+- **The-Odds-API**: 2 calls/day (ATP + WTA)
+- **Gemini AI**: 1 batch call/day (all matches analyzed together)
 - **Frontend**: 0 API calls (reads static JSON)
 
 **Monthly usage**: ~45-90 API calls (well under free tier limits)

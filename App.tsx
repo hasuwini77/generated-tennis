@@ -4,16 +4,15 @@ import BetOfTheDayHero from "./components/BetOfTheDayHero";
 import ValueBetsList from "./components/ValueBetsList";
 import { getTimeSince, isStaleData } from "./utils/formatters";
 
-type League = "NHL" | "SHL" | "Allsvenskan";
+type League = "ATP" | "WTA";
 
 interface DailyPicksData {
   timestamp: string;
   scanDateCET: string;
   scanTimeCET: string;
   leagueStats: {
-    nhl: { hasGames: boolean; gamesFound: number };
-    shl: { hasGames: boolean; gamesFound: number };
-    allsvenskan: { hasGames: boolean; gamesFound: number };
+    atp: { hasGames: boolean; gamesFound: number };
+    wta: { hasGames: boolean; gamesFound: number };
   };
   summary: {
     totalGamesAnalyzed: number;
@@ -93,30 +92,18 @@ const App: React.FC = () => {
       <header className="bg-gradient-to-r from-[#1a1a2e]/95 to-[#16213e]/95 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-4">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-500 p-2 rounded-xl shadow-xl shadow-blue-500/30">
-              <svg
-                className="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
+            <div className="bg-blue-500 p-2 rounded-xl shadow-xl shadow-blue-500/30 text-2xl">
+              🎾
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">
-                PUCK
+                TENN
                 <span className="text-blue-400">
                   TREND
                 </span>
               </h1>
               <p className="text-[9px] text-gray-400 font-semibold uppercase tracking-wider">
-                AI-Powered Analysis
+                AI-Powered Tennis Analysis
               </p>
             </div>
           </div>
@@ -223,24 +210,24 @@ const App: React.FC = () => {
                 {/* Leagues Scanned */}
                 <div className="mt-4 pt-4 border-t border-white/10">
                   <h3 className="text-[10px] font-bold text-gray-400 mb-2 uppercase tracking-wider">
-                    Leagues Scanned
+                    Tours Scanned
                   </h3>
                   <div className="space-y-2">
                     <div className="flex flex-col gap-0.5">
                       <div
-                        className={`flex items-center justify-between text-xs ${dailyData.leagueStats.nhl.hasGames ? "text-blue-300" : "text-gray-600"}`}
+                        className={`flex items-center justify-between text-xs ${dailyData.leagueStats.atp.hasGames ? "text-blue-300" : "text-gray-600"}`}
                       >
                         <span className="flex items-center gap-2">
                           <span
-                            className={`w-1.5 h-1.5 rounded-full ${dailyData.leagueStats.nhl.hasGames ? "bg-blue-400" : "bg-gray-700"}`}
+                            className={`w-1.5 h-1.5 rounded-full ${dailyData.leagueStats.atp.hasGames ? "bg-blue-400" : "bg-gray-700"}`}
                           ></span>
-                          NHL
+                          ATP (Men)
                         </span>
                         <span className="font-mono">
-                          {dailyData.leagueStats.nhl.gamesFound}
+                          {dailyData.leagueStats.atp.gamesFound}
                         </span>
                       </div>
-                      {!dailyData.leagueStats.nhl.hasGames && (
+                      {!dailyData.leagueStats.atp.hasGames && (
                         <div className="text-[9px] text-purple-400/60 ml-4 italic">
                           No match found
                         </div>
@@ -249,40 +236,19 @@ const App: React.FC = () => {
 
                     <div className="flex flex-col gap-0.5">
                       <div
-                        className={`flex items-center justify-between text-xs ${dailyData.leagueStats.shl.hasGames ? "text-blue-300" : "text-gray-600"}`}
+                        className={`flex items-center justify-between text-xs ${dailyData.leagueStats.wta.hasGames ? "text-blue-300" : "text-gray-600"}`}
                       >
                         <span className="flex items-center gap-2">
                           <span
-                            className={`w-1.5 h-1.5 rounded-full ${dailyData.leagueStats.shl.hasGames ? "bg-blue-400" : "bg-gray-700"}`}
+                            className={`w-1.5 h-1.5 rounded-full ${dailyData.leagueStats.wta.hasGames ? "bg-blue-400" : "bg-gray-700"}`}
                           ></span>
-                          SHL
+                          WTA (Women)
                         </span>
                         <span className="font-mono">
-                          {dailyData.leagueStats.shl.gamesFound}
+                          {dailyData.leagueStats.wta.gamesFound}
                         </span>
                       </div>
-                      {!dailyData.leagueStats.shl.hasGames && (
-                        <div className="text-[9px] text-purple-400/60 ml-4 italic">
-                          No match found
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="flex flex-col gap-0.5">
-                      <div
-                        className={`flex items-center justify-between text-xs ${dailyData.leagueStats.allsvenskan.hasGames ? "text-blue-300" : "text-gray-600"}`}
-                      >
-                        <span className="flex items-center gap-2">
-                          <span
-                            className={`w-1.5 h-1.5 rounded-full ${dailyData.leagueStats.allsvenskan.hasGames ? "bg-blue-400" : "bg-gray-700"}`}
-                          ></span>
-                          Allsvenskan
-                        </span>
-                        <span className="font-mono">
-                          {dailyData.leagueStats.allsvenskan.gamesFound}
-                        </span>
-                      </div>
-                      {!dailyData.leagueStats.allsvenskan.hasGames && (
+                      {!dailyData.leagueStats.wta.hasGames && (
                         <div className="text-[9px] text-purple-400/60 ml-4 italic">
                           No match found
                         </div>
@@ -357,7 +323,7 @@ const App: React.FC = () => {
       <footer className="border-t border-white/10 mt-8">
         <div className="max-w-7xl mx-auto px-4 py-4 text-center">
           <p className="text-gray-500 text-[10px]">
-            Powered by PuckTrend AI • Updated Daily at 8:00 AM CET
+            Powered by TennTrend AI • Updated Daily at 8:00 AM CET
           </p>
         </div>
       </footer>

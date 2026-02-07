@@ -1,7 +1,7 @@
 
 export interface Match {
   id: string;
-  league: 'NHL' | 'SHL' | 'Allsvenskan';
+  league: 'ATP' | 'WTA';
   homeTeam: string;
   awayTeam: string;
   startTime: string;

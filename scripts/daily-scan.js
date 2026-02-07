@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * PuckTrend Daily Scan Script
+ * TennTrend Daily Scan Script
  * 
  * Runs once per day at 8:00 AM CET via GitHub Actions
- * - Fetches odds from The-Odds-API (NHL, SHL, Allsvenskan)
+ * - Fetches odds from The-Odds-API (ATP, WTA)
  * - Analyzes with Gemini AI
- * - Filters for EV >= 15% (professional-grade bets only)
+ * - Filters for EV >= 3% (professional-grade bets only)
+ * - Max 15 ATP matches + 15 WTA matches
  * - Saves results to data/daily-picks.json
  * - Sends Discord notification (if worthy bets exist)
  */
@@ -77,15 +78,22 @@ function isToday_SwedishTime(gameTime, referenceTime) {
 }
 
 /**
- * Check if a game is in the next 36 hours (for NHL)
- * NHL games span multiple European days, so we use a time window
+ * Check if a match is in the next 24 hours
+ * For tennis, we show matches happening in the next 24 hours
  */
-function isInNext36Hours(gameTime, referenceTime) {
-  const gameDate = new Date(gameTime);
-  const timeDiff = gameDate - referenceTime;
+function isInNext24Hours(matchTime, referenceTime) {
+  const matchDate = new Date(matchTime);
+  const timeDiff = matchDate - referenceTime;
   const hoursDiff = timeDiff / (1000 * 60 * 60);
   
-  return hoursDiff >= 0 && hoursDiff <= 36;
+  return hoursDiff >= 0 && hoursDiff <= 24;
+}
+
+/**
+ * Check if a game is in the next 36 hours (deprecated - keeping for compatibility)
+ */
+function isInNext36Hours(gameTime, referenceTime) {
+  return isInNext24Hours(gameTime, referenceTime);
 }
 
 /**
@@ -140,86 +148,89 @@ async function fetchLeagueOdds(sportKey, leagueName) {
 }
 
 /**
- * Filter games by date/timezone rules
+ * Filter matches by date/timezone rules and apply max limits
  */
-function filterGamesByLeague(games, leagueName, timezones) {
-  if (!games || games.length === 0) return [];
+function filterMatchesByTour(matches, tourName, timezones, maxMatches = 15) {
+  if (!matches || matches.length === 0) return [];
   
   const { now } = timezones;
   
-  if (leagueName === 'NHL') {
-    // NHL: Show games in the next 24-36 hours (European betting window)
-    const filtered = games.filter(game => isInNext36Hours(game.commence_time, now));
-    console.log(`[${leagueName}] Filtered to ${filtered.length} games (next 36 hours)`);
-    return filtered;
-  } else {
-    // SHL/Allsvenskan: Show ONLY today's games in Swedish time
-    const filtered = games.filter(game => isToday_SwedishTime(game.commence_time, now));
-    console.log(`[${leagueName}] Filtered to ${filtered.length} games (today in CET)`);
-    return filtered;
+  // Filter to next 24 hours
+  const filtered = matches.filter(match => isInNext24Hours(match.commence_time, now));
+  console.log(`[${tourName}] Filtered to ${filtered.length} matches (next 24 hours)`);
+  
+  // Apply max limit (15 matches per tour)
+  if (filtered.length > maxMatches) {
+    console.log(`[${tourName}] Limiting to ${maxMatches} matches (sorted by start time)`);
+    // Sort by start time and take first N matches
+    const limited = filtered
+      .sort((a, b) => new Date(a.commence_time) - new Date(b.commence_time))
+      .slice(0, maxMatches);
+    return limited;
   }
+  
+  return filtered;
 }
 
 /**
  * Transform odds data to our Match format
  */
-function transformToMatches(games, leagueName) {
-  const matches = [];
+function transformToMatches(matches, tourName) {
+  const transformed = [];
   
-  games.forEach(game => {
-    if (!game.bookmakers || game.bookmakers.length === 0) return;
+  matches.forEach(match => {
+    if (!match.bookmakers || match.bookmakers.length === 0) return;
     
-    // Find h2h market and extract odds for home team
-    const h2hMarkets = game.bookmakers
+    // Find h2h market and extract odds for home team (player 1)
+    const h2hMarkets = match.bookmakers
       .map(bm => bm.markets?.find(m => m.key === 'h2h'))
       .filter(Boolean);
     
     if (h2hMarkets.length === 0) return;
     
-    // Collect all home team odds
+    // Collect all home player odds
     const homeOdds = [];
     h2hMarkets.forEach(market => {
-      const homeOutcome = market.outcomes?.find(o => o.name === game.home_team);
+      const homeOutcome = market.outcomes?.find(o => o.name === match.home_team);
       if (homeOutcome) homeOdds.push(homeOutcome.price);
     });
     
     if (homeOdds.length === 0) return;
     
-    // Best odds for bettor (lowest), worst odds (highest)
-    const bestOdds = Math.min(...homeOdds);
-    const worstOdds = Math.max(...homeOdds);
+    // Best odds for bettor (highest for player to win)
+    const bestOdds = Math.max(...homeOdds);
     
     // Market probability (implied from best odds)
     const marketProb = (1 / bestOdds) * 100;
     
     // Create base match object
-    const match = {
-      id: game.id,
-      league: leagueName,
-      homeTeam: game.home_team,
-      awayTeam: game.away_team,
-      startTime: game.commence_time,
-      startTimeFormatted: formatGameTime(game.commence_time),
+    const matchObj = {
+      id: match.id,
+      league: tourName,
+      homeTeam: match.home_team,
+      awayTeam: match.away_team,
+      startTime: match.commence_time,
+      startTimeFormatted: formatGameTime(match.commence_time),
       marketOdd: Number(bestOdds.toFixed(2)),
       marketProb: Number(marketProb.toFixed(1)),
       markets: [
         {
           type: 'h2h',
-          outcome: game.home_team,
+          outcome: match.home_team,
           odds: Number(bestOdds.toFixed(2)),
           impliedProb: Number(marketProb.toFixed(1)),
         }
       ]
     };
     
-    matches.push(match);
+    transformed.push(matchObj);
   });
   
-  return matches;
+  return transformed;
 }
 
 /**
- * Fetch all leagues with smart date filtering
+ * Fetch all tours with smart date filtering
  */
 async function fetchAllLeagues() {
   const timezones = getTimezones();
@@ -229,37 +240,32 @@ async function fetchAllLeagues() {
   console.log(`CET Time: ${timezones.cetTime.toLocaleString()}`);
   console.log(`ET Time: ${timezones.etTime.toLocaleString()}\n`);
   
-  // Fetch all leagues in parallel
-  const [nhlGames, shlGames, allsvenskanGames] = await Promise.all([
-    fetchLeagueOdds('icehockey_nhl', 'NHL'),
-    fetchLeagueOdds('icehockey_sweden_hockey_league', 'SHL'),
-    fetchLeagueOdds('icehockey_sweden_allsvenskan', 'Allsvenskan'),
+  // Fetch both tennis tours in parallel
+  const [atpMatches, wtaMatches] = await Promise.all([
+    fetchLeagueOdds('tennis_atp', 'ATP'),
+    fetchLeagueOdds('tennis_wta', 'WTA'),
   ]);
   
-  // Filter by date rules
-  const nhlFiltered = filterGamesByLeague(nhlGames, 'NHL', timezones);
-  const shlFiltered = filterGamesByLeague(shlGames, 'SHL', timezones);
-  const allsvenskanFiltered = filterGamesByLeague(allsvenskanGames, 'Allsvenskan', timezones);
+  // Filter by date rules and apply max limits (15 per tour)
+  const atpFiltered = filterMatchesByTour(atpMatches, 'ATP', timezones, 15);
+  const wtaFiltered = filterMatchesByTour(wtaMatches, 'WTA', timezones, 15);
   
   // Transform to our format
-  const nhlMatches = transformToMatches(nhlFiltered, 'NHL');
-  const shlMatches = transformToMatches(shlFiltered, 'SHL');
-  const allsvenskanMatches = transformToMatches(allsvenskanFiltered, 'Allsvenskan');
+  const atpTransformed = transformToMatches(atpFiltered, 'ATP');
+  const wtaTransformed = transformToMatches(wtaFiltered, 'WTA');
   
-  const allMatches = [...nhlMatches, ...shlMatches, ...allsvenskanMatches];
+  const allMatches = [...atpTransformed, ...wtaTransformed];
   
   console.log(`\n=== TOTALS ===`);
-  console.log(`NHL: ${nhlMatches.length} games`);
-  console.log(`SHL: ${shlMatches.length} games`);
-  console.log(`Allsvenskan: ${allsvenskanMatches.length} games`);
-  console.log(`TOTAL: ${allMatches.length} games\n`);
+  console.log(`ATP: ${atpTransformed.length} matches`);
+  console.log(`WTA: ${wtaTransformed.length} matches`);
+  console.log(`TOTAL: ${allMatches.length} matches\n`);
   
   return {
     allMatches,
     leagueStats: {
-      nhl: { hasGames: nhlMatches.length > 0, gamesFound: nhlMatches.length },
-      shl: { hasGames: shlMatches.length > 0, gamesFound: shlMatches.length },
-      allsvenskan: { hasGames: allsvenskanMatches.length > 0, gamesFound: allsvenskanMatches.length },
+      atp: { hasGames: atpTransformed.length > 0, gamesFound: atpTransformed.length },
+      wta: { hasGames: wtaTransformed.length > 0, gamesFound: wtaTransformed.length },
     }
   };
 }
@@ -303,33 +309,34 @@ async function analyzeWithAI(matches) {
     const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
     
     // Create detailed prompt for professional betting analysis
-    const prompt = `You are an elite professional sports bettor specializing in ice hockey. Analyze these ${matches.length} games with the mindset of a sharp bettor looking for value.
+    const prompt = `You are an elite professional sports bettor specializing in tennis. Analyze these ${matches.length} matches with the mindset of a sharp bettor looking for value.
 
-**Games to Analyze:**
+**Matches to Analyze:**
 ${matches.map((m, i) => `
 ${i + 1}. ${m.league}: ${m.homeTeam} vs ${m.awayTeam}
    - Start Time: ${m.startTimeFormatted}
    - Current Odds: ${m.marketOdd} (implied probability: ${m.marketProb.toFixed(1)}%)
-   - League: ${m.league}
+   - Tour: ${m.league}
 `).join('\n')}
 
 **Your Task:**
-For each game, provide:
-1. **Home Win Probability** (0-100%): Your realistic assessment of the home team's win chance
+For each match, provide:
+1. **Player 1 Win Probability** (0-100%): Your realistic assessment of ${matches[0]?.homeTeam || 'the first player'}'s win chance
 2. **Reasoning** (2-3 sentences): Key factors influencing your prediction
-   - Recent form (last 5-10 games)
-   - Head-to-head history
-   - Home ice advantage
-   - League strength context
-   - Any critical injuries or lineup changes
+   - Recent form (last 5-10 matches)
+   - Head-to-head history (H2H record if available)
+   - Surface suitability (hard court, clay, grass)
+   - ATP/WTA ranking and current season performance
+   - Physical condition, fatigue, or injury concerns
 3. **Confidence** (high/medium/low): How confident are you in this prediction?
 
 **Think Like a Professional:**
 - Be conservative and realistic (avoid extreme probabilities unless very justified)
 - Consider that the market is generally efficient - big edges are rare
-- NHL games are more predictable than lower leagues (SHL/Allsvenskan)
-- Home ice advantage is worth ~3-5% in probability
-- Recent form matters more than season-long stats
+- Surface type matters significantly in tennis (clay specialists vs hard court players)
+- Recent form and head-to-head records are critical indicators
+- Rankings matter but recent momentum often matters more
+- Consider tournament stage (early rounds vs finals)
 
 **Output Format:**
 Return a JSON array with exactly ${matches.length} predictions in this format:
@@ -337,8 +344,8 @@ Return a JSON array with exactly ${matches.length} predictions in this format:
 [
   {
     "gameIndex": 0,
-    "homeWinProbability": 52,
-    "reasoning": "Home team has won 7 of last 10 games. Strong home record this season. Away team missing two key defensemen.",
+    "homeWinProbability": 58,
+    "reasoning": "Player has won 8 of last 10 matches on hard court. Leads H2H 3-1. Opponent coming off a tough 3-set match yesterday.",
     "confidence": "medium"
   },
   ...
@@ -352,7 +359,7 @@ Return ONLY the JSON array, no other text.`;
       model: 'gemini-3-flash-preview',
       contents: prompt,
       config: {
-        systemInstruction: "You are an elite ice hockey betting analyst. Provide realistic win probabilities based on team performance, not just odds. Be conservative - sharp bettors don't chase every game.",
+        systemInstruction: "You are an elite tennis betting analyst. Provide realistic win probabilities based on player performance, surface, and H2H records. Be conservative - sharp bettors don't chase every match.",
         temperature: 0.3,
         maxOutputTokens: 4096,
       },
@@ -583,9 +590,9 @@ async function sendDiscordNotification(betOfTheDay, valueBets) {
     console.log('[Discord] No bet of the day. Sending "no bets" message.');
     
     const message = {
-      content: `🏒 **PuckTrend Daily Update**\n\n` +
+      content: `🎾 **TennTrend Daily Update**\n\n` +
         `📊 No value betting opportunities found today.\n` +
-        `🎯 Our AI analyzed all available games but none met our 3% EV minimum threshold.\n\n` +
+        `🎯 Our AI analyzed all available matches but none met our 3% EV minimum threshold.\n\n` +
         `✨ Quality over quantity - we only recommend professional-grade value bets.\n` +
         `📅 Check back tomorrow at 8:00 AM CET for new picks!\n\n` +
         `💪 Strong Edge (3-6%) | ⭐ Elite Edge (6-10%) | 🔥 Sick Edge (10%+)`
@@ -609,7 +616,7 @@ async function sendDiscordNotification(betOfTheDay, valueBets) {
   const tierBadge = betOfTheDay.evTier ? `${betOfTheDay.evTier.emoji} **${betOfTheDay.evTier.label}**` : '';
   
   const message = {
-    content: `🏆 **PuckTrend - Bet of the Day**\n\n` +
+    content: `🏆 **TennTrend - Bet of the Day**\n\n` +
       `**${betOfTheDay.homeTeam} vs ${betOfTheDay.awayTeam}** (${betOfTheDay.league})\n` +
       `🕐 Start: ${betOfTheDay.startTimeFormatted}\n\n` +
       `${tierBadge}\n` +
