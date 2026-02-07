@@ -1,4 +1,4 @@
-name: Daily Scan - PuckTrend
+name: Daily Scan - TennTrend
 
 on:
   # Run daily at 8:00 AM CET (07:00 UTC in winter, 06:00 UTC in summer)
@@ -40,7 +40,7 @@ jobs:
       - name: Commit and push results
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "PuckTrend Bot"
+          git config --local user.name "TennTrend Bot"
           git add public/data/daily-picks.json
           git diff --staged --quiet || git commit -m "chore: daily scan results $(date +'%Y-%m-%d %H:%M CET')"
           git push
@@ -52,6 +52,6 @@ jobs:
             curl -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
               -H "Content-Type: application/json" \
               -d '{
-                "content": "⚠️ **PuckTrend Daily Scan Failed**\n\nThe automated scan encountered an error. Please check the GitHub Actions logs.\n\n🔗 [View Logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+                "content": "⚠️ **TennTrend Daily Scan Failed**\n\nThe automated scan encountered an error. Please check the GitHub Actions logs.\n\n🔗 [View Logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
               }'
           fi
