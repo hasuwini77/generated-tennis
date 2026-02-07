@@ -4,7 +4,7 @@ import BetOfTheDayHero from "./components/BetOfTheDayHero";
 import ValueBetsList from "./components/ValueBetsList";
 import { getTimeSince, isStaleData } from "./utils/formatters";
 
-type League = "ATP" | "WTA";
+type League = "ATP" | "WTA" | "ALL";
 
 interface DailyPicksData {
   timestamp: string;
@@ -34,6 +34,7 @@ const App: React.FC = () => {
   const [dailyData, setDailyData] = useState<DailyPicksData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
+  const [selectedTour, setSelectedTour] = useState<League>("ALL");
 
   // Fetch daily picks from static JSON
   const fetchDailyPicks = async () => {
@@ -79,12 +80,40 @@ const App: React.FC = () => {
   // Get other value bets (excluding Bet of the Day)
   const getOtherValueBets = (): Match[] => {
     if (!dailyData) return [];
-    return dailyData.featuredBets.filter(
+    
+    let bets = dailyData.featuredBets.filter(
       (bet) => bet.id !== dailyData.betOfTheDay?.id,
     );
+    
+    // Filter by selected tour
+    if (selectedTour !== "ALL") {
+      bets = bets.filter(bet => bet.league === selectedTour);
+    }
+    
+    return bets;
   };
 
   const otherBets = getOtherValueBets();
+  
+  // Get stats by tour
+  const getStatsForTour = () => {
+    if (!dailyData) return { total: 0, valueBets: 0 };
+    
+    if (selectedTour === "ALL") {
+      return {
+        total: dailyData.summary.totalGamesAnalyzed,
+        valueBets: dailyData.summary.valueBetsFound
+      };
+    }
+    
+    const tourBets = dailyData.allBets.filter(bet => bet.league === selectedTour);
+    return {
+      total: selectedTour === "ATP" ? dailyData.leagueStats.atp.gamesFound : dailyData.leagueStats.wta.gamesFound,
+      valueBets: tourBets.length
+    };
+  };
+  
+  const tourStats = getStatsForTour();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f172a]">
@@ -289,6 +318,42 @@ const App: React.FC = () => {
               {/* Bet of the Day - Compact Version */}
               {dailyData.betOfTheDay && (
                 <BetOfTheDayHero bet={dailyData.betOfTheDay} />
+              )}
+
+              {/* Tour Filter Tabs */}
+              {dailyData.summary.valueBetsFound > 0 && (
+                <div className="flex gap-2 justify-center mb-6">
+                  <button
+                    onClick={() => setSelectedTour("ALL")}
+                    className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                      selectedTour === "ALL"
+                        ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
+                        : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    All Tours ({dailyData.summary.valueBetsFound})
+                  </button>
+                  <button
+                    onClick={() => setSelectedTour("ATP")}
+                    className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                      selectedTour === "ATP"
+                        ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
+                        : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    ATP ({dailyData.allBets.filter(b => b.league === "ATP").length})
+                  </button>
+                  <button
+                    onClick={() => setSelectedTour("WTA")}
+                    className={`px-6 py-2 rounded-lg font-medium transition-all ${
+                      selectedTour === "WTA"
+                        ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
+                        : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    WTA ({dailyData.allBets.filter(b => b.league === "WTA").length})
+                  </button>
+                </div>
               )}
 
               {/* Other Value Bets */}
