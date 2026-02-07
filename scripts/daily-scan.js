@@ -1057,16 +1057,16 @@ function saveDailyPicks(allMatches, valueBets, betOfTheDay, leagueStats) {
   console.log(`Value bets: ${valueBets.length}`);
   console.log(`Bet of the day: ${betOfTheDay ? 'YES' : 'NO'}\n`);
   
-  // Also add bets to results history
-  if (valueBets.length > 0) {
-    addBetsToHistory(valueBets, timezones.cetTime);
+  // Also add Bet of the Day to results history
+  if (betOfTheDay) {
+    addBetToHistory(betOfTheDay, timezones.cetTime);
   }
 }
 
 /**
- * Add value bets to results history for tracking
+ * Add the Bet of the Day to results history for tracking
  */
-function addBetsToHistory(valueBets, scanTime) {
+function addBetToHistory(betOfTheDay, scanTime) {
   try {
     const historyPath = join(__dirname, '..', 'public', 'data', 'results-history.json');
     
@@ -1081,31 +1081,32 @@ function addBetsToHistory(valueBets, scanTime) {
     
     const todayDate = scanTime.toLocaleDateString('sv-SE');
     
-    // Add each value bet to history
-    for (const bet of valueBets) {
-      const historyBet = {
-        id: bet.id,
-        date: todayDate,
-        matchTime: bet.startTime,
-        league: bet.league,
-        homeTeam: bet.homeTeam,
-        awayTeam: bet.awayTeam,
-        outcome: bet.markets[0].outcome, // The player/team we're betting on
-        odds: bet.markets[0].odds,
-        expectedValue: bet.expectedValue,
-        confidence: bet.confidence,
-        reasoning: bet.reasoning,
-        status: 'pending', // Will be updated by fetch-scores script
-        result: null,
-        roi: null,
-        addedAt: new Date().toISOString()
-      };
-      
-      // Check if this bet already exists (by ID)
-      const exists = history.bets.some(b => b.id === bet.id);
-      if (!exists) {
-        history.bets.unshift(historyBet); // Add to beginning
-      }
+    // Add Bet of the Day to history
+    const historyBet = {
+      id: betOfTheDay.id,
+      date: todayDate,
+      matchTime: betOfTheDay.startTime,
+      league: betOfTheDay.league,
+      homeTeam: betOfTheDay.homeTeam,
+      awayTeam: betOfTheDay.awayTeam,
+      outcome: betOfTheDay.markets[0].outcome, // The player/team we're betting on
+      odds: betOfTheDay.markets[0].odds,
+      expectedValue: betOfTheDay.expectedValue,
+      confidence: betOfTheDay.confidence,
+      reasoning: betOfTheDay.reasoning,
+      status: 'pending', // Will be updated by update-results script
+      result: null,
+      roi: null,
+      addedAt: new Date().toISOString()
+    };
+    
+    // Check if this bet already exists (by ID)
+    const exists = history.bets.some(b => b.id === betOfTheDay.id);
+    if (!exists) {
+      history.bets.unshift(historyBet); // Add to beginning
+      console.log(`[History] Added Bet of the Day to results history`);
+    } else {
+      console.log(`[History] Bet of the Day already exists in history`);
     }
     
     // Update stats
@@ -1113,7 +1114,6 @@ function addBetsToHistory(valueBets, scanTime) {
     history.stats.pending = history.bets.filter(b => b.status === 'pending').length;
     
     writeFileSync(historyPath, JSON.stringify(history, null, 2));
-    console.log(`[History] Added ${valueBets.length} bet(s) to results history`);
     
   } catch (error) {
     console.error('[History] Error updating results history:', error.message);

@@ -33,9 +33,9 @@ jobs:
       
       - name: Fetch match results and update history
         env:
-          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          VITE_THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           TZ: Europe/Stockholm
-        run: node scripts/fetch-scores-tennis.js
+        run: npm run update-results
       
       - name: Commit and push updated history
         run: |
