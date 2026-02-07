@@ -400,6 +400,9 @@ For each match, provide:
    - ATP/WTA ranking and current season performance
    - Physical condition, fatigue, or injury concerns
 3. **Confidence** (high/medium/low): How confident are you in this prediction?
+   - **HIGH**: Clear form/H2H advantage + surface match + no injury concerns + solid data
+   - **MEDIUM**: Some indicators favor your pick but with caveats or mixed signals
+   - **LOW**: Limited data, unpredictable matchup, injury concerns, or high variance player
 
 **Think Like a Professional:**
 - Be conservative and realistic (avoid extreme probabilities unless very justified)
@@ -408,6 +411,7 @@ For each match, provide:
 - Recent form and head-to-head records are critical indicators
 - Rankings matter but recent momentum often matters more
 - Consider tournament stage (early rounds vs finals)
+- Assign LOW confidence if: unknown opponent, injury comeback, extreme weather, or volatile player
 
 **Output Format:**
 Return a JSON array with exactly ${matches.length} predictions in this format:
@@ -594,8 +598,11 @@ ${matches.map((m, i) => `
 **Your Task:**
 For each match, provide:
 1. **Player 1 Win Probability** (0-100%)
-2. **Reasoning** (2-3 sentences)
-3. **Confidence** (high/medium/low)
+2. **Reasoning** (2-3 sentences): Key factors like form, H2H, surface suitability
+3. **Confidence** (high/medium/low):
+   - **HIGH**: Clear form/H2H advantage + surface match + solid data
+   - **MEDIUM**: Some indicators favor pick but with mixed signals
+   - **LOW**: Limited data, injury concerns, or high variance player
 
 Return ONLY a JSON array with exactly ${matches.length} predictions:
 [
