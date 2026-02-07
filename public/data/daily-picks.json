@@ -4,132 +4,24 @@
   "scanDateET": "2/7/2026",
   "scanTimeCET": "2026-02-07 07:09:18",
   "leagueStats": {
-    "nhl": {
+    "atp": {
       "hasGames": false,
       "gamesFound": 0
     },
-    "shl": {
-      "hasGames": true,
-      "gamesFound": 7
-    },
-    "allsvenskan": {
-      "hasGames": true,
-      "gamesFound": 1
+    "wta": {
+      "hasGames": false,
+      "gamesFound": 0
     }
   },
   "summary": {
-    "totalGamesAnalyzed": 8,
-    "valueBetsFound": 1,
-    "hasBetOfTheDay": true,
-    "avgEV": 4
+    "totalGamesAnalyzed": 0,
+    "valueBetsFound": 0,
+    "hasBetOfTheDay": false,
+    "avgEV": 0
   },
-  "betOfTheDay": {
-    "id": "f8014e1195e72efb6a667c87dcc96967",
-    "league": "SHL",
-    "homeTeam": "Leksands IF",
-    "awayTeam": "Timrå IK",
-    "startTime": "2026-02-07T14:15:00Z",
-    "startTimeFormatted": "Feb 7, 15:15",
-    "marketOdd": 2,
-    "marketProb": 50,
-    "markets": [
-      {
-        "type": "h2h",
-        "outcome": "Leksands IF",
-        "odds": 2,
-        "impliedProb": 50,
-        "expectedValue": 4,
-        "aiProbability": 52,
-        "reasoning": "Leksand and Timrå are statistically very similar in expected goals (xG) per 60 minutes. Leksand's home advantage is the primary factor here, as Timrå has shown vulnerability when pressured early in the first period. This is a high-variance game where the 50/50 market price is largely accurate.",
-        "confidence": "medium"
-      }
-    ],
-    "aiProbability": 52,
-    "reasoning": "Leksand and Timrå are statistically very similar in expected goals (xG) per 60 minutes. Leksand's home advantage is the primary factor here, as Timrå has shown vulnerability when pressured early in the first period. This is a high-variance game where the 50/50 market price is largely accurate.",
-    "confidence": "medium",
-    "expectedValue": 4,
-    "evTier": {
-      "min": 3,
-      "max": 6,
-      "label": "Strong Edge",
-      "emoji": "💪",
-      "color": "blue",
-      "tier": "STRONG"
-    },
-    "score": 54.4
-  },
-  "featuredBets": [
-    {
-      "id": "f8014e1195e72efb6a667c87dcc96967",
-      "league": "SHL",
-      "homeTeam": "Leksands IF",
-      "awayTeam": "Timrå IK",
-      "startTime": "2026-02-07T14:15:00Z",
-      "startTimeFormatted": "Feb 7, 15:15",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Leksands IF",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 4,
-          "aiProbability": 52,
-          "reasoning": "Leksand and Timrå are statistically very similar in expected goals (xG) per 60 minutes. Leksand's home advantage is the primary factor here, as Timrå has shown vulnerability when pressured early in the first period. This is a high-variance game where the 50/50 market price is largely accurate.",
-          "confidence": "medium"
-        }
-      ],
-      "aiProbability": 52,
-      "reasoning": "Leksand and Timrå are statistically very similar in expected goals (xG) per 60 minutes. Leksand's home advantage is the primary factor here, as Timrå has shown vulnerability when pressured early in the first period. This is a high-variance game where the 50/50 market price is largely accurate.",
-      "confidence": "medium",
-      "expectedValue": 4,
-      "evTier": {
-        "min": 3,
-        "max": 6,
-        "label": "Strong Edge",
-        "emoji": "💪",
-        "color": "blue",
-        "tier": "STRONG"
-      }
-    }
-  ],
-  "allBets": [
-    {
-      "id": "f8014e1195e72efb6a667c87dcc96967",
-      "league": "SHL",
-      "homeTeam": "Leksands IF",
-      "awayTeam": "Timrå IK",
-      "startTime": "2026-02-07T14:15:00Z",
-      "startTimeFormatted": "Feb 7, 15:15",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Leksands IF",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 4,
-          "aiProbability": 52,
-          "reasoning": "Leksand and Timrå are statistically very similar in expected goals (xG) per 60 minutes. Leksand's home advantage is the primary factor here, as Timrå has shown vulnerability when pressured early in the first period. This is a high-variance game where the 50/50 market price is largely accurate.",
-          "confidence": "medium"
-        }
-      ],
-      "aiProbability": 52,
-      "reasoning": "Leksand and Timrå are statistically very similar in expected goals (xG) per 60 minutes. Leksand's home advantage is the primary factor here, as Timrå has shown vulnerability when pressured early in the first period. This is a high-variance game where the 50/50 market price is largely accurate.",
-      "confidence": "medium",
-      "expectedValue": 4,
-      "evTier": {
-        "min": 3,
-        "max": 6,
-        "label": "Strong Edge",
-        "emoji": "💪",
-        "color": "blue",
-        "tier": "STRONG"
-      }
-    }
-  ],
+  "betOfTheDay": null,
+  "featuredBets": [],
+  "allBets": [],
   "metadata": {
     "minEVThreshold": 3,
     "version": "2.0.0",
