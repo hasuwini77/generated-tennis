@@ -1,37 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '../utils/classNames';
 
-interface Result {
+interface Bet {
   id: string;
   date: string;
+  matchTime: string;
   league: string;
   homeTeam: string;
   awayTeam: string;
-  recommendedBet?: string;
-  recommendedOdds: number;
+  outcome: string; // Player name we bet on
+  odds: number;
   expectedValue: number;
-  aiConfidence: string;
-  finalScore: { homeScore: number; awayScore: number } | null;
-  outcome: 'WIN' | 'LOSS' | 'PENDING' | 'PUSH';
-  actualReturn: number;
-  settled: boolean;
+  confidence: string;
+  reasoning: string;
+  status: 'pending' | 'win' | 'loss';
+  result: string | null;
+  roi: number | null;
+  addedAt: string;
 }
 
 interface HistoryData {
-  lastUpdated: string;
-  totalBets: number;
-  wins: number;
-  losses: number;
-  pending: number;
-  winRate: number;
-  totalROI: number;
-  results: Result[];
+  bets: Bet[];
+  stats: {
+    totalBets: number;
+    wins: number;
+    losses: number;
+    pending: number;
+    totalROI: number;
+    winRate?: number;
+  };
 }
 
 const ResultsHistory: React.FC = () => {
   const [history, setHistory] = useState<HistoryData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<'all' | 'wins' | 'losses' | 'pending'>('all');
+  const [filter, setFilter] = useState<'all' | 'win' | 'loss' | 'pending'>('all');
 
   useEffect(() => {
     fetchHistory();
@@ -41,6 +44,13 @@ const ResultsHistory: React.FC = () => {
     try {
       const response = await fetch('/data/results-history.json');
       const data = await response.json();
+      
+      // Calculate win rate if not present
+      if (!data.stats.winRate && data.stats.totalBets > 0) {
+        const settled = data.stats.wins + data.stats.losses;
+        data.stats.winRate = settled > 0 ? (data.stats.wins / settled) * 100 : 0;
+      }
+      
       setHistory(data);
     } catch (error) {
       console.error('Failed to load results history:', error);
@@ -68,10 +78,10 @@ const ResultsHistory: React.FC = () => {
     );
   }
 
-  const filteredResults = history.results.filter(result => {
-    if (filter === 'wins') return result.outcome === 'WIN';
-    if (filter === 'losses') return result.outcome === 'LOSS';
-    if (filter === 'pending') return result.outcome === 'PENDING';
+  const filteredBets = history.bets.filter(bet => {
+    if (filter === 'win') return bet.status === 'win';
+    if (filter === 'loss') return bet.status === 'loss';
+    if (filter === 'pending') return bet.status === 'pending';
     return true;
   });
 
@@ -82,8 +92,8 @@ const ResultsHistory: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-white mb-1">⚡ Results History</h1>
-              <p className="text-sm text-gray-400">Track our Bet of the Day performance</p>
+              <h1 className="text-2xl font-bold text-white mb-1">📊 Bet History</h1>
+              <p className="text-sm text-gray-400">Track all our value bet predictions & results</p>
             </div>
             <a
               href="/"
@@ -100,31 +110,33 @@ const ResultsHistory: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="text-xs text-gray-500 mb-1">Total Bets</div>
-            <div className="text-3xl font-bold text-white">{history.totalBets}</div>
+            <div className="text-3xl font-bold text-white">{history.stats.totalBets}</div>
           </div>
           
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="text-xs text-gray-500 mb-1">Wins</div>
-            <div className="text-3xl font-bold text-white">{history.wins}</div>
+            <div className="text-3xl font-bold text-green-400">{history.stats.wins}</div>
           </div>
           
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="text-xs text-gray-500 mb-1">Losses</div>
-            <div className="text-3xl font-bold text-white">{history.losses}</div>
+            <div className="text-3xl font-bold text-red-400">{history.stats.losses}</div>
           </div>
           
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="text-xs text-gray-500 mb-1">Win Rate</div>
-            <div className="text-3xl font-bold text-white">{history.winRate.toFixed(1)}%</div>
+            <div className="text-3xl font-bold text-white">
+              {history.stats.winRate !== undefined ? history.stats.winRate.toFixed(1) : '0.0'}%
+            </div>
           </div>
           
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="text-xs text-gray-500 mb-1">Total ROI</div>
             <div className={cn(
               "text-3xl font-bold",
-              history.totalROI > 0 ? "text-green-400" : history.totalROI < 0 ? "text-red-400" : "text-white"
+              history.stats.totalROI > 0 ? "text-green-400" : history.stats.totalROI < 0 ? "text-red-400" : "text-white"
             )}>
-              {history.totalROI > 0 ? '+' : ''}{history.totalROI.toFixed(2)}u
+              {history.stats.totalROI > 0 ? '+' : ''}{history.stats.totalROI.toFixed(2)}u
             </div>
           </div>
         </div>
@@ -140,29 +152,29 @@ const ResultsHistory: React.FC = () => {
                 : "bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10"
             )}
           >
-            All ({history.results.length})
+            All ({history.bets.length})
           </button>
           <button
-            onClick={() => setFilter('wins')}
+            onClick={() => setFilter('win')}
             className={cn(
               "px-4 py-2 rounded-lg text-sm font-semibold transition-colors",
-              filter === 'wins'
+              filter === 'win'
                 ? "bg-white/10 border border-white/20 text-white"
                 : "bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10"
             )}
           >
-            Wins ({history.wins})
+            Wins ({history.stats.wins})
           </button>
           <button
-            onClick={() => setFilter('losses')}
+            onClick={() => setFilter('loss')}
             className={cn(
               "px-4 py-2 rounded-lg text-sm font-semibold transition-colors",
-              filter === 'losses'
+              filter === 'loss'
                 ? "bg-white/10 border border-white/20 text-white"
                 : "bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10"
             )}
           >
-            Losses ({history.losses})
+            Losses ({history.stats.losses})
           </button>
           <button
             onClick={() => setFilter('pending')}
@@ -173,82 +185,108 @@ const ResultsHistory: React.FC = () => {
                 : "bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10"
             )}
           >
-            Pending ({history.pending})
+            Pending ({history.stats.pending})
           </button>
         </div>
 
         {/* Results List */}
-        {filteredResults.length === 0 ? (
+        {filteredBets.length === 0 ? (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">⚡</div>
-            <h3 className="text-2xl font-bold text-gray-400 mb-2">No Results Yet</h3>
-            <p className="text-gray-500">Check back after games are settled!</p>
+            <div className="text-6xl mb-4">🎾</div>
+            <h3 className="text-2xl font-bold text-gray-400 mb-2">No Bets Yet</h3>
+            <p className="text-gray-500">
+              {filter === 'all' ? 'Check back after the daily scan runs!' : `No ${filter} bets to show.`}
+            </p>
           </div>
         ) : (
-          <div className="space-y-2">
-            {filteredResults.map((result) => (
+          <div className="space-y-3">
+            {filteredBets.map((bet) => (
               <div
-                key={result.id}
+                key={bet.id}
                 className={cn(
-                  "bg-white/5 rounded-lg p-3 border transition-all",
-                  result.outcome === 'WIN' && "border-green-500/40",
-                  result.outcome === 'LOSS' && "border-red-500/40",
-                  result.outcome === 'PENDING' && "border-white/10",
-                  result.outcome === 'PUSH' && "border-white/10"
+                  "bg-white/5 rounded-xl p-4 border transition-all hover:bg-white/[0.07]",
+                  bet.status === 'win' && "border-green-500/40",
+                  bet.status === 'loss' && "border-red-500/40",
+                  bet.status === 'pending' && "border-amber-500/20"
                 )}
               >
-                <div className="flex items-center justify-between flex-wrap gap-2">
+                <div className="flex items-start justify-between gap-4 flex-wrap">
                   {/* Game Info */}
-                  <div className="flex-1 min-w-[250px]">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-white/10 text-gray-300">
-                        {result.league}
+                  <div className="flex-1 min-w-[280px]">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="px-2 py-0.5 rounded text-xs font-semibold bg-blue-500/20 text-blue-300">
+                        {bet.league}
                       </span>
-                      <span className="text-[11px] text-gray-500">{result.date}</span>
-                    </div>
-                    <div className="text-white font-semibold text-sm">
-                      {result.awayTeam} @ {result.homeTeam}
-                    </div>
-                    {result.finalScore && (
-                      <div className="text-xs text-gray-400 mt-0.5">
-                        Final: {result.finalScore.awayScore} - {result.finalScore.homeScore}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Bet Details */}
-                  <div className="text-center">
-                    <div className="text-[10px] text-gray-500 mb-0.5">Odds</div>
-                    <div className="text-base font-bold text-white">{result.recommendedOdds.toFixed(2)}</div>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="text-[10px] text-gray-500 mb-0.5">EV</div>
-                    <div className="text-base font-bold text-white">+{result.expectedValue.toFixed(1)}%</div>
-                  </div>
-
-                  {/* Outcome */}
-                  <div className="text-center min-w-[90px]">
-                    <div className={cn(
-                      "px-3 py-1.5 rounded-lg font-bold text-sm",
-                      result.outcome === 'WIN' && "bg-green-500/20 text-green-400",
-                      result.outcome === 'LOSS' && "bg-red-500/20 text-red-400",
-                      result.outcome === 'PENDING' && "bg-amber-500/20 text-amber-400",
-                      result.outcome === 'PUSH' && "bg-gray-500/20 text-gray-400"
-                    )}>
-                      {result.outcome === 'WIN' && '✅ WIN'}
-                      {result.outcome === 'LOSS' && '❌ LOSS'}
-                      {result.outcome === 'PENDING' && '⏳ PENDING'}
-                      {result.outcome === 'PUSH' && '➖ PUSH'}
-                    </div>
-                    {result.settled && (
-                      <div className={cn(
-                        "text-xs font-semibold mt-0.5",
-                        result.actualReturn > 0 ? "text-green-400" : "text-red-400"
+                      <span className="text-xs text-gray-500">
+                        {new Date(bet.matchTime).toLocaleDateString('en-US', { 
+                          month: 'short', 
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </span>
+                      <span className={cn(
+                        "px-2 py-0.5 rounded text-xs font-semibold uppercase",
+                        bet.confidence === 'high' && "bg-green-500/20 text-green-400",
+                        bet.confidence === 'medium' && "bg-amber-500/20 text-amber-400",
+                        bet.confidence === 'low' && "bg-gray-500/20 text-gray-400"
                       )}>
-                        {result.actualReturn > 0 ? '+' : ''}{result.actualReturn.toFixed(2)}u
+                        {bet.confidence}
+                      </span>
+                    </div>
+                    
+                    <div className="text-white font-semibold mb-1">
+                      {bet.homeTeam} <span className="text-gray-500">vs</span> {bet.awayTeam}
+                    </div>
+                    
+                    <div className="text-sm text-blue-300 mb-2">
+                      ✨ Bet on: <span className="font-semibold">{bet.outcome}</span>
+                    </div>
+                    
+                    <div className="text-xs text-gray-400 leading-relaxed">
+                      {bet.reasoning}
+                    </div>
+                    
+                    {bet.result && (
+                      <div className="mt-2 text-xs text-gray-500 italic">
+                        Result: {bet.result}
                       </div>
                     )}
+                  </div>
+
+                  {/* Stats & Outcome */}
+                  <div className="flex gap-4 items-center">
+                    <div className="text-center">
+                      <div className="text-xs text-gray-500 mb-1">Odds</div>
+                      <div className="text-lg font-bold text-white">{bet.odds.toFixed(2)}</div>
+                    </div>
+
+                    <div className="text-center">
+                      <div className="text-xs text-gray-500 mb-1">EV</div>
+                      <div className="text-lg font-bold text-blue-400">+{bet.expectedValue.toFixed(1)}%</div>
+                    </div>
+
+                    {/* Outcome Badge */}
+                    <div className="text-center min-w-[100px]">
+                      <div className={cn(
+                        "px-4 py-2 rounded-lg font-bold text-sm whitespace-nowrap",
+                        bet.status === 'win' && "bg-green-500/20 text-green-400 border border-green-500/40",
+                        bet.status === 'loss' && "bg-red-500/20 text-red-400 border border-red-500/40",
+                        bet.status === 'pending' && "bg-amber-500/20 text-amber-400 border border-amber-500/40"
+                      )}>
+                        {bet.status === 'win' && '✅ WIN'}
+                        {bet.status === 'loss' && '❌ LOSS'}
+                        {bet.status === 'pending' && '⏳ PENDING'}
+                      </div>
+                      {bet.roi !== null && (
+                        <div className={cn(
+                          "text-sm font-semibold mt-1",
+                          bet.roi > 0 ? "text-green-400" : "text-red-400"
+                        )}>
+                          {bet.roi > 0 ? '+' : ''}{bet.roi.toFixed(2)}u
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
