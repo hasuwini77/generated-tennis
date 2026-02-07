@@ -328,11 +328,161 @@ async function fetchAllLeagues() {
   
   return {
     allMatches,
+    activeTournaments: tennisSports.all, // Pass tournaments for form data fetching
     leagueStats: {
       atp: { hasGames: atpTransformed.length > 0, gamesFound: atpTransformed.length },
       wta: { hasGames: wtaTransformed.length > 0, gamesFound: wtaTransformed.length },
     }
   };
+}
+
+// =============================================================================
+// RECENT FORM DATA FUNCTIONS
+// =============================================================================
+
+/**
+ * Normalize player name for matching (handles different formats)
+ */
+function normalizePlayerName(name) {
+  if (!name) return '';
+  
+  // Remove accents, special chars, convert to lowercase
+  let normalized = name.toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+    .replace(/[^a-z ]/g, '') // Only letters and spaces
+    .trim();
+  
+  // Handle "Last, First" format → "first last"
+  if (normalized.includes(',')) {
+    const parts = normalized.split(',').map(p => p.trim());
+    normalized = parts.reverse().join(' ');
+  }
+  
+  return normalized;
+}
+
+/**
+ * Fetch recent match results for a tournament to determine player form
+ */
+async function fetchRecentFormForTournament(sportKey) {
+  // Note: The Odds API scores endpoint doesn't use daysFrom parameter
+  // It returns recent/upcoming matches automatically
+  const url = `${API_BASE_URL}/sports/${sportKey}/scores?apiKey=${ODDS_API_KEY}`;
+  
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.warn(`[Form] Failed to fetch scores for ${sportKey}: ${response.status}`);
+      return {};
+    }
+    
+    const matches = await response.json();
+    const completedMatches = matches.filter(m => m.completed && m.scores);
+    
+    if (completedMatches.length === 0) {
+      console.log(`[Form] No completed matches found for ${sportKey} (tournament may have just started)`);
+      return {};
+    }
+    
+    console.log(`[Form] Found ${completedMatches.length} completed matches for ${sportKey}`);
+    
+    // Build player form records
+    const playerForm = {};
+    
+    for (const match of completedMatches) {
+      const homeTeam = normalizePlayerName(match.home_team);
+      const awayTeam = normalizePlayerName(match.away_team);
+      
+      if (!homeTeam || !awayTeam) continue;
+      
+      // Determine winner from scores
+      const homeScore = match.scores?.find(s => normalizePlayerName(s.name) === homeTeam);
+      const awayScore = match.scores?.find(s => normalizePlayerName(s.name) === awayTeam);
+      
+      if (!homeScore || !awayScore) continue;
+      
+      // Simple win detection: check if score exists (winner has score, loser doesn't always)
+      // Or parse set scores if available
+      const homeWon = match.last_update && homeScore.score && homeScore.score.length > 0;
+      const awayWon = match.last_update && awayScore.score && awayScore.score.length > 0;
+      
+      // Initialize player records
+      if (!playerForm[homeTeam]) {
+        playerForm[homeTeam] = { wins: 0, losses: 0, matches: [] };
+      }
+      if (!playerForm[awayTeam]) {
+        playerForm[awayTeam] = { wins: 0, losses: 0, matches: [] };
+      }
+      
+      // Try to determine winner (this is simplified - The Odds API scores format varies)
+      // In tennis, typically the winner is listed first or has more complete score
+      const winner = homeScore.score > awayScore.score ? homeTeam : awayTeam;
+      const loser = winner === homeTeam ? awayTeam : homeTeam;
+      
+      playerForm[winner].wins++;
+      playerForm[winner].matches.push({ date: match.commence_time, result: 'W', opponent: loser });
+      
+      playerForm[loser].losses++;
+      playerForm[loser].matches.push({ date: match.commence_time, result: 'L', opponent: winner });
+    }
+    
+    return playerForm;
+    
+  } catch (error) {
+    console.warn(`[Form] Error fetching form data: ${error.message}`);
+    return {};
+  }
+}
+
+/**
+ * Get player form summary string
+ */
+function getPlayerFormString(playerName, formData) {
+  const normalized = normalizePlayerName(playerName);
+  const form = formData[normalized];
+  
+  if (!form || (form.wins === 0 && form.losses === 0)) {
+    return 'No recent matches';
+  }
+  
+  return `${form.wins}W-${form.losses}L`;
+}
+
+/**
+ * Enrich matches with recent form data
+ */
+async function enrichMatchesWithFormData(matches, activeTournaments) {
+  console.log('\n=== FETCHING RECENT FORM DATA ===');
+  
+  // Fetch form data from all active tournaments
+  const allFormData = {};
+  
+  for (const tournament of activeTournaments) {
+    const formData = await fetchRecentFormForTournament(tournament.key);
+    // Merge into allFormData
+    Object.assign(allFormData, formData);
+  }
+  
+  // Add form data to each match
+  const enrichedMatches = matches.map(match => {
+    const homeForm = getPlayerFormString(match.homeTeam, allFormData);
+    const awayForm = getPlayerFormString(match.awayTeam, allFormData);
+    
+    return {
+      ...match,
+      homeForm,
+      awayForm,
+      formData: {
+        home: allFormData[normalizePlayerName(match.homeTeam)],
+        away: allFormData[normalizePlayerName(match.awayTeam)]
+      }
+    };
+  });
+  
+  console.log('[Form] Added recent form data to all matches\n');
+  
+  return enrichedMatches;
 }
 
 // =============================================================================
@@ -387,6 +537,7 @@ ${matches.map((m, i) => `
 ${i + 1}. ${m.league}: ${m.homeTeam} vs ${m.awayTeam}
    - Start Time: ${m.startTimeFormatted}
    - Current Odds: ${m.marketOdd} (implied probability: ${m.marketProb.toFixed(1)}%)
+   - Recent Form: ${m.homeTeam} (${m.homeForm || 'Unknown'}) | ${m.awayTeam} (${m.awayForm || 'Unknown'})
    - Tour: ${m.league}
 `).join('\n')}
 
@@ -592,6 +743,7 @@ ${matches.map((m, i) => `
 **Match ${i + 1}: ${m.homeTeam} vs ${m.awayTeam}**
    - Start Time: ${m.startTimeFormatted}
    - Current Odds: ${m.marketOdd} (implied probability: ${m.marketProb.toFixed(1)}%)
+   - Recent Form: ${m.homeTeam} (${m.homeForm || 'Unknown'}) | ${m.awayTeam} (${m.awayForm || 'Unknown'})
    - Tour: ${m.league}
 `).join('\n')}
 
@@ -1020,12 +1172,12 @@ function addBetsToHistory(valueBets, scanTime) {
 
 async function main() {
   console.log('╔════════════════════════════════════════════╗');
-  console.log('║   PuckTrend Daily Scan - Version 2.0      ║');
+  console.log('║   TennTrend Daily Scan - Version 2.1      ║');
   console.log('╚════════════════════════════════════════════╝\n');
   
   try {
     // 1. Fetch odds from all leagues
-    const { allMatches, leagueStats } = await fetchAllLeagues();
+    const { allMatches, activeTournaments, leagueStats } = await fetchAllLeagues();
     
     if (allMatches.length === 0) {
       console.log('\n⚠️  No games found across all leagues. Saving empty state.');
@@ -1034,19 +1186,22 @@ async function main() {
       return;
     }
     
-    // 2. Analyze with AI
-    const enrichedMatches = await analyzeWithAI(allMatches);
+    // 2. Enrich matches with recent form data
+    const matchesWithForm = await enrichMatchesWithFormData(allMatches, activeTournaments);
     
-    // 3. Filter for high-value bets
+    // 3. Analyze with AI
+    const enrichedMatches = await analyzeWithAI(matchesWithForm);
+    
+    // 4. Filter for high-value bets
     const valueBets = filterHighValueBets(enrichedMatches, MIN_EV_THRESHOLD);
     
-    // 4. Select bet of the day
+    // 5. Select bet of the day
     const betOfTheDay = selectBetOfTheDay(valueBets);
     
-    // 5. Save results
+    // 6. Save results
     saveDailyPicks(enrichedMatches, valueBets, betOfTheDay, leagueStats);
     
-    // 6. Send Discord notification
+    // 7. Send Discord notification
     await sendDiscordNotification(betOfTheDay, valueBets);
     
     console.log('✅ Daily scan complete!\n');
