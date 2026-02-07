@@ -340,7 +340,15 @@ async function fetchAllLeagues() {
 /**
  * Analyze matches with Gemini AI and calculate Expected Value
  */
-async function analyzeWithAI(matches) {
+async function analyzeWithAI(matches, modelIndex = 0) {
+  // Fallback model strategy: Try multiple models if one is overloaded
+  const GEMINI_MODELS = [
+    'gemini-3-flash-preview',  // Primary: Latest, fastest
+    'gemini-2.5-flash',         // Fallback 1: Very reliable
+    'gemini-2.0-flash',         // Fallback 2: Stable
+    'gemini-1.5-flash'          // Fallback 3: Most reliable, older
+  ];
+  
   if (!GEMINI_API_KEY) {
     console.warn('[AI] No Gemini API key found. Skipping AI analysis.');
     return matches.map(match => ({
@@ -364,8 +372,9 @@ async function analyzeWithAI(matches) {
     return [];
   }
   
+  const currentModel = GEMINI_MODELS[modelIndex];
   console.log(`\n=== AI ANALYSIS ===`);
-  console.log(`Analyzing ${matches.length} matches with Gemini AI...\n`);
+  console.log(`Analyzing ${matches.length} matches with Gemini AI (${currentModel})...\n`);
   
   try {
     // Initialize Gemini AI
@@ -419,7 +428,7 @@ Return ONLY the JSON array, no other text.`;
 
     // Call Gemini AI
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: currentModel,
       contents: prompt,
       config: {
         systemInstruction: "You are an elite tennis betting analyst. Provide realistic win probabilities based on player performance, surface, and H2H records. Be conservative - sharp bettors don't chase every match.",
@@ -503,28 +512,39 @@ Return ONLY the JSON array, no other text.`;
     return enrichedMatches;
     
   } catch (error) {
-    const isRetryable = error.message && (
+    const isOverloaded = error.message && (
       error.message.includes('503') || 
       error.message.includes('overloaded') ||
-      error.message.includes('UNAVAILABLE') ||
-      error.message.includes('timeout')
+      error.message.includes('UNAVAILABLE')
     );
     
-    console.error('[AI] Error during analysis:', error.message);
+    const isTimeout = error.message && error.message.includes('timeout');
+    const isParsingError = error.message && error.message.includes('parse');
     
-    // Retry on 503 or overload errors
-    if (isRetryable && matches.retryCount < 3) {
+    console.error('[AI] Error with model:', GEMINI_MODELS[modelIndex]);
+    console.error('[AI] Error message:', error.message);
+    
+    // Try next model if current one is overloaded OR parsing fails
+    if ((isOverloaded || isParsingError) && modelIndex < GEMINI_MODELS.length - 1) {
+      const reason = isOverloaded ? 'overloaded' : 'parsing failed';
+      console.log(`[AI] Model ${reason}, trying fallback: ${GEMINI_MODELS[modelIndex + 1]}...`);
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Small delay
+      return analyzeWithAI(matches, modelIndex + 1);
+    }
+    
+    // Retry same model on timeout (with exponential backoff)
+    if (isTimeout && (matches.retryCount || 0) < 2) {
       const retryCount = (matches.retryCount || 0) + 1;
-      const delay = [5000, 10000, 20000][retryCount - 1];
+      const delay = [5000, 10000][retryCount - 1];
       
-      console.log(`[AI] Retrying in ${delay/1000}s (attempt ${retryCount}/3)...`);
+      console.log(`[AI] Timeout - retrying in ${delay/1000}s (attempt ${retryCount}/2)...`);
       await new Promise(resolve => setTimeout(resolve, delay));
       
       matches.retryCount = retryCount;
-      return analyzeWithAI(matches);
+      return analyzeWithAI(matches, modelIndex);
     }
     
-    console.error('[AI] Max retries reached or non-retryable error. Skipping AI analysis.');
+    console.error('[AI] All models/retries exhausted. Skipping AI analysis.');
     
     // Return matches without AI enrichment on error
     return matches.map(match => ({
