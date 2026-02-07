@@ -431,10 +431,20 @@ Return ONLY the JSON array, no other text.`;
     const text = response.text || '';
     console.log('[AI] Raw response received, parsing...');
     
-    // Extract JSON from response (may be wrapped in markdown code blocks)
-    const jsonMatch = text.match(/\[[\s\S]*\]/);
+    // Extract JSON from response - handle both raw JSON and markdown-wrapped JSON
+    let jsonText = text;
+    
+    // Remove markdown code blocks if present (```json ... ``` or ``` ... ```)
+    const codeBlockMatch = jsonText.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+    if (codeBlockMatch) {
+      jsonText = codeBlockMatch[1].trim();
+      console.log('[AI] Extracted JSON from markdown code block');
+    }
+    
+    // Extract JSON array from the text
+    const jsonMatch = jsonText.match(/\[[\s\S]*\]/);
     if (!jsonMatch) {
-      console.error('[AI] Failed to parse JSON from response:', text.substring(0, 200));
+      console.error('[AI] Failed to find JSON array in response:', jsonText.substring(0, 300));
       throw new Error('Failed to parse AI response - no JSON array found');
     }
     
