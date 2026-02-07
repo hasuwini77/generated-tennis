@@ -1,0 +1,57 @@
+name: Check Scores - PuckTrend
+
+on:
+  # Run twice daily:
+  # 1. At 22:00 CET (21:00 UTC) to check evening games
+  # 2. At 08:00 CET (07:00 UTC) to catch overnight/late games
+  schedule:
+    - cron: '0 21 * * *'  # 21:00 UTC = 22:00 CET / 23:00 CEST (evening check)
+    - cron: '0 7 * * *'   # 07:00 UTC = 08:00 CET / 09:00 CEST (morning check)
+  
+  # Allow manual trigger for testing
+  workflow_dispatch:
+
+# Grant write permissions for GitHub Actions
+permissions:
+  contents: write
+
+jobs:
+  check-scores:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm install node-fetch
+      
+      - name: Fetch scores and update history
+        env:
+          THESPORTSDB_API_KEY: ${{ secrets.THESPORTSDB_API_KEY }}
+          TZ: Europe/Stockholm
+        run: node scripts/fetch-scores.js
+      
+      - name: Commit and push updated history
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "PuckTrend Bot"
+          git add public/data/results-history.json
+          git diff --staged --quiet || git commit -m "chore: update results history $(date +'%Y-%m-%d %H:%M CET')"
+          git push
+      
+      - name: Notify on failure
+        if: failure()
+        run: |
+          if [ -n "${{ secrets.DISCORD_WEBHOOK_URL }}" ]; then
+            curl -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "content": "⚠️ **PuckTrend Score Check Failed**\n\nThe automated score checker encountered an error. Please check the GitHub Actions logs.\n\n🔗 [View Logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+              }'
+          fi

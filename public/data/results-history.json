@@ -1,0 +1,46 @@
+{
+  "lastUpdated": "2026-02-07T15:13:48.379Z",
+  "totalBets": 1,
+  "wins": 0,
+  "losses": 1,
+  "pending": 1,
+  "winRate": 0,
+  "totalROI": -1,
+  "results": [
+    {
+      "id": "2026-02-07-shl-leksands-if-timrå-ik",
+      "date": "2026-02-07",
+      "league": "SHL",
+      "homeTeam": "Leksands IF",
+      "awayTeam": "Timrå IK",
+      "recommendedOdds": 2,
+      "expectedValue": 4,
+      "aiConfidence": "medium",
+      "gameStartTime": "2026-02-07T14:15:00Z",
+      "finalScore": null,
+      "outcome": "PENDING",
+      "actualReturn": 0,
+      "settled": false,
+      "settledAt": null
+    },
+    {
+      "id": "2026-02-06-allsvenskan-aik-kalmar-hc",
+      "date": "2026-02-06",
+      "league": "Allsvenskan",
+      "homeTeam": "AIK",
+      "awayTeam": "Kalmar HC",
+      "recommendedOdds": 2.44,
+      "expectedValue": 4.9,
+      "aiConfidence": "medium",
+      "gameStartTime": "2026-02-06T18:00:00Z",
+      "finalScore": {
+        "homeScore": 1,
+        "awayScore": 2
+      },
+      "outcome": "LOSS",
+      "actualReturn": -1,
+      "settled": true,
+      "settledAt": "2026-02-07T15:13:48.378Z"
+    }
+  ]
+}

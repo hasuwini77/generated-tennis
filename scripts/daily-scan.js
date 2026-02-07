@@ -1,0 +1,747 @@
+#!/usr/bin/env node
+
+/**
+ * PuckTrend Daily Scan Script
+ * 
+ * Runs once per day at 8:00 AM CET via GitHub Actions
+ * - Fetches odds from The-Odds-API (NHL, SHL, Allsvenskan)
+ * - Analyzes with Gemini AI
+ * - Filters for EV >= 15% (professional-grade bets only)
+ * - Saves results to data/daily-picks.json
+ * - Sends Discord notification (if worthy bets exist)
+ */
+
+import { GoogleGenAI } from '@google/genai';
+import fetch from 'node-fetch';
+import { writeFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import dotenv from 'dotenv';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Load environment variables from .env.local (for local development)
+dotenv.config({ path: join(__dirname, '..', '.env.local') });
+
+// =============================================================================
+// CONFIGURATION
+// =============================================================================
+
+const API_BASE_URL = "https://api.the-odds-api.com/v4";
+const ODDS_API_KEY = process.env.VITE_THE_ODDS_API_KEY || process.env.THE_ODDS_API_KEY;
+const GEMINI_API_KEY = process.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+const DISCORD_WEBHOOK_URL = process.env.VITE_DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL;
+
+// EV Tier System (professional sports betting standards)
+const MIN_EV_THRESHOLD = 3; // Minimum 3% EV to show a bet (Strong Edge)
+const EV_TIERS = {
+  STRONG: { min: 3, max: 6, label: 'Strong Edge', emoji: '💪', color: 'blue' },
+  ELITE: { min: 6, max: 10, label: 'Elite Edge', emoji: '⭐', color: 'purple' },
+  SICK: { min: 10, max: Infinity, label: 'Sick Edge', emoji: '🔥', color: 'red' }
+};
+
+const DISCORD_MIN_EV = 3; // Send Discord notifications for 3%+ EV bets
+
+// =============================================================================
+// DATE/TIMEZONE HELPERS
+// =============================================================================
+
+/**
+ * Get current time in different timezones
+ */
+function getTimezones() {
+  const now = new Date();
+  
+  return {
+    now,
+    cetTime: new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Stockholm' })),
+    etTime: new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' })),
+  };
+}
+
+/**
+ * Check if a game is happening "today" in Swedish time (CET/CEST)
+ * For SHL and Allsvenskan - strict same-day only
+ */
+function isToday_SwedishTime(gameTime, referenceTime) {
+  const gameDate = new Date(gameTime);
+  const gameInSweden = new Date(gameDate.toLocaleString('en-US', { timeZone: 'Europe/Stockholm' }));
+  const refInSweden = new Date(referenceTime.toLocaleString('en-US', { timeZone: 'Europe/Stockholm' }));
+  
+  return (
+    gameInSweden.getFullYear() === refInSweden.getFullYear() &&
+    gameInSweden.getMonth() === refInSweden.getMonth() &&
+    gameInSweden.getDate() === refInSweden.getDate()
+  );
+}
+
+/**
+ * Check if a game is in the next 36 hours (for NHL)
+ * NHL games span multiple European days, so we use a time window
+ */
+function isInNext36Hours(gameTime, referenceTime) {
+  const gameDate = new Date(gameTime);
+  const timeDiff = gameDate - referenceTime;
+  const hoursDiff = timeDiff / (1000 * 60 * 60);
+  
+  return hoursDiff >= 0 && hoursDiff <= 36;
+}
+
+/**
+ * Format game time for display in CET
+ */
+function formatGameTime(gameTime) {
+  const gameDate = new Date(gameTime);
+  return gameDate.toLocaleString('en-US', {
+    timeZone: 'Europe/Stockholm',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
+}
+
+// =============================================================================
+// ODDS API FUNCTIONS
+// =============================================================================
+
+/**
+ * Fetch odds from The-Odds-API for a specific league
+ */
+async function fetchLeagueOdds(sportKey, leagueName) {
+  const url = `${API_BASE_URL}/sports/${sportKey}/odds?apiKey=${ODDS_API_KEY}&regions=us,eu&markets=h2h&oddsFormat=decimal`;
+  
+  console.log(`[${leagueName}] Fetching odds from The-Odds-API...`);
+  
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error("Invalid API key");
+      }
+      if (response.status === 429) {
+        throw new Error("API quota exceeded");
+      }
+      throw new Error(`API error: ${response.status}`);
+    }
+    
+    const games = await response.json();
+    console.log(`[${leagueName}] Received ${games.length} games from API`);
+    
+    return games;
+    
+  } catch (error) {
+    console.error(`[${leagueName}] Error fetching odds:`, error.message);
+    return [];
+  }
+}
+
+/**
+ * Filter games by date/timezone rules
+ */
+function filterGamesByLeague(games, leagueName, timezones) {
+  if (!games || games.length === 0) return [];
+  
+  const { now } = timezones;
+  
+  if (leagueName === 'NHL') {
+    // NHL: Show games in the next 24-36 hours (European betting window)
+    const filtered = games.filter(game => isInNext36Hours(game.commence_time, now));
+    console.log(`[${leagueName}] Filtered to ${filtered.length} games (next 36 hours)`);
+    return filtered;
+  } else {
+    // SHL/Allsvenskan: Show ONLY today's games in Swedish time
+    const filtered = games.filter(game => isToday_SwedishTime(game.commence_time, now));
+    console.log(`[${leagueName}] Filtered to ${filtered.length} games (today in CET)`);
+    return filtered;
+  }
+}
+
+/**
+ * Transform odds data to our Match format
+ */
+function transformToMatches(games, leagueName) {
+  const matches = [];
+  
+  games.forEach(game => {
+    if (!game.bookmakers || game.bookmakers.length === 0) return;
+    
+    // Find h2h market and extract odds for home team
+    const h2hMarkets = game.bookmakers
+      .map(bm => bm.markets?.find(m => m.key === 'h2h'))
+      .filter(Boolean);
+    
+    if (h2hMarkets.length === 0) return;
+    
+    // Collect all home team odds
+    const homeOdds = [];
+    h2hMarkets.forEach(market => {
+      const homeOutcome = market.outcomes?.find(o => o.name === game.home_team);
+      if (homeOutcome) homeOdds.push(homeOutcome.price);
+    });
+    
+    if (homeOdds.length === 0) return;
+    
+    // Best odds for bettor (lowest), worst odds (highest)
+    const bestOdds = Math.min(...homeOdds);
+    const worstOdds = Math.max(...homeOdds);
+    
+    // Market probability (implied from best odds)
+    const marketProb = (1 / bestOdds) * 100;
+    
+    // Create base match object
+    const match = {
+      id: game.id,
+      league: leagueName,
+      homeTeam: game.home_team,
+      awayTeam: game.away_team,
+      startTime: game.commence_time,
+      startTimeFormatted: formatGameTime(game.commence_time),
+      marketOdd: Number(bestOdds.toFixed(2)),
+      marketProb: Number(marketProb.toFixed(1)),
+      markets: [
+        {
+          type: 'h2h',
+          outcome: game.home_team,
+          odds: Number(bestOdds.toFixed(2)),
+          impliedProb: Number(marketProb.toFixed(1)),
+        }
+      ]
+    };
+    
+    matches.push(match);
+  });
+  
+  return matches;
+}
+
+/**
+ * Fetch all leagues with smart date filtering
+ */
+async function fetchAllLeagues() {
+  const timezones = getTimezones();
+  
+  console.log('\n=== FETCHING ODDS ===');
+  console.log(`Scan Time: ${timezones.now.toISOString()}`);
+  console.log(`CET Time: ${timezones.cetTime.toLocaleString()}`);
+  console.log(`ET Time: ${timezones.etTime.toLocaleString()}\n`);
+  
+  // Fetch all leagues in parallel
+  const [nhlGames, shlGames, allsvenskanGames] = await Promise.all([
+    fetchLeagueOdds('icehockey_nhl', 'NHL'),
+    fetchLeagueOdds('icehockey_sweden_hockey_league', 'SHL'),
+    fetchLeagueOdds('icehockey_sweden_allsvenskan', 'Allsvenskan'),
+  ]);
+  
+  // Filter by date rules
+  const nhlFiltered = filterGamesByLeague(nhlGames, 'NHL', timezones);
+  const shlFiltered = filterGamesByLeague(shlGames, 'SHL', timezones);
+  const allsvenskanFiltered = filterGamesByLeague(allsvenskanGames, 'Allsvenskan', timezones);
+  
+  // Transform to our format
+  const nhlMatches = transformToMatches(nhlFiltered, 'NHL');
+  const shlMatches = transformToMatches(shlFiltered, 'SHL');
+  const allsvenskanMatches = transformToMatches(allsvenskanFiltered, 'Allsvenskan');
+  
+  const allMatches = [...nhlMatches, ...shlMatches, ...allsvenskanMatches];
+  
+  console.log(`\n=== TOTALS ===`);
+  console.log(`NHL: ${nhlMatches.length} games`);
+  console.log(`SHL: ${shlMatches.length} games`);
+  console.log(`Allsvenskan: ${allsvenskanMatches.length} games`);
+  console.log(`TOTAL: ${allMatches.length} games\n`);
+  
+  return {
+    allMatches,
+    leagueStats: {
+      nhl: { hasGames: nhlMatches.length > 0, gamesFound: nhlMatches.length },
+      shl: { hasGames: shlMatches.length > 0, gamesFound: shlMatches.length },
+      allsvenskan: { hasGames: allsvenskanMatches.length > 0, gamesFound: allsvenskanMatches.length },
+    }
+  };
+}
+
+// =============================================================================
+// AI ANALYSIS (GEMINI)
+// =============================================================================
+
+/**
+ * Analyze matches with Gemini AI and calculate Expected Value
+ */
+async function analyzeWithAI(matches) {
+  if (!GEMINI_API_KEY) {
+    console.warn('[AI] No Gemini API key found. Skipping AI analysis.');
+    return matches.map(match => ({
+      ...match,
+      aiProbability: null,
+      reasoning: 'AI analysis unavailable - no API key',
+      confidence: 'low',
+      expectedValue: 0,
+      markets: match.markets.map(m => ({
+        ...m,
+        expectedValue: 0,
+        aiProbability: null,
+        reasoning: 'AI analysis unavailable',
+        confidence: 'low',
+      }))
+    }));
+  }
+  
+  if (matches.length === 0) {
+    console.log('[AI] No matches to analyze');
+    return [];
+  }
+  
+  console.log(`\n=== AI ANALYSIS ===`);
+  console.log(`Analyzing ${matches.length} matches with Gemini AI...\n`);
+  
+  try {
+    // Initialize Gemini AI
+    const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+    
+    // Create detailed prompt for professional betting analysis
+    const prompt = `You are an elite professional sports bettor specializing in ice hockey. Analyze these ${matches.length} games with the mindset of a sharp bettor looking for value.
+
+**Games to Analyze:**
+${matches.map((m, i) => `
+${i + 1}. ${m.league}: ${m.homeTeam} vs ${m.awayTeam}
+   - Start Time: ${m.startTimeFormatted}
+   - Current Odds: ${m.marketOdd} (implied probability: ${m.marketProb.toFixed(1)}%)
+   - League: ${m.league}
+`).join('\n')}
+
+**Your Task:**
+For each game, provide:
+1. **Home Win Probability** (0-100%): Your realistic assessment of the home team's win chance
+2. **Reasoning** (2-3 sentences): Key factors influencing your prediction
+   - Recent form (last 5-10 games)
+   - Head-to-head history
+   - Home ice advantage
+   - League strength context
+   - Any critical injuries or lineup changes
+3. **Confidence** (high/medium/low): How confident are you in this prediction?
+
+**Think Like a Professional:**
+- Be conservative and realistic (avoid extreme probabilities unless very justified)
+- Consider that the market is generally efficient - big edges are rare
+- NHL games are more predictable than lower leagues (SHL/Allsvenskan)
+- Home ice advantage is worth ~3-5% in probability
+- Recent form matters more than season-long stats
+
+**Output Format:**
+Return a JSON array with exactly ${matches.length} predictions in this format:
+\`\`\`json
+[
+  {
+    "gameIndex": 0,
+    "homeWinProbability": 52,
+    "reasoning": "Home team has won 7 of last 10 games. Strong home record this season. Away team missing two key defensemen.",
+    "confidence": "medium"
+  },
+  ...
+]
+\`\`\`
+
+Return ONLY the JSON array, no other text.`;
+
+    // Call Gemini AI
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: prompt,
+      config: {
+        systemInstruction: "You are an elite ice hockey betting analyst. Provide realistic win probabilities based on team performance, not just odds. Be conservative - sharp bettors don't chase every game.",
+        temperature: 0.3,
+        maxOutputTokens: 4096,
+      },
+    });
+    
+    const text = response.text || '';
+    console.log('[AI] Raw response received, parsing...');
+    
+    // Extract JSON from response (may be wrapped in markdown code blocks)
+    const jsonMatch = text.match(/\[[\s\S]*\]/);
+    if (!jsonMatch) {
+      console.error('[AI] Failed to parse JSON from response:', text.substring(0, 200));
+      throw new Error('Failed to parse AI response - no JSON array found');
+    }
+    
+    const aiPredictions = JSON.parse(jsonMatch[0]);
+    console.log(`[AI] Successfully parsed ${aiPredictions.length} predictions`);
+    
+    // Enrich matches with AI data and calculate Expected Value
+    const enrichedMatches = matches.map((match, index) => {
+      const prediction = aiPredictions.find(p => p.gameIndex === index);
+      
+      if (!prediction) {
+        console.warn(`[AI] No prediction found for game ${index}`);
+        return {
+          ...match,
+          aiProbability: null,
+          reasoning: 'AI prediction missing',
+          confidence: 'low',
+          expectedValue: 0,
+          markets: match.markets.map(m => ({
+            ...m,
+            expectedValue: 0,
+            aiProbability: null,
+            reasoning: 'AI prediction missing',
+            confidence: 'low',
+          }))
+        };
+      }
+      
+      const aiProb = prediction.homeWinProbability / 100; // Convert to decimal (0-1)
+      const marketOdds = match.marketOdd;
+      
+      // Expected Value Formula: (AI Probability × Odds) - 1
+      // Example: If AI says 60% chance (0.60) and odds are 2.00:
+      //   EV = (0.60 × 2.00) - 1 = 1.20 - 1 = 0.20 = +20% EV
+      const expectedValue = (aiProb * marketOdds - 1) * 100; // Convert to percentage
+      
+      console.log(`  Game ${index + 1}: ${match.homeTeam} - AI: ${prediction.homeWinProbability}%, EV: ${expectedValue > 0 ? '+' : ''}${expectedValue.toFixed(1)}%`);
+      
+      return {
+        ...match,
+        aiProbability: prediction.homeWinProbability,
+        reasoning: prediction.reasoning,
+        confidence: prediction.confidence,
+        expectedValue: Number(expectedValue.toFixed(1)),
+        markets: match.markets.map(m => ({
+          ...m,
+          expectedValue: Number(expectedValue.toFixed(1)),
+          aiProbability: prediction.homeWinProbability,
+          reasoning: prediction.reasoning,
+          confidence: prediction.confidence,
+        }))
+      };
+    });
+    
+    console.log('[AI] Analysis complete');
+    return enrichedMatches;
+    
+  } catch (error) {
+    console.error('[AI] Error during analysis:', error.message);
+    console.error('[AI] Stack:', error.stack);
+    
+    // Return matches without AI enrichment on error
+    return matches.map(match => ({
+      ...match,
+      aiProbability: null,
+      reasoning: `AI analysis failed: ${error.message}`,
+      confidence: 'low',
+      expectedValue: 0,
+      markets: match.markets.map(m => ({
+        ...m,
+        expectedValue: 0,
+        aiProbability: null,
+        reasoning: 'AI analysis failed',
+        confidence: 'low',
+      }))
+    }));
+  }
+}
+
+// =============================================================================
+// BET SELECTION & FILTERING
+// =============================================================================
+
+/**
+ * Classify bet into EV tier
+ */
+function classifyEVTier(expectedValue) {
+  if (expectedValue >= EV_TIERS.SICK.min) {
+    return { ...EV_TIERS.SICK, tier: 'SICK' };
+  } else if (expectedValue >= EV_TIERS.ELITE.min) {
+    return { ...EV_TIERS.ELITE, tier: 'ELITE' };
+  } else if (expectedValue >= EV_TIERS.STRONG.min) {
+    return { ...EV_TIERS.STRONG, tier: 'STRONG' };
+  }
+  return null; // Below minimum threshold
+}
+
+/**
+ * Filter for high-value bets (EV >= threshold)
+ */
+function filterHighValueBets(matches, minEV = MIN_EV_THRESHOLD) {
+  const valueBets = matches.filter(m => m.expectedValue && m.expectedValue >= minEV);
+  
+  // Add tier classification to each bet
+  const tieredBets = valueBets.map(bet => ({
+    ...bet,
+    evTier: classifyEVTier(bet.expectedValue)
+  }));
+  
+  // Sort by tier priority (SICK > ELITE > STRONG), then by EV within tier
+  tieredBets.sort((a, b) => {
+    const tierOrder = { SICK: 3, ELITE: 2, STRONG: 1 };
+    const aTierValue = tierOrder[a.evTier?.tier] || 0;
+    const bTierValue = tierOrder[b.evTier?.tier] || 0;
+    
+    if (aTierValue !== bTierValue) {
+      return bTierValue - aTierValue; // Higher tier first
+    }
+    return b.expectedValue - a.expectedValue; // Higher EV first within same tier
+  });
+  
+  console.log(`\n=== VALUE FILTERING ===`);
+  console.log(`Found ${tieredBets.length} bets with EV >= ${minEV}%`);
+  
+  if (tieredBets.length > 0) {
+    // Count by tier
+    const sickCount = tieredBets.filter(b => b.evTier?.tier === 'SICK').length;
+    const eliteCount = tieredBets.filter(b => b.evTier?.tier === 'ELITE').length;
+    const strongCount = tieredBets.filter(b => b.evTier?.tier === 'STRONG').length;
+    
+    console.log(`\nBreakdown by tier:`);
+    if (sickCount > 0) console.log(`  🔥 Sick Edge (10%+): ${sickCount} bets`);
+    if (eliteCount > 0) console.log(`  ⭐ Elite Edge (6-10%): ${eliteCount} bets`);
+    if (strongCount > 0) console.log(`  💪 Strong Edge (3-6%): ${strongCount} bets`);
+    
+    console.log('\nTop bets:');
+    tieredBets.slice(0, 5).forEach((bet, i) => {
+      const tierBadge = bet.evTier ? `${bet.evTier.emoji} ${bet.evTier.label}` : '';
+      console.log(`  ${i + 1}. ${bet.homeTeam} vs ${bet.awayTeam} → +${bet.expectedValue}% EV ${tierBadge} (${bet.confidence} confidence)`);
+    });
+  }
+  
+  return tieredBets;
+}
+
+/**
+ * Select "Bet of the Day" (highest tier + highest EV + confidence)
+ */
+function selectBetOfTheDay(valueBets) {
+  if (valueBets.length === 0) return null;
+  
+  // Multi-factor scoring system for professional bet selection
+  const scored = valueBets.map(bet => {
+    // Tier scoring (highest priority)
+    const tierScore = bet.evTier?.tier === 'SICK' ? 200 : 
+                     bet.evTier?.tier === 'ELITE' ? 150 : 
+                     bet.evTier?.tier === 'STRONG' ? 100 : 0;
+    
+    // Confidence scoring (professional bettors prioritize confidence)
+    const confidenceScore = bet.confidence === 'high' ? 100 : bet.confidence === 'medium' ? 60 : 20;
+    
+    // League reliability (NHL is more predictable than lower leagues)
+    const leagueScore = bet.league === 'NHL' ? 100 : bet.league === 'SHL' ? 80 : 60;
+    
+    // Expected Value score
+    const evScore = bet.expectedValue || 0;
+    
+    // Weighted formula:
+    // - Tier: 30% weight (prioritize higher tiers)
+    // - EV: 35% weight (primary factor)
+    // - Confidence: 25% weight (critical for sharp betting)
+    // - League: 10% weight (context matters)
+    const score = (tierScore * 0.3) + (evScore * 0.35) + (confidenceScore * 0.25) + (leagueScore * 0.1);
+    
+    return { ...bet, score };
+  });
+  
+  // Sort by composite score
+  scored.sort((a, b) => b.score - a.score);
+  
+  const betOfTheDay = scored[0];
+  const tierInfo = betOfTheDay.evTier ? `${betOfTheDay.evTier.emoji} ${betOfTheDay.evTier.label}` : '';
+  
+  console.log(`\n=== BET OF THE DAY ===`);
+  console.log(`${betOfTheDay.homeTeam} vs ${betOfTheDay.awayTeam} (${betOfTheDay.league})`);
+  console.log(`${tierInfo} | EV: +${betOfTheDay.expectedValue}% | Confidence: ${betOfTheDay.confidence} | Score: ${betOfTheDay.score.toFixed(1)}`);
+  console.log(`Reasoning: ${betOfTheDay.reasoning}`);
+  
+  // Show top 3 for context
+  if (scored.length > 1) {
+    console.log(`\nTop 3 picks by score:`);
+    scored.slice(0, 3).forEach((bet, i) => {
+      const tier = bet.evTier ? `${bet.evTier.emoji}` : '';
+      console.log(`  ${i + 1}. ${tier} ${bet.homeTeam} - EV: +${bet.expectedValue}%, Conf: ${bet.confidence}, Score: ${bet.score.toFixed(1)}`);
+    });
+  }
+  console.log();
+  
+  return betOfTheDay;
+}
+
+// =============================================================================
+// DISCORD NOTIFICATION
+// =============================================================================
+
+/**
+ * Send Discord notification with bet of the day
+ */
+async function sendDiscordNotification(betOfTheDay, valueBets) {
+  if (!DISCORD_WEBHOOK_URL) {
+    console.log('[Discord] No webhook configured. Skipping notification.');
+    return;
+  }
+  
+  if (!betOfTheDay) {
+    console.log('[Discord] No bet of the day. Sending "no bets" message.');
+    
+    const message = {
+      content: `🏒 **PuckTrend Daily Update**\n\n` +
+        `📊 No value betting opportunities found today.\n` +
+        `🎯 Our AI analyzed all available games but none met our 3% EV minimum threshold.\n\n` +
+        `✨ Quality over quantity - we only recommend professional-grade value bets.\n` +
+        `📅 Check back tomorrow at 8:00 AM CET for new picks!\n\n` +
+        `💪 Strong Edge (3-6%) | ⭐ Elite Edge (6-10%) | 🔥 Sick Edge (10%+)`
+    };
+    
+    try {
+      await fetch(DISCORD_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(message)
+      });
+      console.log('[Discord] "No bets" notification sent successfully');
+    } catch (error) {
+      console.error('[Discord] Failed to send notification:', error.message);
+    }
+    
+    return;
+  }
+  
+  // Format bet of the day message with tier
+  const tierBadge = betOfTheDay.evTier ? `${betOfTheDay.evTier.emoji} **${betOfTheDay.evTier.label}**` : '';
+  
+  const message = {
+    content: `🏆 **PuckTrend - Bet of the Day**\n\n` +
+      `**${betOfTheDay.homeTeam} vs ${betOfTheDay.awayTeam}** (${betOfTheDay.league})\n` +
+      `🕐 Start: ${betOfTheDay.startTimeFormatted}\n\n` +
+      `${tierBadge}\n` +
+      `🎯 **Pick:** ${betOfTheDay.homeTeam} to Win\n` +
+      `💰 **Odds:** ${betOfTheDay.marketOdd}\n` +
+      `🤖 **AI Win Probability:** ${betOfTheDay.aiProbability}%\n` +
+      `📈 **Expected Value:** +${betOfTheDay.expectedValue}%\n` +
+      `🎲 **Confidence:** ${betOfTheDay.confidence.toUpperCase()}\n\n` +
+      `💡 **Analysis:**\n${betOfTheDay.reasoning}\n\n` +
+      `${getAdditionalBetsMessage(valueBets)}\n` +
+      `✨ Professional-grade analysis | EV Tiers: 💪 Strong (3-6%) | ⭐ Elite (6-10%) | 🔥 Sick (10%+)`
+  };
+  
+  try {
+    await fetch(DISCORD_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(message)
+    });
+    console.log('[Discord] Bet of the day notification sent successfully');
+  } catch (error) {
+    console.error('[Discord] Failed to send notification:', error.message);
+  }
+}
+
+/**
+ * Get additional bets summary message
+ */
+function getAdditionalBetsMessage(valueBets) {
+  if (valueBets.length <= 1) return '';
+  
+  const additional = valueBets.length - 1;
+  const tiers = {
+    sick: valueBets.filter(b => b.evTier?.tier === 'SICK').length,
+    elite: valueBets.filter(b => b.evTier?.tier === 'ELITE').length,
+    strong: valueBets.filter(b => b.evTier?.tier === 'STRONG').length
+  };
+  
+  let msg = `📊 **${additional} More Value Bet${additional > 1 ? 's' : ''} Available**\n`;
+  if (tiers.sick > 1) msg += `   🔥 Sick Edge: ${tiers.sick}\n`;
+  if (tiers.elite > 0) msg += `   ⭐ Elite Edge: ${tiers.elite}\n`;
+  if (tiers.strong > 0) msg += `   💪 Strong Edge: ${tiers.strong}\n`;
+  
+  return msg;
+}
+
+// =============================================================================
+// SAVE RESULTS
+// =============================================================================
+
+/**
+ * Save daily picks to JSON file
+ */
+function saveDailyPicks(allMatches, valueBets, betOfTheDay, leagueStats) {
+  const timezones = getTimezones();
+  
+  const output = {
+    timestamp: timezones.now.toISOString(),
+    scanDateCET: timezones.cetTime.toLocaleDateString('sv-SE'),
+    scanDateET: timezones.etTime.toLocaleDateString('en-US'),
+    scanTimeCET: timezones.cetTime.toLocaleString('sv-SE'),
+    leagueStats,
+    summary: {
+      totalGamesAnalyzed: allMatches.length,
+      valueBetsFound: valueBets.length,
+      hasBetOfTheDay: !!betOfTheDay,
+      avgEV: valueBets.length > 0 
+        ? Number((valueBets.reduce((sum, b) => sum + b.expectedValue, 0) / valueBets.length).toFixed(1))
+        : 0,
+    },
+    betOfTheDay: betOfTheDay || null,
+    featuredBets: valueBets.slice(0, 5), // Top 5
+    allBets: valueBets,
+    metadata: {
+      minEVThreshold: MIN_EV_THRESHOLD,
+      version: '2.0.0',
+      generatedBy: 'daily-scan.js'
+    }
+  };
+  
+  const outputPath = join(__dirname, '..', 'public', 'data', 'daily-picks.json');
+  writeFileSync(outputPath, JSON.stringify(output, null, 2));
+  
+  console.log(`\n=== SAVED ===`);
+  console.log(`Results saved to: ${outputPath}`);
+  console.log(`Total games: ${allMatches.length}`);
+  console.log(`Value bets: ${valueBets.length}`);
+  console.log(`Bet of the day: ${betOfTheDay ? 'YES' : 'NO'}\n`);
+}
+
+// =============================================================================
+// MAIN
+// =============================================================================
+
+async function main() {
+  console.log('╔════════════════════════════════════════════╗');
+  console.log('║   PuckTrend Daily Scan - Version 2.0      ║');
+  console.log('╚════════════════════════════════════════════╝\n');
+  
+  try {
+    // 1. Fetch odds from all leagues
+    const { allMatches, leagueStats } = await fetchAllLeagues();
+    
+    if (allMatches.length === 0) {
+      console.log('\n⚠️  No games found across all leagues. Saving empty state.');
+      saveDailyPicks([], [], null, leagueStats);
+      await sendDiscordNotification(null, []);
+      return;
+    }
+    
+    // 2. Analyze with AI
+    const enrichedMatches = await analyzeWithAI(allMatches);
+    
+    // 3. Filter for high-value bets
+    const valueBets = filterHighValueBets(enrichedMatches, MIN_EV_THRESHOLD);
+    
+    // 4. Select bet of the day
+    const betOfTheDay = selectBetOfTheDay(valueBets);
+    
+    // 5. Save results
+    saveDailyPicks(enrichedMatches, valueBets, betOfTheDay, leagueStats);
+    
+    // 6. Send Discord notification
+    await sendDiscordNotification(betOfTheDay, valueBets);
+    
+    console.log('✅ Daily scan complete!\n');
+    
+  } catch (error) {
+    console.error('\n❌ FATAL ERROR:', error);
+    process.exit(1);
+  }
+}
+
+// Run the script
+main();
