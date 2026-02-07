@@ -341,12 +341,9 @@ async function fetchAllLeagues() {
  * Analyze matches with Gemini AI and calculate Expected Value
  */
 async function analyzeWithAI(matches, modelIndex = 0) {
-  // Fallback model strategy: Try multiple models if one is overloaded
+  // Use single reliable free-tier model (quota issues require paid plan for multiple retries)
   const GEMINI_MODELS = [
-    'gemini-3-flash-preview',  // Primary: Latest, fastest
-    'gemini-2.5-flash',         // Fallback 1: Very reliable
-    'gemini-2.0-flash',         // Fallback 2: Stable
-    'gemini-1.5-flash'          // Fallback 3: Most reliable, older
+    'gemini-3-flash-preview',  // Only model - works on free tier
   ];
   
   if (!GEMINI_API_KEY) {
