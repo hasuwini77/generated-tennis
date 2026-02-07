@@ -557,7 +557,10 @@ For each match, provide:
 
 **Think Like a Professional:**
 - Be conservative and realistic (avoid extreme probabilities unless very justified)
-- Consider that the market is generally efficient - big edges are rare
+- **CRITICAL**: If you disagree with market odds by more than 15-20%, double-check your reasoning
+  - Example: Market says 36% (2.76 odds), don't go above 50-55% unless you have STRONG evidence
+  - Markets are generally efficient - massive edges (>30% EV) are extremely rare in tennis
+- If "No recent matches" data is available, stay CLOSER to market odds (±5-10% max)
 - Surface type matters significantly in tennis (clay specialists vs hard court players)
 - Recent form and head-to-head records are critical indicators
 - Rankings matter but recent momentum often matters more
@@ -750,6 +753,9 @@ ${matches.map((m, i) => `
 **Your Task:**
 For each match, provide:
 1. **Player 1 Win Probability** (0-100%)
+   - IMPORTANT: Be conservative! If market odds imply 36%, don't exceed 50% unless you have STRONG evidence
+   - If "No recent matches" data, stay within ±10% of market probability
+   - Massive edges (>30% EV) are extremely rare - markets are generally efficient
 2. **Reasoning** (2-3 sentences): Key factors like form, H2H, surface suitability
 3. **Confidence** (high/medium/low):
    - **HIGH**: Clear form/H2H advantage + surface match + solid data
