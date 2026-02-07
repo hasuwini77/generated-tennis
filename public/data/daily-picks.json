@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-07T21:13:03.525Z",
+  "timestamp": "2026-02-07T21:18:14.881Z",
   "scanDateCET": "2026-02-07",
   "scanDateET": "2/7/2026",
-  "scanTimeCET": "2026-02-07 22:13:03",
+  "scanTimeCET": "2026-02-07 22:18:14",
   "leagueStats": {
     "atp": {
       "hasGames": false,
@@ -15,13 +15,533 @@
   },
   "summary": {
     "totalGamesAnalyzed": 13,
-    "valueBetsFound": 0,
-    "hasBetOfTheDay": false,
-    "avgEV": 0
+    "valueBetsFound": 8,
+    "hasBetOfTheDay": true,
+    "avgEV": 6.7
   },
-  "betOfTheDay": null,
-  "featuredBets": [],
-  "allBets": [],
+  "betOfTheDay": {
+    "id": "1faa739416304be09cac48f3e70d0cc3",
+    "league": "WTA",
+    "homeTeam": "Anastasia Pavlyuchenkova",
+    "awayTeam": "Elise Mertens",
+    "startTime": "2026-02-08T12:00:00Z",
+    "startTimeFormatted": "Feb 8, 13:00",
+    "marketOdd": 4.61,
+    "marketProb": 21.7,
+    "markets": [
+      {
+        "type": "h2h",
+        "outcome": "Anastasia Pavlyuchenkova",
+        "odds": 4.61,
+        "impliedProb": 21.7,
+        "expectedValue": 15.3,
+        "aiProbability": 25,
+        "reasoning": "The market heavily favors Mertens, likely due to her exceptional reliability and defensive skills. Pavlyuchenkova has the higher peak power, but her recent inconsistency and fitness concerns make Mertens the much safer statistical bet.",
+        "confidence": "medium"
+      }
+    ],
+    "homeForm": "No recent matches",
+    "awayForm": "No recent matches",
+    "formData": {},
+    "aiProbability": 25,
+    "reasoning": "The market heavily favors Mertens, likely due to her exceptional reliability and defensive skills. Pavlyuchenkova has the higher peak power, but her recent inconsistency and fitness concerns make Mertens the much safer statistical bet.",
+    "confidence": "medium",
+    "expectedValue": 15.3,
+    "evTier": {
+      "min": 10,
+      "max": null,
+      "label": "Sick Edge",
+      "emoji": "🔥",
+      "color": "red",
+      "tier": "SICK"
+    },
+    "score": 86.355
+  },
+  "featuredBets": [
+    {
+      "id": "1faa739416304be09cac48f3e70d0cc3",
+      "league": "WTA",
+      "homeTeam": "Anastasia Pavlyuchenkova",
+      "awayTeam": "Elise Mertens",
+      "startTime": "2026-02-08T12:00:00Z",
+      "startTimeFormatted": "Feb 8, 13:00",
+      "marketOdd": 4.61,
+      "marketProb": 21.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Anastasia Pavlyuchenkova",
+          "odds": 4.61,
+          "impliedProb": 21.7,
+          "expectedValue": 15.3,
+          "aiProbability": 25,
+          "reasoning": "The market heavily favors Mertens, likely due to her exceptional reliability and defensive skills. Pavlyuchenkova has the higher peak power, but her recent inconsistency and fitness concerns make Mertens the much safer statistical bet.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 25,
+      "reasoning": "The market heavily favors Mertens, likely due to her exceptional reliability and defensive skills. Pavlyuchenkova has the higher peak power, but her recent inconsistency and fitness concerns make Mertens the much safer statistical bet.",
+      "confidence": "medium",
+      "expectedValue": 15.3,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "5d1e84eb0827488a65f8dbfe0d0a7483",
+      "league": "WTA",
+      "homeTeam": "Laura Siegemund",
+      "awayTeam": "Varvara Gracheva",
+      "startTime": "2026-02-08T10:35:00Z",
+      "startTimeFormatted": "Feb 8, 11:35",
+      "marketOdd": 2.9,
+      "marketProb": 34.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Laura Siegemund",
+          "odds": 2.9,
+          "impliedProb": 34.5,
+          "expectedValue": 10.2,
+          "aiProbability": 38,
+          "reasoning": "Gracheva is the more natural hard-court player and possesses more consistent depth. While Siegemund's variety and net play can disrupt rhythm, Gracheva's age and movement give her the edge in a baseline battle.",
+          "confidence": "low"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 38,
+      "reasoning": "Gracheva is the more natural hard-court player and possesses more consistent depth. While Siegemund's variety and net play can disrupt rhythm, Gracheva's age and movement give her the edge in a baseline battle.",
+      "confidence": "low",
+      "expectedValue": 10.2,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "0ab56fa222353824dbfac4fbe4c3f485",
+      "league": "WTA",
+      "homeTeam": "Liudmila Samsonova",
+      "awayTeam": "Magdalena Frech",
+      "startTime": "2026-02-08T10:00:00Z",
+      "startTimeFormatted": "Feb 8, 11:00",
+      "marketOdd": 1.47,
+      "marketProb": 68,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Liudmila Samsonova",
+          "odds": 1.47,
+          "impliedProb": 68,
+          "expectedValue": 5.8,
+          "aiProbability": 72,
+          "reasoning": "Samsonova's massive serve and flat groundstrokes are highly effective on fast hard courts. Frech is a resilient counter-puncher but lacks the weapons to hurt Samsonova if the latter maintains a reasonable first-serve percentage.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 72,
+      "reasoning": "Samsonova's massive serve and flat groundstrokes are highly effective on fast hard courts. Frech is a resilient counter-puncher but lacks the weapons to hurt Samsonova if the latter maintains a reasonable first-serve percentage.",
+      "confidence": "medium",
+      "expectedValue": 5.8,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "63d1804d984b7ceeb22d886263b009fe",
+      "league": "WTA",
+      "homeTeam": "Diana Shnaider",
+      "awayTeam": "Alycia Parks",
+      "startTime": "2026-02-08T11:30:00Z",
+      "startTimeFormatted": "Feb 8, 12:30",
+      "marketOdd": 1.35,
+      "marketProb": 74.1,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Diana Shnaider",
+          "odds": 1.35,
+          "impliedProb": 74.1,
+          "expectedValue": 5.3,
+          "aiProbability": 78,
+          "reasoning": "Shnaider has shown elite form recently, winning titles and demonstrating great tactical maturity. Parks has a high ceiling due to her serve but is currently struggling with extreme unforced error counts and double faults.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 78,
+      "reasoning": "Shnaider has shown elite form recently, winning titles and demonstrating great tactical maturity. Parks has a high ceiling due to her serve but is currently struggling with extreme unforced error counts and double faults.",
+      "confidence": "high",
+      "expectedValue": 5.3,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "8182c52b3d3cba77c3df06c84e49b60e",
+      "league": "WTA",
+      "homeTeam": "Daria Kasatkina",
+      "awayTeam": "Moyuka Uchijima",
+      "startTime": "2026-02-08T14:30:00Z",
+      "startTimeFormatted": "Feb 8, 15:30",
+      "marketOdd": 1.5,
+      "marketProb": 66.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Daria Kasatkina",
+          "odds": 1.5,
+          "impliedProb": 66.7,
+          "expectedValue": 5,
+          "aiProbability": 70,
+          "reasoning": "Kasatkina's ability to extend rallies and change pace is a nightmare for lower-ranked players like Uchijima. Unless Uchijima plays a near-flawless aggressive match, Kasatkina's defensive IQ will likely force too many errors.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 70,
+      "reasoning": "Kasatkina's ability to extend rallies and change pace is a nightmare for lower-ranked players like Uchijima. Unless Uchijima plays a near-flawless aggressive match, Kasatkina's defensive IQ will likely force too many errors.",
+      "confidence": "medium",
+      "expectedValue": 5,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    }
+  ],
+  "allBets": [
+    {
+      "id": "1faa739416304be09cac48f3e70d0cc3",
+      "league": "WTA",
+      "homeTeam": "Anastasia Pavlyuchenkova",
+      "awayTeam": "Elise Mertens",
+      "startTime": "2026-02-08T12:00:00Z",
+      "startTimeFormatted": "Feb 8, 13:00",
+      "marketOdd": 4.61,
+      "marketProb": 21.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Anastasia Pavlyuchenkova",
+          "odds": 4.61,
+          "impliedProb": 21.7,
+          "expectedValue": 15.3,
+          "aiProbability": 25,
+          "reasoning": "The market heavily favors Mertens, likely due to her exceptional reliability and defensive skills. Pavlyuchenkova has the higher peak power, but her recent inconsistency and fitness concerns make Mertens the much safer statistical bet.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 25,
+      "reasoning": "The market heavily favors Mertens, likely due to her exceptional reliability and defensive skills. Pavlyuchenkova has the higher peak power, but her recent inconsistency and fitness concerns make Mertens the much safer statistical bet.",
+      "confidence": "medium",
+      "expectedValue": 15.3,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "5d1e84eb0827488a65f8dbfe0d0a7483",
+      "league": "WTA",
+      "homeTeam": "Laura Siegemund",
+      "awayTeam": "Varvara Gracheva",
+      "startTime": "2026-02-08T10:35:00Z",
+      "startTimeFormatted": "Feb 8, 11:35",
+      "marketOdd": 2.9,
+      "marketProb": 34.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Laura Siegemund",
+          "odds": 2.9,
+          "impliedProb": 34.5,
+          "expectedValue": 10.2,
+          "aiProbability": 38,
+          "reasoning": "Gracheva is the more natural hard-court player and possesses more consistent depth. While Siegemund's variety and net play can disrupt rhythm, Gracheva's age and movement give her the edge in a baseline battle.",
+          "confidence": "low"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 38,
+      "reasoning": "Gracheva is the more natural hard-court player and possesses more consistent depth. While Siegemund's variety and net play can disrupt rhythm, Gracheva's age and movement give her the edge in a baseline battle.",
+      "confidence": "low",
+      "expectedValue": 10.2,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "0ab56fa222353824dbfac4fbe4c3f485",
+      "league": "WTA",
+      "homeTeam": "Liudmila Samsonova",
+      "awayTeam": "Magdalena Frech",
+      "startTime": "2026-02-08T10:00:00Z",
+      "startTimeFormatted": "Feb 8, 11:00",
+      "marketOdd": 1.47,
+      "marketProb": 68,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Liudmila Samsonova",
+          "odds": 1.47,
+          "impliedProb": 68,
+          "expectedValue": 5.8,
+          "aiProbability": 72,
+          "reasoning": "Samsonova's massive serve and flat groundstrokes are highly effective on fast hard courts. Frech is a resilient counter-puncher but lacks the weapons to hurt Samsonova if the latter maintains a reasonable first-serve percentage.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 72,
+      "reasoning": "Samsonova's massive serve and flat groundstrokes are highly effective on fast hard courts. Frech is a resilient counter-puncher but lacks the weapons to hurt Samsonova if the latter maintains a reasonable first-serve percentage.",
+      "confidence": "medium",
+      "expectedValue": 5.8,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "63d1804d984b7ceeb22d886263b009fe",
+      "league": "WTA",
+      "homeTeam": "Diana Shnaider",
+      "awayTeam": "Alycia Parks",
+      "startTime": "2026-02-08T11:30:00Z",
+      "startTimeFormatted": "Feb 8, 12:30",
+      "marketOdd": 1.35,
+      "marketProb": 74.1,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Diana Shnaider",
+          "odds": 1.35,
+          "impliedProb": 74.1,
+          "expectedValue": 5.3,
+          "aiProbability": 78,
+          "reasoning": "Shnaider has shown elite form recently, winning titles and demonstrating great tactical maturity. Parks has a high ceiling due to her serve but is currently struggling with extreme unforced error counts and double faults.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 78,
+      "reasoning": "Shnaider has shown elite form recently, winning titles and demonstrating great tactical maturity. Parks has a high ceiling due to her serve but is currently struggling with extreme unforced error counts and double faults.",
+      "confidence": "high",
+      "expectedValue": 5.3,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "8182c52b3d3cba77c3df06c84e49b60e",
+      "league": "WTA",
+      "homeTeam": "Daria Kasatkina",
+      "awayTeam": "Moyuka Uchijima",
+      "startTime": "2026-02-08T14:30:00Z",
+      "startTimeFormatted": "Feb 8, 15:30",
+      "marketOdd": 1.5,
+      "marketProb": 66.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Daria Kasatkina",
+          "odds": 1.5,
+          "impliedProb": 66.7,
+          "expectedValue": 5,
+          "aiProbability": 70,
+          "reasoning": "Kasatkina's ability to extend rallies and change pace is a nightmare for lower-ranked players like Uchijima. Unless Uchijima plays a near-flawless aggressive match, Kasatkina's defensive IQ will likely force too many errors.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 70,
+      "reasoning": "Kasatkina's ability to extend rallies and change pace is a nightmare for lower-ranked players like Uchijima. Unless Uchijima plays a near-flawless aggressive match, Kasatkina's defensive IQ will likely force too many errors.",
+      "confidence": "medium",
+      "expectedValue": 5,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "53b42456c6e8756969577fb2fb34d154",
+      "league": "WTA",
+      "homeTeam": "Peyton Stearns",
+      "awayTeam": "Vera Zvonareva",
+      "startTime": "2026-02-08T10:30:00Z",
+      "startTimeFormatted": "Feb 8, 11:30",
+      "marketOdd": 1.49,
+      "marketProb": 67.1,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Peyton Stearns",
+          "odds": 1.49,
+          "impliedProb": 67.1,
+          "expectedValue": 4.3,
+          "aiProbability": 70,
+          "reasoning": "Stearns is the more active and physically peak player at this stage of their careers. Zvonareva's experience is vast, but her lack of recent high-level singles matches makes it difficult to keep pace with Stearns' aggressive baseline game.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 70,
+      "reasoning": "Stearns is the more active and physically peak player at this stage of their careers. Zvonareva's experience is vast, but her lack of recent high-level singles matches makes it difficult to keep pace with Stearns' aggressive baseline game.",
+      "confidence": "medium",
+      "expectedValue": 4.3,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "4e2afd2f699aa9d9a3a2501eb903738c",
+      "league": "WTA",
+      "homeTeam": "McCartney Kessler",
+      "awayTeam": "Elsa Jacquemot",
+      "startTime": "2026-02-08T12:00:00Z",
+      "startTimeFormatted": "Feb 8, 13:00",
+      "marketOdd": 1.27,
+      "marketProb": 78.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "McCartney Kessler",
+          "odds": 1.27,
+          "impliedProb": 78.7,
+          "expectedValue": 4.1,
+          "aiProbability": 82,
+          "reasoning": "Kessler has been one of the most improved players on the secondary circuit, translating that success to WTA main draws. Jacquemot is talented but lacks the point-to-point discipline Kessler has displayed on hard courts this season.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 82,
+      "reasoning": "Kessler has been one of the most improved players on the secondary circuit, translating that success to WTA main draws. Jacquemot is talented but lacks the point-to-point discipline Kessler has displayed on hard courts this season.",
+      "confidence": "medium",
+      "expectedValue": 4.1,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "11c364e95bf1777b31e6534e0948256d",
+      "league": "WTA",
+      "homeTeam": "Solana Sierra",
+      "awayTeam": "Karolina Pliskova",
+      "startTime": "2026-02-08T13:00:00Z",
+      "startTimeFormatted": "Feb 8, 14:00",
+      "marketOdd": 2.16,
+      "marketProb": 46.3,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Solana Sierra",
+          "odds": 2.16,
+          "impliedProb": 46.3,
+          "expectedValue": 3.7,
+          "aiProbability": 48,
+          "reasoning": "Pliskova's serve remains a major weapon, but her mobility has declined significantly. Sierra is a rising talent who can exploit Pliskova's movement, though Pliskova's experience on fast surfaces keeps this near a coin-flip.",
+          "confidence": "low"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 48,
+      "reasoning": "Pliskova's serve remains a major weapon, but her mobility has declined significantly. Sierra is a rising talent who can exploit Pliskova's movement, though Pliskova's experience on fast surfaces keeps this near a coin-flip.",
+      "confidence": "low",
+      "expectedValue": 3.7,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    }
+  ],
   "metadata": {
     "minEVThreshold": 3,
     "version": "2.0.0",
