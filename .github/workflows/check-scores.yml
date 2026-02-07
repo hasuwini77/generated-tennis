@@ -1,9 +1,9 @@
-name: Check Scores - PuckTrend
+name: Check Match Results - TennTrend
 
 on:
   # Run twice daily:
-  # 1. At 22:00 CET (21:00 UTC) to check evening games
-  # 2. At 08:00 CET (07:00 UTC) to catch overnight/late games
+  # 1. At 22:00 CET (21:00 UTC) to check evening matches
+  # 2. At 08:00 CET (07:00 UTC) to catch overnight/late matches
   schedule:
     - cron: '0 21 * * *'  # 21:00 UTC = 22:00 CET / 23:00 CEST (evening check)
     - cron: '0 7 * * *'   # 07:00 UTC = 08:00 CET / 09:00 CEST (morning check)
@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 jobs:
-  check-scores:
+  check-results:
     runs-on: ubuntu-latest
     
     steps:
@@ -31,16 +31,16 @@ jobs:
       - name: Install dependencies
         run: npm install node-fetch
       
-      - name: Fetch scores and update history
+      - name: Fetch match results and update history
         env:
-          THESPORTSDB_API_KEY: ${{ secrets.THESPORTSDB_API_KEY }}
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           TZ: Europe/Stockholm
-        run: node scripts/fetch-scores.js
+        run: node scripts/fetch-scores-tennis.js
       
       - name: Commit and push updated history
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "PuckTrend Bot"
+          git config --local user.name "TennTrend Bot"
           git add public/data/results-history.json
           git diff --staged --quiet || git commit -m "chore: update results history $(date +'%Y-%m-%d %H:%M CET')"
           git push
@@ -52,6 +52,6 @@ jobs:
             curl -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
               -H "Content-Type: application/json" \
               -d '{
-                "content": "⚠️ **PuckTrend Score Check Failed**\n\nThe automated score checker encountered an error. Please check the GitHub Actions logs.\n\n🔗 [View Logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+                "content": "⚠️ **TennTrend Match Results Check Failed**\n\nThe automated results checker encountered an error. Please check the GitHub Actions logs.\n\n🔗 [View Logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
               }'
           fi

@@ -778,6 +778,68 @@ function saveDailyPicks(allMatches, valueBets, betOfTheDay, leagueStats) {
   console.log(`Total games: ${allMatches.length}`);
   console.log(`Value bets: ${valueBets.length}`);
   console.log(`Bet of the day: ${betOfTheDay ? 'YES' : 'NO'}\n`);
+  
+  // Also add bets to results history
+  if (valueBets.length > 0) {
+    addBetsToHistory(valueBets, timezones.cetTime);
+  }
+}
+
+/**
+ * Add value bets to results history for tracking
+ */
+function addBetsToHistory(valueBets, scanTime) {
+  try {
+    const historyPath = join(__dirname, '..', 'public', 'data', 'results-history.json');
+    
+    let history;
+    try {
+      const data = readFileSync(historyPath, 'utf-8');
+      history = JSON.parse(data);
+    } catch (error) {
+      console.log('[History] Creating new results history file');
+      history = { bets: [], stats: { totalBets: 0, wins: 0, losses: 0, pending: 0, totalROI: 0 } };
+    }
+    
+    const todayDate = scanTime.toLocaleDateString('sv-SE');
+    
+    // Add each value bet to history
+    for (const bet of valueBets) {
+      const historyBet = {
+        id: bet.id,
+        date: todayDate,
+        matchTime: bet.startTime,
+        league: bet.league,
+        homeTeam: bet.homeTeam,
+        awayTeam: bet.awayTeam,
+        outcome: bet.markets[0].outcome, // The player/team we're betting on
+        odds: bet.markets[0].odds,
+        expectedValue: bet.expectedValue,
+        confidence: bet.confidence,
+        reasoning: bet.reasoning,
+        status: 'pending', // Will be updated by fetch-scores script
+        result: null,
+        roi: null,
+        addedAt: new Date().toISOString()
+      };
+      
+      // Check if this bet already exists (by ID)
+      const exists = history.bets.some(b => b.id === bet.id);
+      if (!exists) {
+        history.bets.unshift(historyBet); // Add to beginning
+      }
+    }
+    
+    // Update stats
+    history.stats.totalBets = history.bets.length;
+    history.stats.pending = history.bets.filter(b => b.status === 'pending').length;
+    
+    writeFileSync(historyPath, JSON.stringify(history, null, 2));
+    console.log(`[History] Added ${valueBets.length} bet(s) to results history`);
+    
+  } catch (error) {
+    console.error('[History] Error updating results history:', error.message);
+  }
 }
 
 // =============================================================================
