@@ -503,8 +503,28 @@ Return ONLY the JSON array, no other text.`;
     return enrichedMatches;
     
   } catch (error) {
+    const isRetryable = error.message && (
+      error.message.includes('503') || 
+      error.message.includes('overloaded') ||
+      error.message.includes('UNAVAILABLE') ||
+      error.message.includes('timeout')
+    );
+    
     console.error('[AI] Error during analysis:', error.message);
-    console.error('[AI] Stack:', error.stack);
+    
+    // Retry on 503 or overload errors
+    if (isRetryable && matches.retryCount < 3) {
+      const retryCount = (matches.retryCount || 0) + 1;
+      const delay = [5000, 10000, 20000][retryCount - 1];
+      
+      console.log(`[AI] Retrying in ${delay/1000}s (attempt ${retryCount}/3)...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      
+      matches.retryCount = retryCount;
+      return analyzeWithAI(matches);
+    }
+    
+    console.error('[AI] Max retries reached or non-retryable error. Skipping AI analysis.');
     
     // Return matches without AI enrichment on error
     return matches.map(match => ({
