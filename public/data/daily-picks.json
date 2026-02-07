@@ -1,27 +1,335 @@
 {
-  "timestamp": "2026-02-07T06:09:18.810Z",
+  "timestamp": "2026-02-07T17:44:01.603Z",
   "scanDateCET": "2026-02-07",
   "scanDateET": "2/7/2026",
-  "scanTimeCET": "2026-02-07 07:09:18",
+  "scanTimeCET": "2026-02-07 18:44:01",
   "leagueStats": {
     "atp": {
       "hasGames": false,
       "gamesFound": 0
     },
     "wta": {
-      "hasGames": false,
-      "gamesFound": 0
+      "hasGames": true,
+      "gamesFound": 14
     }
   },
   "summary": {
-    "totalGamesAnalyzed": 0,
-    "valueBetsFound": 0,
-    "hasBetOfTheDay": false,
-    "avgEV": 0
+    "totalGamesAnalyzed": 14,
+    "valueBetsFound": 4,
+    "hasBetOfTheDay": true,
+    "avgEV": 21.1
   },
-  "betOfTheDay": null,
-  "featuredBets": [],
-  "allBets": [],
+  "betOfTheDay": {
+    "id": "1faa739416304be09cac48f3e70d0cc3",
+    "league": "WTA",
+    "homeTeam": "Anastasia Pavlyuchenkova",
+    "awayTeam": "Elise Mertens",
+    "startTime": "2026-02-08T12:00:00Z",
+    "startTimeFormatted": "Feb 8, 13:00",
+    "marketOdd": 4.61,
+    "marketProb": 21.7,
+    "markets": [
+      {
+        "type": "h2h",
+        "outcome": "Anastasia Pavlyuchenkova",
+        "odds": 4.61,
+        "impliedProb": 21.7,
+        "expectedValue": 47.5,
+        "aiProbability": 32,
+        "reasoning": "Mertens is the quintessential 'gatekeeper' who rarely loses to players ranked below her. Pavlyuchenkova has a higher ceiling, but Mertens' fitness and defensive consistency on hard courts give her a clear edge.",
+        "confidence": "medium"
+      }
+    ],
+    "aiProbability": 32,
+    "reasoning": "Mertens is the quintessential 'gatekeeper' who rarely loses to players ranked below her. Pavlyuchenkova has a higher ceiling, but Mertens' fitness and defensive consistency on hard courts give her a clear edge.",
+    "confidence": "medium",
+    "expectedValue": 47.5,
+    "evTier": {
+      "min": 10,
+      "max": null,
+      "label": "Sick Edge",
+      "emoji": "🔥",
+      "color": "red",
+      "tier": "SICK"
+    },
+    "score": 97.625
+  },
+  "featuredBets": [
+    {
+      "id": "1faa739416304be09cac48f3e70d0cc3",
+      "league": "WTA",
+      "homeTeam": "Anastasia Pavlyuchenkova",
+      "awayTeam": "Elise Mertens",
+      "startTime": "2026-02-08T12:00:00Z",
+      "startTimeFormatted": "Feb 8, 13:00",
+      "marketOdd": 4.61,
+      "marketProb": 21.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Anastasia Pavlyuchenkova",
+          "odds": 4.61,
+          "impliedProb": 21.7,
+          "expectedValue": 47.5,
+          "aiProbability": 32,
+          "reasoning": "Mertens is the quintessential 'gatekeeper' who rarely loses to players ranked below her. Pavlyuchenkova has a higher ceiling, but Mertens' fitness and defensive consistency on hard courts give her a clear edge.",
+          "confidence": "medium"
+        }
+      ],
+      "aiProbability": 32,
+      "reasoning": "Mertens is the quintessential 'gatekeeper' who rarely loses to players ranked below her. Pavlyuchenkova has a higher ceiling, but Mertens' fitness and defensive consistency on hard courts give her a clear edge.",
+      "confidence": "medium",
+      "expectedValue": 47.5,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "e5fa281ef81a8331128b02bf23a6c6d0",
+      "league": "WTA",
+      "homeTeam": "Marie Bouzkova",
+      "awayTeam": "Victoria Mboko",
+      "startTime": "2026-02-08T15:00:00Z",
+      "startTimeFormatted": "Feb 8, 16:00",
+      "marketOdd": 2.71,
+      "marketProb": 36.9,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Marie Bouzkova",
+          "odds": 2.71,
+          "impliedProb": 36.9,
+          "expectedValue": 13.8,
+          "aiProbability": 42,
+          "reasoning": "Bouzkova is a elite defender, but the market seems to be respecting Mboko's raw power and home-court/regional advantage. This is a clash of styles where Bouzkova's experience should give her a slight edge despite the odds.",
+          "confidence": "low"
+        }
+      ],
+      "aiProbability": 42,
+      "reasoning": "Bouzkova is a elite defender, but the market seems to be respecting Mboko's raw power and home-court/regional advantage. This is a clash of styles where Bouzkova's experience should give her a slight edge despite the odds.",
+      "confidence": "low",
+      "expectedValue": 13.8,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "8182c52b3d3cba77c3df06c84e49b60e",
+      "league": "WTA",
+      "homeTeam": "Daria Kasatkina",
+      "awayTeam": "Moyuka Uchijima",
+      "startTime": "2026-02-08T14:30:00Z",
+      "startTimeFormatted": "Feb 8, 15:30",
+      "marketOdd": 1.61,
+      "marketProb": 62.1,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Daria Kasatkina",
+          "odds": 1.61,
+          "impliedProb": 62.1,
+          "expectedValue": 12.7,
+          "aiProbability": 70,
+          "reasoning": "Kasatkina's defensive masterclass is usually too much for players outside the top 50 to break down. Uchijima is rising, but she lacks the consistent finishing power required to hit through Kasatkina over three sets.",
+          "confidence": "medium"
+        }
+      ],
+      "aiProbability": 70,
+      "reasoning": "Kasatkina's defensive masterclass is usually too much for players outside the top 50 to break down. Uchijima is rising, but she lacks the consistent finishing power required to hit through Kasatkina over three sets.",
+      "confidence": "medium",
+      "expectedValue": 12.7,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "5d1e84eb0827488a65f8dbfe0d0a7483",
+      "league": "WTA",
+      "homeTeam": "Laura Siegemund",
+      "awayTeam": "Varvara Gracheva",
+      "startTime": "2026-02-08T10:35:00Z",
+      "startTimeFormatted": "Feb 8, 11:35",
+      "marketOdd": 2.45,
+      "marketProb": 40.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Laura Siegemund",
+          "odds": 2.45,
+          "impliedProb": 40.8,
+          "expectedValue": 10.3,
+          "aiProbability": 45,
+          "reasoning": "Siegemund's unorthodox style and frequent use of the slice can disrupt Gracheva's rhythm. Gracheva is the steadier baseliner, but Siegemund's veteran savvy makes her a live underdog in these conditions.",
+          "confidence": "low"
+        }
+      ],
+      "aiProbability": 45,
+      "reasoning": "Siegemund's unorthodox style and frequent use of the slice can disrupt Gracheva's rhythm. Gracheva is the steadier baseliner, but Siegemund's veteran savvy makes her a live underdog in these conditions.",
+      "confidence": "low",
+      "expectedValue": 10.3,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    }
+  ],
+  "allBets": [
+    {
+      "id": "1faa739416304be09cac48f3e70d0cc3",
+      "league": "WTA",
+      "homeTeam": "Anastasia Pavlyuchenkova",
+      "awayTeam": "Elise Mertens",
+      "startTime": "2026-02-08T12:00:00Z",
+      "startTimeFormatted": "Feb 8, 13:00",
+      "marketOdd": 4.61,
+      "marketProb": 21.7,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Anastasia Pavlyuchenkova",
+          "odds": 4.61,
+          "impliedProb": 21.7,
+          "expectedValue": 47.5,
+          "aiProbability": 32,
+          "reasoning": "Mertens is the quintessential 'gatekeeper' who rarely loses to players ranked below her. Pavlyuchenkova has a higher ceiling, but Mertens' fitness and defensive consistency on hard courts give her a clear edge.",
+          "confidence": "medium"
+        }
+      ],
+      "aiProbability": 32,
+      "reasoning": "Mertens is the quintessential 'gatekeeper' who rarely loses to players ranked below her. Pavlyuchenkova has a higher ceiling, but Mertens' fitness and defensive consistency on hard courts give her a clear edge.",
+      "confidence": "medium",
+      "expectedValue": 47.5,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "e5fa281ef81a8331128b02bf23a6c6d0",
+      "league": "WTA",
+      "homeTeam": "Marie Bouzkova",
+      "awayTeam": "Victoria Mboko",
+      "startTime": "2026-02-08T15:00:00Z",
+      "startTimeFormatted": "Feb 8, 16:00",
+      "marketOdd": 2.71,
+      "marketProb": 36.9,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Marie Bouzkova",
+          "odds": 2.71,
+          "impliedProb": 36.9,
+          "expectedValue": 13.8,
+          "aiProbability": 42,
+          "reasoning": "Bouzkova is a elite defender, but the market seems to be respecting Mboko's raw power and home-court/regional advantage. This is a clash of styles where Bouzkova's experience should give her a slight edge despite the odds.",
+          "confidence": "low"
+        }
+      ],
+      "aiProbability": 42,
+      "reasoning": "Bouzkova is a elite defender, but the market seems to be respecting Mboko's raw power and home-court/regional advantage. This is a clash of styles where Bouzkova's experience should give her a slight edge despite the odds.",
+      "confidence": "low",
+      "expectedValue": 13.8,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "8182c52b3d3cba77c3df06c84e49b60e",
+      "league": "WTA",
+      "homeTeam": "Daria Kasatkina",
+      "awayTeam": "Moyuka Uchijima",
+      "startTime": "2026-02-08T14:30:00Z",
+      "startTimeFormatted": "Feb 8, 15:30",
+      "marketOdd": 1.61,
+      "marketProb": 62.1,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Daria Kasatkina",
+          "odds": 1.61,
+          "impliedProb": 62.1,
+          "expectedValue": 12.7,
+          "aiProbability": 70,
+          "reasoning": "Kasatkina's defensive masterclass is usually too much for players outside the top 50 to break down. Uchijima is rising, but she lacks the consistent finishing power required to hit through Kasatkina over three sets.",
+          "confidence": "medium"
+        }
+      ],
+      "aiProbability": 70,
+      "reasoning": "Kasatkina's defensive masterclass is usually too much for players outside the top 50 to break down. Uchijima is rising, but she lacks the consistent finishing power required to hit through Kasatkina over three sets.",
+      "confidence": "medium",
+      "expectedValue": 12.7,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "5d1e84eb0827488a65f8dbfe0d0a7483",
+      "league": "WTA",
+      "homeTeam": "Laura Siegemund",
+      "awayTeam": "Varvara Gracheva",
+      "startTime": "2026-02-08T10:35:00Z",
+      "startTimeFormatted": "Feb 8, 11:35",
+      "marketOdd": 2.45,
+      "marketProb": 40.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Laura Siegemund",
+          "odds": 2.45,
+          "impliedProb": 40.8,
+          "expectedValue": 10.3,
+          "aiProbability": 45,
+          "reasoning": "Siegemund's unorthodox style and frequent use of the slice can disrupt Gracheva's rhythm. Gracheva is the steadier baseliner, but Siegemund's veteran savvy makes her a live underdog in these conditions.",
+          "confidence": "low"
+        }
+      ],
+      "aiProbability": 45,
+      "reasoning": "Siegemund's unorthodox style and frequent use of the slice can disrupt Gracheva's rhythm. Gracheva is the steadier baseliner, but Siegemund's veteran savvy makes her a live underdog in these conditions.",
+      "confidence": "low",
+      "expectedValue": 10.3,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    }
+  ],
   "metadata": {
     "minEVThreshold": 3,
     "version": "2.0.0",

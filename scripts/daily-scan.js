@@ -116,6 +116,41 @@ function formatGameTime(gameTime) {
 // =============================================================================
 
 /**
+ * Fetch all available tennis sports from The Odds API
+ */
+async function fetchAvailableTennisSports() {
+  const url = `${API_BASE_URL}/sports/?apiKey=${ODDS_API_KEY}`;
+  
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+    
+    const sports = await response.json();
+    const tennisSports = sports.filter(sport => 
+      sport.key.includes('tennis') && sport.active
+    );
+    
+    // Categorize by ATP/WTA
+    const atp = tennisSports.filter(s => 
+      s.key.includes('_atp_') || s.title.includes('ATP')
+    );
+    const wta = tennisSports.filter(s => 
+      s.key.includes('_wta_') || s.title.includes('WTA')
+    );
+    
+    console.log(`Found ${tennisSports.length} active tennis tournament(s)`);
+    console.log(`  ATP: ${atp.length} | WTA: ${wta.length}`);
+    
+    return { atp, wta, all: tennisSports };
+  } catch (error) {
+    console.error('Error fetching sports list:', error.message);
+    return { atp: [], wta: [], all: [] };
+  }
+}
+
+/**
  * Fetch odds from The-Odds-API for a specific league
  */
 async function fetchLeagueOdds(sportKey, leagueName) {
@@ -240,11 +275,39 @@ async function fetchAllLeagues() {
   console.log(`CET Time: ${timezones.cetTime.toLocaleString()}`);
   console.log(`ET Time: ${timezones.etTime.toLocaleString()}\n`);
   
-  // Fetch both tennis tours in parallel
-  const [atpMatches, wtaMatches] = await Promise.all([
-    fetchLeagueOdds('tennis_atp', 'ATP'),
-    fetchLeagueOdds('tennis_wta', 'WTA'),
+  // First, get all available tennis tournaments
+  const tennisSports = await fetchAvailableTennisSports();
+  
+  if (tennisSports.all.length === 0) {
+    console.log('⚠️  No active tennis tournaments found in The Odds API');
+    return {
+      allMatches: [],
+      leagueStats: {
+        atp: { hasGames: false, gamesFound: 0 },
+        wta: { hasGames: false, gamesFound: 0 },
+      }
+    };
+  }
+  
+  // Fetch odds for all ATP tournaments
+  const atpPromises = tennisSports.atp.map(sport => 
+    fetchLeagueOdds(sport.key, `ATP - ${sport.title}`)
+  );
+  
+  // Fetch odds for all WTA tournaments
+  const wtaPromises = tennisSports.wta.map(sport => 
+    fetchLeagueOdds(sport.key, `WTA - ${sport.title}`)
+  );
+  
+  // Fetch all in parallel
+  const [atpResults, wtaResults] = await Promise.all([
+    Promise.all(atpPromises),
+    Promise.all(wtaPromises)
   ]);
+  
+  // Combine all matches from different tournaments
+  const atpMatches = atpResults.flat();
+  const wtaMatches = wtaResults.flat();
   
   // Filter by date rules and apply max limits (15 per tour)
   const atpFiltered = filterMatchesByTour(atpMatches, 'ATP', timezones, 15);
