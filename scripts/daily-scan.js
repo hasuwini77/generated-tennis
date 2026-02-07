@@ -363,76 +363,22 @@ function normalizePlayerName(name) {
 }
 
 /**
- * Fetch recent match results for a tournament to determine player form
+ * Fetch recent match results from last 3 days for player form data
+ * 
+ * NOTE: The Odds API doesn't provide historical scores across all tennis.
+ * It only provides scores for specific active tournaments.
+ * For now, we return empty form data and rely on AI's built-in knowledge.
+ * 
+ * Future improvement: Integrate Tennis Data API or ATP/WTA official stats
  */
-async function fetchRecentFormForTournament(sportKey) {
-  // Note: The Odds API scores endpoint doesn't use daysFrom parameter
-  // It returns recent/upcoming matches automatically
-  const url = `${API_BASE_URL}/sports/${sportKey}/scores?apiKey=${ODDS_API_KEY}`;
+async function fetchRecentFormForLeague(league) {
+  console.log(`[Form] Skipping ${league} - The Odds API doesn't support historical tennis scores`);
+  console.log(`[Form] AI will use built-in player knowledge instead`);
   
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      console.warn(`[Form] Failed to fetch scores for ${sportKey}: ${response.status}`);
-      return {};
-    }
-    
-    const matches = await response.json();
-    const completedMatches = matches.filter(m => m.completed && m.scores);
-    
-    if (completedMatches.length === 0) {
-      console.log(`[Form] No completed matches found for ${sportKey} (tournament may have just started)`);
-      return {};
-    }
-    
-    console.log(`[Form] Found ${completedMatches.length} completed matches for ${sportKey}`);
-    
-    // Build player form records
-    const playerForm = {};
-    
-    for (const match of completedMatches) {
-      const homeTeam = normalizePlayerName(match.home_team);
-      const awayTeam = normalizePlayerName(match.away_team);
-      
-      if (!homeTeam || !awayTeam) continue;
-      
-      // Determine winner from scores
-      const homeScore = match.scores?.find(s => normalizePlayerName(s.name) === homeTeam);
-      const awayScore = match.scores?.find(s => normalizePlayerName(s.name) === awayTeam);
-      
-      if (!homeScore || !awayScore) continue;
-      
-      // Simple win detection: check if score exists (winner has score, loser doesn't always)
-      // Or parse set scores if available
-      const homeWon = match.last_update && homeScore.score && homeScore.score.length > 0;
-      const awayWon = match.last_update && awayScore.score && awayScore.score.length > 0;
-      
-      // Initialize player records
-      if (!playerForm[homeTeam]) {
-        playerForm[homeTeam] = { wins: 0, losses: 0, matches: [] };
-      }
-      if (!playerForm[awayTeam]) {
-        playerForm[awayTeam] = { wins: 0, losses: 0, matches: [] };
-      }
-      
-      // Try to determine winner (this is simplified - The Odds API scores format varies)
-      // In tennis, typically the winner is listed first or has more complete score
-      const winner = homeScore.score > awayScore.score ? homeTeam : awayTeam;
-      const loser = winner === homeTeam ? awayTeam : homeTeam;
-      
-      playerForm[winner].wins++;
-      playerForm[winner].matches.push({ date: match.commence_time, result: 'W', opponent: loser });
-      
-      playerForm[loser].losses++;
-      playerForm[loser].matches.push({ date: match.commence_time, result: 'L', opponent: winner });
-    }
-    
-    return playerForm;
-    
-  } catch (error) {
-    console.warn(`[Form] Error fetching form data: ${error.message}`);
-    return {};
-  }
+  // TODO: Integrate proper tennis stats API (e.g., Tennis Data API, Ultimate Tennis)
+  // For accurate W-L records, H2H history, and surface-specific stats
+  
+  return {};
 }
 
 /**
@@ -452,14 +398,16 @@ function getPlayerFormString(playerName, formData) {
 /**
  * Enrich matches with recent form data
  */
-async function enrichMatchesWithFormData(matches, activeTournaments) {
+async function enrichMatchesWithFormData(matches) {
   console.log('\n=== FETCHING RECENT FORM DATA ===');
   
-  // Fetch form data from all active tournaments
+  // Determine which leagues we need data for
+  const leagues = [...new Set(matches.map(m => m.league))]; // ['ATP', 'WTA']
   const allFormData = {};
   
-  for (const tournament of activeTournaments) {
-    const formData = await fetchRecentFormForTournament(tournament.key);
+  // Fetch form data for each league
+  for (const league of leagues) {
+    const formData = await fetchRecentFormForLeague(league);
     // Merge into allFormData
     Object.assign(allFormData, formData);
   }
@@ -1193,7 +1141,7 @@ async function main() {
     }
     
     // 2. Enrich matches with recent form data
-    const matchesWithForm = await enrichMatchesWithFormData(allMatches, activeTournaments);
+    const matchesWithForm = await enrichMatchesWithFormData(allMatches);
     
     // 3. Analyze with AI
     const enrichedMatches = await analyzeWithAI(matchesWithForm);
