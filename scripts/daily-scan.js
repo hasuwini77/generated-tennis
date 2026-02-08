@@ -492,12 +492,12 @@ ${i + 1}. ${m.league}: ${m.homeTeam} vs ${m.awayTeam}
 **Your Task:**
 For each match, provide:
 1. **Player 1 Win Probability** (0-100%): Your realistic assessment of ${matches[0]?.homeTeam || 'the first player'}'s win chance
-2. **Reasoning** (2-3 sentences): Key factors influencing your prediction
-   - Recent form (last 5-10 matches)
-   - Head-to-head history (H2H record if available)
-   - Surface suitability (hard court, clay, grass)
-   - ATP/WTA ranking and current season performance
-   - Physical condition, fatigue, or injury concerns
+2. **Reasoning** (2-3 sentences): Explain your probability assessment AND the betting angle
+   - **IMPORTANT**: Your reasoning should explain WHY this is a value bet
+   - If you rate Player 1 higher than market odds suggest → Explain what the market is missing
+   - If you rate Player 1 as an underdog but still see value → Explain why the odds are generous (e.g., "While Player 2 is favored, Player 1's odds are inflated due to recent upset potential")
+   - Include: Recent form, H2H history, surface suitability, ranking trends, physical condition
+   - Make it clear whether you're backing a favorite who's undervalued OR an underdog with generous odds
 3. **Confidence** (high/medium/low): How confident are you in this prediction?
    - **HIGH**: Clear form/H2H advantage + surface match + no injury concerns + solid data
    - **MEDIUM**: Some indicators favor your pick but with caveats or mixed signals
@@ -522,7 +522,7 @@ Return a JSON array with exactly ${matches.length} predictions in this format:
   {
     "gameIndex": 0,
     "homeWinProbability": 58,
-    "reasoning": "Player has won 8 of last 10 matches on hard court. Leads H2H 3-1. Opponent coming off a tough 3-set match yesterday.",
+    "reasoning": "Djokovic leads H2H 4-1 and has won 8 of last 10 on hard court. Market undervalues his consistency at this stage. VALUE: Favorite is underpriced.",
     "confidence": "medium"
   },
   ...
@@ -704,7 +704,11 @@ For each match, provide:
    - IMPORTANT: Be conservative! If market odds imply 36%, don't exceed 50% unless you have STRONG evidence
    - If "No recent matches" data, stay within ±10% of market probability
    - Massive edges (>30% EV) are extremely rare - markets are generally efficient
-2. **Reasoning** (2-3 sentences): Key factors like form, H2H, surface suitability
+2. **Reasoning** (2-3 sentences): Explain your probability AND the betting value
+   - **CRITICAL**: Explain WHY this is a value bet
+   - If Player 1 is undervalued favorite → Say what market is missing
+   - If Player 1 is underdog with value → Explain why odds are generous despite being less likely to win
+   - Include: form, H2H, surface suitability, ranking trends
 3. **Confidence** (high/medium/low):
    - **HIGH**: Clear form/H2H advantage + surface match + solid data
    - **MEDIUM**: Some indicators favor pick but with mixed signals
@@ -715,7 +719,7 @@ Return ONLY a JSON array with exactly ${matches.length} predictions:
   {
     "gameIndex": 0,
     "homeWinProbability": 58,
-    "reasoning": "Player has strong form on hard court.",
+    "reasoning": "Strong form on hard court and market undervalues consistency. VALUE: Underpriced favorite.",
     "confidence": "medium"
   }
 ]`;
