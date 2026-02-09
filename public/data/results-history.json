@@ -1,10 +1,105 @@
 {
-  "bets": [],
+  "bets": [
+    {
+      "id": "8b7f9d9f303fda5cbab390ddde556c2b",
+      "date": "2026-02-09",
+      "matchTime": "2026-02-09T15:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Janice Tjen",
+      "awayTeam": "Beatriz Haddad Maia",
+      "outcome": "Janice Tjen",
+      "odds": 1.88,
+      "expectedValue": 20.3,
+      "confidence": "high",
+      "reasoning": "Haddad Maia is a seasoned Top 20 professional with a physical game. Tjen is a talented prospect, but the step up in intensity and weight of shot will be a major hurdle. VALUE: Favorite is significantly underpriced at 1.88.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-09T10:12:00.266Z"
+    },
+    {
+      "id": "a30a4f994b45fdd6fbea41399d20ba60",
+      "date": "2026-02-09",
+      "matchTime": "2026-02-09T12:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Alexandra Eala",
+      "awayTeam": "Tereza Valentova",
+      "outcome": "Alexandra Eala",
+      "odds": 2.8,
+      "expectedValue": 6.4,
+      "confidence": "low",
+      "reasoning": "Alexandra Eala is the underdog, and with no recent form, we stay close to the market odds. The implied probability is 35.7%, so we slightly increase due to potential for an upset. VALUE: Slight underestimation of Alexandra Eala's chances.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-09T09:54:13.453Z"
+    },
+    {
+      "id": "1d3efcd2fd4784bd64ef885a59406029",
+      "date": "2026-02-09",
+      "matchTime": "2026-02-10T00:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Magdalena Frech",
+      "awayTeam": "Ann Li",
+      "outcome": "Magdalena Frech",
+      "odds": 2.38,
+      "expectedValue": 21.4,
+      "confidence": "medium",
+      "reasoning": "Frech is one of the most resilient grinders on tour, and Ann Li's aggressive style often crumbles against high-consistency opponents. The market's 42% for Frech ignores her ability to win ugly. VALUE: Underdog is the value play.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-09T09:51:55.631Z"
+    }
+  ],
   "stats": {
-    "totalBets": 0,
+    "totalBets": 3,
     "wins": 0,
     "losses": 0,
-    "pending": 0,
+    "pending": 3,
+    "totalROI": 0
+  },
+  "safeBets": [
+    {
+      "id": "6d89b2588cb1952e751be3d9043a3dd7",
+      "date": "2026-02-09",
+      "matchTime": "2026-02-09T13:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Qinwen Zheng",
+      "awayTeam": "Sofia Kenin",
+      "outcome": "Qinwen Zheng",
+      "odds": 1.46,
+      "aiProbability": 74,
+      "confidence": "high",
+      "reasoning": "Zheng's serve is one of the most dominant weapons on tour right now. Kenin's return game has regressed, and she will struggle to find break point opportunities. VALUE: Favorite is underpriced due to Kenin's name recognition.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-09T10:12:00.267Z"
+    },
+    {
+      "id": "90164d2e50d77d26fabea869717c68bb",
+      "date": "2026-02-09",
+      "matchTime": "2026-02-09T16:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Anna Kalinskaya",
+      "awayTeam": "Jessica Bouzas Maneiro",
+      "outcome": "Anna Kalinskaya",
+      "odds": 1.36,
+      "aiProbability": 80,
+      "confidence": "high",
+      "reasoning": "Kalinskaya is in the form of her life, showing Top 10 level consistency. Bouzas Maneiro is a grinder who lacks the power to push Kalinskaya off the baseline. VALUE: Favorite is undervalued despite the low odds.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-09T10:12:00.267Z"
+    }
+  ],
+  "safeBetStats": {
+    "totalBets": 2,
+    "wins": 0,
+    "losses": 0,
+    "pending": 2,
     "totalROI": 0
   }
 }

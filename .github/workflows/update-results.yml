@@ -1,0 +1,38 @@
+name: Update Results - TennTrend
+
+on:
+  schedule:
+    # Run daily at 10:00 PM CET (21:00 UTC) - after matches are completed
+    - cron: '0 21 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-results:
+    runs-on: ubuntu-latest
+    
+    env:
+      TZ: Europe/Stockholm
+      VITE_RAPIDAPI_TENNIS_KEY: ${{ secrets.RAPIDAPI_TENNIS_KEY }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Update match results
+        run: node scripts/update-results-rapidapi.js
+      
+      - name: Commit and push results
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "TennTrend Bot"
+          git add public/data/results-history.json
+          git diff --staged --quiet || git commit -m "chore: update match results $(date +'%Y-%m-%d %H:%M CET')"
+          git push

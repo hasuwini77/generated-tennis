@@ -12,11 +12,13 @@ TennTrend analyzes ATP (men's) and WTA (women's) tennis matches using AI to iden
 
 - 🤖 **Automated Daily Scans** - GitHub Actions runs analysis at 8 AM CET
 - 🎯 **Smart EV Filtering** - Only shows bets with ≥3% Expected Value
+- 🛡️ **Safe Bets** - High-probability favorites (65%+ AI confidence, odds 1.20-1.60)
 - 🏆 **Bet of the Day** - AI-selected top pick with golden frame
 - 🎾 **ATP & WTA Coverage** - Max 15 ATP + 15 WTA matches per day
 - ⏰ **24-Hour Window** - Analyzes matches in the next 24 hours
-- 💬 **Discord Notifications** - Once per day with best picks
-- 📊 **Minimal API Usage** - 2 calls/day (ATP + WTA)
+- 💬 **Discord Notifications** - Daily picks including safe bets
+- 📊 **Results Tracking** - RapidAPI Tennis integration for automatic results
+- 📈 **Separate Performance Stats** - Track value bets and safe bets independently
 - 🔒 **Professional Quality** - No bets on weak days (quality over quantity)
 
 ## 🏗️ Architecture
@@ -44,6 +46,7 @@ Frontend fetches pre-analyzed data (instant loading)
    ```bash
    VITE_THE_ODDS_API_KEY=your_odds_api_key
    VITE_GEMINI_API_KEY=your_gemini_api_key
+   VITE_RAPIDAPI_TENNIS_KEY=your_rapidapi_key  # For match results
    VITE_DISCORD_WEBHOOK_URL=your_discord_webhook  # Optional
    ```
 
@@ -57,30 +60,38 @@ Frontend fetches pre-analyzed data (instant loading)
 The automated daily scan requires GitHub repository secrets:
 
 1. Go to **Settings → Secrets and variables → Actions**
-2. Add three secrets:
+2. Add secrets:
    - `THE_ODDS_API_KEY` - Get from [The-Odds-API](https://the-odds-api.com/)
    - `GEMINI_API_KEY` - Get from [Google AI Studio](https://ai.google.dev/)
+   - `RAPIDAPI_TENNIS_KEY` - Get from [RapidAPI Tennis API](https://rapidapi.com/jjrm365-kIFr3Nx_odV/api/tennis-api-atp-wta-itf)
    - `DISCORD_WEBHOOK_URL` - Optional, for notifications
 
 3. Enable GitHub Actions in your repository
 
-The workflow runs automatically at 8:00 AM CET daily. You can also trigger it manually from the Actions tab.
+**Two workflows run automatically:**
+- **Daily Scan**: 8:00 AM CET - Analyzes matches and generates picks
+- **Update Results**: 10:00 PM CET - Checks completed matches and updates win/loss status
 
 ## 🧪 Test the Scanner Locally
 
 ```bash
+# Run daily scan (generates picks)
 npm run scan
+
+# Update results (checks completed matches)
+node scripts/update-results-rapidapi.js
 ```
 
-This runs the backend script locally and saves results to `data/daily-picks.json`.
+This runs the backend scripts locally and saves results to `public/data/`.
 
 ## 📊 API Usage
 
 - **The-Odds-API**: 2 calls/day (ATP + WTA)
 - **Gemini AI**: 1 batch call/day (all matches analyzed together)
+- **RapidAPI Tennis**: Variable (checks pending bets for results)
 - **Frontend**: 0 API calls (reads static JSON)
 
-**Monthly usage**: ~45-90 API calls (well under free tier limits)
+**Monthly usage**: ~60-120 API calls total (well under free tier limits)
 
 ## 🌍 Timezone Logic
 
@@ -93,11 +104,14 @@ This runs the backend script locally and saves results to `data/daily-picks.json
 
 ```
 ├── scripts/
-│   └── daily-scan.js          # Backend automation script
+│   ├── daily-scan.js                    # Daily picks generation
+│   └── update-results-rapidapi.js       # Results tracking
 ├── .github/workflows/
-│   └── daily-scan.yml         # GitHub Actions workflow
-├── data/
-│   └── daily-picks.json       # Daily analysis results
+│   ├── daily-scan.yml                   # 8:00 AM CET scan
+│   └── update-results.yml               # 10:00 PM CET results update
+├── public/data/
+│   ├── daily-picks.json                 # Daily analysis results
+│   └── results-history.json             # Win/loss tracking
 ├── components/                # React components
 ├── services/                  # Frontend services (deprecated)
 └── App.tsx                    # Main React app

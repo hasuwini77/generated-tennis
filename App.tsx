@@ -17,12 +17,15 @@ interface DailyPicksData {
   summary: {
     totalGamesAnalyzed: number;
     valueBetsFound: number;
+    safeBetsFound?: number;
     hasBetOfTheDay: boolean;
     avgEV: number;
   };
   betOfTheDay: Match | null;
   featuredBets: Match[];
   allBets: Match[];
+  safeBets?: Match[];
+  allSafeBets?: Match[];
   metadata: {
     minEVThreshold: number;
     version: string;
@@ -92,8 +95,23 @@ const App: React.FC = () => {
     
     return bets;
   };
+  
+  // Get safe bets (filtered by tour)
+  const getSafeBets = (): Match[] => {
+    if (!dailyData || !dailyData.safeBets) return [];
+    
+    let bets = dailyData.safeBets;
+    
+    // Filter by selected tour
+    if (selectedTour !== "ALL") {
+      bets = bets.filter(bet => bet.league === selectedTour);
+    }
+    
+    return bets;
+  };
 
   const otherBets = getOtherValueBets();
+  const safeBets = getSafeBets();
   
   // Get stats by tour
   const getStatsForTour = () => {
@@ -214,6 +232,15 @@ const App: React.FC = () => {
                     </div>
                     <div className="text-2xl font-bold text-blue-400">
                       {dailyData.summary.valueBetsFound}
+                    </div>
+                  </div>
+                  
+                  <div className="bg-green-500/10 backdrop-blur-sm rounded-xl p-3 border border-green-500/20">
+                    <div className="text-[10px] text-gray-400 mb-1">
+                      Safe Bets Found
+                    </div>
+                    <div className="text-2xl font-bold text-green-400">
+                      {dailyData.summary.safeBetsFound || 0}
                     </div>
                   </div>
 
@@ -358,9 +385,90 @@ const App: React.FC = () => {
 
               {/* Other Value Bets */}
               {otherBets.length > 0 && <ValueBetsList bets={otherBets} />}
+              
+              {/* Safe Bets Section */}
+              {safeBets.length > 0 && (
+                <div className="bg-gradient-to-br from-green-500/5 to-emerald-500/5 rounded-2xl p-6 border border-green-500/20 shadow-lg">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-green-500/20 p-2 rounded-xl">
+                      <span className="text-2xl">🛡️</span>
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-bold text-white">Safe Bets</h2>
+                      <p className="text-xs text-gray-400">High probability favorites (Odds 1.20-1.60)</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {safeBets.map((bet) => (
+                      <div
+                        key={bet.id}
+                        className="bg-white/5 rounded-xl p-4 border border-green-500/20 hover:bg-white/[0.07] transition-all"
+                      >
+                        <div className="flex items-start justify-between gap-4 flex-wrap">
+                          {/* Game Info */}
+                          <div className="flex-1 min-w-[280px]">
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="px-2 py-0.5 rounded text-xs font-semibold bg-green-500/20 text-green-300">
+                                {bet.league}
+                              </span>
+                              <span className="text-xs text-gray-500">
+                                {new Date(bet.startTime).toLocaleDateString('en-US', { 
+                                  month: 'short', 
+                                  day: 'numeric',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })}
+                              </span>
+                              <span className="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 uppercase">
+                                {bet.confidence}
+                              </span>
+                            </div>
+                            
+                            <div className="text-white font-semibold mb-1">
+                              {bet.homeTeam} <span className="text-gray-500">vs</span> {bet.awayTeam}
+                            </div>
+                            
+                            <div className="text-sm text-green-300 mb-2">
+                              🎯 Pick: <span className="font-semibold">{bet.homeTeam}</span>
+                            </div>
+                            
+                            <div className="text-xs text-gray-400 leading-relaxed">
+                              {bet.reasoning}
+                            </div>
+                          </div>
+
+                          {/* Stats */}
+                          <div className="flex gap-4 items-center">
+                            <div className="text-center">
+                              <div className="text-xs text-gray-500 mb-1">Odds</div>
+                              <div className="text-lg font-bold text-green-400">{bet.marketOdd.toFixed(2)}</div>
+                            </div>
+
+                            <div className="text-center">
+                              <div className="text-xs text-gray-500 mb-1">AI Prob</div>
+                              <div className="text-lg font-bold text-emerald-400">{(bet.aiProbability || 0).toFixed(0)}%</div>
+                            </div>
+
+                            <div className="text-center min-w-[80px]">
+                              <div className="px-3 py-2 rounded-lg font-bold text-sm whitespace-nowrap bg-green-500/20 text-green-400 border border-green-500/40">
+                                🛡️ SAFE
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-4 text-xs text-gray-500 italic text-center">
+                    💡 Safe bets are high probability favorites perfect for building confidence or parlays
+                  </div>
+                </div>
+              )}
 
               {/* Empty State - No Bets Today */}
-              {dailyData.summary.valueBetsFound === 0 && (
+              {dailyData.summary.valueBetsFound === 0 && safeBets.length === 0 && (
                 <div className="text-center py-20">
                   <div className="text-6xl mb-4">🎯</div>
                   <h3 className="text-2xl font-bold text-white mb-3">

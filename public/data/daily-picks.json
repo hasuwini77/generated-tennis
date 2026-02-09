@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-09T06:34:47.336Z",
+  "timestamp": "2026-02-09T10:12:00.264Z",
   "scanDateCET": "2026-02-09",
   "scanDateET": "2/9/2026",
-  "scanTimeCET": "2026-02-09 07:34:47",
+  "scanTimeCET": "2026-02-09 11:12:00",
   "leagueStats": {
     "atp": {
       "hasGames": false,
@@ -15,16 +15,768 @@
   },
   "summary": {
     "totalGamesAnalyzed": 15,
-    "valueBetsFound": 0,
-    "hasBetOfTheDay": false,
-    "avgEV": 0
+    "valueBetsFound": 11,
+    "safeBetsFound": 2,
+    "hasBetOfTheDay": true,
+    "avgEV": 16.4
   },
-  "betOfTheDay": null,
-  "featuredBets": [],
-  "allBets": [],
+  "betOfTheDay": {
+    "id": "8b7f9d9f303fda5cbab390ddde556c2b",
+    "league": "WTA",
+    "homeTeam": "Janice Tjen",
+    "awayTeam": "Beatriz Haddad Maia",
+    "startTime": "2026-02-09T15:00:00Z",
+    "startTimeFormatted": "Feb 9, 16:00",
+    "marketOdd": 1.88,
+    "marketProb": 53.2,
+    "markets": [
+      {
+        "type": "h2h",
+        "outcome": "Janice Tjen",
+        "odds": 1.88,
+        "impliedProb": 53.2,
+        "expectedValue": 20.3,
+        "aiProbability": 64,
+        "reasoning": "Haddad Maia is a seasoned Top 20 professional with a physical game. Tjen is a talented prospect, but the step up in intensity and weight of shot will be a major hurdle. VALUE: Favorite is significantly underpriced at 1.88.",
+        "confidence": "high"
+      }
+    ],
+    "homeForm": "No recent matches",
+    "awayForm": "No recent matches",
+    "formData": {},
+    "aiProbability": 64,
+    "reasoning": "Haddad Maia is a seasoned Top 20 professional with a physical game. Tjen is a talented prospect, but the step up in intensity and weight of shot will be a major hurdle. VALUE: Favorite is significantly underpriced at 1.88.",
+    "confidence": "high",
+    "expectedValue": 20.3,
+    "evTier": {
+      "min": 10,
+      "max": null,
+      "label": "Sick Edge",
+      "emoji": "🔥",
+      "color": "red",
+      "tier": "SICK"
+    },
+    "score": 98.105
+  },
+  "featuredBets": [
+    {
+      "id": "ab6ed0858ec00583d5b109e215c93c71",
+      "league": "WTA",
+      "homeTeam": "Daria Kasatkina",
+      "awayTeam": "Elise Mertens",
+      "startTime": "2026-02-10T07:00:00Z",
+      "startTimeFormatted": "Feb 10, 08:00",
+      "marketOdd": 3.2,
+      "marketProb": 31.3,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Daria Kasatkina",
+          "odds": 3.2,
+          "impliedProb": 31.3,
+          "expectedValue": 34.4,
+          "aiProbability": 42,
+          "reasoning": "Kasatkina leads the H2H and her variety often neutralizes Mertens' rhythmic baseline play. While Mertens is more 'solid,' Kasatkina's ceiling in this matchup is higher. VALUE: Underdog odds are inflated, providing significant value.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 42,
+      "reasoning": "Kasatkina leads the H2H and her variety often neutralizes Mertens' rhythmic baseline play. While Mertens is more 'solid,' Kasatkina's ceiling in this matchup is higher. VALUE: Underdog odds are inflated, providing significant value.",
+      "confidence": "medium",
+      "expectedValue": 34.4,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1d3efcd2fd4784bd64ef885a59406029",
+      "league": "WTA",
+      "homeTeam": "Magdalena Frech",
+      "awayTeam": "Ann Li",
+      "startTime": "2026-02-10T00:00:00Z",
+      "startTimeFormatted": "Feb 10, 01:00",
+      "marketOdd": 2.38,
+      "marketProb": 42,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Magdalena Frech",
+          "odds": 2.38,
+          "impliedProb": 42,
+          "expectedValue": 28.5,
+          "aiProbability": 54,
+          "reasoning": "Frech has been remarkably consistent in 2024, reaching career-high rankings. Ann Li has high variance and often struggles with unforced errors against steady counter-punchers like Frech. VALUE: Underdog is the statistically more reliable player.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 54,
+      "reasoning": "Frech has been remarkably consistent in 2024, reaching career-high rankings. Ann Li has high variance and often struggles with unforced errors against steady counter-punchers like Frech. VALUE: Underdog is the statistically more reliable player.",
+      "confidence": "medium",
+      "expectedValue": 28.5,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "8b7f9d9f303fda5cbab390ddde556c2b",
+      "league": "WTA",
+      "homeTeam": "Janice Tjen",
+      "awayTeam": "Beatriz Haddad Maia",
+      "startTime": "2026-02-09T15:00:00Z",
+      "startTimeFormatted": "Feb 9, 16:00",
+      "marketOdd": 1.88,
+      "marketProb": 53.2,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Janice Tjen",
+          "odds": 1.88,
+          "impliedProb": 53.2,
+          "expectedValue": 20.3,
+          "aiProbability": 64,
+          "reasoning": "Haddad Maia is a seasoned Top 20 professional with a physical game. Tjen is a talented prospect, but the step up in intensity and weight of shot will be a major hurdle. VALUE: Favorite is significantly underpriced at 1.88.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 64,
+      "reasoning": "Haddad Maia is a seasoned Top 20 professional with a physical game. Tjen is a talented prospect, but the step up in intensity and weight of shot will be a major hurdle. VALUE: Favorite is significantly underpriced at 1.88.",
+      "confidence": "high",
+      "expectedValue": 20.3,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "a30a4f994b45fdd6fbea41399d20ba60",
+      "league": "WTA",
+      "homeTeam": "Alexandra Eala",
+      "awayTeam": "Tereza Valentova",
+      "startTime": "2026-02-09T12:00:00Z",
+      "startTimeFormatted": "Feb 9, 13:00",
+      "marketOdd": 2.72,
+      "marketProb": 36.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Alexandra Eala",
+          "odds": 2.72,
+          "impliedProb": 36.8,
+          "expectedValue": 19.7,
+          "aiProbability": 44,
+          "reasoning": "Valentova is a rising junior talent, but the market is overestimating her immediate transition to the pro circuit. Eala has significantly more WTA-level experience and defensive grit. VALUE: Underdog is generous given the experience gap.",
+          "confidence": "low"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 44,
+      "reasoning": "Valentova is a rising junior talent, but the market is overestimating her immediate transition to the pro circuit. Eala has significantly more WTA-level experience and defensive grit. VALUE: Underdog is generous given the experience gap.",
+      "confidence": "low",
+      "expectedValue": 19.7,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "3f53a11a214284dc1561d6052723f664",
+      "league": "WTA",
+      "homeTeam": "Katerina Siniakova",
+      "awayTeam": "Clara Tauson",
+      "startTime": "2026-02-09T12:00:00Z",
+      "startTimeFormatted": "Feb 9, 13:00",
+      "marketOdd": 2.31,
+      "marketProb": 43.3,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Katerina Siniakova",
+          "odds": 2.31,
+          "impliedProb": 43.3,
+          "expectedValue": 17.8,
+          "aiProbability": 51,
+          "reasoning": "Siniakova's variety and net play are perfect for disrupting Tauson's rhythm. Tauson has the power but struggles with movement and consistency when forced to play extra balls. VALUE: Underdog is actually a slight favorite in this matchup.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 51,
+      "reasoning": "Siniakova's variety and net play are perfect for disrupting Tauson's rhythm. Tauson has the power but struggles with movement and consistency when forced to play extra balls. VALUE: Underdog is actually a slight favorite in this matchup.",
+      "confidence": "medium",
+      "expectedValue": 17.8,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    }
+  ],
+  "allBets": [
+    {
+      "id": "ab6ed0858ec00583d5b109e215c93c71",
+      "league": "WTA",
+      "homeTeam": "Daria Kasatkina",
+      "awayTeam": "Elise Mertens",
+      "startTime": "2026-02-10T07:00:00Z",
+      "startTimeFormatted": "Feb 10, 08:00",
+      "marketOdd": 3.2,
+      "marketProb": 31.3,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Daria Kasatkina",
+          "odds": 3.2,
+          "impliedProb": 31.3,
+          "expectedValue": 34.4,
+          "aiProbability": 42,
+          "reasoning": "Kasatkina leads the H2H and her variety often neutralizes Mertens' rhythmic baseline play. While Mertens is more 'solid,' Kasatkina's ceiling in this matchup is higher. VALUE: Underdog odds are inflated, providing significant value.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 42,
+      "reasoning": "Kasatkina leads the H2H and her variety often neutralizes Mertens' rhythmic baseline play. While Mertens is more 'solid,' Kasatkina's ceiling in this matchup is higher. VALUE: Underdog odds are inflated, providing significant value.",
+      "confidence": "medium",
+      "expectedValue": 34.4,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1d3efcd2fd4784bd64ef885a59406029",
+      "league": "WTA",
+      "homeTeam": "Magdalena Frech",
+      "awayTeam": "Ann Li",
+      "startTime": "2026-02-10T00:00:00Z",
+      "startTimeFormatted": "Feb 10, 01:00",
+      "marketOdd": 2.38,
+      "marketProb": 42,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Magdalena Frech",
+          "odds": 2.38,
+          "impliedProb": 42,
+          "expectedValue": 28.5,
+          "aiProbability": 54,
+          "reasoning": "Frech has been remarkably consistent in 2024, reaching career-high rankings. Ann Li has high variance and often struggles with unforced errors against steady counter-punchers like Frech. VALUE: Underdog is the statistically more reliable player.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 54,
+      "reasoning": "Frech has been remarkably consistent in 2024, reaching career-high rankings. Ann Li has high variance and often struggles with unforced errors against steady counter-punchers like Frech. VALUE: Underdog is the statistically more reliable player.",
+      "confidence": "medium",
+      "expectedValue": 28.5,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "8b7f9d9f303fda5cbab390ddde556c2b",
+      "league": "WTA",
+      "homeTeam": "Janice Tjen",
+      "awayTeam": "Beatriz Haddad Maia",
+      "startTime": "2026-02-09T15:00:00Z",
+      "startTimeFormatted": "Feb 9, 16:00",
+      "marketOdd": 1.88,
+      "marketProb": 53.2,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Janice Tjen",
+          "odds": 1.88,
+          "impliedProb": 53.2,
+          "expectedValue": 20.3,
+          "aiProbability": 64,
+          "reasoning": "Haddad Maia is a seasoned Top 20 professional with a physical game. Tjen is a talented prospect, but the step up in intensity and weight of shot will be a major hurdle. VALUE: Favorite is significantly underpriced at 1.88.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 64,
+      "reasoning": "Haddad Maia is a seasoned Top 20 professional with a physical game. Tjen is a talented prospect, but the step up in intensity and weight of shot will be a major hurdle. VALUE: Favorite is significantly underpriced at 1.88.",
+      "confidence": "high",
+      "expectedValue": 20.3,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "a30a4f994b45fdd6fbea41399d20ba60",
+      "league": "WTA",
+      "homeTeam": "Alexandra Eala",
+      "awayTeam": "Tereza Valentova",
+      "startTime": "2026-02-09T12:00:00Z",
+      "startTimeFormatted": "Feb 9, 13:00",
+      "marketOdd": 2.72,
+      "marketProb": 36.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Alexandra Eala",
+          "odds": 2.72,
+          "impliedProb": 36.8,
+          "expectedValue": 19.7,
+          "aiProbability": 44,
+          "reasoning": "Valentova is a rising junior talent, but the market is overestimating her immediate transition to the pro circuit. Eala has significantly more WTA-level experience and defensive grit. VALUE: Underdog is generous given the experience gap.",
+          "confidence": "low"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 44,
+      "reasoning": "Valentova is a rising junior talent, but the market is overestimating her immediate transition to the pro circuit. Eala has significantly more WTA-level experience and defensive grit. VALUE: Underdog is generous given the experience gap.",
+      "confidence": "low",
+      "expectedValue": 19.7,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "3f53a11a214284dc1561d6052723f664",
+      "league": "WTA",
+      "homeTeam": "Katerina Siniakova",
+      "awayTeam": "Clara Tauson",
+      "startTime": "2026-02-09T12:00:00Z",
+      "startTimeFormatted": "Feb 9, 13:00",
+      "marketOdd": 2.31,
+      "marketProb": 43.3,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Katerina Siniakova",
+          "odds": 2.31,
+          "impliedProb": 43.3,
+          "expectedValue": 17.8,
+          "aiProbability": 51,
+          "reasoning": "Siniakova's variety and net play are perfect for disrupting Tauson's rhythm. Tauson has the power but struggles with movement and consistency when forced to play extra balls. VALUE: Underdog is actually a slight favorite in this matchup.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 51,
+      "reasoning": "Siniakova's variety and net play are perfect for disrupting Tauson's rhythm. Tauson has the power but struggles with movement and consistency when forced to play extra balls. VALUE: Underdog is actually a slight favorite in this matchup.",
+      "confidence": "medium",
+      "expectedValue": 17.8,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "4886b6457e8002fb91b30dd3627441be",
+      "league": "WTA",
+      "homeTeam": "Emma Raducanu",
+      "awayTeam": "Maria Camila Osorio Serrano",
+      "startTime": "2026-02-09T15:00:00Z",
+      "startTimeFormatted": "Feb 9, 16:00",
+      "marketOdd": 2.08,
+      "marketProb": 48.1,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Emma Raducanu",
+          "odds": 2.08,
+          "impliedProb": 48.1,
+          "expectedValue": 16.5,
+          "aiProbability": 56,
+          "reasoning": "On hard courts, Raducanu's technical foundation and flat hitting give her the edge over Osorio, who prefers the high bounce of clay. Raducanu's peak level is much higher. VALUE: Underdog/Pick'em price on Raducanu is generous on this surface.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 56,
+      "reasoning": "On hard courts, Raducanu's technical foundation and flat hitting give her the edge over Osorio, who prefers the high bounce of clay. Raducanu's peak level is much higher. VALUE: Underdog/Pick'em price on Raducanu is generous on this surface.",
+      "confidence": "medium",
+      "expectedValue": 16.5,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "f7868292b5c65accf044ce8c0f1a36b2",
+      "league": "WTA",
+      "homeTeam": "Maria Sakkari",
+      "awayTeam": "Zeynep Sonmez",
+      "startTime": "2026-02-09T13:30:00Z",
+      "startTimeFormatted": "Feb 9, 14:30",
+      "marketOdd": 1.73,
+      "marketProb": 57.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Maria Sakkari",
+          "odds": 1.73,
+          "impliedProb": 57.8,
+          "expectedValue": 14.2,
+          "aiProbability": 66,
+          "reasoning": "Sakkari is the superior athlete and has a much higher level of experience in big matches. Sonmez is improving but lacks the top-end speed to stay with Sakkari in long rallies. VALUE: Market is cautious due to Sakkari's mental lapses, creating value.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 66,
+      "reasoning": "Sakkari is the superior athlete and has a much higher level of experience in big matches. Sonmez is improving but lacks the top-end speed to stay with Sakkari in long rallies. VALUE: Market is cautious due to Sakkari's mental lapses, creating value.",
+      "confidence": "medium",
+      "expectedValue": 14.2,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "5835013369cd2e32d1db142f20598c24",
+      "league": "WTA",
+      "homeTeam": "Dayana Yastremska",
+      "awayTeam": "Cristina Bucsa",
+      "startTime": "2026-02-09T10:30:00Z",
+      "startTimeFormatted": "Feb 9, 11:30",
+      "marketOdd": 1.73,
+      "marketProb": 57.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Dayana Yastremska",
+          "odds": 1.73,
+          "impliedProb": 57.8,
+          "expectedValue": 9,
+          "aiProbability": 63,
+          "reasoning": "Yastremska possesses a significantly higher ceiling and power game that suits fast hard courts. While erratic, her ability to dictate play should overwhelm Bucsa's defensive style. VALUE: Favorite is undervalued as the market overcorrects for her inconsistency.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 63,
+      "reasoning": "Yastremska possesses a significantly higher ceiling and power game that suits fast hard courts. While erratic, her ability to dictate play should overwhelm Bucsa's defensive style. VALUE: Favorite is undervalued as the market overcorrects for her inconsistency.",
+      "confidence": "medium",
+      "expectedValue": 9,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "90164d2e50d77d26fabea869717c68bb",
+      "league": "WTA",
+      "homeTeam": "Anna Kalinskaya",
+      "awayTeam": "Jessica Bouzas Maneiro",
+      "startTime": "2026-02-09T16:00:00Z",
+      "startTimeFormatted": "Feb 9, 17:00",
+      "marketOdd": 1.36,
+      "marketProb": 73.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Anna Kalinskaya",
+          "odds": 1.36,
+          "impliedProb": 73.5,
+          "expectedValue": 8.8,
+          "aiProbability": 80,
+          "reasoning": "Kalinskaya is in the form of her life, showing Top 10 level consistency. Bouzas Maneiro is a grinder who lacks the power to push Kalinskaya off the baseline. VALUE: Favorite is undervalued despite the low odds.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 80,
+      "reasoning": "Kalinskaya is in the form of her life, showing Top 10 level consistency. Bouzas Maneiro is a grinder who lacks the power to push Kalinskaya off the baseline. VALUE: Favorite is undervalued despite the low odds.",
+      "confidence": "high",
+      "expectedValue": 8.8,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "6d89b2588cb1952e751be3d9043a3dd7",
+      "league": "WTA",
+      "homeTeam": "Qinwen Zheng",
+      "awayTeam": "Sofia Kenin",
+      "startTime": "2026-02-09T13:00:00Z",
+      "startTimeFormatted": "Feb 9, 14:00",
+      "marketOdd": 1.46,
+      "marketProb": 68.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Qinwen Zheng",
+          "odds": 1.46,
+          "impliedProb": 68.5,
+          "expectedValue": 8,
+          "aiProbability": 74,
+          "reasoning": "Zheng's serve is one of the most dominant weapons on tour right now. Kenin's return game has regressed, and she will struggle to find break point opportunities. VALUE: Favorite is underpriced due to Kenin's name recognition.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 74,
+      "reasoning": "Zheng's serve is one of the most dominant weapons on tour right now. Kenin's return game has regressed, and she will struggle to find break point opportunities. VALUE: Favorite is underpriced due to Kenin's name recognition.",
+      "confidence": "high",
+      "expectedValue": 8,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "b7601f84b3218b410664e56e8c059e27",
+      "league": "WTA",
+      "homeTeam": "Xinyu Wang",
+      "awayTeam": "Emiliana Arango",
+      "startTime": "2026-02-09T10:30:00Z",
+      "startTimeFormatted": "Feb 9, 11:30",
+      "marketOdd": 1.17,
+      "marketProb": 85.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Xinyu Wang",
+          "odds": 1.17,
+          "impliedProb": 85.5,
+          "expectedValue": 3,
+          "aiProbability": 88,
+          "reasoning": "Wang is a established top-tier hard court player, whereas Arango's success is almost exclusively on clay. The surface mismatch here is extreme, and Arango lacks the pace to trouble Wang. VALUE: Favorite is priced correctly but still offers safety.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 88,
+      "reasoning": "Wang is a established top-tier hard court player, whereas Arango's success is almost exclusively on clay. The surface mismatch here is extreme, and Arango lacks the pace to trouble Wang. VALUE: Favorite is priced correctly but still offers safety.",
+      "confidence": "high",
+      "expectedValue": 3,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    }
+  ],
+  "safeBets": [
+    {
+      "id": "90164d2e50d77d26fabea869717c68bb",
+      "league": "WTA",
+      "homeTeam": "Anna Kalinskaya",
+      "awayTeam": "Jessica Bouzas Maneiro",
+      "startTime": "2026-02-09T16:00:00Z",
+      "startTimeFormatted": "Feb 9, 17:00",
+      "marketOdd": 1.36,
+      "marketProb": 73.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Anna Kalinskaya",
+          "odds": 1.36,
+          "impliedProb": 73.5,
+          "expectedValue": 8.8,
+          "aiProbability": 80,
+          "reasoning": "Kalinskaya is in the form of her life, showing Top 10 level consistency. Bouzas Maneiro is a grinder who lacks the power to push Kalinskaya off the baseline. VALUE: Favorite is undervalued despite the low odds.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 80,
+      "reasoning": "Kalinskaya is in the form of her life, showing Top 10 level consistency. Bouzas Maneiro is a grinder who lacks the power to push Kalinskaya off the baseline. VALUE: Favorite is undervalued despite the low odds.",
+      "confidence": "high",
+      "expectedValue": 8.8
+    },
+    {
+      "id": "6d89b2588cb1952e751be3d9043a3dd7",
+      "league": "WTA",
+      "homeTeam": "Qinwen Zheng",
+      "awayTeam": "Sofia Kenin",
+      "startTime": "2026-02-09T13:00:00Z",
+      "startTimeFormatted": "Feb 9, 14:00",
+      "marketOdd": 1.46,
+      "marketProb": 68.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Qinwen Zheng",
+          "odds": 1.46,
+          "impliedProb": 68.5,
+          "expectedValue": 8,
+          "aiProbability": 74,
+          "reasoning": "Zheng's serve is one of the most dominant weapons on tour right now. Kenin's return game has regressed, and she will struggle to find break point opportunities. VALUE: Favorite is underpriced due to Kenin's name recognition.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 74,
+      "reasoning": "Zheng's serve is one of the most dominant weapons on tour right now. Kenin's return game has regressed, and she will struggle to find break point opportunities. VALUE: Favorite is underpriced due to Kenin's name recognition.",
+      "confidence": "high",
+      "expectedValue": 8
+    }
+  ],
+  "allSafeBets": [
+    {
+      "id": "90164d2e50d77d26fabea869717c68bb",
+      "league": "WTA",
+      "homeTeam": "Anna Kalinskaya",
+      "awayTeam": "Jessica Bouzas Maneiro",
+      "startTime": "2026-02-09T16:00:00Z",
+      "startTimeFormatted": "Feb 9, 17:00",
+      "marketOdd": 1.36,
+      "marketProb": 73.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Anna Kalinskaya",
+          "odds": 1.36,
+          "impliedProb": 73.5,
+          "expectedValue": 8.8,
+          "aiProbability": 80,
+          "reasoning": "Kalinskaya is in the form of her life, showing Top 10 level consistency. Bouzas Maneiro is a grinder who lacks the power to push Kalinskaya off the baseline. VALUE: Favorite is undervalued despite the low odds.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 80,
+      "reasoning": "Kalinskaya is in the form of her life, showing Top 10 level consistency. Bouzas Maneiro is a grinder who lacks the power to push Kalinskaya off the baseline. VALUE: Favorite is undervalued despite the low odds.",
+      "confidence": "high",
+      "expectedValue": 8.8
+    },
+    {
+      "id": "6d89b2588cb1952e751be3d9043a3dd7",
+      "league": "WTA",
+      "homeTeam": "Qinwen Zheng",
+      "awayTeam": "Sofia Kenin",
+      "startTime": "2026-02-09T13:00:00Z",
+      "startTimeFormatted": "Feb 9, 14:00",
+      "marketOdd": 1.46,
+      "marketProb": 68.5,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Qinwen Zheng",
+          "odds": 1.46,
+          "impliedProb": 68.5,
+          "expectedValue": 8,
+          "aiProbability": 74,
+          "reasoning": "Zheng's serve is one of the most dominant weapons on tour right now. Kenin's return game has regressed, and she will struggle to find break point opportunities. VALUE: Favorite is underpriced due to Kenin's name recognition.",
+          "confidence": "high"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 74,
+      "reasoning": "Zheng's serve is one of the most dominant weapons on tour right now. Kenin's return game has regressed, and she will struggle to find break point opportunities. VALUE: Favorite is underpriced due to Kenin's name recognition.",
+      "confidence": "high",
+      "expectedValue": 8
+    }
+  ],
   "metadata": {
     "minEVThreshold": 3,
-    "version": "2.0.0",
+    "version": "2.1.0",
     "generatedBy": "daily-scan.js"
   }
 }
