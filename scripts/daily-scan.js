@@ -4,12 +4,15 @@
  * TennTrend Daily Scan Script
  * 
  * Runs once per day at 8:00 AM CET via GitHub Actions
- * - Fetches odds from The-Odds-API (ATP, WTA)
+ * - Fetches odds from The-Odds-API (ATP Grand Slams & Masters 1000, WTA 1000)
  * - Analyzes with Gemini AI
  * - Filters for EV >= 3% (professional-grade bets only)
- * - Max 15 ATP matches + 15 WTA matches
+ * - Max 15 ATP matches + 15 WTA matches per scan
  * - Saves results to data/daily-picks.json
  * - Sends Discord notification (if worthy bets exist)
+ * 
+ * Note: Free tier covers Grand Slams + Masters/1000 tournaments only
+ * ATP 500/250 and WTA 500/250 require paid API plan
  */
 
 import { GoogleGenAI } from '@google/genai';
@@ -136,10 +139,10 @@ async function fetchAvailableTennisSports() {
     
     // Categorize by ATP/WTA
     const atp = tennisSports.filter(s => 
-      s.key.includes('_atp_') || s.title.includes('ATP')
+      s.key.includes('atp') || s.title.toUpperCase().includes('ATP')
     );
     const wta = tennisSports.filter(s => 
-      s.key.includes('_wta_') || s.title.includes('WTA')
+      s.key.includes('wta') || s.title.toUpperCase().includes('WTA')
     );
     
     console.log(`Found ${tennisSports.length} active tennis tournament(s)`);
@@ -300,6 +303,16 @@ async function fetchAllLeagues() {
   const wtaPromises = tennisSports.wta.map(sport => 
     fetchLeagueOdds(sport.key, `WTA - ${sport.title}`)
   );
+  
+  // Warning if ATP or WTA data is missing
+  if (tennisSports.atp.length === 0) {
+    console.log('⚠️  No ATP tournaments currently available in The Odds API');
+    console.log('   ATP matches will appear when bookmakers start offering odds');
+  }
+  if (tennisSports.wta.length === 0) {
+    console.log('⚠️  No WTA tournaments currently available in The Odds API');
+    console.log('   WTA matches will appear when bookmakers start offering odds');
+  }
   
   // Fetch all in parallel
   const [atpResults, wtaResults] = await Promise.all([

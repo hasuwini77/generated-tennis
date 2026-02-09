@@ -14,7 +14,7 @@ TennTrend analyzes ATP (men's) and WTA (women's) tennis matches using AI to iden
 - 🎯 **Smart EV Filtering** - Only shows bets with ≥3% Expected Value
 - 🛡️ **Safe Bets** - High-probability favorites (65%+ AI confidence, odds 1.20-1.60)
 - 🏆 **Bet of the Day** - AI-selected top pick with golden frame
-- 🎾 **ATP & WTA Coverage** - Max 15 ATP + 15 WTA matches per day
+- 🎾 **ATP & WTA Coverage** - ATP Grand Slams & Masters 1000, WTA 1000 tournaments (max 15 per tour)
 - ⏰ **24-Hour Window** - Analyzes matches in the next 24 hours
 - 💬 **Discord Notifications** - Daily picks including safe bets
 - 📊 **Results Tracking** - RapidAPI Tennis integration for automatic results
@@ -84,14 +84,21 @@ node scripts/update-results-rapidapi.js
 
 This runs the backend scripts locally and saves results to `public/data/`.
 
-## 📊 API Usage
+## 📊 API Usage & Coverage
 
-- **The-Odds-API**: 2 calls/day (ATP + WTA)
-- **Gemini AI**: 1 batch call/day (all matches analyzed together)
-- **RapidAPI Tennis**: Variable (checks pending bets for results)
-- **Frontend**: 0 API calls (reads static JSON)
+**The-Odds-API** (Free Tier):
+- ATP: Grand Slams + Masters 1000 only
+- WTA: Grand Slams + WTA 1000 tournaments
+- Does NOT cover: ATP 500, ATP 250, WTA 500, WTA 250
+- Usage: ~2-6 calls/day (varies by active tournaments)
 
-**Monthly usage**: ~60-120 API calls total (well under free tier limits)
+**Gemini AI**: 1 batch call/day (all matches analyzed together)
+
+**RapidAPI Tennis**: Variable (checks pending bets for results)
+
+**Frontend**: 0 API calls (reads static JSON)
+
+**Monthly usage**: ~60-200 API calls total (well under free tier limits)
 
 ## 🌍 Timezone Logic
 
