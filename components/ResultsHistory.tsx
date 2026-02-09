@@ -55,10 +55,28 @@ const ResultsHistory: React.FC = () => {
       const response = await fetch('/data/results-history.json');
       const data = await response.json();
       
-      // Calculate win rate if not present
+      // Ensure safeBetStats exists with default values
+      if (!data.safeBetStats) {
+        data.safeBetStats = {
+          totalBets: 0,
+          wins: 0,
+          losses: 0,
+          pending: 0,
+          totalROI: 0,
+          winRate: 0
+        };
+      }
+      
+      // Calculate win rate if not present (for value bets)
       if (!data.stats.winRate && data.stats.totalBets > 0) {
         const settled = data.stats.wins + data.stats.losses;
         data.stats.winRate = settled > 0 ? (data.stats.wins / settled) * 100 : 0;
+      }
+      
+      // Calculate win rate if not present (for safe bets)
+      if (!data.safeBetStats.winRate && data.safeBetStats.totalBets > 0) {
+        const settled = data.safeBetStats.wins + data.safeBetStats.losses;
+        data.safeBetStats.winRate = settled > 0 ? (data.safeBetStats.wins / settled) * 100 : 0;
       }
       
       setHistory(data);
@@ -95,7 +113,14 @@ const ResultsHistory: React.FC = () => {
     return true;
   });
   
-  const currentStats = betType === 'value' ? history.stats : (history.safeBetStats || history.stats);
+  const currentStats = betType === 'value' ? history.stats : (history.safeBetStats || {
+    totalBets: 0,
+    wins: 0,
+    losses: 0,
+    pending: 0,
+    totalROI: 0,
+    winRate: 0
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f172a]">
