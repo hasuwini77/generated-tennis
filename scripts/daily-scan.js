@@ -765,14 +765,14 @@ Return ONLY a JSON array with exactly ${matches.length} predictions:
       
       return {
         ...match,
-        aiProbability: aiProb,
+        aiProbability: prediction.homeWinProbability, // Store as percentage (consistent with Gemini)
         reasoning: prediction.reasoning || 'No reasoning',
         confidence: prediction.confidence || 'medium',
         expectedValue: expectedValuePercent,
         markets: match.markets.map(m => ({
           ...m,
           expectedValue: expectedValuePercent,
-          aiProbability: aiProb,
+          aiProbability: prediction.homeWinProbability, // Store as percentage (consistent with Gemini)
           reasoning: prediction.reasoning,
           confidence: prediction.confidence,
         }))
@@ -781,7 +781,7 @@ Return ONLY a JSON array with exactly ${matches.length} predictions:
     
     enrichedMatches.forEach((match, i) => {
       const ev = match.expectedValue >= 0 ? `+${match.expectedValue}` : match.expectedValue;
-      console.log(`  Game ${i + 1}: ${match.homeTeam} - AI: ${(match.aiProbability * 100).toFixed(0)}%, EV: ${ev}%`);
+      console.log(`  Game ${i + 1}: ${match.homeTeam} - AI: ${match.aiProbability.toFixed(0)}%, EV: ${ev}%`);
     });
     
     console.log('[Groq] Analysis complete');
@@ -822,6 +822,47 @@ function classifyEVTier(expectedValue) {
     return { ...EV_TIERS.STRONG, tier: 'STRONG' };
   }
   return null; // Below minimum threshold
+}
+
+/**
+ * Filter for "Safe Bets" - high probability favorites with reasonable odds
+ * These are reliable bets with lower risk, perfect for parlays or conservative betting
+ */
+function filterSafeBets(matches, minOdds = 1.20, maxOdds = 1.60, minAIProbability = 65) {
+  const safeBets = matches.filter(m => {
+    const odds = m.marketOdd;
+    const aiProb = m.aiProbability || 0; // Already a percentage (65 = 65%)
+    
+    // Must be a favorite (odds between 1.20 and 1.60)
+    if (odds < minOdds || odds > maxOdds) return false;
+    
+    // AI must be confident (65%+ win probability)
+    if (aiProb < minAIProbability) return false;
+    
+    return true;
+  });
+  
+  // Sort by AI probability (most confident first), then by odds (lower = safer)
+  safeBets.sort((a, b) => {
+    const aProbDiff = Math.abs((b.aiProbability || 0) - (a.aiProbability || 0));
+    if (aProbDiff > 5) { // If >5% difference in probability, prioritize higher probability
+      return (b.aiProbability || 0) - (a.aiProbability || 0);
+    }
+    return a.marketOdd - b.marketOdd; // Otherwise, prefer safer odds
+  });
+  
+  console.log(`\n=== SAFE BETS FILTERING ===`);
+  console.log(`Found ${safeBets.length} safe bets (odds ${minOdds}-${maxOdds}, AI prob ≥${minAIProbability}%)`);
+  
+  if (safeBets.length > 0) {
+    console.log('\nTop safe bets:');
+    safeBets.slice(0, 3).forEach((bet, i) => {
+      const aiProb = (bet.aiProbability || 0).toFixed(0);
+      console.log(`  ${i + 1}. ${bet.homeTeam} vs ${bet.awayTeam} → Odds: ${bet.marketOdd.toFixed(2)} | AI: ${aiProb}% | ${bet.confidence} conf`);
+    });
+  }
+  
+  return safeBets;
 }
 
 /**
@@ -933,16 +974,16 @@ function selectBetOfTheDay(valueBets) {
 // =============================================================================
 
 /**
- * Send Discord notification with bet of the day
+ * Send Discord notification with bet of the day and safe bets
  */
-async function sendDiscordNotification(betOfTheDay, valueBets) {
+async function sendDiscordNotification(betOfTheDay, valueBets, safeBets = []) {
   if (!DISCORD_WEBHOOK_URL) {
     console.log('[Discord] No webhook configured. Skipping notification.');
     return;
   }
   
-  if (!betOfTheDay) {
-    console.log('[Discord] No bet of the day. Sending "no bets" message.');
+  if (!betOfTheDay && safeBets.length === 0) {
+    console.log('[Discord] No bets found. Sending "no bets" message.');
     
     const message = {
       content: `🎾 **TennTrend Daily Update**\n\n` +
@@ -967,11 +1008,14 @@ async function sendDiscordNotification(betOfTheDay, valueBets) {
     return;
   }
   
-  // Format bet of the day message with tier
-  const tierBadge = betOfTheDay.evTier ? `${betOfTheDay.evTier.emoji} **${betOfTheDay.evTier.label}**` : '';
+  // Build notification content
+  let content = '';
   
-  const message = {
-    content: `🏆 **TennTrend - Bet of the Day**\n\n` +
+  // Bet of the Day section
+  if (betOfTheDay) {
+    const tierBadge = betOfTheDay.evTier ? `${betOfTheDay.evTier.emoji} **${betOfTheDay.evTier.label}**` : '';
+    
+    content += `🏆 **TennTrend - Bet of the Day**\n\n` +
       `**${betOfTheDay.homeTeam} vs ${betOfTheDay.awayTeam}** (${betOfTheDay.league})\n` +
       `🕐 Start: ${betOfTheDay.startTimeFormatted}\n\n` +
       `${tierBadge}\n` +
@@ -981,9 +1025,27 @@ async function sendDiscordNotification(betOfTheDay, valueBets) {
       `📈 **Expected Value:** +${betOfTheDay.expectedValue}%\n` +
       `🎲 **Confidence:** ${betOfTheDay.confidence.toUpperCase()}\n\n` +
       `💡 **Analysis:**\n${betOfTheDay.reasoning}\n\n` +
-      `${getAdditionalBetsMessage(valueBets)}\n` +
-      `✨ Professional-grade analysis | EV Tiers: 💪 Strong (3-6%) | ⭐ Elite (6-10%) | 🔥 Sick (10%+)`
-  };
+      `${getAdditionalBetsMessage(valueBets)}\n`;
+  }
+  
+  // Safe Bets section
+  if (safeBets.length > 0) {
+    if (betOfTheDay) content += `\n---\n\n`;
+    
+    content += `🛡️ **Safe Bets Today** (High Probability Favorites)\n\n`;
+    
+    safeBets.slice(0, 3).forEach((bet, i) => {
+      content += `**${i + 1}. ${bet.homeTeam}** vs ${bet.awayTeam}\n` +
+        `   💰 Odds: ${bet.marketOdd.toFixed(2)} | 🤖 AI: ${bet.aiProbability}% | 🎲 ${bet.confidence.toUpperCase()}\n` +
+        `   🕐 ${bet.startTimeFormatted}\n\n`;
+    });
+    
+    content += `💡 *Safe bets are high-probability favorites perfect for parlays or conservative betting*\n`;
+  }
+  
+  content += `\n✨ Professional-grade analysis | EV Tiers: 💪 Strong (3-6%) | ⭐ Elite (6-10%) | 🔥 Sick (10%+)`;
+  
+  const message = { content };
   
   try {
     await fetch(DISCORD_WEBHOOK_URL, {
@@ -991,7 +1053,7 @@ async function sendDiscordNotification(betOfTheDay, valueBets) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(message)
     });
-    console.log('[Discord] Bet of the day notification sent successfully');
+    console.log('[Discord] Notification sent successfully (Value bets: ' + valueBets.length + ', Safe bets: ' + safeBets.length + ')');
   } catch (error) {
     console.error('[Discord] Failed to send notification:', error.message);
   }
@@ -1025,7 +1087,7 @@ function getAdditionalBetsMessage(valueBets) {
 /**
  * Save daily picks to JSON file
  */
-function saveDailyPicks(allMatches, valueBets, betOfTheDay, leagueStats) {
+function saveDailyPicks(allMatches, valueBets, betOfTheDay, safeBets, leagueStats) {
   const timezones = getTimezones();
   
   const output = {
@@ -1037,6 +1099,7 @@ function saveDailyPicks(allMatches, valueBets, betOfTheDay, leagueStats) {
     summary: {
       totalGamesAnalyzed: allMatches.length,
       valueBetsFound: valueBets.length,
+      safeBetsFound: safeBets.length,
       hasBetOfTheDay: !!betOfTheDay,
       avgEV: valueBets.length > 0 
         ? Number((valueBets.reduce((sum, b) => sum + b.expectedValue, 0) / valueBets.length).toFixed(1))
@@ -1045,9 +1108,11 @@ function saveDailyPicks(allMatches, valueBets, betOfTheDay, leagueStats) {
     betOfTheDay: betOfTheDay || null,
     featuredBets: valueBets.slice(0, 5), // Top 5
     allBets: valueBets,
+    safeBets: safeBets.slice(0, 3), // Top 3 safe bets
+    allSafeBets: safeBets,
     metadata: {
       minEVThreshold: MIN_EV_THRESHOLD,
-      version: '2.0.0',
+      version: '2.1.0',
       generatedBy: 'daily-scan.js'
     }
   };
@@ -1059,11 +1124,17 @@ function saveDailyPicks(allMatches, valueBets, betOfTheDay, leagueStats) {
   console.log(`Results saved to: ${outputPath}`);
   console.log(`Total games: ${allMatches.length}`);
   console.log(`Value bets: ${valueBets.length}`);
+  console.log(`Safe bets: ${safeBets.length}`);
   console.log(`Bet of the day: ${betOfTheDay ? 'YES' : 'NO'}\n`);
   
   // Also add Bet of the Day to results history
   if (betOfTheDay) {
     addBetToHistory(betOfTheDay, timezones.cetTime);
+  }
+  
+  // Also add safe bets to history for separate tracking
+  if (safeBets.length > 0) {
+    addSafeBetsToHistory(safeBets, timezones.cetTime);
   }
 }
 
@@ -1080,7 +1151,36 @@ function addBetToHistory(betOfTheDay, scanTime) {
       history = JSON.parse(data);
     } catch (error) {
       console.log('[History] Creating new results history file');
-      history = { bets: [], stats: { totalBets: 0, wins: 0, losses: 0, pending: 0, totalROI: 0 } };
+      history = { 
+        bets: [], 
+        safeBets: [],
+        stats: { 
+          totalBets: 0, 
+          wins: 0, 
+          losses: 0, 
+          pending: 0, 
+          totalROI: 0 
+        },
+        safeBetStats: {
+          totalBets: 0,
+          wins: 0,
+          losses: 0,
+          pending: 0,
+          totalROI: 0
+        }
+      };
+    }
+    
+    // Ensure safeBets array exists
+    if (!history.safeBets) history.safeBets = [];
+    if (!history.safeBetStats) {
+      history.safeBetStats = {
+        totalBets: 0,
+        wins: 0,
+        losses: 0,
+        pending: 0,
+        totalROI: 0
+      };
     }
     
     const todayDate = scanTime.toLocaleDateString('sv-SE');
@@ -1093,12 +1193,12 @@ function addBetToHistory(betOfTheDay, scanTime) {
       league: betOfTheDay.league,
       homeTeam: betOfTheDay.homeTeam,
       awayTeam: betOfTheDay.awayTeam,
-      outcome: betOfTheDay.markets[0].outcome, // The player/team we're betting on
+      outcome: betOfTheDay.markets[0].outcome,
       odds: betOfTheDay.markets[0].odds,
       expectedValue: betOfTheDay.expectedValue,
       confidence: betOfTheDay.confidence,
       reasoning: betOfTheDay.reasoning,
-      status: 'pending', // Will be updated by update-results script
+      status: 'pending',
       result: null,
       roi: null,
       addedAt: new Date().toISOString()
@@ -1107,7 +1207,7 @@ function addBetToHistory(betOfTheDay, scanTime) {
     // Check if this bet already exists (by ID)
     const exists = history.bets.some(b => b.id === betOfTheDay.id);
     if (!exists) {
-      history.bets.unshift(historyBet); // Add to beginning
+      history.bets.unshift(historyBet);
       console.log(`[History] Added Bet of the Day to results history`);
     } else {
       console.log(`[History] Bet of the Day already exists in history`);
@@ -1121,6 +1221,81 @@ function addBetToHistory(betOfTheDay, scanTime) {
     
   } catch (error) {
     console.error('[History] Error updating results history:', error.message);
+  }
+}
+
+/**
+ * Add safe bets to history for separate tracking
+ */
+function addSafeBetsToHistory(safeBets, scanTime) {
+  if (safeBets.length === 0) return;
+  
+  try {
+    const historyPath = join(__dirname, '..', 'public', 'data', 'results-history.json');
+    
+    let history;
+    try {
+      const data = readFileSync(historyPath, 'utf-8');
+      history = JSON.parse(data);
+    } catch (error) {
+      console.log('[History] Creating new results history file');
+      history = { 
+        bets: [], 
+        safeBets: [],
+        stats: { totalBets: 0, wins: 0, losses: 0, pending: 0, totalROI: 0 },
+        safeBetStats: { totalBets: 0, wins: 0, losses: 0, pending: 0, totalROI: 0 }
+      };
+    }
+    
+    // Ensure safeBets array exists
+    if (!history.safeBets) history.safeBets = [];
+    if (!history.safeBetStats) {
+      history.safeBetStats = { totalBets: 0, wins: 0, losses: 0, pending: 0, totalROI: 0 };
+    }
+    
+    const todayDate = scanTime.toLocaleDateString('sv-SE');
+    let addedCount = 0;
+    
+    // Add each safe bet
+    safeBets.forEach(safeBet => {
+      const historyBet = {
+        id: safeBet.id,
+        date: todayDate,
+        matchTime: safeBet.startTime,
+        league: safeBet.league,
+        homeTeam: safeBet.homeTeam,
+        awayTeam: safeBet.awayTeam,
+        outcome: safeBet.homeTeam,
+        odds: safeBet.marketOdd,
+        aiProbability: safeBet.aiProbability,
+        confidence: safeBet.confidence,
+        reasoning: safeBet.reasoning,
+        status: 'pending',
+        result: null,
+        roi: null,
+        addedAt: new Date().toISOString()
+      };
+      
+      // Check if this bet already exists
+      const exists = history.safeBets.some(b => b.id === safeBet.id);
+      if (!exists) {
+        history.safeBets.unshift(historyBet);
+        addedCount++;
+      }
+    });
+    
+    if (addedCount > 0) {
+      console.log(`[History] Added ${addedCount} safe bet(s) to history`);
+    }
+    
+    // Update safe bet stats
+    history.safeBetStats.totalBets = history.safeBets.length;
+    history.safeBetStats.pending = history.safeBets.filter(b => b.status === 'pending').length;
+    
+    writeFileSync(historyPath, JSON.stringify(history, null, 2));
+    
+  } catch (error) {
+    console.error('[History] Error adding safe bets to history:', error.message);
   }
 }
 
@@ -1139,8 +1314,8 @@ async function main() {
     
     if (allMatches.length === 0) {
       console.log('\n⚠️  No games found across all leagues. Saving empty state.');
-      saveDailyPicks([], [], null, leagueStats);
-      await sendDiscordNotification(null, []);
+      saveDailyPicks([], [], null, [], leagueStats);
+      await sendDiscordNotification(null, [], []);
       return;
     }
     
@@ -1150,17 +1325,20 @@ async function main() {
     // 3. Analyze with AI
     const enrichedMatches = await analyzeWithAI(matchesWithForm);
     
-    // 4. Filter for high-value bets
+    // 4. Filter for high-value bets (EV >= 3%)
     const valueBets = filterHighValueBets(enrichedMatches, MIN_EV_THRESHOLD);
     
-    // 5. Select bet of the day
+    // 5. Filter for safe bets (favorites with odds 1.20-1.60 and high AI probability)
+    const safeBets = filterSafeBets(enrichedMatches);
+    
+    // 6. Select bet of the day
     const betOfTheDay = selectBetOfTheDay(valueBets);
     
-    // 6. Save results
-    saveDailyPicks(enrichedMatches, valueBets, betOfTheDay, leagueStats);
+    // 7. Save results
+    saveDailyPicks(enrichedMatches, valueBets, betOfTheDay, safeBets, leagueStats);
     
-    // 7. Send Discord notification
-    await sendDiscordNotification(betOfTheDay, valueBets);
+    // 8. Send Discord notification (including safe bets)
+    await sendDiscordNotification(betOfTheDay, valueBets, safeBets);
     
     console.log('✅ Daily scan complete!\n');
     
