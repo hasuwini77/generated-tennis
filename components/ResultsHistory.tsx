@@ -325,8 +325,10 @@ const ResultsHistory: React.FC = () => {
                     </div>
 
                     <div className="text-center">
-                      <div className="text-xs text-gray-500 mb-1">EV</div>
-                      <div className="text-lg font-bold text-blue-400">+{bet.expectedValue.toFixed(1)}%</div>
+                      <div className="text-xs text-gray-500 mb-1">{bet.expectedValue ? 'EV' : 'Prob'}</div>
+                      <div className="text-lg font-bold text-blue-400">
+                        {bet.expectedValue ? `+${bet.expectedValue.toFixed(1)}%` : `${bet.aiProbability}%`}
+                      </div>
                     </div>
 
                     {/* Outcome Badge */}

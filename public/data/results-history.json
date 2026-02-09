@@ -100,6 +100,7 @@
     "wins": 0,
     "losses": 0,
     "pending": 2,
-    "totalROI": 0
+    "totalROI": 0,
+    "winRate": 0
   }
 }
