@@ -1,6 +1,40 @@
 {
   "bets": [
     {
+      "id": "ab6ed0858ec00583d5b109e215c93c71",
+      "date": "2026-02-09",
+      "matchTime": "2026-02-10T07:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Daria Kasatkina",
+      "awayTeam": "Elise Mertens",
+      "outcome": "Daria Kasatkina",
+      "odds": 3.8,
+      "expectedValue": 71,
+      "confidence": "high",
+      "reasoning": "A 3.8 price (26%) on Kasatkina against Mertens is a massive market inefficiency; Kasatkina is a Top 15 player with a tactical edge. While Mertens is solid, she does not possess the weapons to be such a heavy favorite here. VALUE: Significant value on Kasatkina as the market has mispriced her win equity.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-09T13:36:28.008Z"
+    },
+    {
+      "id": "d2a887111fc5810b348477f3c3ed8b96",
+      "date": "2026-02-09",
+      "matchTime": "2026-02-10T10:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Elisabetta Cocciaretto",
+      "awayTeam": "Coco Gauff",
+      "outcome": "Elisabetta Cocciaretto",
+      "odds": 9.7,
+      "expectedValue": 6.7,
+      "confidence": "low",
+      "reasoning": "Elisabetta Cocciaretto is a significant underdog, and market odds reflect low probability of winning. VALUE: No clear edge, market odds seem fair.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-09T13:20:53.127Z"
+    },
+    {
       "id": "8b7f9d9f303fda5cbab390ddde556c2b",
       "date": "2026-02-09",
       "matchTime": "2026-02-09T15:00:00Z",
@@ -53,13 +87,30 @@
     }
   ],
   "stats": {
-    "totalBets": 3,
+    "totalBets": 5,
     "wins": 0,
     "losses": 0,
-    "pending": 3,
+    "pending": 5,
     "totalROI": 0
   },
   "safeBets": [
+    {
+      "id": "04dd3948cb052b1e5519ba9c77b34b31",
+      "date": "2026-02-09",
+      "matchTime": "2026-02-10T07:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Linda Noskova",
+      "awayTeam": "Varvara Gracheva",
+      "outcome": "Linda Noskova",
+      "odds": 1.25,
+      "aiProbability": 80,
+      "confidence": "medium",
+      "reasoning": "Linda Noskova is a strong favorite, but market odds already price in high probability of winning. VALUE: Limited value due to high market odds.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-09T13:20:53.129Z"
+    },
     {
       "id": "6d89b2588cb1952e751be3d9043a3dd7",
       "date": "2026-02-09",
@@ -96,10 +147,10 @@
     }
   ],
   "safeBetStats": {
-    "totalBets": 2,
+    "totalBets": 3,
     "wins": 0,
     "losses": 0,
-    "pending": 2,
+    "pending": 3,
     "totalROI": 0,
     "winRate": 0
   }
