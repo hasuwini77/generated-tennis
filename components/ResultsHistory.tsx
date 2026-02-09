@@ -21,7 +21,16 @@ interface Bet {
 
 interface HistoryData {
   bets: Bet[];
+  safeBets?: Bet[];
   stats: {
+    totalBets: number;
+    wins: number;
+    losses: number;
+    pending: number;
+    totalROI: number;
+    winRate?: number;
+  };
+  safeBetStats?: {
     totalBets: number;
     wins: number;
     losses: number;
@@ -35,6 +44,7 @@ const ResultsHistory: React.FC = () => {
   const [history, setHistory] = useState<HistoryData | null>(null);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'win' | 'loss' | 'pending'>('all');
+  const [betType, setBetType] = useState<'value' | 'safe'>('value');
 
   useEffect(() => {
     fetchHistory();
@@ -78,12 +88,14 @@ const ResultsHistory: React.FC = () => {
     );
   }
 
-  const filteredBets = history.bets.filter(bet => {
+  const filteredBets = (betType === 'value' ? history.bets : (history.safeBets || [])).filter(bet => {
     if (filter === 'win') return bet.status === 'win';
     if (filter === 'loss') return bet.status === 'loss';
     if (filter === 'pending') return bet.status === 'pending';
     return true;
   });
+  
+  const currentStats = betType === 'value' ? history.stats : (history.safeBetStats || history.stats);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f172a]">
@@ -106,27 +118,53 @@ const ResultsHistory: React.FC = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-6">
+        {/* Bet Type Toggle */}
+        <div className="flex gap-2 justify-center mb-6">
+          <button
+            onClick={() => setBetType('value')}
+            className={cn(
+              "px-6 py-3 rounded-xl font-semibold transition-all",
+              betType === 'value'
+                ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
+                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+            )}
+          >
+            💎 Value Bets ({history.stats.totalBets})
+          </button>
+          <button
+            onClick={() => setBetType('safe')}
+            className={cn(
+              "px-6 py-3 rounded-xl font-semibold transition-all",
+              betType === 'safe'
+                ? "bg-green-500 text-white shadow-lg shadow-green-500/30"
+                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+            )}
+          >
+            🛡️ Safe Bets ({(history.safeBetStats?.totalBets || 0)})
+          </button>
+        </div>
+        
         {/* Stats Summary */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="text-xs text-gray-500 mb-1">Total Bets</div>
-            <div className="text-3xl font-bold text-white">{history.stats.totalBets}</div>
+            <div className="text-3xl font-bold text-white">{currentStats.totalBets}</div>
           </div>
           
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="text-xs text-gray-500 mb-1">Wins</div>
-            <div className="text-3xl font-bold text-green-400">{history.stats.wins}</div>
+            <div className="text-3xl font-bold text-green-400">{currentStats.wins}</div>
           </div>
           
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="text-xs text-gray-500 mb-1">Losses</div>
-            <div className="text-3xl font-bold text-red-400">{history.stats.losses}</div>
+            <div className="text-3xl font-bold text-red-400">{currentStats.losses}</div>
           </div>
           
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="text-xs text-gray-500 mb-1">Win Rate</div>
             <div className="text-3xl font-bold text-white">
-              {history.stats.winRate !== undefined ? history.stats.winRate.toFixed(1) : '0.0'}%
+              {currentStats.winRate !== undefined ? currentStats.winRate.toFixed(1) : '0.0'}%
             </div>
           </div>
           
@@ -134,9 +172,9 @@ const ResultsHistory: React.FC = () => {
             <div className="text-xs text-gray-500 mb-1">Total ROI</div>
             <div className={cn(
               "text-3xl font-bold",
-              history.stats.totalROI > 0 ? "text-green-400" : history.stats.totalROI < 0 ? "text-red-400" : "text-white"
+              currentStats.totalROI > 0 ? "text-green-400" : currentStats.totalROI < 0 ? "text-red-400" : "text-white"
             )}>
-              {history.stats.totalROI > 0 ? '+' : ''}{history.stats.totalROI.toFixed(2)}u
+              {currentStats.totalROI > 0 ? '+' : ''}{currentStats.totalROI.toFixed(2)}u
             </div>
           </div>
         </div>
@@ -152,7 +190,7 @@ const ResultsHistory: React.FC = () => {
                 : "bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10"
             )}
           >
-            All ({history.bets.length})
+            All ({(betType === 'value' ? history.bets : (history.safeBets || [])).length})
           </button>
           <button
             onClick={() => setFilter('win')}
@@ -163,7 +201,7 @@ const ResultsHistory: React.FC = () => {
                 : "bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10"
             )}
           >
-            Wins ({history.stats.wins})
+            Wins ({currentStats.wins})
           </button>
           <button
             onClick={() => setFilter('loss')}
@@ -174,7 +212,7 @@ const ResultsHistory: React.FC = () => {
                 : "bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10"
             )}
           >
-            Losses ({history.stats.losses})
+            Losses ({currentStats.losses})
           </button>
           <button
             onClick={() => setFilter('pending')}
@@ -185,7 +223,7 @@ const ResultsHistory: React.FC = () => {
                 : "bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10"
             )}
           >
-            Pending ({history.stats.pending})
+            Pending ({currentStats.pending})
           </button>
         </div>
 
