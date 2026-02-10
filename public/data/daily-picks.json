@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-09T13:39:30.073Z",
-  "scanDateCET": "2026-02-09",
-  "scanDateET": "2/9/2026",
-  "scanTimeCET": "2026-02-09 14:39:30",
+  "timestamp": "2026-02-10T06:35:03.967Z",
+  "scanDateCET": "2026-02-10",
+  "scanDateET": "2/10/2026",
+  "scanTimeCET": "2026-02-10 07:35:03",
   "leagueStats": {
     "atp": {
       "hasGames": false,
@@ -10,523 +10,48 @@
     },
     "wta": {
       "hasGames": true,
-      "gamesFound": 11
+      "gamesFound": 14
     }
   },
   "summary": {
-    "totalGamesAnalyzed": 11,
-    "valueBetsFound": 6,
-    "safeBetsFound": 2,
-    "hasBetOfTheDay": true,
-    "avgEV": 26.4
+    "totalGamesAnalyzed": 14,
+    "valueBetsFound": 0,
+    "safeBetsFound": 1,
+    "hasBetOfTheDay": false,
+    "avgEV": 0
   },
-  "betOfTheDay": {
-    "id": "ab6ed0858ec00583d5b109e215c93c71",
-    "league": "WTA",
-    "homeTeam": "Daria Kasatkina",
-    "awayTeam": "Elise Mertens",
-    "startTime": "2026-02-10T07:00:00Z",
-    "startTimeFormatted": "Feb 10, 08:00",
-    "marketOdd": 3.8,
-    "marketProb": 26.3,
-    "markets": [
-      {
-        "type": "h2h",
-        "outcome": "Daria Kasatkina",
-        "odds": 3.8,
-        "impliedProb": 26.3,
-        "expectedValue": 71,
-        "aiProbability": 45,
-        "reasoning": "Kasatkina leads the H2H 5-2 and is generally the higher-ranked player. Market odds of 3.8 (26%) for Kasatkina are highly irregular unless there is an undisclosed injury. VALUE: Based on historical data and skill set, Kasatkina is a massive value play if she takes the court.",
-        "confidence": "low"
-      }
-    ],
-    "homeForm": "No recent matches",
-    "awayForm": "No recent matches",
-    "formData": {},
-    "aiProbability": 45,
-    "reasoning": "Kasatkina leads the H2H 5-2 and is generally the higher-ranked player. Market odds of 3.8 (26%) for Kasatkina are highly irregular unless there is an undisclosed injury. VALUE: Based on historical data and skill set, Kasatkina is a massive value play if she takes the court.",
-    "confidence": "low",
-    "expectedValue": 71,
-    "evTier": {
-      "min": 10,
-      "max": null,
-      "label": "Sick Edge",
-      "emoji": "🔥",
-      "color": "red",
-      "tier": "SICK"
-    },
-    "score": 95.85
-  },
-  "featuredBets": [
-    {
-      "id": "ab6ed0858ec00583d5b109e215c93c71",
-      "league": "WTA",
-      "homeTeam": "Daria Kasatkina",
-      "awayTeam": "Elise Mertens",
-      "startTime": "2026-02-10T07:00:00Z",
-      "startTimeFormatted": "Feb 10, 08:00",
-      "marketOdd": 3.8,
-      "marketProb": 26.3,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Daria Kasatkina",
-          "odds": 3.8,
-          "impliedProb": 26.3,
-          "expectedValue": 71,
-          "aiProbability": 45,
-          "reasoning": "Kasatkina leads the H2H 5-2 and is generally the higher-ranked player. Market odds of 3.8 (26%) for Kasatkina are highly irregular unless there is an undisclosed injury. VALUE: Based on historical data and skill set, Kasatkina is a massive value play if she takes the court.",
-          "confidence": "low"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 45,
-      "reasoning": "Kasatkina leads the H2H 5-2 and is generally the higher-ranked player. Market odds of 3.8 (26%) for Kasatkina are highly irregular unless there is an undisclosed injury. VALUE: Based on historical data and skill set, Kasatkina is a massive value play if she takes the court.",
-      "confidence": "low",
-      "expectedValue": 71,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "f3442dc35a0e7975e3ed72499892ad65",
-      "league": "WTA",
-      "homeTeam": "Vera Zvonareva",
-      "awayTeam": "Victoria Mboko",
-      "startTime": "2026-02-10T10:00:00Z",
-      "startTimeFormatted": "Feb 10, 11:00",
-      "marketOdd": 6.4,
-      "marketProb": 15.6,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Vera Zvonareva",
-          "odds": 6.4,
-          "impliedProb": 15.6,
-          "expectedValue": 40.8,
-          "aiProbability": 22,
-          "reasoning": "Zvonareva's veteran savvy and variety can frustrate the young Mboko, who is still adjusting to the pro tour's tactical depth. While Mboko has the physical edge, Zvonareva's experience is worth more than 15%. VALUE: Underdog Zvonareva is undervalued due to age bias.",
-          "confidence": "low"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 22,
-      "reasoning": "Zvonareva's veteran savvy and variety can frustrate the young Mboko, who is still adjusting to the pro tour's tactical depth. While Mboko has the physical edge, Zvonareva's experience is worth more than 15%. VALUE: Underdog Zvonareva is undervalued due to age bias.",
-      "confidence": "low",
-      "expectedValue": 40.8,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1d3efcd2fd4784bd64ef885a59406029",
-      "league": "WTA",
-      "homeTeam": "Magdalena Frech",
-      "awayTeam": "Ann Li",
-      "startTime": "2026-02-10T00:00:00Z",
-      "startTimeFormatted": "Feb 10, 01:00",
-      "marketOdd": 2.58,
-      "marketProb": 38.8,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Magdalena Frech",
-          "odds": 2.58,
-          "impliedProb": 38.8,
-          "expectedValue": 23.8,
-          "aiProbability": 48,
-          "reasoning": "Magdalena Frech is one of the most consistent grinders on tour, making her a dangerous underdog at 2.58. Ann Li has a higher peak but suffers from high unforced error counts. VALUE: Frech is significantly undervalued by the market as a 38% underdog.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 48,
-      "reasoning": "Magdalena Frech is one of the most consistent grinders on tour, making her a dangerous underdog at 2.58. Ann Li has a higher peak but suffers from high unforced error counts. VALUE: Frech is significantly undervalued by the market as a 38% underdog.",
-      "confidence": "medium",
-      "expectedValue": 23.8,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "4886b6457e8002fb91b30dd3627441be",
-      "league": "WTA",
-      "homeTeam": "Emma Raducanu",
-      "awayTeam": "Maria Camila Osorio Serrano",
-      "startTime": "2026-02-09T15:15:00Z",
-      "startTimeFormatted": "Feb 9, 16:15",
-      "marketOdd": 2.1,
-      "marketProb": 47.6,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Emma Raducanu",
-          "odds": 2.1,
-          "impliedProb": 47.6,
-          "expectedValue": 13.4,
-          "aiProbability": 54,
-          "reasoning": "Raducanu's ceiling on hard courts is significantly higher than Osorio's, who prefers slower clay surfaces. If Raducanu is physically fit, her flat strokes will penetrate Osorio's defense. VALUE: Raducanu is undervalued as a slight underdog in this matchup.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 54,
-      "reasoning": "Raducanu's ceiling on hard courts is significantly higher than Osorio's, who prefers slower clay surfaces. If Raducanu is physically fit, her flat strokes will penetrate Osorio's defense. VALUE: Raducanu is undervalued as a slight underdog in this matchup.",
-      "confidence": "medium",
-      "expectedValue": 13.4,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "90164d2e50d77d26fabea869717c68bb",
-      "league": "WTA",
-      "homeTeam": "Anna Kalinskaya",
-      "awayTeam": "Jessica Bouzas Maneiro",
-      "startTime": "2026-02-09T16:00:00Z",
-      "startTimeFormatted": "Feb 9, 17:00",
-      "marketOdd": 1.37,
-      "marketProb": 73,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Anna Kalinskaya",
-          "odds": 1.37,
-          "impliedProb": 73,
-          "expectedValue": 5.5,
-          "aiProbability": 77,
-          "reasoning": "Kalinskaya has transitioned into a consistent top-tier performer on hard courts over the last 12 months. Bouzas Maneiro is improving but lacks the pace to consistently trouble Kalinskaya's baseline game. VALUE: Favorite is slightly underpriced for her current level.",
-          "confidence": "high"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 77,
-      "reasoning": "Kalinskaya has transitioned into a consistent top-tier performer on hard courts over the last 12 months. Bouzas Maneiro is improving but lacks the pace to consistently trouble Kalinskaya's baseline game. VALUE: Favorite is slightly underpriced for her current level.",
-      "confidence": "high",
-      "expectedValue": 5.5,
-      "evTier": {
-        "min": 3,
-        "max": 6,
-        "label": "Strong Edge",
-        "emoji": "💪",
-        "color": "blue",
-        "tier": "STRONG"
-      }
-    }
-  ],
-  "allBets": [
-    {
-      "id": "ab6ed0858ec00583d5b109e215c93c71",
-      "league": "WTA",
-      "homeTeam": "Daria Kasatkina",
-      "awayTeam": "Elise Mertens",
-      "startTime": "2026-02-10T07:00:00Z",
-      "startTimeFormatted": "Feb 10, 08:00",
-      "marketOdd": 3.8,
-      "marketProb": 26.3,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Daria Kasatkina",
-          "odds": 3.8,
-          "impliedProb": 26.3,
-          "expectedValue": 71,
-          "aiProbability": 45,
-          "reasoning": "Kasatkina leads the H2H 5-2 and is generally the higher-ranked player. Market odds of 3.8 (26%) for Kasatkina are highly irregular unless there is an undisclosed injury. VALUE: Based on historical data and skill set, Kasatkina is a massive value play if she takes the court.",
-          "confidence": "low"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 45,
-      "reasoning": "Kasatkina leads the H2H 5-2 and is generally the higher-ranked player. Market odds of 3.8 (26%) for Kasatkina are highly irregular unless there is an undisclosed injury. VALUE: Based on historical data and skill set, Kasatkina is a massive value play if she takes the court.",
-      "confidence": "low",
-      "expectedValue": 71,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "f3442dc35a0e7975e3ed72499892ad65",
-      "league": "WTA",
-      "homeTeam": "Vera Zvonareva",
-      "awayTeam": "Victoria Mboko",
-      "startTime": "2026-02-10T10:00:00Z",
-      "startTimeFormatted": "Feb 10, 11:00",
-      "marketOdd": 6.4,
-      "marketProb": 15.6,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Vera Zvonareva",
-          "odds": 6.4,
-          "impliedProb": 15.6,
-          "expectedValue": 40.8,
-          "aiProbability": 22,
-          "reasoning": "Zvonareva's veteran savvy and variety can frustrate the young Mboko, who is still adjusting to the pro tour's tactical depth. While Mboko has the physical edge, Zvonareva's experience is worth more than 15%. VALUE: Underdog Zvonareva is undervalued due to age bias.",
-          "confidence": "low"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 22,
-      "reasoning": "Zvonareva's veteran savvy and variety can frustrate the young Mboko, who is still adjusting to the pro tour's tactical depth. While Mboko has the physical edge, Zvonareva's experience is worth more than 15%. VALUE: Underdog Zvonareva is undervalued due to age bias.",
-      "confidence": "low",
-      "expectedValue": 40.8,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1d3efcd2fd4784bd64ef885a59406029",
-      "league": "WTA",
-      "homeTeam": "Magdalena Frech",
-      "awayTeam": "Ann Li",
-      "startTime": "2026-02-10T00:00:00Z",
-      "startTimeFormatted": "Feb 10, 01:00",
-      "marketOdd": 2.58,
-      "marketProb": 38.8,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Magdalena Frech",
-          "odds": 2.58,
-          "impliedProb": 38.8,
-          "expectedValue": 23.8,
-          "aiProbability": 48,
-          "reasoning": "Magdalena Frech is one of the most consistent grinders on tour, making her a dangerous underdog at 2.58. Ann Li has a higher peak but suffers from high unforced error counts. VALUE: Frech is significantly undervalued by the market as a 38% underdog.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 48,
-      "reasoning": "Magdalena Frech is one of the most consistent grinders on tour, making her a dangerous underdog at 2.58. Ann Li has a higher peak but suffers from high unforced error counts. VALUE: Frech is significantly undervalued by the market as a 38% underdog.",
-      "confidence": "medium",
-      "expectedValue": 23.8,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "4886b6457e8002fb91b30dd3627441be",
-      "league": "WTA",
-      "homeTeam": "Emma Raducanu",
-      "awayTeam": "Maria Camila Osorio Serrano",
-      "startTime": "2026-02-09T15:15:00Z",
-      "startTimeFormatted": "Feb 9, 16:15",
-      "marketOdd": 2.1,
-      "marketProb": 47.6,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Emma Raducanu",
-          "odds": 2.1,
-          "impliedProb": 47.6,
-          "expectedValue": 13.4,
-          "aiProbability": 54,
-          "reasoning": "Raducanu's ceiling on hard courts is significantly higher than Osorio's, who prefers slower clay surfaces. If Raducanu is physically fit, her flat strokes will penetrate Osorio's defense. VALUE: Raducanu is undervalued as a slight underdog in this matchup.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 54,
-      "reasoning": "Raducanu's ceiling on hard courts is significantly higher than Osorio's, who prefers slower clay surfaces. If Raducanu is physically fit, her flat strokes will penetrate Osorio's defense. VALUE: Raducanu is undervalued as a slight underdog in this matchup.",
-      "confidence": "medium",
-      "expectedValue": 13.4,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "90164d2e50d77d26fabea869717c68bb",
-      "league": "WTA",
-      "homeTeam": "Anna Kalinskaya",
-      "awayTeam": "Jessica Bouzas Maneiro",
-      "startTime": "2026-02-09T16:00:00Z",
-      "startTimeFormatted": "Feb 9, 17:00",
-      "marketOdd": 1.37,
-      "marketProb": 73,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Anna Kalinskaya",
-          "odds": 1.37,
-          "impliedProb": 73,
-          "expectedValue": 5.5,
-          "aiProbability": 77,
-          "reasoning": "Kalinskaya has transitioned into a consistent top-tier performer on hard courts over the last 12 months. Bouzas Maneiro is improving but lacks the pace to consistently trouble Kalinskaya's baseline game. VALUE: Favorite is slightly underpriced for her current level.",
-          "confidence": "high"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 77,
-      "reasoning": "Kalinskaya has transitioned into a consistent top-tier performer on hard courts over the last 12 months. Bouzas Maneiro is improving but lacks the pace to consistently trouble Kalinskaya's baseline game. VALUE: Favorite is slightly underpriced for her current level.",
-      "confidence": "high",
-      "expectedValue": 5.5,
-      "evTier": {
-        "min": 3,
-        "max": 6,
-        "label": "Strong Edge",
-        "emoji": "💪",
-        "color": "blue",
-        "tier": "STRONG"
-      }
-    },
-    {
-      "id": "04dd3948cb052b1e5519ba9c77b34b31",
-      "league": "WTA",
-      "homeTeam": "Linda Noskova",
-      "awayTeam": "Varvara Gracheva",
-      "startTime": "2026-02-10T07:00:00Z",
-      "startTimeFormatted": "Feb 10, 08:00",
-      "marketOdd": 1.25,
-      "marketProb": 80,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Linda Noskova",
-          "odds": 1.25,
-          "impliedProb": 80,
-          "expectedValue": 3.7,
-          "aiProbability": 83,
-          "reasoning": "Noskova's aggressive return game will put immediate pressure on Gracheva's vulnerable second serve. On a standard hard court, Noskova's weight of shot is the deciding factor. VALUE: Favorite is fairly priced but leans toward being undervalued.",
-          "confidence": "high"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 83,
-      "reasoning": "Noskova's aggressive return game will put immediate pressure on Gracheva's vulnerable second serve. On a standard hard court, Noskova's weight of shot is the deciding factor. VALUE: Favorite is fairly priced but leans toward being undervalued.",
-      "confidence": "high",
-      "expectedValue": 3.7,
-      "evTier": {
-        "min": 3,
-        "max": 6,
-        "label": "Strong Edge",
-        "emoji": "💪",
-        "color": "blue",
-        "tier": "STRONG"
-      }
-    }
-  ],
+  "betOfTheDay": null,
+  "featuredBets": [],
+  "allBets": [],
   "safeBets": [
     {
       "id": "04dd3948cb052b1e5519ba9c77b34b31",
       "league": "WTA",
       "homeTeam": "Linda Noskova",
       "awayTeam": "Varvara Gracheva",
-      "startTime": "2026-02-10T07:00:00Z",
-      "startTimeFormatted": "Feb 10, 08:00",
-      "marketOdd": 1.25,
-      "marketProb": 80,
+      "startTime": "2026-02-10T12:00:00Z",
+      "startTimeFormatted": "Feb 10, 13:00",
+      "marketOdd": 1.38,
+      "marketProb": 72.5,
       "markets": [
         {
           "type": "h2h",
           "outcome": "Linda Noskova",
-          "odds": 1.25,
-          "impliedProb": 80,
-          "expectedValue": 3.7,
-          "aiProbability": 83,
-          "reasoning": "Noskova's aggressive return game will put immediate pressure on Gracheva's vulnerable second serve. On a standard hard court, Noskova's weight of shot is the deciding factor. VALUE: Favorite is fairly priced but leans toward being undervalued.",
-          "confidence": "high"
+          "odds": 1.38,
+          "impliedProb": 72.5,
+          "expectedValue": -0.6,
+          "aiProbability": 72,
+          "reasoning": "Linda Noskova is heavily favored, which aligns with her recent performances and ranking. Market odds seem to accurately reflect her chances.",
+          "confidence": "medium"
         }
       ],
       "homeForm": "No recent matches",
       "awayForm": "No recent matches",
       "formData": {},
-      "aiProbability": 83,
-      "reasoning": "Noskova's aggressive return game will put immediate pressure on Gracheva's vulnerable second serve. On a standard hard court, Noskova's weight of shot is the deciding factor. VALUE: Favorite is fairly priced but leans toward being undervalued.",
-      "confidence": "high",
-      "expectedValue": 3.7
-    },
-    {
-      "id": "90164d2e50d77d26fabea869717c68bb",
-      "league": "WTA",
-      "homeTeam": "Anna Kalinskaya",
-      "awayTeam": "Jessica Bouzas Maneiro",
-      "startTime": "2026-02-09T16:00:00Z",
-      "startTimeFormatted": "Feb 9, 17:00",
-      "marketOdd": 1.37,
-      "marketProb": 73,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Anna Kalinskaya",
-          "odds": 1.37,
-          "impliedProb": 73,
-          "expectedValue": 5.5,
-          "aiProbability": 77,
-          "reasoning": "Kalinskaya has transitioned into a consistent top-tier performer on hard courts over the last 12 months. Bouzas Maneiro is improving but lacks the pace to consistently trouble Kalinskaya's baseline game. VALUE: Favorite is slightly underpriced for her current level.",
-          "confidence": "high"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 77,
-      "reasoning": "Kalinskaya has transitioned into a consistent top-tier performer on hard courts over the last 12 months. Bouzas Maneiro is improving but lacks the pace to consistently trouble Kalinskaya's baseline game. VALUE: Favorite is slightly underpriced for her current level.",
-      "confidence": "high",
-      "expectedValue": 5.5
+      "aiProbability": 72,
+      "reasoning": "Linda Noskova is heavily favored, which aligns with her recent performances and ranking. Market odds seem to accurately reflect her chances.",
+      "confidence": "medium",
+      "expectedValue": -0.6
     }
   ],
   "allSafeBets": [
@@ -535,58 +60,29 @@
       "league": "WTA",
       "homeTeam": "Linda Noskova",
       "awayTeam": "Varvara Gracheva",
-      "startTime": "2026-02-10T07:00:00Z",
-      "startTimeFormatted": "Feb 10, 08:00",
-      "marketOdd": 1.25,
-      "marketProb": 80,
+      "startTime": "2026-02-10T12:00:00Z",
+      "startTimeFormatted": "Feb 10, 13:00",
+      "marketOdd": 1.38,
+      "marketProb": 72.5,
       "markets": [
         {
           "type": "h2h",
           "outcome": "Linda Noskova",
-          "odds": 1.25,
-          "impliedProb": 80,
-          "expectedValue": 3.7,
-          "aiProbability": 83,
-          "reasoning": "Noskova's aggressive return game will put immediate pressure on Gracheva's vulnerable second serve. On a standard hard court, Noskova's weight of shot is the deciding factor. VALUE: Favorite is fairly priced but leans toward being undervalued.",
-          "confidence": "high"
+          "odds": 1.38,
+          "impliedProb": 72.5,
+          "expectedValue": -0.6,
+          "aiProbability": 72,
+          "reasoning": "Linda Noskova is heavily favored, which aligns with her recent performances and ranking. Market odds seem to accurately reflect her chances.",
+          "confidence": "medium"
         }
       ],
       "homeForm": "No recent matches",
       "awayForm": "No recent matches",
       "formData": {},
-      "aiProbability": 83,
-      "reasoning": "Noskova's aggressive return game will put immediate pressure on Gracheva's vulnerable second serve. On a standard hard court, Noskova's weight of shot is the deciding factor. VALUE: Favorite is fairly priced but leans toward being undervalued.",
-      "confidence": "high",
-      "expectedValue": 3.7
-    },
-    {
-      "id": "90164d2e50d77d26fabea869717c68bb",
-      "league": "WTA",
-      "homeTeam": "Anna Kalinskaya",
-      "awayTeam": "Jessica Bouzas Maneiro",
-      "startTime": "2026-02-09T16:00:00Z",
-      "startTimeFormatted": "Feb 9, 17:00",
-      "marketOdd": 1.37,
-      "marketProb": 73,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Anna Kalinskaya",
-          "odds": 1.37,
-          "impliedProb": 73,
-          "expectedValue": 5.5,
-          "aiProbability": 77,
-          "reasoning": "Kalinskaya has transitioned into a consistent top-tier performer on hard courts over the last 12 months. Bouzas Maneiro is improving but lacks the pace to consistently trouble Kalinskaya's baseline game. VALUE: Favorite is slightly underpriced for her current level.",
-          "confidence": "high"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 77,
-      "reasoning": "Kalinskaya has transitioned into a consistent top-tier performer on hard courts over the last 12 months. Bouzas Maneiro is improving but lacks the pace to consistently trouble Kalinskaya's baseline game. VALUE: Favorite is slightly underpriced for her current level.",
-      "confidence": "high",
-      "expectedValue": 5.5
+      "aiProbability": 72,
+      "reasoning": "Linda Noskova is heavily favored, which aligns with her recent performances and ranking. Market odds seem to accurately reflect her chances.",
+      "confidence": "medium",
+      "expectedValue": -0.6
     }
   ],
   "metadata": {
