@@ -10,6 +10,9 @@ jobs:
   update-results:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: write  # Required to push results back to repository
+    
     env:
       TZ: Europe/Stockholm
       VITE_RAPIDAPI_TENNIS_KEY: ${{ secrets.RAPIDAPI_TENNIS_KEY }}
