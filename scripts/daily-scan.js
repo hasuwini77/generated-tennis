@@ -37,6 +37,7 @@ const API_BASE_URL = "https://api.the-odds-api.com/v4";
 const ODDS_API_KEY = process.env.VITE_THE_ODDS_API_KEY || process.env.THE_ODDS_API_KEY;
 const GEMINI_API_KEY = process.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
 const GROQ_API_KEY = process.env.VITE_GROQ_API_KEY || process.env.GROQ_API_KEY;
+const GITHUB_TOKEN = process.env.VITE_GITHUB_TOKEN || process.env.GITHUB_TOKEN;
 const DISCORD_WEBHOOK_URL = process.env.VITE_DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL;
 
 // EV Tier System (professional sports betting standards)
@@ -454,13 +455,26 @@ async function enrichMatchesWithFormData(matches) {
  * Analyze matches with Gemini AI and calculate Expected Value
  */
 async function analyzeWithAI(matches, modelIndex = 0) {
-  // Use single reliable free-tier model (quota issues require paid plan for multiple retries)
-  const GEMINI_MODELS = [
-    'gemini-3-flash-preview',  // Only model - works on free tier
+  // Multi-model fallback chain (ordered by data recency and reliability)
+  const AI_MODELS = [
+    { provider: 'gemini', model: 'gemini-2.0-flash-thinking-exp', name: 'Gemini 2.0 Flash Thinking' },
+    { provider: 'github', model: 'claude-3.5-sonnet', name: 'Claude 3.5 Sonnet' },
+    { provider: 'gemini', model: 'gemini-2.0-flash-exp', name: 'Gemini 2.0 Flash' },
+    { provider: 'groq', model: 'llama-3.3-70b-versatile', name: 'Llama 3.3 70B' },
   ];
   
-  if (!GEMINI_API_KEY) {
-    console.warn('[AI] No Gemini API key found. Skipping AI analysis.');
+  if (matches.length === 0) {
+    console.log('[AI] No matches to analyze');
+    return [];
+  }
+  
+  // Check if we have any API keys
+  const hasGemini = !!GEMINI_API_KEY;
+  const hasGitHub = !!GITHUB_TOKEN;
+  const hasGroq = !!GROQ_API_KEY;
+  
+  if (!hasGemini && !hasGitHub && !hasGroq) {
+    console.warn('[AI] No API keys found. Skipping AI analysis.');
     return matches.map(match => ({
       ...match,
       aiProbability: null,
@@ -477,106 +491,111 @@ async function analyzeWithAI(matches, modelIndex = 0) {
     }));
   }
   
-  if (matches.length === 0) {
-    console.log('[AI] No matches to analyze');
-    return [];
+  const currentModel = AI_MODELS[modelIndex];
+  
+  // Skip models for which we don't have API keys
+  if ((currentModel.provider === 'gemini' && !hasGemini) ||
+      (currentModel.provider === 'github' && !hasGitHub) ||
+      (currentModel.provider === 'groq' && !hasGroq)) {
+    console.log(`[AI] Skipping ${currentModel.name} (no API key)`);
+    if (modelIndex < AI_MODELS.length - 1) {
+      return analyzeWithAI(matches, modelIndex + 1);
+    }
+    return matches; // No more models to try
   }
   
-  const currentModel = GEMINI_MODELS[modelIndex];
-  console.log(`\n=== AI ANALYSIS ===`);
-  console.log(`Analyzing ${matches.length} matches with Gemini AI (${currentModel})...\n`);
+  console.log(`\n=== AI ANALYSIS (Model ${modelIndex + 1}/${AI_MODELS.length}) ===`);
+  console.log(`Analyzing ${matches.length} matches with ${currentModel.name}...\n`);
   
   try {
-    // Initialize Gemini AI
-    const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+    let aiPredictions;
     
-    // Create detailed prompt for professional betting analysis
-    const prompt = `You are an elite professional sports bettor specializing in tennis. Analyze these ${matches.length} matches with the mindset of a sharp bettor looking for value.
-
-**Matches to Analyze:**
-${matches.map((m, i) => `
-${i + 1}. ${m.league}: ${m.homeTeam} vs ${m.awayTeam}
-   - Start Time: ${m.startTimeFormatted}
-   - Current Odds: ${m.marketOdd} (implied probability: ${m.marketProb.toFixed(1)}%)
-   - Recent Form: ${m.homeTeam} (${m.homeForm || 'Unknown'}) | ${m.awayTeam} (${m.awayForm || 'Unknown'})
-   - Tour: ${m.league}
-`).join('\n')}
-
-**Your Task:**
-For each match, provide:
-1. **Player 1 Win Probability** (0-100%): Your realistic assessment of ${matches[0]?.homeTeam || 'the first player'}'s win chance
-2. **Reasoning** (2-3 sentences): Explain your probability assessment AND the betting angle
-   - **IMPORTANT**: Your reasoning should explain WHY this is a value bet
-   - If you rate Player 1 higher than market odds suggest → Explain what the market is missing
-   - If you rate Player 1 as an underdog but still see value → Explain why the odds are generous (e.g., "While Player 2 is favored, Player 1's odds are inflated due to recent upset potential")
-   - Include: Recent form, H2H history, surface suitability, ranking trends, physical condition
-   - Make it clear whether you're backing a favorite who's undervalued OR an underdog with generous odds
-3. **Confidence** (high/medium/low): How confident are you in this prediction?
-   - **HIGH**: Clear form/H2H advantage + surface match + no injury concerns + solid data
-   - **MEDIUM**: Some indicators favor your pick but with caveats or mixed signals
-   - **LOW**: Limited data, unpredictable matchup, injury concerns, or high variance player
-
-**Think Like a Professional:**
-- Be conservative and realistic (avoid extreme probabilities unless very justified)
-- **CRITICAL**: If you disagree with market odds by more than 15-20%, double-check your reasoning
-  - Example: Market says 36% (2.76 odds), don't go above 50-55% unless you have STRONG evidence
-  - Markets are generally efficient - massive edges (>30% EV) are extremely rare in tennis
-- If "No recent matches" data is available, stay CLOSER to market odds (±5-10% max)
-- Surface type matters significantly in tennis (clay specialists vs hard court players)
-- Recent form and head-to-head records are critical indicators
-- Rankings matter but recent momentum often matters more
-- Consider tournament stage (early rounds vs finals)
-- Assign LOW confidence if: unknown opponent, injury comeback, extreme weather, or volatile player
-
-**Output Format:**
-Return a JSON array with exactly ${matches.length} predictions in this format:
-\`\`\`json
-[
-  {
-    "gameIndex": 0,
-    "homeWinProbability": 58,
-    "reasoning": "Djokovic leads H2H 4-1 and has won 8 of last 10 on hard court. Market undervalues his consistency at this stage. VALUE: Favorite is underpriced.",
-    "confidence": "medium"
-  },
-  ...
-]
-\`\`\`
-
-Return ONLY the JSON array, no other text.`;
-
-    // Call Gemini AI
-    const response = await ai.models.generateContent({
-      model: currentModel,
-      contents: prompt,
-      config: {
-        systemInstruction: "You are an elite tennis betting analyst. Provide realistic win probabilities based on player performance, surface, and H2H records. Be conservative - sharp bettors don't chase every match.",
+    // ==================================================================
+    // GEMINI MODELS
+    // ==================================================================
+    if (currentModel.provider === 'gemini') {
+      const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+      
+      const prompt = buildAnalysisPrompt(matches);
+      
+      const response = await ai.models.generateContent({
+        model: currentModel.model,
+        contents: prompt,
+        config: {
+          systemInstruction: "You are an elite tennis betting analyst. Provide realistic win probabilities based on player performance, surface, and H2H records. Be conservative - sharp bettors don't chase every match.",
+          temperature: 0.3,
+          maxOutputTokens: 4096,
+        },
+      });
+      
+      const text = response.text || '';
+      console.log('[AI] Raw response received, parsing...');
+      aiPredictions = parseAIResponse(text);
+    }
+    
+    // ==================================================================
+    // GITHUB MODELS (Claude 3.5 Sonnet)
+    // ==================================================================
+    else if (currentModel.provider === 'github') {
+      const prompt = buildAnalysisPrompt(matches);
+      
+      const response = await fetch('https://models.inference.ai.azure.com/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${GITHUB_TOKEN}`
+        },
+        body: JSON.stringify({
+          model: 'claude-3.5-sonnet',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an elite tennis betting analyst. Provide realistic win probabilities based on player performance, surface, and H2H records. Be conservative - sharp bettors don\'t chase every match. Return ONLY valid JSON.'
+            },
+            {
+              role: 'user',
+              content: prompt
+            }
+          ],
+          temperature: 0.3,
+          max_tokens: 4096
+        })
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`GitHub Models API error: ${response.status} - ${errorText.substring(0, 200)}`);
+      }
+      
+      const data = await response.json();
+      const text = data.choices?.[0]?.message?.content || '';
+      console.log('[AI] Raw response received, parsing...');
+      aiPredictions = parseAIResponse(text);
+    }
+    
+    // ==================================================================
+    // GROQ (Llama 3.3 70B)
+    // ==================================================================
+    else if (currentModel.provider === 'groq') {
+      const groq = new Groq({ apiKey: GROQ_API_KEY });
+      const prompt = buildAnalysisPrompt(matches);
+      
+      const response = await groq.chat.completions.create({
+        model: currentModel.model,
+        messages: [
+          { role: 'system', content: 'You are an elite tennis betting analyst. Return ONLY valid JSON.' },
+          { role: 'user', content: prompt }
+        ],
         temperature: 0.3,
-        maxOutputTokens: 4096,
-      },
-    });
-    
-    const text = response.text || '';
-    console.log('[AI] Raw response received, parsing...');
-    
-    // Extract JSON from response - handle both raw JSON and markdown-wrapped JSON
-    let jsonText = text;
-    
-    // Remove markdown code blocks if present (```json ... ``` or ``` ... ```)
-    const codeBlockMatch = jsonText.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
-    if (codeBlockMatch) {
-      jsonText = codeBlockMatch[1].trim();
-      console.log('[AI] Extracted JSON from markdown code block');
+        max_tokens: 4096,
+      });
+      
+      const text = response.choices[0]?.message?.content || '';
+      console.log('[AI] Raw response received, parsing...');
+      aiPredictions = parseAIResponse(text);
     }
     
-    // Extract JSON array from the text
-    const jsonMatch = jsonText.match(/\[[\s\S]*\]/);
-    if (!jsonMatch) {
-      console.error('[AI] Failed to find JSON array in response:', jsonText.substring(0, 300));
-      throw new Error('Failed to parse AI response - no JSON array found');
-    }
-    
-    const aiPredictions = JSON.parse(jsonMatch[0]);
-    console.log(`[AI] Successfully parsed ${aiPredictions.length} predictions`);
+    console.log(`[${currentModel.name}] Successfully parsed ${aiPredictions.length} predictions`);
     
     // Enrich matches with AI data and calculate Expected Value
     const enrichedMatches = matches.map((match, index) => {
@@ -630,39 +649,14 @@ Return ONLY the JSON array, no other text.`;
     return enrichedMatches;
     
   } catch (error) {
-    const isOverloaded = error.message && (
-      error.message.includes('503') || 
-      error.message.includes('overloaded') ||
-      error.message.includes('UNAVAILABLE')
-    );
+    const errorMsg = error.message || String(error);
+    console.error(`[${currentModel.name}] Error:`, errorMsg.substring(0, 200));
     
-    const isQuotaExceeded = error.message && (
-      error.message.includes('429') ||
-      error.message.includes('quota') ||
-      error.message.includes('RESOURCE_EXHAUSTED')
-    );
-    
-    const isTimeout = error.message && error.message.includes('timeout');
-    const isParsingError = error.message && error.message.includes('parse');
-    
-    console.error('[Gemini] Error:', error.message.substring(0, 150));
-    
-    // If Gemini fails due to quota/overload, try Groq as fallback
-    if ((isQuotaExceeded || isOverloaded || isParsingError) && GROQ_API_KEY) {
-      console.log('[AI] Gemini unavailable, trying Groq fallback...');
-      return analyzeWithGroq(matches);
-    }
-    
-    // Retry same model on timeout (with exponential backoff)
-    if (isTimeout && (matches.retryCount || 0) < 2) {
-      const retryCount = (matches.retryCount || 0) + 1;
-      const delay = [5000, 10000][retryCount - 1];
-      
-      console.log(`[AI] Timeout - retrying in ${delay/1000}s (attempt ${retryCount}/2)...`);
-      await new Promise(resolve => setTimeout(resolve, delay));
-      
-      matches.retryCount = retryCount;
-      return analyzeWithAI(matches, modelIndex);
+    // Try next model in fallback chain
+    if (modelIndex < AI_MODELS.length - 1) {
+      console.log(`[AI] Trying next model in fallback chain...`);
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Small delay
+      return analyzeWithAI(matches, modelIndex + 1);
     }
     
     console.error('[AI] All AI providers exhausted. Skipping analysis.');
@@ -671,7 +665,7 @@ Return ONLY the JSON array, no other text.`;
     return matches.map(match => ({
       ...match,
       aiProbability: null,
-      reasoning: `AI analysis failed: ${error.message}`,
+      reasoning: `AI analysis failed: ${errorMsg}`,
       confidence: 'low',
       expectedValue: 0,
       markets: match.markets.map(m => ({
@@ -686,7 +680,87 @@ Return ONLY the JSON array, no other text.`;
 }
 
 /**
- * Analyze matches with Groq AI (fallback provider)
+ * Build the analysis prompt for AI models
+ */
+function buildAnalysisPrompt(matches) {
+  return `You are an elite professional sports bettor specializing in tennis. Analyze these ${matches.length} matches with the mindset of a sharp bettor looking for value.
+
+**Matches to Analyze:**
+${matches.map((m, i) => `
+${i + 1}. ${m.league}: ${m.homeTeam} vs ${m.awayTeam}
+   - Start Time: ${m.startTimeFormatted}
+   - Current Odds: ${m.marketOdd} (implied probability: ${m.marketProb.toFixed(1)}%)
+   - Recent Form: ${m.homeTeam} (${m.homeForm || 'Unknown'}) | ${m.awayTeam} (${m.awayForm || 'Unknown'})
+   - Tour: ${m.league}
+`).join('\n')}
+
+**Your Task:**
+For each match, provide:
+1. **Player 1 Win Probability** (0-100%): Your realistic assessment of the first player's win chance
+2. **Reasoning** (2-3 sentences): Explain your probability assessment AND the betting angle
+   - **IMPORTANT**: Your reasoning should explain WHY this is a value bet
+   - If you rate Player 1 higher than market odds suggest → Explain what the market is missing
+   - If you rate Player 1 as an underdog but still see value → Explain why the odds are generous
+   - Include: Recent form, H2H history, surface suitability, ranking trends, physical condition
+   - Make it clear whether you're backing a favorite who's undervalued OR an underdog with generous odds
+3. **Confidence** (high/medium/low): How confident are you in this prediction?
+   - **HIGH**: Clear form/H2H advantage + surface match + no injury concerns + solid data
+   - **MEDIUM**: Some indicators favor your pick but with caveats or mixed signals
+   - **LOW**: Limited data, unpredictable matchup, injury concerns, or high variance player
+
+**Think Like a Professional:**
+- Be conservative and realistic (avoid extreme probabilities unless very justified)
+- **CRITICAL**: If you disagree with market odds by more than 15-20%, double-check your reasoning
+  - Example: Market says 36% (2.76 odds), don't go above 50-55% unless you have STRONG evidence
+  - Markets are generally efficient - massive edges (>30% EV) are extremely rare in tennis
+- If "No recent matches" data is available, stay CLOSER to market odds (±5-10% max)
+- Surface type matters significantly in tennis (clay specialists vs hard court players)
+- Recent form and head-to-head records are critical indicators
+- Rankings matter but recent momentum often matters more
+- Consider tournament stage (early rounds vs finals)
+- Assign LOW confidence if: unknown opponent, injury comeback, extreme weather, or volatile player
+
+**Output Format:**
+Return a JSON array with exactly ${matches.length} predictions in this format:
+\`\`\`json
+[
+  {
+    "gameIndex": 0,
+    "homeWinProbability": 58,
+    "reasoning": "Player analysis and value explanation here. VALUE: Clear statement of betting angle.",
+    "confidence": "medium"
+  }
+]
+\`\`\`
+
+Return ONLY the JSON array, no other text.`;
+}
+
+/**
+ * Parse AI response and extract JSON predictions
+ */
+function parseAIResponse(text) {
+  let jsonText = text;
+  
+  // Remove markdown code blocks if present (```json ... ``` or ``` ... ```)
+  const codeBlockMatch = jsonText.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+  if (codeBlockMatch) {
+    jsonText = codeBlockMatch[1].trim();
+    console.log('[AI] Extracted JSON from markdown code block');
+  }
+  
+  // Extract JSON array from the text
+  const jsonMatch = jsonText.match(/\[[\s\S]*\]/);
+  if (!jsonMatch) {
+    console.error('[AI] Failed to find JSON array in response:', jsonText.substring(0, 300));
+    throw new Error('Failed to parse AI response - no JSON array found');
+  }
+  
+  return JSON.parse(jsonMatch[0]);
+}
+
+/**
+ * Analyze matches with Groq AI (DEPRECATED - now integrated in main fallback chain)
  */
 async function analyzeWithGroq(matches) {
   if (!GROQ_API_KEY) {
