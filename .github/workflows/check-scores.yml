@@ -1,16 +1,22 @@
-name: Update Match Results - TennTrend
+name: Check Match Results - TennTrend
 
 on:
+  # Run twice daily:
+  # 1. At 22:00 CET (21:00 UTC) to check evening matches
+  # 2. At 08:00 CET (07:00 UTC) to catch overnight/late matches
   schedule:
-    - cron: '0 7 * * *'
-    - cron: '0 21 * * *'
+    - cron: '0 21 * * *'  # 21:00 UTC = 22:00 CET / 23:00 CEST (evening check)
+    - cron: '0 7 * * *'   # 07:00 UTC = 08:00 CET / 09:00 CEST (morning check)
+  
+  # Allow manual trigger for testing
   workflow_dispatch:
 
+# Grant write permissions for GitHub Actions
 permissions:
   contents: write
 
 jobs:
-  update-results:
+  check-results:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,9 +29,9 @@ jobs:
           node-version: '20'
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install node-fetch
       
-      - name: Update match results
+      - name: Fetch match results and update history
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           TZ: Europe/Stockholm
@@ -36,9 +42,16 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "TennTrend Bot"
           git add public/data/results-history.json
-          git diff --staged --quiet || git commit -m "chore: auto-update match results $(date +'%Y-%m-%d %H:%M CET')"
+          git diff --staged --quiet || git commit -m "chore: update results history $(date +'%Y-%m-%d %H:%M CET')"
           git push
       
       - name: Notify on failure
         if: failure()
-        run: echo "Results update workflow failed"
+        run: |
+          if [ -n "${{ secrets.DISCORD_WEBHOOK_URL }}" ]; then
+            curl -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "content": "⚠️ **TennTrend Match Results Check Failed**\n\nThe automated results checker encountered an error. Please check the GitHub Actions logs.\n\n🔗 [View Logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+              }'
+          fi
