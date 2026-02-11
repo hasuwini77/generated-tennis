@@ -13,6 +13,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fetch from 'node-fetch';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,13 +24,6 @@ const ODDS_API_KEY = process.env.VITE_THE_ODDS_API_KEY;
 const API_BASE_URL = 'https://api.the-odds-api.com/v4';
 const RESULTS_FILE = path.join(__dirname, '../public/data/results-history.json');
 
-// Tennis tournaments we track (same as daily-scan.js)
-const TENNIS_SPORTS = {
-  atp: [],
-  wta: ['tennis_wta_qatar_open'], // Add more as needed
-  all: []
-};
-
 /**
  * Normalize player name for matching
  */
@@ -39,17 +33,47 @@ function normalizePlayerName(name) {
 }
 
 /**
+ * Fetch all available tennis sports from The Odds API
+ */
+async function fetchAvailableTennisSports() {
+  const url = `${API_BASE_URL}/sports/?apiKey=${ODDS_API_KEY}`;
+  
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+    
+    const sports = await response.json();
+    const tennisSports = sports.filter(sport => 
+      sport.key.includes('tennis') && sport.active
+    );
+    
+    console.log(`📋 Found ${tennisSports.length} active tennis tournament(s)\n`);
+    return tennisSports.map(s => s.key);
+  } catch (error) {
+    console.error('❌ Error fetching tennis sports:', error.message);
+    return [];
+  }
+}
+
+/**
  * Fetch completed match scores from The Odds API
  */
 async function fetchCompletedMatches() {
-  console.log('\n=== FETCHING COMPLETED MATCHES ===');
+  console.log('=== FETCHING COMPLETED MATCHES ===\n');
+  
+  // First, get all active tennis tournaments
+  const tennisSportKeys = await fetchAvailableTennisSports();
+  
+  if (tennisSportKeys.length === 0) {
+    console.log('⚠️  No active tennis tournaments found\n');
+    return [];
+  }
   
   const allCompletedMatches = [];
   
-  // Combine all tournaments
-  TENNIS_SPORTS.all = [...TENNIS_SPORTS.atp, ...TENNIS_SPORTS.wta];
-  
-  for (const sportKey of TENNIS_SPORTS.all) {
+  for (const sportKey of tennisSportKeys) {
     try {
       // Fetch scores from last 3 days
       const url = `${API_BASE_URL}/sports/${sportKey}/scores?apiKey=${ODDS_API_KEY}&daysFrom=3`;
@@ -63,15 +87,20 @@ async function fetchCompletedMatches() {
       const matches = await response.json();
       const completed = matches.filter(m => m.completed && m.scores);
       
-      console.log(`[${sportKey}] Found ${completed.length} completed matches`);
-      allCompletedMatches.push(...completed);
+      if (completed.length > 0) {
+        console.log(`✅ [${sportKey}] Found ${completed.length} completed matches`);
+        allCompletedMatches.push(...completed);
+      }
+      
+      // Small delay to avoid rate limiting
+      await new Promise(resolve => setTimeout(resolve, 200));
       
     } catch (error) {
       console.error(`❌ Error fetching ${sportKey}:`, error.message);
     }
   }
   
-  console.log(`\n✅ Total completed matches: ${allCompletedMatches.length}\n`);
+  console.log(`\n📊 Total completed matches found: ${allCompletedMatches.length}\n`);
   return allCompletedMatches;
 }
 
@@ -81,22 +110,36 @@ async function fetchCompletedMatches() {
 function getMatchWinner(match) {
   if (!match.scores || match.scores.length < 2) return null;
   
-  // In tennis, scores array has both players
-  // The winner typically has "score" field with set scores like "6-4, 6-3"
-  // Find who won based on completed match
-  
+  // Find scores for home and away teams
   const homeScore = match.scores.find(s => normalizePlayerName(s.name) === normalizePlayerName(match.home_team));
   const awayScore = match.scores.find(s => normalizePlayerName(s.name) === normalizePlayerName(match.away_team));
   
   if (!homeScore || !awayScore) return null;
   
-  // Simple heuristic: winner has score data, or we parse set wins
-  // For now, assume The Odds API marks winner somehow
-  // TODO: Improve this logic based on actual API response format
+  // Parse sets from score string (e.g., "6-4, 6-3" or "6-4,6-3")
+  const parseSetScore = (scoreStr) => {
+    if (!scoreStr) return [];
+    return scoreStr.split(',').map(s => s.trim());
+  };
+  
+  const homeSets = parseSetScore(homeScore.score);
+  const awaySets = parseSetScore(awayScore.score);
+  
+  // Count who won more sets
+  let homeWins = 0;
+  let awayWins = 0;
+  
+  for (let i = 0; i < Math.min(homeSets.length, awaySets.length); i++) {
+    const homeGames = parseInt(homeSets[i].split('-')[0]) || 0;
+    const awayGames = parseInt(awaySets[i].split('-')[0]) || 0;
+    
+    if (homeGames > awayGames) homeWins++;
+    else if (awayGames > homeGames) awayWins++;
+  }
   
   return {
-    homeWon: homeScore.score && homeScore.score.length > 0,
-    awayWon: awayScore.score && awayScore.score.length > 0,
+    homeWon: homeWins > awayWins,
+    awayWon: awayWins > homeWins,
     homeScore: homeScore.score,
     awayScore: awayScore.score
   };
@@ -106,7 +149,7 @@ function getMatchWinner(match) {
  * Update results history with completed matches
  */
 function updateResultsHistory(completedMatches) {
-  console.log('=== UPDATING RESULTS HISTORY ===');
+  console.log('=== UPDATING RESULTS HISTORY ===\n');
   
   // Load current results history
   let history;
@@ -118,10 +161,13 @@ function updateResultsHistory(completedMatches) {
     return;
   }
   
-  let updatedCount = 0;
-  let totalROI = history.stats.totalROI || 0;
+  let updatedValueBets = 0;
+  let updatedSafeBets = 0;
+  let totalROI = history.stats?.totalROI || 0;
+  let safeTotalROI = history.safeBetStats?.totalROI || 0;
   
-  // Update each pending bet
+  // Update each pending VALUE bet
+  console.log('💎 Checking VALUE BETS...\n');
   history.bets = history.bets.map(bet => {
     if (bet.status !== 'pending') {
       return bet; // Already settled
@@ -135,6 +181,7 @@ function updateResultsHistory(completedMatches) {
     });
     
     if (!match) {
+      console.log(`⏳ ${bet.homeTeam} vs ${bet.awayTeam} - Still pending`);
       return bet; // Match not completed yet
     }
     
@@ -161,8 +208,9 @@ function updateResultsHistory(completedMatches) {
     const roi = betWon ? (bet.odds - 1) : -1;
     totalROI += roi;
     
-    updatedCount++;
-    console.log(`✅ ${bet.homeTeam} vs ${bet.awayTeam}: ${betWon ? 'WIN' : 'LOSS'} (ROI: ${roi > 0 ? '+' : ''}${roi.toFixed(2)}u)`);
+    updatedValueBets++;
+    console.log(`${betWon ? '✅ WIN' : '❌ LOSS'} | ${bet.homeTeam} vs ${bet.awayTeam}`);
+    console.log(`   Score: ${result.homeScore} vs ${result.awayScore} | ROI: ${roi > 0 ? '+' : ''}${roi.toFixed(2)}u | Odds: ${bet.odds}\n`);
     
     return {
       ...bet,
@@ -172,7 +220,59 @@ function updateResultsHistory(completedMatches) {
     };
   });
   
-  // Update stats
+  // Update each pending SAFE bet
+  if (history.safeBets && history.safeBets.length > 0) {
+    console.log('🛡️  Checking SAFE BETS...\n');
+    history.safeBets = history.safeBets.map(bet => {
+      if (bet.status !== 'pending') {
+        return bet;
+      }
+      
+      const match = completedMatches.find(m => {
+        const homeMatch = normalizePlayerName(m.home_team) === normalizePlayerName(bet.homeTeam);
+        const awayMatch = normalizePlayerName(m.away_team) === normalizePlayerName(bet.awayTeam);
+        return homeMatch && awayMatch;
+      });
+      
+      if (!match) {
+        console.log(`⏳ ${bet.homeTeam} vs ${bet.awayTeam} - Still pending`);
+        return bet;
+      }
+      
+      const result = getMatchWinner(match);
+      if (!result) {
+        console.warn(`⚠️  Could not determine winner for ${bet.homeTeam} vs ${bet.awayTeam}`);
+        return bet;
+      }
+      
+      const betOn = normalizePlayerName(bet.outcome);
+      const homeNorm = normalizePlayerName(bet.homeTeam);
+      const awayNorm = normalizePlayerName(bet.awayTeam);
+      
+      let betWon = false;
+      if (betOn === homeNorm) {
+        betWon = result.homeWon;
+      } else if (betOn === awayNorm) {
+        betWon = result.awayWon;
+      }
+      
+      const roi = betWon ? (bet.odds - 1) : -1;
+      safeTotalROI += roi;
+      
+      updatedSafeBets++;
+      console.log(`${betWon ? '✅ WIN' : '❌ LOSS'} | ${bet.homeTeam} vs ${bet.awayTeam}`);
+      console.log(`   Score: ${result.homeScore} vs ${result.awayScore} | ROI: ${roi > 0 ? '+' : ''}${roi.toFixed(2)}u | Odds: ${bet.odds}\n`);
+      
+      return {
+        ...bet,
+        status: betWon ? 'win' : 'loss',
+        result: `${result.homeScore || '?'} - ${result.awayScore || '?'}`,
+        roi: parseFloat(roi.toFixed(2))
+      };
+    });
+  }
+  
+  // Update stats for VALUE bets
   const wins = history.bets.filter(b => b.status === 'win').length;
   const losses = history.bets.filter(b => b.status === 'loss').length;
   const pending = history.bets.filter(b => b.status === 'pending').length;
@@ -187,15 +287,44 @@ function updateResultsHistory(completedMatches) {
     winRate: settled > 0 ? parseFloat(((wins / settled) * 100).toFixed(1)) : 0
   };
   
+  // Update stats for SAFE bets
+  if (history.safeBets) {
+    const safeWins = history.safeBets.filter(b => b.status === 'win').length;
+    const safeLosses = history.safeBets.filter(b => b.status === 'loss').length;
+    const safePending = history.safeBets.filter(b => b.status === 'pending').length;
+    const safeSettled = safeWins + safeLosses;
+    
+    history.safeBetStats = {
+      totalBets: history.safeBets.length,
+      wins: safeWins,
+      losses: safeLosses,
+      pending: safePending,
+      totalROI: parseFloat(safeTotalROI.toFixed(2)),
+      winRate: safeSettled > 0 ? parseFloat(((safeWins / safeSettled) * 100).toFixed(1)) : 0
+    };
+  }
+  
   // Save updated history
   fs.writeFileSync(RESULTS_FILE, JSON.stringify(history, null, 2), 'utf-8');
   
-  console.log(`\n📊 SUMMARY:`);
-  console.log(`   Updated: ${updatedCount} bets`);
+  console.log('\n╔════════════════════════════════════════════╗');
+  console.log('║              📊 SUMMARY                    ║');
+  console.log('╚════════════════════════════════════════════╝\n');
+  console.log('💎 VALUE BETS:');
+  console.log(`   Updated: ${updatedValueBets} bet(s)`);
   console.log(`   Wins: ${wins} | Losses: ${losses} | Pending: ${pending}`);
   console.log(`   Win Rate: ${history.stats.winRate}%`);
-  console.log(`   Total ROI: ${totalROI > 0 ? '+' : ''}${totalROI.toFixed(2)} units`);
-  console.log(`\n✅ Results history updated!\n`);
+  console.log(`   Total ROI: ${totalROI > 0 ? '+' : ''}${totalROI.toFixed(2)} units\n`);
+  
+  if (history.safeBets) {
+    console.log('🛡️  SAFE BETS:');
+    console.log(`   Updated: ${updatedSafeBets} bet(s)`);
+    console.log(`   Wins: ${history.safeBetStats.wins} | Losses: ${history.safeBetStats.losses} | Pending: ${history.safeBetStats.pending}`);
+    console.log(`   Win Rate: ${history.safeBetStats.winRate}%`);
+    console.log(`   Total ROI: ${safeTotalROI > 0 ? '+' : ''}${safeTotalROI.toFixed(2)} units\n`);
+  }
+  
+  console.log('✅ Results history updated successfully!\n');
 }
 
 /**
@@ -203,7 +332,7 @@ function updateResultsHistory(completedMatches) {
  */
 async function main() {
   console.log('╔════════════════════════════════════════════╗');
-  console.log('║   Update Bet Results - Version 1.0        ║');
+  console.log('║   Update Bet Results - Version 2.0        ║');
   console.log('╚════════════════════════════════════════════╝');
   
   if (!ODDS_API_KEY) {
