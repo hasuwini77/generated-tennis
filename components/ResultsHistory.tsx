@@ -44,7 +44,7 @@ const ResultsHistory: React.FC = () => {
   const [history, setHistory] = useState<HistoryData | null>(null);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'win' | 'loss' | 'pending'>('all');
-  const [betType, setBetType] = useState<'value' | 'safe'>('value');
+  const [betType, setBetType] = useState<'value' | 'safe' | 'combined'>('value');
 
   useEffect(() => {
     fetchHistory();
@@ -106,21 +106,52 @@ const ResultsHistory: React.FC = () => {
     );
   }
 
-  const filteredBets = (betType === 'value' ? history.bets : (history.safeBets || [])).filter(bet => {
+  // Get all bets based on bet type
+  const getAllBets = () => {
+    if (betType === 'combined') {
+      return [...history.bets, ...(history.safeBets || [])];
+    }
+    return betType === 'value' ? history.bets : (history.safeBets || []);
+  };
+  
+  const filteredBets = getAllBets().filter(bet => {
     if (filter === 'win') return bet.status === 'win';
     if (filter === 'loss') return bet.status === 'loss';
     if (filter === 'pending') return bet.status === 'pending';
     return true;
   });
   
-  const currentStats = betType === 'value' ? history.stats : (history.safeBetStats || {
-    totalBets: 0,
-    wins: 0,
-    losses: 0,
-    pending: 0,
-    totalROI: 0,
-    winRate: 0
-  });
+  // Calculate combined stats if needed
+  const getCombinedStats = () => {
+    const allBets = [...history.bets, ...(history.safeBets || [])];
+    const wins = allBets.filter(b => b.status === 'win').length;
+    const losses = allBets.filter(b => b.status === 'loss').length;
+    const pending = allBets.filter(b => b.status === 'pending').length;
+    const settled = wins + losses;
+    const totalROI = allBets.reduce((sum, b) => sum + (b.roi || 0), 0);
+    
+    return {
+      totalBets: allBets.length,
+      wins,
+      losses,
+      pending,
+      totalROI: parseFloat(totalROI.toFixed(2)),
+      winRate: settled > 0 ? parseFloat(((wins / settled) * 100).toFixed(1)) : 0
+    };
+  };
+  
+  const currentStats = betType === 'combined' 
+    ? getCombinedStats()
+    : betType === 'value' 
+      ? history.stats 
+      : (history.safeBetStats || {
+          totalBets: 0,
+          wins: 0,
+          losses: 0,
+          pending: 0,
+          totalROI: 0,
+          winRate: 0
+        });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f172a]">
@@ -144,7 +175,7 @@ const ResultsHistory: React.FC = () => {
 
       <main className="max-w-7xl mx-auto px-4 py-6">
         {/* Bet Type Toggle */}
-        <div className="flex gap-2 justify-center mb-6">
+        <div className="flex gap-2 justify-center mb-6 flex-wrap">
           <button
             onClick={() => setBetType('value')}
             className={cn(
@@ -166,6 +197,17 @@ const ResultsHistory: React.FC = () => {
             )}
           >
             🛡️ Safe Bets ({(history.safeBetStats?.totalBets || 0)})
+          </button>
+          <button
+            onClick={() => setBetType('combined')}
+            className={cn(
+              "px-6 py-3 rounded-xl font-semibold transition-all",
+              betType === 'combined'
+                ? "bg-purple-500 text-white shadow-lg shadow-purple-500/30"
+                : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+            )}
+          >
+            🎯 All Bets ({history.stats.totalBets + (history.safeBetStats?.totalBets || 0)})
           </button>
         </div>
         
@@ -215,7 +257,7 @@ const ResultsHistory: React.FC = () => {
                 : "bg-white/5 border border-white/10 text-gray-400 hover:bg-white/10"
             )}
           >
-            All ({(betType === 'value' ? history.bets : (history.safeBets || [])).length})
+            All ({getAllBets().length})
           </button>
           <button
             onClick={() => setFilter('win')}
