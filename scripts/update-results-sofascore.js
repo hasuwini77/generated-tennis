@@ -31,6 +31,8 @@ function normalizePlayerName(name) {
   return name
     .toLowerCase()
     .trim()
+    .normalize('NFD')  // Decompose accented characters
+    .replace(/[\u0300-\u036f]/g, '')  // Remove diacritics
     .replace(/[^a-z\s]/g, '')
     .replace(/\s+/g, ' ');
 }
@@ -52,14 +54,20 @@ function playerNamesMatch(name1, name2) {
     const lastName1 = parts1[parts1.length - 1];
     const lastName2 = parts2[parts2.length - 1];
     
-    // Last name must match and be at least 3 chars
+    // Last name must match exactly and be at least 3 chars
     if (lastName1 === lastName2 && lastName1.length >= 3) {
       return true;
     }
     
-    // Also check if one name contains the other (for nicknames)
-    if (norm1.includes(lastName2) || norm2.includes(lastName1)) {
-      return true;
+    // Check if one name is a subset of the other (word-level, not substring)
+    // E.g., "D. Kasatkina" should match "Daria Kasatkina"
+    const words1 = new Set(parts1);
+    const words2 = new Set(parts2);
+    
+    // At least one common word (excluding single letters)
+    const commonWords = [...words1].filter(w => w.length > 2 && words2.has(w));
+    if (commonWords.length >= 2) {
+      return true; // At least 2 words in common (good match)
     }
   }
   
@@ -86,7 +94,25 @@ async function fetchMatchesForDate(dateString) {
     }
     
     const data = await response.json();
-    return data.events || [];
+    const allEvents = data.events || [];
+    
+    // Filter for: finished, singles only (not doubles), and WTA/ATP only
+    const filtered = allEvents.filter(m => {
+      if (m.status?.type !== 'finished') return false;
+      
+      // Exclude doubles (team names contain "/" or have multiple words)
+      const homeName = m.homeTeam?.name || '';
+      const awayName = m.awayTeam?.name || '';
+      if (homeName.includes(' / ') || awayName.includes(' / ')) return false;
+      
+      // Only include WTA or ATP categories
+      const category = m.tournament?.category?.slug || '';
+      if (!category.includes('wta') && !category.includes('atp')) return false;
+      
+      return true;
+    });
+    
+    return filtered;
   } catch (error) {
     console.error(`❌ Error fetching ${dateString}:`, error.message);
     return [];
@@ -96,7 +122,7 @@ async function fetchMatchesForDate(dateString) {
 /**
  * Find a completed match for a bet
  */
-function findMatchForBet(bet, allMatches) {
+function findMatchForBet(bet, allMatches, debug = false) {
   for (const match of allMatches) {
     const matchHome = match.homeTeam?.name || '';
     const matchAway = match.awayTeam?.name || '';
@@ -111,6 +137,11 @@ function findMatchForBet(bet, allMatches) {
       playerNamesMatch(bet.awayTeam, matchHome);
     
     if (forwardMatch || reverseMatch) {
+      if (debug) {
+        console.log(`  🎯 MATCHED: ${bet.homeTeam} vs ${bet.awayTeam}`);
+        console.log(`     → Found: ${matchHome} vs ${matchAway}`);
+        console.log(`     → Tournament: ${match.tournament?.uniqueTournament?.name || 'Unknown'}`);
+      }
       return match;
     }
   }
@@ -126,26 +157,41 @@ function getMatchResult(match) {
     return null;
   }
   
-  // Winner is who won more sets
-  const homeSets = match.homeScore.current || 0;
-  const awaySets = match.awayScore.current || 0;
+  // Use winnerCode from SofaScore (1 = home won, 2 = away won)
+  // This is more reliable than counting sets manually
+  const homeWon = match.winnerCode === 1;
+  const awayWon = match.winnerCode === 2;
+  
+  if (!homeWon && !awayWon) {
+    // No winner determined (shouldn't happen for finished matches)
+    return null;
+  }
   
   // Build score string from individual sets
   const scoreStr = [];
+  let homeSetsWon = 0;
+  let awaySetsWon = 0;
+  
   for (let i = 1; i <= 5; i++) {
     const h = match.homeScore[`period${i}`];
     const a = match.awayScore[`period${i}`];
     if (h !== undefined && a !== undefined) {
       scoreStr.push(`${h}-${a}`);
+      // Count sets for display purposes
+      if (h > a) {
+        homeSetsWon++;
+      } else if (a > h) {
+        awaySetsWon++;
+      }
     }
   }
   
   return {
-    homeWon: homeSets > awaySets,
-    awayWon: awaySets > homeSets,
+    homeWon,
+    awayWon,
     score: scoreStr.join(', '),
-    homeSets,
-    awaySets,
+    homeSets: homeSetsWon,
+    awaySets: awaySetsWon,
     homeTeam: match.homeTeam.name,
     awayTeam: match.awayTeam.name
   };
@@ -207,9 +253,8 @@ async function updateResults() {
   for (const dateStr of Array.from(datesToCheck)) {
     console.log(`[${dateStr}] Fetching matches from SofaScore...`);
     const matches = await fetchMatchesForDate(dateStr);
-    const finished = matches.filter(m => m.status?.type === 'finished');
-    console.log(`[${dateStr}] Found ${matches.length} total, ${finished.length} finished`);
-    allMatches.push(...finished);
+    console.log(`[${dateStr}] Found ${matches.length} finished singles matches`);
+    allMatches.push(...matches);
     
     await new Promise(r => setTimeout(r, 300)); // Rate limiting
   }
@@ -228,7 +273,7 @@ async function updateResults() {
     const bet = history.bets[i];
     if (bet.status !== 'pending') continue;
     
-    const match = findMatchForBet(bet, allMatches);
+    const match = findMatchForBet(bet, allMatches); // Disable debug
     
     if (!match) {
       console.log(`⏳ ${bet.homeTeam} vs ${bet.awayTeam} - Still pending`);
@@ -276,7 +321,7 @@ async function updateResults() {
       const bet = history.safeBets[i];
       if (bet.status !== 'pending') continue;
       
-      const match = findMatchForBet(bet, allMatches);
+      const match = findMatchForBet(bet, allMatches); // Disable debug
       
       if (!match) {
         console.log(`⏳ ${bet.homeTeam} vs ${bet.awayTeam} - Still pending`);
