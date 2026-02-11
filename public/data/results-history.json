@@ -12,9 +12,9 @@
       "expectedValue": 25.4,
       "confidence": "medium",
       "reasoning": "Karolina Pliskova is an underdog, but given her experience and potential for strong performances, the odds might be generous. VALUE: Value on Pliskova if the market is underestimating her ability to compete against Karolina Muchova.",
-      "status": "pending",
-      "result": null,
-      "roi": null,
+      "status": "loss",
+      "result": "2-5",
+      "roi": -1,
       "addedAt": "2026-02-11T14:20:45.539Z"
     },
     {
@@ -106,10 +106,10 @@
   "stats": {
     "totalBets": 6,
     "wins": 3,
-    "losses": 2,
-    "pending": 1,
-    "totalROI": 10.38,
-    "winRate": 60
+    "losses": 3,
+    "pending": 0,
+    "totalROI": 9.38,
+    "winRate": 50
   },
   "safeBets": [
     {
