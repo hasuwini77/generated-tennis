@@ -43,7 +43,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "TennTrend Bot"
-          git add public/data/daily-picks.json
+          git add public/data/daily-picks.json public/data/results-history.json
           git diff --staged --quiet || git commit -m "chore: daily scan results $(date +'%Y-%m-%d %H:%M CET')"
           git push
       

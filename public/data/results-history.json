@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "f7e718db08ad9c2466b478d15bf18090",
+      "date": "2026-02-11",
+      "matchTime": "2026-02-11T15:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Karolina Pliskova",
+      "awayTeam": "Karolina Muchova",
+      "outcome": "Karolina Pliskova",
+      "odds": 5.7,
+      "expectedValue": 25.4,
+      "confidence": "medium",
+      "reasoning": "Karolina Pliskova is an underdog, but given her experience and potential for strong performances, the odds might be generous. VALUE: Value on Pliskova if the market is underestimating her ability to compete against Karolina Muchova.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-11T14:20:45.539Z"
+    },
+    {
       "id": "ab6ed0858ec00583d5b109e215c93c71",
       "date": "2026-02-09",
       "matchTime": "2026-02-10T07:00:00Z",
@@ -87,10 +104,10 @@
     }
   ],
   "stats": {
-    "totalBets": 5,
+    "totalBets": 6,
     "wins": 3,
     "losses": 2,
-    "pending": 0,
+    "pending": 1,
     "totalROI": 10.38,
     "winRate": 60
   },
