@@ -1,17 +1,11 @@
 name: Update Match Results - TennTrend
 
 on:
-  # Run twice daily:
-  # 1. At 08:00 CET (07:00 UTC) - Morning check for overnight matches
-  # 2. At 22:00 CET (21:00 UTC) - Evening check for day matches
   schedule:
-    - cron: '0 7 * * *'   # 07:00 UTC = 08:00 CET / 09:00 CEST
-    - cron: '0 21 * * *'  # 21:00 UTC = 22:00 CET / 23:00 CEST
-  
-  # Allow manual trigger for testing
+    - cron: '0 7 * * *'
+    - cron: '0 21 * * *'
   workflow_dispatch:
 
-# Grant write permissions for GitHub Actions
 permissions:
   contents: write
 
@@ -31,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      - name: Update match results (HYBRID: Odds API + SofaScore)
+      - name: Update match results
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           TZ: Europe/Stockholm
@@ -47,5 +41,4 @@ jobs:
       
       - name: Notify on failure
         if: failure()
-        run: |
-          echo "⚠️ Results update workflow failed. Check logs for details."
+        run: echo "Results update workflow failed"
