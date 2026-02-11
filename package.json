@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "scan": "node scripts/daily-scan.js",
-    "update-results": "node scripts/update-results-sofascore.js",
+    "update-results": "node scripts/update-results-hybrid.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },

@@ -31,8 +31,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      - name: Update match results automatically (SofaScore API)
+      - name: Update match results (HYBRID: Odds API + SofaScore)
         env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           TZ: Europe/Stockholm
         run: npm run update-results
       
