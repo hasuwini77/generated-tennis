@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-11T22:30:38.024Z",
-  "scanDateCET": "2026-02-11",
-  "scanDateET": "2/11/2026",
-  "scanTimeCET": "2026-02-11 23:30:38",
+  "timestamp": "2026-02-12T06:33:20.537Z",
+  "scanDateCET": "2026-02-12",
+  "scanDateET": "2/12/2026",
+  "scanTimeCET": "2026-02-12 07:33:20",
   "leagueStats": {
     "atp": {
       "hasGames": false,
@@ -15,16 +15,189 @@
   },
   "summary": {
     "totalGamesAnalyzed": 4,
-    "valueBetsFound": 0,
-    "safeBetsFound": 0,
-    "hasBetOfTheDay": false,
-    "avgEV": 0
+    "valueBetsFound": 1,
+    "safeBetsFound": 1,
+    "hasBetOfTheDay": true,
+    "avgEV": 3.4
   },
-  "betOfTheDay": null,
-  "featuredBets": [],
-  "allBets": [],
-  "safeBets": [],
-  "allSafeBets": [],
+  "betOfTheDay": {
+    "id": "129f9d97e0e8ee8ed2ff5df0effe40ce",
+    "league": "WTA",
+    "homeTeam": "Karolina Muchova",
+    "awayTeam": "Anna Kalinskaya",
+    "startTime": "2026-02-12T16:30:00Z",
+    "startTimeFormatted": "Feb 12, 17:30",
+    "marketOdd": 1.52,
+    "marketProb": 65.8,
+    "markets": [
+      {
+        "type": "h2h",
+        "outcome": "Karolina Muchova",
+        "odds": 1.52,
+        "impliedProb": 65.8,
+        "expectedValue": 3.4,
+        "aiProbability": 68,
+        "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+        "confidence": "medium"
+      }
+    ],
+    "homeForm": "No recent matches",
+    "awayForm": "No recent matches",
+    "formData": {},
+    "aiProbability": 68,
+    "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+    "confidence": "medium",
+    "expectedValue": 3.4,
+    "evTier": {
+      "min": 3,
+      "max": 6,
+      "label": "Strong Edge",
+      "emoji": "💪",
+      "color": "blue",
+      "tier": "STRONG"
+    },
+    "score": 52.19
+  },
+  "featuredBets": [
+    {
+      "id": "129f9d97e0e8ee8ed2ff5df0effe40ce",
+      "league": "WTA",
+      "homeTeam": "Karolina Muchova",
+      "awayTeam": "Anna Kalinskaya",
+      "startTime": "2026-02-12T16:30:00Z",
+      "startTimeFormatted": "Feb 12, 17:30",
+      "marketOdd": 1.52,
+      "marketProb": 65.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Karolina Muchova",
+          "odds": 1.52,
+          "impliedProb": 65.8,
+          "expectedValue": 3.4,
+          "aiProbability": 68,
+          "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 68,
+      "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+      "confidence": "medium",
+      "expectedValue": 3.4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    }
+  ],
+  "allBets": [
+    {
+      "id": "129f9d97e0e8ee8ed2ff5df0effe40ce",
+      "league": "WTA",
+      "homeTeam": "Karolina Muchova",
+      "awayTeam": "Anna Kalinskaya",
+      "startTime": "2026-02-12T16:30:00Z",
+      "startTimeFormatted": "Feb 12, 17:30",
+      "marketOdd": 1.52,
+      "marketProb": 65.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Karolina Muchova",
+          "odds": 1.52,
+          "impliedProb": 65.8,
+          "expectedValue": 3.4,
+          "aiProbability": 68,
+          "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 68,
+      "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+      "confidence": "medium",
+      "expectedValue": 3.4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    }
+  ],
+  "safeBets": [
+    {
+      "id": "129f9d97e0e8ee8ed2ff5df0effe40ce",
+      "league": "WTA",
+      "homeTeam": "Karolina Muchova",
+      "awayTeam": "Anna Kalinskaya",
+      "startTime": "2026-02-12T16:30:00Z",
+      "startTimeFormatted": "Feb 12, 17:30",
+      "marketOdd": 1.52,
+      "marketProb": 65.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Karolina Muchova",
+          "odds": 1.52,
+          "impliedProb": 65.8,
+          "expectedValue": 3.4,
+          "aiProbability": 68,
+          "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 68,
+      "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+      "confidence": "medium",
+      "expectedValue": 3.4
+    }
+  ],
+  "allSafeBets": [
+    {
+      "id": "129f9d97e0e8ee8ed2ff5df0effe40ce",
+      "league": "WTA",
+      "homeTeam": "Karolina Muchova",
+      "awayTeam": "Anna Kalinskaya",
+      "startTime": "2026-02-12T16:30:00Z",
+      "startTimeFormatted": "Feb 12, 17:30",
+      "marketOdd": 1.52,
+      "marketProb": 65.8,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Karolina Muchova",
+          "odds": 1.52,
+          "impliedProb": 65.8,
+          "expectedValue": 3.4,
+          "aiProbability": 68,
+          "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 68,
+      "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+      "confidence": "medium",
+      "expectedValue": 3.4
+    }
+  ],
   "metadata": {
     "minEVThreshold": 3,
     "version": "2.1.0",

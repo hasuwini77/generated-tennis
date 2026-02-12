@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "129f9d97e0e8ee8ed2ff5df0effe40ce",
+      "date": "2026-02-12",
+      "matchTime": "2026-02-12T16:30:00Z",
+      "league": "WTA",
+      "homeTeam": "Karolina Muchova",
+      "awayTeam": "Anna Kalinskaya",
+      "outcome": "Karolina Muchova",
+      "odds": 1.52,
+      "expectedValue": 3.4,
+      "confidence": "medium",
+      "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-12T06:33:20.539Z"
+    },
+    {
       "id": "f7e718db08ad9c2466b478d15bf18090",
       "date": "2026-02-11",
       "matchTime": "2026-02-11T15:00:00Z",
@@ -104,14 +121,31 @@
     }
   ],
   "stats": {
-    "totalBets": 6,
+    "totalBets": 7,
     "wins": 3,
     "losses": 3,
-    "pending": 0,
+    "pending": 1,
     "totalROI": 9.38,
     "winRate": 50
   },
   "safeBets": [
+    {
+      "id": "129f9d97e0e8ee8ed2ff5df0effe40ce",
+      "date": "2026-02-12",
+      "matchTime": "2026-02-12T16:30:00Z",
+      "league": "WTA",
+      "homeTeam": "Karolina Muchova",
+      "awayTeam": "Anna Kalinskaya",
+      "outcome": "Karolina Muchova",
+      "odds": 1.52,
+      "aiProbability": 68,
+      "confidence": "medium",
+      "reasoning": "Karolina Muchova has a slight edge over Anna Kalinskaya based on historical performance and ranking trends. The market odds might slightly undervalue Muchova given her potential on the surface. VALUE: Potential slight value on Muchova due to her surface suitability and overall career performance.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-12T06:33:20.539Z"
+    },
     {
       "id": "04dd3948cb052b1e5519ba9c77b34b31",
       "date": "2026-02-09",
@@ -165,10 +199,10 @@
     }
   ],
   "safeBetStats": {
-    "totalBets": 3,
+    "totalBets": 4,
     "wins": 2,
     "losses": 1,
-    "pending": 0,
+    "pending": 1,
     "totalROI": -0.18,
     "winRate": 66.7
   }
