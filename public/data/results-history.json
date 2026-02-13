@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "4679ea46ac0b2a482cff63edaec8f0ab",
+      "date": "2026-02-13",
+      "matchTime": "2026-02-13T08:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Priscilla Hon",
+      "awayTeam": "Varvara Gracheva",
+      "outcome": "Priscilla Hon",
+      "odds": 2.75,
+      "expectedValue": 10,
+      "confidence": "low",
+      "reasoning": "Priscilla Hon is an underdog against Varvara Gracheva. Given the lack of recent matches for both, Hon's odds might offer some value if she has a historical or surface-based advantage. VALUE: Underdog with potential for upset due to unknown recent form.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-13T06:30:17.625Z"
+    },
+    {
       "id": "129f9d97e0e8ee8ed2ff5df0effe40ce",
       "date": "2026-02-12",
       "matchTime": "2026-02-12T16:30:00Z",
@@ -121,14 +138,65 @@
     }
   ],
   "stats": {
-    "totalBets": 7,
+    "totalBets": 8,
     "wins": 3,
     "losses": 3,
-    "pending": 1,
+    "pending": 2,
     "totalROI": 9.38,
     "winRate": 50
   },
   "safeBets": [
+    {
+      "id": "12ef75599e91ae688ae757f88f3640fe",
+      "date": "2026-02-13",
+      "matchTime": "2026-02-13T12:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Anastasia Zakharova",
+      "awayTeam": "Julia Grabher",
+      "outcome": "Anastasia Zakharova",
+      "odds": 1.42,
+      "aiProbability": 71,
+      "confidence": "medium",
+      "reasoning": "Anastasia Zakharova is heavily favored over Julia Grabher, indicating a strong belief in Zakharova's current level or historical advantage. VALUE: Strong favorite with likely significant recent form or ranking advantage.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-13T06:30:17.625Z"
+    },
+    {
+      "id": "2f95d2600476e04fef883ad4dd3dc5c0",
+      "date": "2026-02-13",
+      "matchTime": "2026-02-13T10:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Tereza Valentova",
+      "awayTeam": "Kimberly Birrell",
+      "outcome": "Tereza Valentova",
+      "odds": 1.33,
+      "aiProbability": 72,
+      "confidence": "medium",
+      "reasoning": "Tereza Valentova is heavily favored over Kimberly Birrell, which seems justified given the large odds difference. Valentova likely has a significant advantage in terms of recent form or surface suitability. VALUE: Strong favorite with likely recent form or surface advantage.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-13T06:30:17.625Z"
+    },
+    {
+      "id": "3cf983e62f6608236657e023f83f9bb7",
+      "date": "2026-02-13",
+      "matchTime": "2026-02-13T12:00:00Z",
+      "league": "WTA",
+      "homeTeam": "Sonay Kartal",
+      "awayTeam": "Storm Hunter",
+      "outcome": "Sonay Kartal",
+      "odds": 1.24,
+      "aiProbability": 81,
+      "confidence": "high",
+      "reasoning": "Sonay Kartal is a strong favorite over Storm Hunter, suggesting a significant advantage in terms of recent form, ranking, or surface suitability. VALUE: Very strong favorite with high likelihood of winning.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-13T06:30:17.625Z"
+    },
     {
       "id": "129f9d97e0e8ee8ed2ff5df0effe40ce",
       "date": "2026-02-12",
@@ -199,10 +267,10 @@
     }
   ],
   "safeBetStats": {
-    "totalBets": 4,
+    "totalBets": 7,
     "wins": 2,
     "losses": 1,
-    "pending": 1,
+    "pending": 4,
     "totalROI": -0.18,
     "winRate": 66.7
   }
