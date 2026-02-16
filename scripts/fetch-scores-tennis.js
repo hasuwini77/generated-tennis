@@ -25,6 +25,10 @@ const __dirname = dirname(__filename);
 const THE_ODDS_API_KEY = process.env.THE_ODDS_API_KEY;
 const THE_ODDS_API_BASE = 'https://api.the-odds-api.com/v4';
 
+// FALLBACK API CONFIG
+const RAPIDAPI_KEY = "bccefb9e3cmsh6275b4d52bc7d3fp18858cjsn571965f8e30e";
+const TENNIS_API_BASE = "https://tennis-api-atp-wta-itf.p.rapidapi.com/tennis/v2";
+
 console.log('╔════════════════════════════════════════════╗');
 console.log('║   TennTrend Results Checker - v1.0        ║');
 console.log('╚════════════════════════════════════════════╝\n');
@@ -86,7 +90,7 @@ function matchPlayerName(player1, player2) {
 }
 
 /**
- * Get all active tennis tournaments from The-Odds-API
+ * Get all active tennis tournaments from The-Odds-API (WITH FALLBACK)
  */
 async function getActiveTennisTournaments() {
   try {
@@ -94,6 +98,14 @@ async function getActiveTennisTournaments() {
     const response = await fetch(url);
     
     if (!response.ok) {
+      if (response.status === 429 || response.status === 402) {
+        console.log('⚠️  Quota exceeded, using fallback to get tournament list...');
+        // Return static list of common tennis tournaments
+        return [
+          { key: 'tennis_atp', title: 'ATP', active: true },
+          { key: 'tennis_wta', title: 'WTA', active: true }
+        ];
+      }
       console.error('Failed to fetch active tournaments:', response.status);
       return [];
     }

@@ -40,6 +40,11 @@ const GROQ_API_KEY = process.env.VITE_GROQ_API_KEY || process.env.GROQ_API_KEY;
 const GITHUB_TOKEN = process.env.VITE_GITHUB_TOKEN || process.env.GITHUB_TOKEN;
 const DISCORD_WEBHOOK_URL = process.env.VITE_DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL;
 
+// FALLBACK API CONFIGURATION
+const RAPIDAPI_KEY = "bccefb9e3cmsh6275b4d52bc7d3fp18858cjsn571965f8e30e";
+const TENNIS_API_BASE = "https://tennis-api-atp-wta-itf.p.rapidapi.com/tennis/v2";
+const LIVESCORE_API_BASE = "https://livescore6.p.rapidapi.com";
+
 // EV Tier System (professional sports betting standards)
 const MIN_EV_THRESHOLD = 3; // Minimum 3% EV to show a bet (Strong Edge)
 const EV_TIERS = {
@@ -157,7 +162,127 @@ async function fetchAvailableTennisSports() {
 }
 
 /**
- * Fetch odds from The-Odds-API for a specific league
+ * FALLBACK: Fetch from Tennis-API (RapidAPI)
+ */
+async function fetchFromTennisAPIFallback() {
+  console.log(`🔄 [Fallback] Trying Tennis-API (RapidAPI)...`);
+  
+  try {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 2);
+    
+    const todayStr = today.toISOString().split('T')[0];
+    const tomorrowStr = tomorrow.toISOString().split('T')[0];
+    
+    const atpUrl = `${TENNIS_API_BASE}/atp/fixtures/${todayStr}/${tomorrowStr}`;
+    
+    const response = await fetch(atpUrl, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': RAPIDAPI_KEY,
+        'x-rapidapi-host': 'tennis-api-atp-wta-itf.p.rapidapi.com'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    let fixtures = Array.isArray(data) ? data : (data.events || []);
+    
+    console.log(`✅ [Tennis-API] ${fixtures.length} fixtures received`);
+    
+    // Transform to The-Odds-API format
+    return fixtures.map(f => ({
+      id: f.id || `${f.homeTeam?.name}-${f.awayTeam?.name}`,
+      sport_key: 'tennis_atp',
+      sport_title: f.tournament?.name || 'ATP',
+      commence_time: new Date((f.startTimestamp || 0) * 1000).toISOString(),
+      home_team: f.homeTeam?.name || '',
+      away_team: f.awayTeam?.name || '',
+      bookmakers: [{
+        key: 'fallback',
+        title: 'Fallback',
+        markets: [{
+          key: 'h2h',
+          outcomes: [
+            { name: f.homeTeam?.name || '', price: 2.0 },
+            { name: f.awayTeam?.name || '', price: 2.0 }
+          ]
+        }]
+      }]
+    }));
+  } catch (error) {
+    console.error(`❌ [Tennis-API] ${error.message}`);
+    return [];
+  }
+}
+
+/**
+ * FALLBACK: Fetch from LiveScore6 (RapidAPI)
+ */
+async function fetchFromLiveScoreFallback() {
+  console.log(`🔄 [Fallback] Trying LiveScore6 (RapidAPI)...`);
+  
+  try {
+    const today = new Date();
+    const dateStr = today.toISOString().split('T')[0].replace(/-/g, '');
+    
+    const url = `${LIVESCORE_API_BASE}/matches/v2/list-by-date?Category=tennis&Date=${dateStr}&Timezone=0`;
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': RAPIDAPI_KEY,
+        'x-rapidapi-host': 'livescore6.p.rapidapi.com'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    const stages = data.Stages || [];
+    
+    const matches = [];
+    stages.forEach(stage => {
+      const events = stage.Events || [];
+      events.forEach(event => {
+        matches.push({
+          id: event.Eid,
+          sport_key: 'tennis',
+          sport_title: stage.Snm || 'Tennis',
+          commence_time: new Date(event.Esd * 1000).toISOString(),
+          home_team: event.T1?.[0]?.Nm || '',
+          away_team: event.T2?.[0]?.Nm || '',
+          bookmakers: [{
+            key: 'fallback',
+            title: 'Fallback',
+            markets: [{
+              key: 'h2h',
+              outcomes: [
+                { name: event.T1?.[0]?.Nm || '', price: 2.0 },
+                { name: event.T2?.[0]?.Nm || '', price: 2.0 }
+              ]
+            }]
+          }]
+        });
+      });
+    });
+    
+    console.log(`✅ [LiveScore6] ${matches.length} matches received`);
+    return matches;
+  } catch (error) {
+    console.error(`❌ [LiveScore6] ${error.message}`);
+    return [];
+  }
+}
+
+/**
+ * Fetch odds from The-Odds-API for a specific league (WITH FALLBACK)
  */
 async function fetchLeagueOdds(sportKey, leagueName) {
   const url = `${API_BASE_URL}/sports/${sportKey}/odds?apiKey=${ODDS_API_KEY}&regions=us,eu&markets=h2h&oddsFormat=decimal`;
@@ -171,8 +296,9 @@ async function fetchLeagueOdds(sportKey, leagueName) {
       if (response.status === 401) {
         throw new Error("Invalid API key");
       }
-      if (response.status === 429) {
-        throw new Error("API quota exceeded");
+      if (response.status === 429 || response.status === 402) {
+        console.warn(`⚠️  [${leagueName}] QUOTA EXCEEDED - Activating fallback...`);
+        throw new Error("QUOTA_EXCEEDED");
       }
       throw new Error(`API error: ${response.status}`);
     }
@@ -184,6 +310,28 @@ async function fetchLeagueOdds(sportKey, leagueName) {
     
   } catch (error) {
     console.error(`[${leagueName}] Error fetching odds:`, error.message);
+    
+    // If quota exceeded, try fallback APIs
+    if (error.message === "QUOTA_EXCEEDED") {
+      console.log(`\n🔄 SWITCHING TO FALLBACK APIS...\n`);
+      
+      // Try Tennis-API first
+      let fallbackGames = await fetchFromTennisAPIFallback();
+      if (fallbackGames.length > 0) {
+        console.log(`✅ Using Tennis-API fallback (${fallbackGames.length} matches)\n`);
+        return fallbackGames;
+      }
+      
+      // Try LiveScore as last resort
+      fallbackGames = await fetchFromLiveScoreFallback();
+      if (fallbackGames.length > 0) {
+        console.log(`✅ Using LiveScore6 fallback (${fallbackGames.length} matches)\n`);
+        return fallbackGames;
+      }
+      
+      console.error(`❌ All fallback APIs also failed\n`);
+    }
+    
     return [];
   }
 }
