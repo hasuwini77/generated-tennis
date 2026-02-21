@@ -163,9 +163,10 @@ async function fetchAvailableTennisSports() {
 
 /**
  * FALLBACK: Fetch from Tennis-API (RapidAPI)
+ * @param {string} tour - 'atp' or 'wta'
  */
-async function fetchFromTennisAPIFallback() {
-  console.log(`🔄 [Fallback] Trying Tennis-API (RapidAPI)...`);
+async function fetchFromTennisAPIFallback(tour = 'atp') {
+  console.log(`🔄 [Fallback] Trying Tennis-API (RapidAPI) for ${tour.toUpperCase()}...`);
   
   try {
     const today = new Date();
@@ -175,9 +176,10 @@ async function fetchFromTennisAPIFallback() {
     const todayStr = today.toISOString().split('T')[0];
     const tomorrowStr = tomorrow.toISOString().split('T')[0];
     
-    const atpUrl = `${TENNIS_API_BASE}/atp/fixtures/${todayStr}/${tomorrowStr}`;
+    const tourPath = tour.toLowerCase() === 'wta' ? 'wta' : 'atp';
+    const fixturesUrl = `${TENNIS_API_BASE}/${tourPath}/fixtures/${todayStr}/${tomorrowStr}`;
     
-    const response = await fetch(atpUrl, {
+    const response = await fetch(fixturesUrl, {
       method: 'GET',
       headers: {
         'x-rapidapi-key': RAPIDAPI_KEY,
@@ -190,30 +192,37 @@ async function fetchFromTennisAPIFallback() {
     }
     
     const data = await response.json();
-    let fixtures = Array.isArray(data) ? data : (data.events || []);
+    // Tennis-API returns { data: [...] } or array directly
+    let fixtures = Array.isArray(data) ? data : (data.data || data.events || []);
     
     console.log(`✅ [Tennis-API] ${fixtures.length} fixtures received`);
     
     // Transform to The-Odds-API format
-    return fixtures.map(f => ({
-      id: f.id || `${f.homeTeam?.name}-${f.awayTeam?.name}`,
-      sport_key: 'tennis_atp',
-      sport_title: f.tournament?.name || 'ATP',
-      commence_time: new Date((f.startTimestamp || 0) * 1000).toISOString(),
-      home_team: f.homeTeam?.name || '',
-      away_team: f.awayTeam?.name || '',
-      bookmakers: [{
-        key: 'fallback',
-        title: 'Fallback',
-        markets: [{
-          key: 'h2h',
-          outcomes: [
-            { name: f.homeTeam?.name || '', price: 2.0 },
-            { name: f.awayTeam?.name || '', price: 2.0 }
-          ]
+    // Tennis-API uses player1/player2 fields
+    return fixtures.map(f => {
+      const p1Name = f.player1?.name || f.homeTeam?.name || '';
+      const p2Name = f.player2?.name || f.awayTeam?.name || '';
+      const startTime = f.date || (f.startTimestamp ? new Date(f.startTimestamp * 1000).toISOString() : new Date().toISOString());
+      return {
+        id: String(f.id || `${p1Name}-${p2Name}`),
+        sport_key: `tennis_${tourPath}`,
+        sport_title: f.tournament?.name || tour.toUpperCase(),
+        commence_time: startTime,
+        home_team: p1Name,
+        away_team: p2Name,
+        bookmakers: [{
+          key: 'fallback',
+          title: 'Fallback',
+          markets: [{
+            key: 'h2h',
+            outcomes: [
+              { name: p1Name, price: 2.0 },
+              { name: p2Name, price: 2.0 }
+            ]
+          }]
         }]
-      }]
-    }));
+      };
+    }).filter(m => m.home_team && m.away_team);
   } catch (error) {
     console.error(`❌ [Tennis-API] ${error.message}`);
     return [];
@@ -251,25 +260,34 @@ async function fetchFromLiveScoreFallback() {
     stages.forEach(stage => {
       const events = stage.Events || [];
       events.forEach(event => {
-        matches.push({
-          id: event.Eid,
-          sport_key: 'tennis',
-          sport_title: stage.Snm || 'Tennis',
-          commence_time: new Date(event.Esd * 1000).toISOString(),
-          home_team: event.T1?.[0]?.Nm || '',
-          away_team: event.T2?.[0]?.Nm || '',
-          bookmakers: [{
-            key: 'fallback',
-            title: 'Fallback',
-            markets: [{
-              key: 'h2h',
-              outcomes: [
-                { name: event.T1?.[0]?.Nm || '', price: 2.0 },
-                { name: event.T2?.[0]?.Nm || '', price: 2.0 }
-              ]
+        try {
+          // Esd can be Unix timestamp (seconds) or milliseconds
+          const tsRaw = event.Esd || event.Edt || 0;
+          const ts = tsRaw > 1e10 ? tsRaw : tsRaw * 1000; // Convert seconds→ms if needed
+          const commenceTime = ts > 0 ? new Date(ts).toISOString() : new Date().toISOString();
+          
+          matches.push({
+            id: String(event.Eid || `ls-${Date.now()}-${Math.random()}`),
+            sport_key: 'tennis',
+            sport_title: stage.Snm || 'Tennis',
+            commence_time: commenceTime,
+            home_team: event.T1?.[0]?.Nm || '',
+            away_team: event.T2?.[0]?.Nm || '',
+            bookmakers: [{
+              key: 'fallback',
+              title: 'Fallback',
+              markets: [{
+                key: 'h2h',
+                outcomes: [
+                  { name: event.T1?.[0]?.Nm || '', price: 2.0 },
+                  { name: event.T2?.[0]?.Nm || '', price: 2.0 }
+                ]
+              }]
             }]
-          }]
-        });
+          });
+        } catch (e) {
+          // skip malformed events
+        }
       });
     });
     
@@ -287,6 +305,9 @@ async function fetchFromLiveScoreFallback() {
 async function fetchLeagueOdds(sportKey, leagueName) {
   const url = `${API_BASE_URL}/sports/${sportKey}/odds?apiKey=${ODDS_API_KEY}&regions=us,eu&markets=h2h&oddsFormat=decimal`;
   
+  // Determine tour type from sport key or league name for fallback routing
+  const tour = sportKey.includes('wta') || leagueName.toUpperCase().includes('WTA') ? 'wta' : 'atp';
+  
   console.log(`[${leagueName}] Fetching odds from The-Odds-API...`);
   
   try {
@@ -294,13 +315,14 @@ async function fetchLeagueOdds(sportKey, leagueName) {
     
     if (!response.ok) {
       if (response.status === 401) {
-        throw new Error("Invalid API key");
+        console.warn(`⚠️  [${leagueName}] INVALID API KEY - Activating fallback...`);
+        throw new Error("API_UNAVAILABLE");
       }
       if (response.status === 429 || response.status === 402) {
         console.warn(`⚠️  [${leagueName}] QUOTA EXCEEDED - Activating fallback...`);
-        throw new Error("QUOTA_EXCEEDED");
+        throw new Error("API_UNAVAILABLE");
       }
-      throw new Error(`API error: ${response.status}`);
+      throw new Error(`API_UNAVAILABLE`);
     }
     
     const games = await response.json();
@@ -311,12 +333,12 @@ async function fetchLeagueOdds(sportKey, leagueName) {
   } catch (error) {
     console.error(`[${leagueName}] Error fetching odds:`, error.message);
     
-    // If quota exceeded, try fallback APIs
-    if (error.message === "QUOTA_EXCEEDED") {
+    // If primary API unavailable (invalid key, quota, or any error), try fallback APIs
+    if (error.message === "API_UNAVAILABLE" || error.message.includes("API")) {
       console.log(`\n🔄 SWITCHING TO FALLBACK APIS...\n`);
       
-      // Try Tennis-API first
-      let fallbackGames = await fetchFromTennisAPIFallback();
+      // Try Tennis-API first (pass correct tour)
+      let fallbackGames = await fetchFromTennisAPIFallback(tour);
       if (fallbackGames.length > 0) {
         console.log(`✅ Using Tennis-API fallback (${fallbackGames.length} matches)\n`);
         return fallbackGames;
@@ -344,9 +366,14 @@ function filterMatchesByTour(matches, tourName, timezones, maxMatches = 15) {
   
   const { now } = timezones;
   
-  // Filter to next 24 hours
-  const filtered = matches.filter(match => isInNext24Hours(match.commence_time, now));
-  console.log(`[${tourName}] Filtered to ${filtered.length} matches (next 24 hours)`);
+  // Filter to next 48 hours (fallback APIs may return matches a day ahead)
+  const filtered = matches.filter(match => {
+    const matchDate = new Date(match.commence_time);
+    const timeDiff = matchDate - now;
+    const hoursDiff = timeDiff / (1000 * 60 * 60);
+    return hoursDiff >= -2 && hoursDiff <= 48; // Include recently started matches and up to 48h ahead
+  });
+  console.log(`[${tourName}] Filtered to ${filtered.length} matches (next 48 hours)`);
   
   // Apply max limit (15 matches per tour)
   if (filtered.length > maxMatches) {
@@ -605,10 +632,10 @@ async function enrichMatchesWithFormData(matches) {
 async function analyzeWithAI(matches, modelIndex = 0) {
   // Multi-model fallback chain (ordered by data recency and reliability)
   const AI_MODELS = [
-    { provider: 'gemini', model: 'gemini-2.0-flash-thinking-exp', name: 'Gemini 2.0 Flash Thinking' },
+    { provider: 'groq', model: 'llama-3.3-70b-versatile', name: 'Llama 3.3 70B (Groq)' },
+    { provider: 'gemini', model: 'gemini-2.0-flash', name: 'Gemini 2.0 Flash' },
+    { provider: 'gemini', model: 'gemini-1.5-flash', name: 'Gemini 1.5 Flash' },
     { provider: 'github', model: 'claude-3.5-sonnet', name: 'Claude 3.5 Sonnet' },
-    { provider: 'gemini', model: 'gemini-2.0-flash-exp', name: 'Gemini 2.0 Flash' },
-    { provider: 'groq', model: 'llama-3.3-70b-versatile', name: 'Llama 3.3 70B' },
   ];
   
   if (matches.length === 0) {
@@ -1149,6 +1176,30 @@ function filterHighValueBets(matches, minEV = MIN_EV_THRESHOLD) {
 }
 
 /**
+ * Filter for AI confidence picks when no real odds available (fallback mode)
+ * Selects matches where AI is confidently predicting a winner (>55% probability)
+ */
+function filterByAIConfidence(matches, minProbability = 55) {
+  const confidencePicks = matches
+    .filter(m => m.aiProbability && m.aiProbability >= minProbability)
+    .map(bet => ({
+      ...bet,
+      evTier: { tier: 'STRONG', label: 'AI Pick', emoji: '🤖', color: 'blue' },
+      // Treat as value bet for display purposes
+      expectedValue: bet.expectedValue || 0,
+    }))
+    .sort((a, b) => (b.aiProbability || 0) - (a.aiProbability || 0));
+
+  console.log(`\n=== AI CONFIDENCE PICKS ===`);
+  console.log(`Found ${confidencePicks.length} picks with AI probability >= ${minProbability}%`);
+  confidencePicks.slice(0, 5).forEach((bet, i) => {
+    console.log(`  ${i + 1}. ${bet.homeTeam} vs ${bet.awayTeam} → ${bet.aiProbability}% (${bet.confidence} confidence)`);
+  });
+
+  return confidencePicks;
+}
+
+/**
  * Select "Bet of the Day" (highest tier + highest EV + confidence)
  */
 function selectBetOfTheDay(valueBets) {
@@ -1561,7 +1612,14 @@ async function main() {
     const enrichedMatches = await analyzeWithAI(matchesWithForm);
     
     // 4. Filter for high-value bets (EV >= 3%)
-    const valueBets = filterHighValueBets(enrichedMatches, MIN_EV_THRESHOLD);
+    let valueBets = filterHighValueBets(enrichedMatches, MIN_EV_THRESHOLD);
+    
+    // 4b. If no value bets found (e.g. using fallback data without real odds),
+    //     use AI confidence picks (>55% probability) as featured picks
+    if (valueBets.length === 0) {
+      console.log('\n💡 No EV bets found. Using AI confidence picks as featured bets...');
+      valueBets = filterByAIConfidence(enrichedMatches, 55);
+    }
     
     // 5. Filter for safe bets (favorites with odds 1.20-1.60 and high AI probability)
     const safeBets = filterSafeBets(enrichedMatches);
