@@ -29,7 +29,7 @@ jobs:
           node-version: '20'
       
       - name: Install dependencies
-        run: npm install node-fetch
+        run: npm ci
       
       - name: Fetch match results and update history
         env:
