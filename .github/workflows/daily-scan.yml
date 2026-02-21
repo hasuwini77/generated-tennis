@@ -27,15 +27,22 @@ jobs:
           node-version: '20'
       
       - name: Install dependencies
-        run: npm install node-fetch
+        run: npm ci
       
       - name: Run daily scan
         env:
           THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+          VITE_THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VITE_GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          VITE_GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_MODELS_TOKEN }}
+          VITE_GITHUB_TOKEN: ${{ secrets.GH_MODELS_TOKEN }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          VITE_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+          VITE_RAPIDAPI_TENNIS_KEY: ${{ secrets.RAPIDAPI_KEY }}
           TZ: Europe/Stockholm
         run: node scripts/daily-scan.js
       
