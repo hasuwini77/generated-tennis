@@ -113,6 +113,18 @@ const App: React.FC = () => {
   const otherBets = getOtherValueBets();
   const safeBets = getSafeBets();
   
+  // Get all analyzed matches for display when no value bets exist
+  const getAllAnalyzedMatches = (): Match[] => {
+    if (!dailyData) return [];
+    let matches = dailyData.allBets;
+    if (selectedTour !== "ALL") {
+      matches = matches.filter(m => m.league === selectedTour);
+    }
+    return matches.sort((a, b) => (b.aiProbability || 0) - (a.aiProbability || 0));
+  };
+  
+  const allAnalyzedMatches = getAllAnalyzedMatches();
+  
   // Get stats by tour
   const getStatsForTour = () => {
     if (!dailyData) return { total: 0, valueBets: 0 };
@@ -467,24 +479,74 @@ const App: React.FC = () => {
                 </div>
               )}
 
-              {/* Empty State - No Bets Today */}
+              {/* Empty State - No Value Bets, but show all analyzed matches */}
               {dailyData.summary.valueBetsFound === 0 && safeBets.length === 0 && (
-                <div className="text-center py-20">
-                  <div className="text-6xl mb-4">🎯</div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    No Value Bets Today
-                  </h3>
-                  <p className="text-gray-400 max-w-md mx-auto text-sm">
-                    Our AI analyzed{" "}
-                    <span className="text-blue-400 font-bold">
-                      {dailyData.summary.totalGamesAnalyzed}
-                    </span>{" "}
-                    games but none met our{" "}
-                    <span className="text-green-400 font-bold">
-                      {dailyData.metadata.minEVThreshold}% EV
-                    </span>{" "}
-                    threshold.
-                  </p>
+                <div>
+                  {allAnalyzedMatches.length > 0 ? (
+                    <div>
+                      <div className="text-center py-8">
+                        <div className="text-5xl mb-3">🎯</div>
+                        <h3 className="text-xl font-bold text-white mb-2">No Strong Value Bets Today</h3>
+                        <p className="text-gray-400 text-sm max-w-md mx-auto">
+                          Our AI analyzed <span className="text-blue-400 font-bold">{dailyData.summary.totalGamesAnalyzed}</span> matches.
+                          Here's the full AI analysis for every game today:
+                        </p>
+                      </div>
+                      <div className="space-y-3">
+                        {allAnalyzedMatches.map((match) => (
+                          <div key={match.id} className="bg-white/5 rounded-xl p-4 border border-white/10 hover:bg-white/[0.07] transition-all">
+                            <div className="flex items-start justify-between gap-4 flex-wrap">
+                              <div className="flex-1 min-w-[260px]">
+                                <div className="flex items-center gap-2 mb-1.5">
+                                  <span className="px-2 py-0.5 rounded text-xs font-semibold bg-blue-500/20 text-blue-300">{match.league}</span>
+                                  <span className="text-xs text-gray-500">
+                                    {new Date(match.startTime).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                                  </span>
+                                  {match.confidence && (
+                                    <span className={`px-2 py-0.5 rounded text-xs font-semibold uppercase ${
+                                      match.confidence === 'high' ? 'bg-green-500/20 text-green-400' :
+                                      match.confidence === 'medium' ? 'bg-yellow-500/20 text-yellow-400' :
+                                      'bg-gray-500/20 text-gray-400'
+                                    }`}>{match.confidence}</span>
+                                  )}
+                                </div>
+                                <div className="text-white font-semibold mb-1">
+                                  {match.homeTeam} <span className="text-gray-500">vs</span> {match.awayTeam}
+                                </div>
+                                {match.reasoning && (
+                                  <div className="text-xs text-gray-400 leading-relaxed">{match.reasoning}</div>
+                                )}
+                              </div>
+                              <div className="flex gap-3 items-center shrink-0">
+                                {match.aiProbability != null && (
+                                  <div className="text-center">
+                                    <div className="text-xs text-gray-500 mb-1">AI Prob</div>
+                                    <div className={`text-lg font-bold ${match.aiProbability >= 55 ? 'text-blue-400' : 'text-gray-400'}`}>
+                                      {match.aiProbability}%
+                                    </div>
+                                  </div>
+                                )}
+                                {match.marketOdd != null && (
+                                  <div className="text-center">
+                                    <div className="text-xs text-gray-500 mb-1">Odds</div>
+                                    <div className="text-lg font-bold text-gray-300">{typeof match.marketOdd === 'number' ? match.marketOdd.toFixed(2) : match.marketOdd}</div>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-20">
+                      <div className="text-6xl mb-4">🎯</div>
+                      <h3 className="text-2xl font-bold text-white mb-3">No Matches Found Today</h3>
+                      <p className="text-gray-400 max-w-md mx-auto text-sm">
+                        No tennis matches were found for analysis today. Check back tomorrow!
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
