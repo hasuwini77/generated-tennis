@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "1323",
+      "date": "2026-02-21",
+      "matchTime": "2026-02-22T04:00:00.000Z",
+      "league": "ATP",
+      "homeTeam": "Tommy Paul",
+      "awayTeam": "Learner Tien",
+      "outcome": "Tommy Paul",
+      "odds": 2,
+      "expectedValue": 10,
+      "confidence": "medium",
+      "reasoning": "Tommy Paul, being a more recognized name in the ATP, might have a slight advantage over Learner Tien, especially if considering general ranking trends. However, without recent form, it's cautious to not overstate this. VALUE: Paul's experience is the slight differentiator.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-21T15:15:16.411Z"
+    },
+    {
       "id": "4679ea46ac0b2a482cff63edaec8f0ab",
       "date": "2026-02-13",
       "matchTime": "2026-02-13T08:00:00Z",
@@ -138,10 +155,10 @@
     }
   ],
   "stats": {
-    "totalBets": 8,
+    "totalBets": 9,
     "wins": 3,
     "losses": 3,
-    "pending": 2,
+    "pending": 3,
     "totalROI": 9.38,
     "winRate": 50
   },

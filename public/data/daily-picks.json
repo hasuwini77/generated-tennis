@@ -1,28 +1,696 @@
 {
-  "timestamp": "2026-02-21T06:20:25.422Z",
+  "timestamp": "2026-02-21T15:16:22.207Z",
   "scanDateCET": "2026-02-21",
   "scanDateET": "2/21/2026",
-  "scanTimeCET": "2026-02-21 07:20:25",
+  "scanTimeCET": "2026-02-21 16:16:22",
   "leagueStats": {
     "atp": {
-      "hasGames": false,
-      "gamesFound": 0
+      "hasGames": true,
+      "gamesFound": 10
     },
     "wta": {
-      "hasGames": false,
-      "gamesFound": 0
+      "hasGames": true,
+      "gamesFound": 10
     }
   },
   "summary": {
-    "totalGamesAnalyzed": 0,
-    "valueBetsFound": 0,
+    "totalGamesAnalyzed": 20,
+    "valueBetsFound": 12,
     "safeBetsFound": 0,
-    "hasBetOfTheDay": false,
-    "avgEV": 0
+    "hasBetOfTheDay": true,
+    "avgEV": 5
   },
-  "betOfTheDay": null,
-  "featuredBets": [],
-  "allBets": [],
+  "betOfTheDay": {
+    "id": "1323",
+    "league": "ATP",
+    "homeTeam": "Tommy Paul",
+    "awayTeam": "Learner Tien",
+    "startTime": "2026-02-22T04:00:00.000Z",
+    "startTimeFormatted": "Feb 22, 05:00",
+    "marketOdd": 2,
+    "marketProb": 50,
+    "markets": [
+      {
+        "type": "h2h",
+        "outcome": "Tommy Paul",
+        "odds": 2,
+        "impliedProb": 50,
+        "expectedValue": 10,
+        "aiProbability": 55,
+        "reasoning": "Tommy Paul has a higher ranking and potentially more experience than Learner Tien, which could give him an edge. However, without recent form data, it's cautious to significantly favor him. VALUE: Paul's experience might be undervalued, but cautiously optimistic.",
+        "confidence": "medium"
+      }
+    ],
+    "homeForm": "No recent matches",
+    "awayForm": "No recent matches",
+    "formData": {},
+    "aiProbability": 55,
+    "reasoning": "Tommy Paul has a higher ranking and potentially more experience than Learner Tien, which could give him an edge. However, without recent form data, it's cautious to significantly favor him. VALUE: Paul's experience might be undervalued, but cautiously optimistic.",
+    "confidence": "medium",
+    "expectedValue": 10,
+    "evTier": {
+      "min": 10,
+      "max": null,
+      "label": "Sick Edge",
+      "emoji": "🔥",
+      "color": "red",
+      "tier": "SICK"
+    },
+    "score": 84.5
+  },
+  "featuredBets": [
+    {
+      "id": "1323",
+      "league": "ATP",
+      "homeTeam": "Tommy Paul",
+      "awayTeam": "Learner Tien",
+      "startTime": "2026-02-22T04:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 05:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Tommy Paul",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 10,
+          "aiProbability": 55,
+          "reasoning": "Tommy Paul has a higher ranking and potentially more experience than Learner Tien, which could give him an edge. However, without recent form data, it's cautious to significantly favor him. VALUE: Paul's experience might be undervalued, but cautiously optimistic.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 55,
+      "reasoning": "Tommy Paul has a higher ranking and potentially more experience than Learner Tien, which could give him an edge. However, without recent form data, it's cautious to significantly favor him. VALUE: Paul's experience might be undervalued, but cautiously optimistic.",
+      "confidence": "medium",
+      "expectedValue": 10,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1393",
+      "league": "ATP",
+      "homeTeam": "Jan-Lennard Struff",
+      "awayTeam": "Otto Virtanen",
+      "startTime": "2026-02-22T09:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 10:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Jan-Lennard Struff",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Jan-Lennard Struff might have a slight advantage due to his experience, but without recent form data for both him and Otto Virtanen, it's hard to confidently back either. The market odds are reflective of the uncertainty. VALUE: Potential for Struff to outperform based on experience, but cautious due to lack of data.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Jan-Lennard Struff might have a slight advantage due to his experience, but without recent form data for both him and Otto Virtanen, it's hard to confidently back either. The market odds are reflective of the uncertainty. VALUE: Potential for Struff to outperform based on experience, but cautious due to lack of data.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1372",
+      "league": "ATP",
+      "homeTeam": "Bernard Tomic",
+      "awayTeam": "Nicolas Mejia",
+      "startTime": "2026-02-22T03:30:00.000Z",
+      "startTimeFormatted": "Feb 22, 04:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Bernard Tomic",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Bernard Tomic has more experience than Nicolas Mejia, which could be an advantage. However, without recent form, it's hard to confidently back Tomic. The market odds seem to reflect this uncertainty. VALUE: Tomic's experience might be a factor, but cautiously due to lack of data.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Bernard Tomic has more experience than Nicolas Mejia, which could be an advantage. However, without recent form, it's hard to confidently back Tomic. The market odds seem to reflect this uncertainty. VALUE: Tomic's experience might be a factor, but cautiously due to lack of data.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "927",
+      "league": "WTA",
+      "homeTeam": "Claire Liu",
+      "awayTeam": "Himeno Sakatsume",
+      "startTime": "2026-02-21T23:30:00.000Z",
+      "startTimeFormatted": "Feb 22, 00:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Claire Liu",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Claire Liu has a potential advantage over Himeno Sakatsume based on ranking and experience, but without recent form, it's cautious to back her strongly. VALUE: Liu's experience might be undervalued, but cautiously optimistic.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Claire Liu has a potential advantage over Himeno Sakatsume based on ranking and experience, but without recent form, it's cautious to back her strongly. VALUE: Liu's experience might be undervalued, but cautiously optimistic.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1395",
+      "league": "ATP",
+      "homeTeam": "Pablo Carreno-Busta",
+      "awayTeam": "Luca Nardi",
+      "startTime": "2026-02-22T10:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 11:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Pablo Carreno-Busta",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Given the lack of recent form data for both Pablo Carreno-Busta and Luca Nardi, it's challenging to significantly deviate from market odds. However, considering Carreno-Busta's generally higher ranking and potential experience advantage, there might be a slight edge, but it's minimal. VALUE: Slight favorite with a tight margin.",
+          "confidence": "low"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Given the lack of recent form data for both Pablo Carreno-Busta and Luca Nardi, it's challenging to significantly deviate from market odds. However, considering Carreno-Busta's generally higher ranking and potential experience advantage, there might be a slight edge, but it's minimal. VALUE: Slight favorite with a tight margin.",
+      "confidence": "low",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    }
+  ],
+  "allBets": [
+    {
+      "id": "1323",
+      "league": "ATP",
+      "homeTeam": "Tommy Paul",
+      "awayTeam": "Learner Tien",
+      "startTime": "2026-02-22T04:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 05:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Tommy Paul",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 10,
+          "aiProbability": 55,
+          "reasoning": "Tommy Paul has a higher ranking and potentially more experience than Learner Tien, which could give him an edge. However, without recent form data, it's cautious to significantly favor him. VALUE: Paul's experience might be undervalued, but cautiously optimistic.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 55,
+      "reasoning": "Tommy Paul has a higher ranking and potentially more experience than Learner Tien, which could give him an edge. However, without recent form data, it's cautious to significantly favor him. VALUE: Paul's experience might be undervalued, but cautiously optimistic.",
+      "confidence": "medium",
+      "expectedValue": 10,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1393",
+      "league": "ATP",
+      "homeTeam": "Jan-Lennard Struff",
+      "awayTeam": "Otto Virtanen",
+      "startTime": "2026-02-22T09:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 10:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Jan-Lennard Struff",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Jan-Lennard Struff might have a slight advantage due to his experience, but without recent form data for both him and Otto Virtanen, it's hard to confidently back either. The market odds are reflective of the uncertainty. VALUE: Potential for Struff to outperform based on experience, but cautious due to lack of data.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Jan-Lennard Struff might have a slight advantage due to his experience, but without recent form data for both him and Otto Virtanen, it's hard to confidently back either. The market odds are reflective of the uncertainty. VALUE: Potential for Struff to outperform based on experience, but cautious due to lack of data.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1372",
+      "league": "ATP",
+      "homeTeam": "Bernard Tomic",
+      "awayTeam": "Nicolas Mejia",
+      "startTime": "2026-02-22T03:30:00.000Z",
+      "startTimeFormatted": "Feb 22, 04:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Bernard Tomic",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Bernard Tomic has more experience than Nicolas Mejia, which could be an advantage. However, without recent form, it's hard to confidently back Tomic. The market odds seem to reflect this uncertainty. VALUE: Tomic's experience might be a factor, but cautiously due to lack of data.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Bernard Tomic has more experience than Nicolas Mejia, which could be an advantage. However, without recent form, it's hard to confidently back Tomic. The market odds seem to reflect this uncertainty. VALUE: Tomic's experience might be a factor, but cautiously due to lack of data.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "927",
+      "league": "WTA",
+      "homeTeam": "Claire Liu",
+      "awayTeam": "Himeno Sakatsume",
+      "startTime": "2026-02-21T23:30:00.000Z",
+      "startTimeFormatted": "Feb 22, 00:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Claire Liu",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Claire Liu has a potential advantage over Himeno Sakatsume based on ranking and experience, but without recent form, it's cautious to back her strongly. VALUE: Liu's experience might be undervalued, but cautiously optimistic.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Claire Liu has a potential advantage over Himeno Sakatsume based on ranking and experience, but without recent form, it's cautious to back her strongly. VALUE: Liu's experience might be undervalued, but cautiously optimistic.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1395",
+      "league": "ATP",
+      "homeTeam": "Pablo Carreno-Busta",
+      "awayTeam": "Luca Nardi",
+      "startTime": "2026-02-22T10:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 11:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Pablo Carreno-Busta",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Given the lack of recent form data for both Pablo Carreno-Busta and Luca Nardi, it's challenging to significantly deviate from market odds. However, considering Carreno-Busta's generally higher ranking and potential experience advantage, there might be a slight edge, but it's minimal. VALUE: Slight favorite with a tight margin.",
+          "confidence": "low"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Given the lack of recent form data for both Pablo Carreno-Busta and Luca Nardi, it's challenging to significantly deviate from market odds. However, considering Carreno-Busta's generally higher ranking and potential experience advantage, there might be a slight edge, but it's minimal. VALUE: Slight favorite with a tight margin.",
+      "confidence": "low",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "1398",
+      "league": "ATP",
+      "homeTeam": "Quentin Halys",
+      "awayTeam": "Alexander Shevchenko",
+      "startTime": "2026-02-22T09:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 10:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Quentin Halys",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Quentin Halys and Alexander Shevchenko both lack recent matches, making their current form a mystery. Given this, the market odds of 50% seem reasonable for both players. VALUE: No clear value without recent form data.",
+          "confidence": "low"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Quentin Halys and Alexander Shevchenko both lack recent matches, making their current form a mystery. Given this, the market odds of 50% seem reasonable for both players. VALUE: No clear value without recent form data.",
+      "confidence": "low",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "1375",
+      "league": "ATP",
+      "homeTeam": "Patrick Kypson",
+      "awayTeam": "Stefan Kozlov",
+      "startTime": "2026-02-22T05:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 06:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Patrick Kypson",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Patrick Kypson and Stefan Kozlov are evenly matched according to market odds, and without recent form, it's challenging to argue against these odds. VALUE: Potential for Kypson to have a slight edge, but data is needed to confirm.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Patrick Kypson and Stefan Kozlov are evenly matched according to market odds, and without recent form, it's challenging to argue against these odds. VALUE: Potential for Kypson to have a slight edge, but data is needed to confirm.",
+      "confidence": "medium",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "1846",
+      "league": "ATP",
+      "homeTeam": "Daniel Milavsky",
+      "awayTeam": "Gavin Young",
+      "startTime": "2026-02-22T04:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 05:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Daniel Milavsky",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Daniel Milavsky and Gavin Young are closely matched according to market odds, and lacking recent form data, it's reasonable to stick close to these odds. VALUE: Potential for Milavsky to have a slight advantage, but more data is needed.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Daniel Milavsky and Gavin Young are closely matched according to market odds, and lacking recent form data, it's reasonable to stick close to these odds. VALUE: Potential for Milavsky to have a slight advantage, but more data is needed.",
+      "confidence": "medium",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "918",
+      "league": "WTA",
+      "homeTeam": "Diane Parry",
+      "awayTeam": "Heather Watson",
+      "startTime": "2026-02-22T01:00:00.000Z",
+      "startTimeFormatted": "Feb 22, 02:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Diane Parry",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Diane Parry and Heather Watson are closely matched, but without recent form data, it's difficult to argue against the market odds. VALUE: Potential for Parry to have a slight edge, but more information is needed.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Diane Parry and Heather Watson are closely matched, but without recent form data, it's difficult to argue against the market odds. VALUE: Potential for Parry to have a slight edge, but more information is needed.",
+      "confidence": "medium",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "932",
+      "league": "WTA",
+      "homeTeam": "Joanna Garland",
+      "awayTeam": "Xiaodi You",
+      "startTime": "2026-02-21T23:30:00.000Z",
+      "startTimeFormatted": "Feb 22, 00:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Joanna Garland",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Joanna Garland and Xiaodi You are closely matched according to market odds, and lacking recent form data, it's reasonable to stick close to these odds. VALUE: Potential for Garland to have a slight advantage, but more data is needed.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Joanna Garland and Xiaodi You are closely matched according to market odds, and lacking recent form data, it's reasonable to stick close to these odds. VALUE: Potential for Garland to have a slight advantage, but more data is needed.",
+      "confidence": "medium",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "1002",
+      "league": "WTA",
+      "homeTeam": "Alina Charaeva",
+      "awayTeam": "Darja Vidmanova",
+      "startTime": "2026-02-21T23:30:00.000Z",
+      "startTimeFormatted": "Feb 22, 00:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Alina Charaeva",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Alina Charaeva and Darja Vidmanova are evenly matched, but without recent form data, it's difficult to argue against the market odds. VALUE: Potential for Charaeva to have a slight edge, but more information is needed.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Alina Charaeva and Darja Vidmanova are evenly matched, but without recent form data, it's difficult to argue against the market odds. VALUE: Potential for Charaeva to have a slight edge, but more information is needed.",
+      "confidence": "medium",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "1427",
+      "league": "WTA",
+      "homeTeam": "Kristina Liutova",
+      "awayTeam": "Julieta Pareja",
+      "startTime": "2026-02-21T23:30:00.000Z",
+      "startTimeFormatted": "Feb 22, 00:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Kristina Liutova",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Kristina Liutova and Julieta Pareja are closely matched according to market odds, and lacking recent form data, it's reasonable to stick close to these odds. VALUE: Potential for Liutova to have a slight advantage, but more data is needed.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Kristina Liutova and Julieta Pareja are closely matched according to market odds, and lacking recent form data, it's reasonable to stick close to these odds. VALUE: Potential for Liutova to have a slight advantage, but more data is needed.",
+      "confidence": "medium",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    }
+  ],
   "safeBets": [],
   "allSafeBets": [],
   "metadata": {
