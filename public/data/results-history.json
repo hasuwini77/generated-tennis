@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "1681",
+      "date": "2026-02-22",
+      "matchTime": "2026-02-23T12:00:00.000Z",
+      "league": "ATP",
+      "homeTeam": "Mikhail Kukushkin",
+      "awayTeam": "George Loffhagen",
+      "outcome": "Mikhail Kukushkin",
+      "odds": 2,
+      "expectedValue": 10,
+      "confidence": "medium",
+      "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-22T06:23:16.388Z"
+    },
+    {
       "id": "1323",
       "date": "2026-02-21",
       "matchTime": "2026-02-22T04:00:00.000Z",
@@ -155,10 +172,10 @@
     }
   ],
   "stats": {
-    "totalBets": 9,
+    "totalBets": 10,
     "wins": 3,
     "losses": 3,
-    "pending": 3,
+    "pending": 4,
     "totalROI": 9.38,
     "winRate": 50
   },

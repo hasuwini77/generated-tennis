@@ -1,53 +1,53 @@
 {
-  "timestamp": "2026-02-21T15:19:30.030Z",
-  "scanDateCET": "2026-02-21",
-  "scanDateET": "2/21/2026",
-  "scanTimeCET": "2026-02-21 16:19:30",
+  "timestamp": "2026-02-22T06:23:16.386Z",
+  "scanDateCET": "2026-02-22",
+  "scanDateET": "2/22/2026",
+  "scanTimeCET": "2026-02-22 07:23:16",
   "leagueStats": {
     "atp": {
       "hasGames": true,
       "gamesFound": 10
     },
     "wta": {
-      "hasGames": true,
-      "gamesFound": 10
+      "hasGames": false,
+      "gamesFound": 0
     }
   },
   "summary": {
-    "totalGamesAnalyzed": 20,
-    "valueBetsFound": 11,
+    "totalGamesAnalyzed": 10,
+    "valueBetsFound": 2,
     "safeBetsFound": 0,
     "hasBetOfTheDay": true,
-    "avgEV": 7.6
+    "avgEV": 7
   },
   "betOfTheDay": {
-    "id": "1323",
+    "id": "1681",
     "league": "ATP",
-    "homeTeam": "Tommy Paul",
-    "awayTeam": "Learner Tien",
-    "startTime": "2026-02-22T04:00:00.000Z",
-    "startTimeFormatted": "Feb 22, 05:00",
+    "homeTeam": "Mikhail Kukushkin",
+    "awayTeam": "George Loffhagen",
+    "startTime": "2026-02-23T12:00:00.000Z",
+    "startTimeFormatted": "Feb 23, 13:00",
     "marketOdd": 2,
     "marketProb": 50,
     "markets": [
       {
         "type": "h2h",
-        "outcome": "Tommy Paul",
+        "outcome": "Mikhail Kukushkin",
         "odds": 2,
         "impliedProb": 50,
-        "expectedValue": 16,
-        "aiProbability": 58,
-        "reasoning": "Tommy Paul is generally considered a stronger player than Learner Tien, especially in early rounds where experience can play a significant role. This might make Paul a value bet at current odds. VALUE: Clear favorite with experience advantage.",
+        "expectedValue": 10,
+        "aiProbability": 55,
+        "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
         "confidence": "medium"
       }
     ],
     "homeForm": "No recent matches",
     "awayForm": "No recent matches",
     "formData": {},
-    "aiProbability": 58,
-    "reasoning": "Tommy Paul is generally considered a stronger player than Learner Tien, especially in early rounds where experience can play a significant role. This might make Paul a value bet at current odds. VALUE: Clear favorite with experience advantage.",
+    "aiProbability": 55,
+    "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
     "confidence": "medium",
-    "expectedValue": 16,
+    "expectedValue": 10,
     "evTier": {
       "min": 10,
       "max": null,
@@ -56,101 +56,27 @@
       "color": "red",
       "tier": "SICK"
     },
-    "score": 86.6
+    "score": 84.5
   },
   "featuredBets": [
     {
-      "id": "1323",
+      "id": "1681",
       "league": "ATP",
-      "homeTeam": "Tommy Paul",
-      "awayTeam": "Learner Tien",
-      "startTime": "2026-02-22T04:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 05:00",
+      "homeTeam": "Mikhail Kukushkin",
+      "awayTeam": "George Loffhagen",
+      "startTime": "2026-02-23T12:00:00.000Z",
+      "startTimeFormatted": "Feb 23, 13:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Tommy Paul",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 16,
-          "aiProbability": 58,
-          "reasoning": "Tommy Paul is generally considered a stronger player than Learner Tien, especially in early rounds where experience can play a significant role. This might make Paul a value bet at current odds. VALUE: Clear favorite with experience advantage.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 58,
-      "reasoning": "Tommy Paul is generally considered a stronger player than Learner Tien, especially in early rounds where experience can play a significant role. This might make Paul a value bet at current odds. VALUE: Clear favorite with experience advantage.",
-      "confidence": "medium",
-      "expectedValue": 16,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "927",
-      "league": "WTA",
-      "homeTeam": "Claire Liu",
-      "awayTeam": "Himeno Sakatsume",
-      "startTime": "2026-02-21T23:30:00.000Z",
-      "startTimeFormatted": "Feb 22, 00:30",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Claire Liu",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 12,
-          "aiProbability": 56,
-          "reasoning": "Claire Liu has had more consistent performances in the past and might have an edge over Himeno Sakatsume, especially if Liu's experience on hard courts proves beneficial. VALUE: Potential value on Liu due to experience and surface advantage.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 56,
-      "reasoning": "Claire Liu has had more consistent performances in the past and might have an edge over Himeno Sakatsume, especially if Liu's experience on hard courts proves beneficial. VALUE: Potential value on Liu due to experience and surface advantage.",
-      "confidence": "medium",
-      "expectedValue": 12,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1393",
-      "league": "ATP",
-      "homeTeam": "Jan-Lennard Struff",
-      "awayTeam": "Otto Virtanen",
-      "startTime": "2026-02-22T09:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 10:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Jan-Lennard Struff",
+          "outcome": "Mikhail Kukushkin",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Jan-Lennard Struff has had more consistent performances in the past, which could give him an edge over Otto Virtanen, especially if Struff's experience on various surfaces proves beneficial. However, without recent form, this advantage is speculative. VALUE: Potential value on Struff due to experience.",
+          "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
           "confidence": "medium"
         }
       ],
@@ -158,7 +84,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Jan-Lennard Struff has had more consistent performances in the past, which could give him an edge over Otto Virtanen, especially if Struff's experience on various surfaces proves beneficial. However, without recent form, this advantage is speculative. VALUE: Potential value on Struff due to experience.",
+      "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -171,173 +97,62 @@
       }
     },
     {
-      "id": "918",
-      "league": "WTA",
-      "homeTeam": "Diane Parry",
-      "awayTeam": "Heather Watson",
-      "startTime": "2026-02-22T01:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 02:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Diane Parry",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 10,
-          "aiProbability": 55,
-          "reasoning": "Diane Parry might have a slight advantage over Heather Watson based on potential recent form and surface suitability, but without data, this is speculative. VALUE: Potential slight value on Parry.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 55,
-      "reasoning": "Diane Parry might have a slight advantage over Heather Watson based on potential recent form and surface suitability, but without data, this is speculative. VALUE: Potential slight value on Parry.",
-      "confidence": "medium",
-      "expectedValue": 10,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1372",
+      "id": "1380",
       "league": "ATP",
-      "homeTeam": "Bernard Tomic",
-      "awayTeam": "Nicolas Mejia",
-      "startTime": "2026-02-22T03:30:00.000Z",
-      "startTimeFormatted": "Feb 22, 04:30",
+      "homeTeam": "Dusan Lajovic",
+      "awayTeam": "Yannick Hanfmann",
+      "startTime": "2026-02-23T17:00:00.000Z",
+      "startTimeFormatted": "Feb 23, 18:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Bernard Tomic",
+          "outcome": "Dusan Lajovic",
           "odds": 2,
           "impliedProb": 50,
-          "expectedValue": 8,
-          "aiProbability": 54,
-          "reasoning": "Bernard Tomic has more experience and a potentially stronger game than Nicolas Mejia, which could give him an edge in this match. However, Tomic's form can be unpredictable. VALUE: Potential value on Tomic due to experience.",
-          "confidence": "medium"
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Given the lack of recent form for both Dusan Lajovic and Yannick Hanfmann, it's challenging to deviate significantly from market odds. However, Lajovic has historically performed slightly better on ATP tours, suggesting a minimal edge. VALUE: Slight favorite due to ATP experience.",
+          "confidence": "low"
         }
       ],
       "homeForm": "No recent matches",
       "awayForm": "No recent matches",
       "formData": {},
-      "aiProbability": 54,
-      "reasoning": "Bernard Tomic has more experience and a potentially stronger game than Nicolas Mejia, which could give him an edge in this match. However, Tomic's form can be unpredictable. VALUE: Potential value on Tomic due to experience.",
-      "confidence": "medium",
-      "expectedValue": 8,
+      "aiProbability": 52,
+      "reasoning": "Given the lack of recent form for both Dusan Lajovic and Yannick Hanfmann, it's challenging to deviate significantly from market odds. However, Lajovic has historically performed slightly better on ATP tours, suggesting a minimal edge. VALUE: Slight favorite due to ATP experience.",
+      "confidence": "low",
+      "expectedValue": 4,
       "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
       }
     }
   ],
   "allBets": [
     {
-      "id": "1323",
+      "id": "1681",
       "league": "ATP",
-      "homeTeam": "Tommy Paul",
-      "awayTeam": "Learner Tien",
-      "startTime": "2026-02-22T04:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 05:00",
+      "homeTeam": "Mikhail Kukushkin",
+      "awayTeam": "George Loffhagen",
+      "startTime": "2026-02-23T12:00:00.000Z",
+      "startTimeFormatted": "Feb 23, 13:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Tommy Paul",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 16,
-          "aiProbability": 58,
-          "reasoning": "Tommy Paul is generally considered a stronger player than Learner Tien, especially in early rounds where experience can play a significant role. This might make Paul a value bet at current odds. VALUE: Clear favorite with experience advantage.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 58,
-      "reasoning": "Tommy Paul is generally considered a stronger player than Learner Tien, especially in early rounds where experience can play a significant role. This might make Paul a value bet at current odds. VALUE: Clear favorite with experience advantage.",
-      "confidence": "medium",
-      "expectedValue": 16,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "927",
-      "league": "WTA",
-      "homeTeam": "Claire Liu",
-      "awayTeam": "Himeno Sakatsume",
-      "startTime": "2026-02-21T23:30:00.000Z",
-      "startTimeFormatted": "Feb 22, 00:30",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Claire Liu",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 12,
-          "aiProbability": 56,
-          "reasoning": "Claire Liu has had more consistent performances in the past and might have an edge over Himeno Sakatsume, especially if Liu's experience on hard courts proves beneficial. VALUE: Potential value on Liu due to experience and surface advantage.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 56,
-      "reasoning": "Claire Liu has had more consistent performances in the past and might have an edge over Himeno Sakatsume, especially if Liu's experience on hard courts proves beneficial. VALUE: Potential value on Liu due to experience and surface advantage.",
-      "confidence": "medium",
-      "expectedValue": 12,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1393",
-      "league": "ATP",
-      "homeTeam": "Jan-Lennard Struff",
-      "awayTeam": "Otto Virtanen",
-      "startTime": "2026-02-22T09:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 10:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Jan-Lennard Struff",
+          "outcome": "Mikhail Kukushkin",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Jan-Lennard Struff has had more consistent performances in the past, which could give him an edge over Otto Virtanen, especially if Struff's experience on various surfaces proves beneficial. However, without recent form, this advantage is speculative. VALUE: Potential value on Struff due to experience.",
+          "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
           "confidence": "medium"
         }
       ],
@@ -345,7 +160,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Jan-Lennard Struff has had more consistent performances in the past, which could give him an edge over Otto Virtanen, especially if Struff's experience on various surfaces proves beneficial. However, without recent form, this advantage is speculative. VALUE: Potential value on Struff due to experience.",
+      "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -358,208 +173,23 @@
       }
     },
     {
-      "id": "918",
-      "league": "WTA",
-      "homeTeam": "Diane Parry",
-      "awayTeam": "Heather Watson",
-      "startTime": "2026-02-22T01:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 02:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Diane Parry",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 10,
-          "aiProbability": 55,
-          "reasoning": "Diane Parry might have a slight advantage over Heather Watson based on potential recent form and surface suitability, but without data, this is speculative. VALUE: Potential slight value on Parry.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 55,
-      "reasoning": "Diane Parry might have a slight advantage over Heather Watson based on potential recent form and surface suitability, but without data, this is speculative. VALUE: Potential slight value on Parry.",
-      "confidence": "medium",
-      "expectedValue": 10,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1372",
+      "id": "1380",
       "league": "ATP",
-      "homeTeam": "Bernard Tomic",
-      "awayTeam": "Nicolas Mejia",
-      "startTime": "2026-02-22T03:30:00.000Z",
-      "startTimeFormatted": "Feb 22, 04:30",
+      "homeTeam": "Dusan Lajovic",
+      "awayTeam": "Yannick Hanfmann",
+      "startTime": "2026-02-23T17:00:00.000Z",
+      "startTimeFormatted": "Feb 23, 18:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Bernard Tomic",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 8,
-          "aiProbability": 54,
-          "reasoning": "Bernard Tomic has more experience and a potentially stronger game than Nicolas Mejia, which could give him an edge in this match. However, Tomic's form can be unpredictable. VALUE: Potential value on Tomic due to experience.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 54,
-      "reasoning": "Bernard Tomic has more experience and a potentially stronger game than Nicolas Mejia, which could give him an edge in this match. However, Tomic's form can be unpredictable. VALUE: Potential value on Tomic due to experience.",
-      "confidence": "medium",
-      "expectedValue": 8,
-      "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
-      }
-    },
-    {
-      "id": "1375",
-      "league": "ATP",
-      "homeTeam": "Patrick Kypson",
-      "awayTeam": "Stefan Kozlov",
-      "startTime": "2026-02-22T05:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 06:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Patrick Kypson",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 6,
-          "aiProbability": 53,
-          "reasoning": "Patrick Kypson might have a slight advantage over Stefan Kozlov if Kypson's past performances on similar surfaces are considered. However, without recent data, this is speculative. VALUE: Potential slight value on Kypson.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 53,
-      "reasoning": "Patrick Kypson might have a slight advantage over Stefan Kozlov if Kypson's past performances on similar surfaces are considered. However, without recent data, this is speculative. VALUE: Potential slight value on Kypson.",
-      "confidence": "medium",
-      "expectedValue": 6,
-      "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
-      }
-    },
-    {
-      "id": "1002",
-      "league": "WTA",
-      "homeTeam": "Alina Charaeva",
-      "awayTeam": "Darja Vidmanova",
-      "startTime": "2026-02-21T23:30:00.000Z",
-      "startTimeFormatted": "Feb 22, 00:30",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Alina Charaeva",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 6,
-          "aiProbability": 53,
-          "reasoning": "Alina Charaeva might have a slight edge over Darja Vidmanova based on speculative recent form and surface suitability, but without concrete data, this is uncertain. VALUE: Potential speculative value on Charaeva.",
-          "confidence": "low"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 53,
-      "reasoning": "Alina Charaeva might have a slight edge over Darja Vidmanova based on speculative recent form and surface suitability, but without concrete data, this is uncertain. VALUE: Potential speculative value on Charaeva.",
-      "confidence": "low",
-      "expectedValue": 6,
-      "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
-      }
-    },
-    {
-      "id": "1395",
-      "league": "ATP",
-      "homeTeam": "Pablo Carreno-Busta",
-      "awayTeam": "Luca Nardi",
-      "startTime": "2026-02-22T10:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 11:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Pablo Carreno-Busta",
+          "outcome": "Dusan Lajovic",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Given the lack of recent form data for both Pablo Carreno-Busta and Luca Nardi, and considering this is an early round match, the market odds seem reasonable. However, Carreno-Busta's overall career statistics and experience might give him a slight edge, making this a potential value bet at current odds. VALUE: Slight favorite with experience.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 52,
-      "reasoning": "Given the lack of recent form data for both Pablo Carreno-Busta and Luca Nardi, and considering this is an early round match, the market odds seem reasonable. However, Carreno-Busta's overall career statistics and experience might give him a slight edge, making this a potential value bet at current odds. VALUE: Slight favorite with experience.",
-      "confidence": "medium",
-      "expectedValue": 4,
-      "evTier": {
-        "min": 3,
-        "max": 6,
-        "label": "Strong Edge",
-        "emoji": "💪",
-        "color": "blue",
-        "tier": "STRONG"
-      }
-    },
-    {
-      "id": "1377",
-      "league": "ATP",
-      "homeTeam": "Juan Alejandro Hernandez",
-      "awayTeam": "Chak Lam Coleman Wong",
-      "startTime": "2026-02-22T05:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 06:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Juan Alejandro Hernandez",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 4,
-          "aiProbability": 52,
-          "reasoning": "Juan Alejandro Hernandez vs Chak Lam Coleman Wong is another match where both players lack recent form, making it a challenging prediction. Hernandez might have a slight edge based on potential surface suitability, but this is uncertain. VALUE: Speculative value on Hernandez.",
+          "reasoning": "Given the lack of recent form for both Dusan Lajovic and Yannick Hanfmann, it's challenging to deviate significantly from market odds. However, Lajovic has historically performed slightly better on ATP tours, suggesting a minimal edge. VALUE: Slight favorite due to ATP experience.",
           "confidence": "low"
         }
       ],
@@ -567,81 +197,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Juan Alejandro Hernandez vs Chak Lam Coleman Wong is another match where both players lack recent form, making it a challenging prediction. Hernandez might have a slight edge based on potential surface suitability, but this is uncertain. VALUE: Speculative value on Hernandez.",
-      "confidence": "low",
-      "expectedValue": 4,
-      "evTier": {
-        "min": 3,
-        "max": 6,
-        "label": "Strong Edge",
-        "emoji": "💪",
-        "color": "blue",
-        "tier": "STRONG"
-      }
-    },
-    {
-      "id": "922",
-      "league": "WTA",
-      "homeTeam": "Victoria Jimenez Kasintseva",
-      "awayTeam": "Katarina Jokic",
-      "startTime": "2026-02-22T01:00:00.000Z",
-      "startTimeFormatted": "Feb 22, 02:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Victoria Jimenez Kasintseva",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 4,
-          "aiProbability": 52,
-          "reasoning": "Victoria Jimenez Kasintseva vs Katarina Jokic is evenly matched, with both players lacking recent form data. The odds are reflective of this uncertainty, making it a challenging bet. VALUE: None apparent.",
-          "confidence": "low"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 52,
-      "reasoning": "Victoria Jimenez Kasintseva vs Katarina Jokic is evenly matched, with both players lacking recent form data. The odds are reflective of this uncertainty, making it a challenging bet. VALUE: None apparent.",
-      "confidence": "low",
-      "expectedValue": 4,
-      "evTier": {
-        "min": 3,
-        "max": 6,
-        "label": "Strong Edge",
-        "emoji": "💪",
-        "color": "blue",
-        "tier": "STRONG"
-      }
-    },
-    {
-      "id": "1427",
-      "league": "WTA",
-      "homeTeam": "Kristina Liutova",
-      "awayTeam": "Julieta Pareja",
-      "startTime": "2026-02-21T23:30:00.000Z",
-      "startTimeFormatted": "Feb 22, 00:30",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Kristina Liutova",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 4,
-          "aiProbability": 52,
-          "reasoning": "Kristina Liutova vs Julieta Pareja is another match where the lack of recent form data for both players makes the market odds reasonable but not particularly favorable to either side. VALUE: Potential slight lean towards Liutova based on speculative advantages.",
-          "confidence": "low"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 52,
-      "reasoning": "Kristina Liutova vs Julieta Pareja is another match where the lack of recent form data for both players makes the market odds reasonable but not particularly favorable to either side. VALUE: Potential slight lean towards Liutova based on speculative advantages.",
+      "reasoning": "Given the lack of recent form for both Dusan Lajovic and Yannick Hanfmann, it's challenging to deviate significantly from market odds. However, Lajovic has historically performed slightly better on ATP tours, suggesting a minimal edge. VALUE: Slight favorite due to ATP experience.",
       "confidence": "low",
       "expectedValue": 4,
       "evTier": {
