@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-22T06:23:16.386Z",
-  "scanDateCET": "2026-02-22",
-  "scanDateET": "2/22/2026",
-  "scanTimeCET": "2026-02-22 07:23:16",
+  "timestamp": "2026-02-23T06:34:41.398Z",
+  "scanDateCET": "2026-02-23",
+  "scanDateET": "2/23/2026",
+  "scanTimeCET": "2026-02-23 07:34:41",
   "leagueStats": {
     "atp": {
       "hasGames": true,
@@ -15,39 +15,39 @@
   },
   "summary": {
     "totalGamesAnalyzed": 10,
-    "valueBetsFound": 2,
+    "valueBetsFound": 6,
     "safeBetsFound": 0,
     "hasBetOfTheDay": true,
-    "avgEV": 7
+    "avgEV": 7.3
   },
   "betOfTheDay": {
-    "id": "1681",
+    "id": "1220",
     "league": "ATP",
-    "homeTeam": "Mikhail Kukushkin",
-    "awayTeam": "George Loffhagen",
-    "startTime": "2026-02-23T12:00:00.000Z",
-    "startTimeFormatted": "Feb 23, 13:00",
+    "homeTeam": "Sebastian Korda",
+    "awayTeam": "Mattia Bellucci",
+    "startTime": "2026-02-24T19:00:00.000Z",
+    "startTimeFormatted": "Feb 24, 20:00",
     "marketOdd": 2,
     "marketProb": 50,
     "markets": [
       {
         "type": "h2h",
-        "outcome": "Mikhail Kukushkin",
+        "outcome": "Sebastian Korda",
         "odds": 2,
         "impliedProb": 50,
-        "expectedValue": 10,
-        "aiProbability": 55,
-        "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
+        "expectedValue": 12,
+        "aiProbability": 56,
+        "reasoning": "Sebastian Korda has shown significant promise and has a strong hard court game, which could give him an edge over Mattia Bellucci. The market odds do not fully reflect Korda's potential advantage. VALUE: Korda is undervalued by the market, presenting a betting opportunity.",
         "confidence": "medium"
       }
     ],
     "homeForm": "No recent matches",
     "awayForm": "No recent matches",
     "formData": {},
-    "aiProbability": 55,
-    "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
+    "aiProbability": 56,
+    "reasoning": "Sebastian Korda has shown significant promise and has a strong hard court game, which could give him an edge over Mattia Bellucci. The market odds do not fully reflect Korda's potential advantage. VALUE: Korda is undervalued by the market, presenting a betting opportunity.",
     "confidence": "medium",
-    "expectedValue": 10,
+    "expectedValue": 12,
     "evTier": {
       "min": 10,
       "max": null,
@@ -56,27 +56,64 @@
       "color": "red",
       "tier": "SICK"
     },
-    "score": 84.5
+    "score": 85.2
   },
   "featuredBets": [
     {
-      "id": "1681",
+      "id": "1220",
       "league": "ATP",
-      "homeTeam": "Mikhail Kukushkin",
-      "awayTeam": "George Loffhagen",
-      "startTime": "2026-02-23T12:00:00.000Z",
-      "startTimeFormatted": "Feb 23, 13:00",
+      "homeTeam": "Sebastian Korda",
+      "awayTeam": "Mattia Bellucci",
+      "startTime": "2026-02-24T19:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 20:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Mikhail Kukushkin",
+          "outcome": "Sebastian Korda",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 12,
+          "aiProbability": 56,
+          "reasoning": "Sebastian Korda has shown significant promise and has a strong hard court game, which could give him an edge over Mattia Bellucci. The market odds do not fully reflect Korda's potential advantage. VALUE: Korda is undervalued by the market, presenting a betting opportunity.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 56,
+      "reasoning": "Sebastian Korda has shown significant promise and has a strong hard court game, which could give him an edge over Mattia Bellucci. The market odds do not fully reflect Korda's potential advantage. VALUE: Korda is undervalued by the market, presenting a betting opportunity.",
+      "confidence": "medium",
+      "expectedValue": 12,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1208",
+      "league": "ATP",
+      "homeTeam": "Alexander Zverev",
+      "awayTeam": "Corentin Moutet",
+      "startTime": "2026-02-24T19:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 20:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Alexander Zverev",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
+          "reasoning": "Alexander Zverev is generally considered a stronger player than Corentin Moutet, with better ranking and performance history. The market odds of 50% seem to undervalue Zverev slightly, given his overall career performance and potential on hard courts. VALUE: Zverev is undervalued by the market, presenting a potential betting opportunity.",
           "confidence": "medium"
         }
       ],
@@ -84,7 +121,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
+      "reasoning": "Alexander Zverev is generally considered a stronger player than Corentin Moutet, with better ranking and performance history. The market odds of 50% seem to undervalue Zverev slightly, given his overall career performance and potential on hard courts. VALUE: Zverev is undervalued by the market, presenting a potential betting opportunity.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -97,23 +134,97 @@
       }
     },
     {
-      "id": "1380",
+      "id": "1302",
       "league": "ATP",
-      "homeTeam": "Dusan Lajovic",
-      "awayTeam": "Yannick Hanfmann",
-      "startTime": "2026-02-23T17:00:00.000Z",
-      "startTimeFormatted": "Feb 23, 18:00",
+      "homeTeam": "Alejandro Tabilo",
+      "awayTeam": "Tomas Barrios Vera",
+      "startTime": "2026-02-24T16:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 17:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Dusan Lajovic",
+          "outcome": "Alejandro Tabilo",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 8,
+          "aiProbability": 54,
+          "reasoning": "Alejandro Tabilo has a strong game that can adapt to various surfaces, potentially giving him an edge over Tomas Barrios Vera. However, without recent form, it's cautious to not overestimate this advantage. The market odds slightly undervalue Tabilo. VALUE: Tabilo is slightly undervalued, but caution is advised due to the lack of recent data.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 54,
+      "reasoning": "Alejandro Tabilo has a strong game that can adapt to various surfaces, potentially giving him an edge over Tomas Barrios Vera. However, without recent form, it's cautious to not overestimate this advantage. The market odds slightly undervalue Tabilo. VALUE: Tabilo is slightly undervalued, but caution is advised due to the lack of recent data.",
+      "confidence": "medium",
+      "expectedValue": 8,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1212",
+      "league": "ATP",
+      "homeTeam": "Frances Tiafoe",
+      "awayTeam": "Nuno Borges",
+      "startTime": "2026-02-24T19:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 20:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Frances Tiafoe",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Frances Tiafoe has a strong record on hard courts and is generally considered to have an advantage over Nuno Borges in terms of experience and ranking. The market odds understate Tiafoe's chances slightly, given his historical performance. VALUE: Tiafoe is slightly undervalued, offering a potential betting opportunity.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Frances Tiafoe has a strong record on hard courts and is generally considered to have an advantage over Nuno Borges in terms of experience and ranking. The market odds understate Tiafoe's chances slightly, given his historical performance. VALUE: Tiafoe is slightly undervalued, offering a potential betting opportunity.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1206",
+      "league": "ATP",
+      "homeTeam": "James Duckworth",
+      "awayTeam": "Dalibor Svrcina",
+      "startTime": "2026-02-24T19:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 20:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "James Duckworth",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Given the lack of recent form for both Dusan Lajovic and Yannick Hanfmann, it's challenging to deviate significantly from market odds. However, Lajovic has historically performed slightly better on ATP tours, suggesting a minimal edge. VALUE: Slight favorite due to ATP experience.",
+          "reasoning": "Given the lack of recent form for both James Duckworth and Dalibor Svrcina, it's challenging to assess their current performance levels. However, Duckworth has historically been more consistent on hard courts. The market odds suggest a 50% chance for both, which seems reasonable without recent data. VALUE: No clear value, sticking close to market odds due to limited information.",
           "confidence": "low"
         }
       ],
@@ -121,7 +232,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Given the lack of recent form for both Dusan Lajovic and Yannick Hanfmann, it's challenging to deviate significantly from market odds. However, Lajovic has historically performed slightly better on ATP tours, suggesting a minimal edge. VALUE: Slight favorite due to ATP experience.",
+      "reasoning": "Given the lack of recent form for both James Duckworth and Dalibor Svrcina, it's challenging to assess their current performance levels. However, Duckworth has historically been more consistent on hard courts. The market odds suggest a 50% chance for both, which seems reasonable without recent data. VALUE: No clear value, sticking close to market odds due to limited information.",
       "confidence": "low",
       "expectedValue": 4,
       "evTier": {
@@ -136,23 +247,60 @@
   ],
   "allBets": [
     {
-      "id": "1681",
+      "id": "1220",
       "league": "ATP",
-      "homeTeam": "Mikhail Kukushkin",
-      "awayTeam": "George Loffhagen",
-      "startTime": "2026-02-23T12:00:00.000Z",
-      "startTimeFormatted": "Feb 23, 13:00",
+      "homeTeam": "Sebastian Korda",
+      "awayTeam": "Mattia Bellucci",
+      "startTime": "2026-02-24T19:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 20:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Mikhail Kukushkin",
+          "outcome": "Sebastian Korda",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 12,
+          "aiProbability": 56,
+          "reasoning": "Sebastian Korda has shown significant promise and has a strong hard court game, which could give him an edge over Mattia Bellucci. The market odds do not fully reflect Korda's potential advantage. VALUE: Korda is undervalued by the market, presenting a betting opportunity.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 56,
+      "reasoning": "Sebastian Korda has shown significant promise and has a strong hard court game, which could give him an edge over Mattia Bellucci. The market odds do not fully reflect Korda's potential advantage. VALUE: Korda is undervalued by the market, presenting a betting opportunity.",
+      "confidence": "medium",
+      "expectedValue": 12,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1208",
+      "league": "ATP",
+      "homeTeam": "Alexander Zverev",
+      "awayTeam": "Corentin Moutet",
+      "startTime": "2026-02-24T19:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 20:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Alexander Zverev",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
+          "reasoning": "Alexander Zverev is generally considered a stronger player than Corentin Moutet, with better ranking and performance history. The market odds of 50% seem to undervalue Zverev slightly, given his overall career performance and potential on hard courts. VALUE: Zverev is undervalued by the market, presenting a potential betting opportunity.",
           "confidence": "medium"
         }
       ],
@@ -160,7 +308,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Mikhail Kukushkin vs. George Loffhagen sees Kukushkin with more experience on the ATP tour. Despite no recent form, Kukushkin's past performances suggest he might have a slight edge over Loffhagen. VALUE: Kukushkin's experience could make him a value bet, especially if Loffhagen is overvalued.",
+      "reasoning": "Alexander Zverev is generally considered a stronger player than Corentin Moutet, with better ranking and performance history. The market odds of 50% seem to undervalue Zverev slightly, given his overall career performance and potential on hard courts. VALUE: Zverev is undervalued by the market, presenting a potential betting opportunity.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -173,23 +321,97 @@
       }
     },
     {
-      "id": "1380",
+      "id": "1302",
       "league": "ATP",
-      "homeTeam": "Dusan Lajovic",
-      "awayTeam": "Yannick Hanfmann",
-      "startTime": "2026-02-23T17:00:00.000Z",
-      "startTimeFormatted": "Feb 23, 18:00",
+      "homeTeam": "Alejandro Tabilo",
+      "awayTeam": "Tomas Barrios Vera",
+      "startTime": "2026-02-24T16:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 17:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Dusan Lajovic",
+          "outcome": "Alejandro Tabilo",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 8,
+          "aiProbability": 54,
+          "reasoning": "Alejandro Tabilo has a strong game that can adapt to various surfaces, potentially giving him an edge over Tomas Barrios Vera. However, without recent form, it's cautious to not overestimate this advantage. The market odds slightly undervalue Tabilo. VALUE: Tabilo is slightly undervalued, but caution is advised due to the lack of recent data.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 54,
+      "reasoning": "Alejandro Tabilo has a strong game that can adapt to various surfaces, potentially giving him an edge over Tomas Barrios Vera. However, without recent form, it's cautious to not overestimate this advantage. The market odds slightly undervalue Tabilo. VALUE: Tabilo is slightly undervalued, but caution is advised due to the lack of recent data.",
+      "confidence": "medium",
+      "expectedValue": 8,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1212",
+      "league": "ATP",
+      "homeTeam": "Frances Tiafoe",
+      "awayTeam": "Nuno Borges",
+      "startTime": "2026-02-24T19:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 20:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Frances Tiafoe",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Frances Tiafoe has a strong record on hard courts and is generally considered to have an advantage over Nuno Borges in terms of experience and ranking. The market odds understate Tiafoe's chances slightly, given his historical performance. VALUE: Tiafoe is slightly undervalued, offering a potential betting opportunity.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Frances Tiafoe has a strong record on hard courts and is generally considered to have an advantage over Nuno Borges in terms of experience and ranking. The market odds understate Tiafoe's chances slightly, given his historical performance. VALUE: Tiafoe is slightly undervalued, offering a potential betting opportunity.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1206",
+      "league": "ATP",
+      "homeTeam": "James Duckworth",
+      "awayTeam": "Dalibor Svrcina",
+      "startTime": "2026-02-24T19:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 20:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "James Duckworth",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Given the lack of recent form for both Dusan Lajovic and Yannick Hanfmann, it's challenging to deviate significantly from market odds. However, Lajovic has historically performed slightly better on ATP tours, suggesting a minimal edge. VALUE: Slight favorite due to ATP experience.",
+          "reasoning": "Given the lack of recent form for both James Duckworth and Dalibor Svrcina, it's challenging to assess their current performance levels. However, Duckworth has historically been more consistent on hard courts. The market odds suggest a 50% chance for both, which seems reasonable without recent data. VALUE: No clear value, sticking close to market odds due to limited information.",
           "confidence": "low"
         }
       ],
@@ -197,7 +419,44 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Given the lack of recent form for both Dusan Lajovic and Yannick Hanfmann, it's challenging to deviate significantly from market odds. However, Lajovic has historically performed slightly better on ATP tours, suggesting a minimal edge. VALUE: Slight favorite due to ATP experience.",
+      "reasoning": "Given the lack of recent form for both James Duckworth and Dalibor Svrcina, it's challenging to assess their current performance levels. However, Duckworth has historically been more consistent on hard courts. The market odds suggest a 50% chance for both, which seems reasonable without recent data. VALUE: No clear value, sticking close to market odds due to limited information.",
+      "confidence": "low",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "1308",
+      "league": "ATP",
+      "homeTeam": "Thiago Agustin Tirante",
+      "awayTeam": "Ignacio Buse",
+      "startTime": "2026-02-24T16:00:00.000Z",
+      "startTimeFormatted": "Feb 24, 17:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Thiago Agustin Tirante",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "Thiago Agustin Tirante and Ignacio Buse are players with limited recent data, making it challenging to assess their current levels. The market odds reflect a close match, which seems reasonable. However, Tirante has shown slightly more promise in his career. VALUE: No strong betting angle, but Tirante might have a slight edge not fully reflected in the odds.",
+          "confidence": "low"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "Thiago Agustin Tirante and Ignacio Buse are players with limited recent data, making it challenging to assess their current levels. The market odds reflect a close match, which seems reasonable. However, Tirante has shown slightly more promise in his career. VALUE: No strong betting angle, but Tirante might have a slight edge not fully reflected in the odds.",
       "confidence": "low",
       "expectedValue": 4,
       "evTier": {

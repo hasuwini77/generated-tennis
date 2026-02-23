@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "1220",
+      "date": "2026-02-23",
+      "matchTime": "2026-02-24T19:00:00.000Z",
+      "league": "ATP",
+      "homeTeam": "Sebastian Korda",
+      "awayTeam": "Mattia Bellucci",
+      "outcome": "Sebastian Korda",
+      "odds": 2,
+      "expectedValue": 12,
+      "confidence": "medium",
+      "reasoning": "Sebastian Korda has shown significant promise and has a strong hard court game, which could give him an edge over Mattia Bellucci. The market odds do not fully reflect Korda's potential advantage. VALUE: Korda is undervalued by the market, presenting a betting opportunity.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-23T06:34:41.400Z"
+    },
+    {
       "id": "1681",
       "date": "2026-02-22",
       "matchTime": "2026-02-23T12:00:00.000Z",
@@ -172,10 +189,10 @@
     }
   ],
   "stats": {
-    "totalBets": 10,
+    "totalBets": 11,
     "wins": 3,
     "losses": 3,
-    "pending": 4,
+    "pending": 5,
     "totalROI": 9.38,
     "winRate": 50
   },
