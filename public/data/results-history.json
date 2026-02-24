@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "1210",
+      "date": "2026-02-24",
+      "matchTime": "2026-02-25T06:00:00.000Z",
+      "league": "ATP",
+      "homeTeam": "Adrian Mannarino",
+      "awayTeam": "Sho Shimabukuro",
+      "outcome": "Adrian Mannarino",
+      "odds": 2,
+      "expectedValue": 16,
+      "confidence": "medium",
+      "reasoning": "Adrian Mannarino vs Sho Shimabukuro could see Mannarino as a slight favorite due to his experience and ranking, despite the market odds suggesting an even match. VALUE: Mannarino's historical performance and experience could provide a slight edge, making him a potential value bet at these odds.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-24T06:30:10.289Z"
+    },
+    {
       "id": "1220",
       "date": "2026-02-23",
       "matchTime": "2026-02-24T19:00:00.000Z",
@@ -189,10 +206,10 @@
     }
   ],
   "stats": {
-    "totalBets": 11,
+    "totalBets": 12,
     "wins": 3,
     "losses": 3,
-    "pending": 5,
+    "pending": 6,
     "totalROI": 9.38,
     "winRate": 50
   },
