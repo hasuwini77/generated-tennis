@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "1364",
+      "date": "2026-02-25",
+      "matchTime": "2026-02-26T13:00:00.000Z",
+      "league": "ATP",
+      "homeTeam": "Mikhail Kukushkin",
+      "awayTeam": "Hugo Gaston",
+      "outcome": "Mikhail Kukushkin",
+      "odds": 2,
+      "expectedValue": 10,
+      "confidence": "medium",
+      "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-25T06:32:43.132Z"
+    },
+    {
       "id": "1210",
       "date": "2026-02-24",
       "matchTime": "2026-02-25T06:00:00.000Z",
@@ -206,10 +223,10 @@
     }
   ],
   "stats": {
-    "totalBets": 12,
+    "totalBets": 13,
     "wins": 3,
     "losses": 3,
-    "pending": 6,
+    "pending": 7,
     "totalROI": 9.38,
     "winRate": 50
   },

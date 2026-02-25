@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-24T06:30:10.286Z",
-  "scanDateCET": "2026-02-24",
-  "scanDateET": "2/24/2026",
-  "scanTimeCET": "2026-02-24 07:30:10",
+  "timestamp": "2026-02-25T06:32:43.129Z",
+  "scanDateCET": "2026-02-25",
+  "scanDateET": "2/25/2026",
+  "scanTimeCET": "2026-02-25 07:32:43",
   "leagueStats": {
     "atp": {
       "hasGames": true,
@@ -15,39 +15,39 @@
   },
   "summary": {
     "totalGamesAnalyzed": 10,
-    "valueBetsFound": 7,
+    "valueBetsFound": 2,
     "safeBetsFound": 0,
     "hasBetOfTheDay": true,
-    "avgEV": 7.7
+    "avgEV": 7
   },
   "betOfTheDay": {
-    "id": "1210",
+    "id": "1364",
     "league": "ATP",
-    "homeTeam": "Adrian Mannarino",
-    "awayTeam": "Sho Shimabukuro",
-    "startTime": "2026-02-25T06:00:00.000Z",
-    "startTimeFormatted": "Feb 25, 07:00",
+    "homeTeam": "Mikhail Kukushkin",
+    "awayTeam": "Hugo Gaston",
+    "startTime": "2026-02-26T13:00:00.000Z",
+    "startTimeFormatted": "Feb 26, 14:00",
     "marketOdd": 2,
     "marketProb": 50,
     "markets": [
       {
         "type": "h2h",
-        "outcome": "Adrian Mannarino",
+        "outcome": "Mikhail Kukushkin",
         "odds": 2,
         "impliedProb": 50,
-        "expectedValue": 16,
-        "aiProbability": 58,
-        "reasoning": "Adrian Mannarino vs Sho Shimabukuro could see Mannarino as a slight favorite due to his experience and ranking, despite the market odds suggesting an even match. VALUE: Mannarino's historical performance and experience could provide a slight edge, making him a potential value bet at these odds.",
+        "expectedValue": 10,
+        "aiProbability": 55,
+        "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
         "confidence": "medium"
       }
     ],
     "homeForm": "No recent matches",
     "awayForm": "No recent matches",
     "formData": {},
-    "aiProbability": 58,
-    "reasoning": "Adrian Mannarino vs Sho Shimabukuro could see Mannarino as a slight favorite due to his experience and ranking, despite the market odds suggesting an even match. VALUE: Mannarino's historical performance and experience could provide a slight edge, making him a potential value bet at these odds.",
+    "aiProbability": 55,
+    "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
     "confidence": "medium",
-    "expectedValue": 16,
+    "expectedValue": 10,
     "evTier": {
       "min": 10,
       "max": null,
@@ -56,64 +56,27 @@
       "color": "red",
       "tier": "SICK"
     },
-    "score": 86.6
+    "score": 84.5
   },
   "featuredBets": [
     {
-      "id": "1210",
+      "id": "1364",
       "league": "ATP",
-      "homeTeam": "Adrian Mannarino",
-      "awayTeam": "Sho Shimabukuro",
-      "startTime": "2026-02-25T06:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 07:00",
+      "homeTeam": "Mikhail Kukushkin",
+      "awayTeam": "Hugo Gaston",
+      "startTime": "2026-02-26T13:00:00.000Z",
+      "startTimeFormatted": "Feb 26, 14:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Adrian Mannarino",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 16,
-          "aiProbability": 58,
-          "reasoning": "Adrian Mannarino vs Sho Shimabukuro could see Mannarino as a slight favorite due to his experience and ranking, despite the market odds suggesting an even match. VALUE: Mannarino's historical performance and experience could provide a slight edge, making him a potential value bet at these odds.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 58,
-      "reasoning": "Adrian Mannarino vs Sho Shimabukuro could see Mannarino as a slight favorite due to his experience and ranking, despite the market odds suggesting an even match. VALUE: Mannarino's historical performance and experience could provide a slight edge, making him a potential value bet at these odds.",
-      "confidence": "medium",
-      "expectedValue": 16,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1274",
-      "league": "ATP",
-      "homeTeam": "Felix Auger Aliassime",
-      "awayTeam": "Giovanni Mpetshi Perricard",
-      "startTime": "2026-02-25T13:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 14:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Felix Auger Aliassime",
+          "outcome": "Mikhail Kukushkin",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Felix Auger Aliassime is generally considered a strong player, but without recent form data, it's challenging to assert a significant advantage over Giovanni Mpetshi Perricard. The market odds suggest a 50% chance for both, which seems reasonable given the information. VALUE: Auger Aliassime might have a slight edge due to his overall ranking and experience, but it's not enough to significantly deviate from market odds.",
+          "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
           "confidence": "medium"
         }
       ],
@@ -121,7 +84,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Felix Auger Aliassime is generally considered a strong player, but without recent form data, it's challenging to assert a significant advantage over Giovanni Mpetshi Perricard. The market odds suggest a 50% chance for both, which seems reasonable given the information. VALUE: Auger Aliassime might have a slight edge due to his overall ranking and experience, but it's not enough to significantly deviate from market odds.",
+      "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -134,321 +97,23 @@
       }
     },
     {
-      "id": "1395",
+      "id": "1325",
       "league": "ATP",
-      "homeTeam": "Moise Kouame",
-      "awayTeam": "Titouan Droguet",
-      "startTime": "2026-02-25T12:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 13:00",
+      "homeTeam": "Francisco Cerundolo",
+      "awayTeam": "Elmer Moller",
+      "startTime": "2026-02-26T19:00:00.000Z",
+      "startTimeFormatted": "Feb 26, 20:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Moise Kouame",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 8,
-          "aiProbability": 54,
-          "reasoning": "Moise Kouame vs Titouan Droguet presents a similar challenge due to the lack of recent form data. The market odds suggest an even match, which seems appropriate given the information available. VALUE: If Kouame has shown any historical resilience or success in early tournament rounds, that could slightly tip the scales in his favor.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 54,
-      "reasoning": "Moise Kouame vs Titouan Droguet presents a similar challenge due to the lack of recent form data. The market odds suggest an even match, which seems appropriate given the information available. VALUE: If Kouame has shown any historical resilience or success in early tournament rounds, that could slightly tip the scales in his favor.",
-      "confidence": "medium",
-      "expectedValue": 8,
-      "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
-      }
-    },
-    {
-      "id": "1370",
-      "league": "ATP",
-      "homeTeam": "Clement Tabur",
-      "awayTeam": "Clement Chidekh",
-      "startTime": "2026-02-25T13:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 14:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Clement Tabur",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 6,
-          "aiProbability": 53,
-          "reasoning": "Clement Tabur and Clement Chidekh have no recent matches to analyze, which puts them on somewhat equal footing based on the information given. The market odds of 50% seem reasonable, but if there's any historical data suggesting one player performs better on this surface, that could be a deciding factor. VALUE: Tabur might have a slight advantage if he has any historical success on this surface.",
-          "confidence": "low"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 53,
-      "reasoning": "Clement Tabur and Clement Chidekh have no recent matches to analyze, which puts them on somewhat equal footing based on the information given. The market odds of 50% seem reasonable, but if there's any historical data suggesting one player performs better on this surface, that could be a deciding factor. VALUE: Tabur might have a slight advantage if he has any historical success on this surface.",
-      "confidence": "low",
-      "expectedValue": 6,
-      "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
-      }
-    },
-    {
-      "id": "1435",
-      "league": "ATP",
-      "homeTeam": "Dylan Dietrich",
-      "awayTeam": "Daniil Glinka",
-      "startTime": "2026-02-25T12:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 13:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Dylan Dietrich",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 6,
-          "aiProbability": 53,
-          "reasoning": "Dylan Dietrich vs Daniil Glinka lacks recent form data, which aligns with the market's 50% assessment. Without more information, it's prudent to not significantly deviate from this odds line. VALUE: Dietrich could have a slight edge if he has shown any historical ability to perform well in early rounds or on this specific surface.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 53,
-      "reasoning": "Dylan Dietrich vs Daniil Glinka lacks recent form data, which aligns with the market's 50% assessment. Without more information, it's prudent to not significantly deviate from this odds line. VALUE: Dietrich could have a slight edge if he has shown any historical ability to perform well in early rounds or on this specific surface.",
-      "confidence": "medium",
-      "expectedValue": 6,
-      "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
-      }
-    }
-  ],
-  "allBets": [
-    {
-      "id": "1210",
-      "league": "ATP",
-      "homeTeam": "Adrian Mannarino",
-      "awayTeam": "Sho Shimabukuro",
-      "startTime": "2026-02-25T06:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 07:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Adrian Mannarino",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 16,
-          "aiProbability": 58,
-          "reasoning": "Adrian Mannarino vs Sho Shimabukuro could see Mannarino as a slight favorite due to his experience and ranking, despite the market odds suggesting an even match. VALUE: Mannarino's historical performance and experience could provide a slight edge, making him a potential value bet at these odds.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 58,
-      "reasoning": "Adrian Mannarino vs Sho Shimabukuro could see Mannarino as a slight favorite due to his experience and ranking, despite the market odds suggesting an even match. VALUE: Mannarino's historical performance and experience could provide a slight edge, making him a potential value bet at these odds.",
-      "confidence": "medium",
-      "expectedValue": 16,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1274",
-      "league": "ATP",
-      "homeTeam": "Felix Auger Aliassime",
-      "awayTeam": "Giovanni Mpetshi Perricard",
-      "startTime": "2026-02-25T13:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 14:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Felix Auger Aliassime",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 10,
-          "aiProbability": 55,
-          "reasoning": "Felix Auger Aliassime is generally considered a strong player, but without recent form data, it's challenging to assert a significant advantage over Giovanni Mpetshi Perricard. The market odds suggest a 50% chance for both, which seems reasonable given the information. VALUE: Auger Aliassime might have a slight edge due to his overall ranking and experience, but it's not enough to significantly deviate from market odds.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 55,
-      "reasoning": "Felix Auger Aliassime is generally considered a strong player, but without recent form data, it's challenging to assert a significant advantage over Giovanni Mpetshi Perricard. The market odds suggest a 50% chance for both, which seems reasonable given the information. VALUE: Auger Aliassime might have a slight edge due to his overall ranking and experience, but it's not enough to significantly deviate from market odds.",
-      "confidence": "medium",
-      "expectedValue": 10,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1395",
-      "league": "ATP",
-      "homeTeam": "Moise Kouame",
-      "awayTeam": "Titouan Droguet",
-      "startTime": "2026-02-25T12:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 13:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Moise Kouame",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 8,
-          "aiProbability": 54,
-          "reasoning": "Moise Kouame vs Titouan Droguet presents a similar challenge due to the lack of recent form data. The market odds suggest an even match, which seems appropriate given the information available. VALUE: If Kouame has shown any historical resilience or success in early tournament rounds, that could slightly tip the scales in his favor.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 54,
-      "reasoning": "Moise Kouame vs Titouan Droguet presents a similar challenge due to the lack of recent form data. The market odds suggest an even match, which seems appropriate given the information available. VALUE: If Kouame has shown any historical resilience or success in early tournament rounds, that could slightly tip the scales in his favor.",
-      "confidence": "medium",
-      "expectedValue": 8,
-      "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
-      }
-    },
-    {
-      "id": "1370",
-      "league": "ATP",
-      "homeTeam": "Clement Tabur",
-      "awayTeam": "Clement Chidekh",
-      "startTime": "2026-02-25T13:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 14:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Clement Tabur",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 6,
-          "aiProbability": 53,
-          "reasoning": "Clement Tabur and Clement Chidekh have no recent matches to analyze, which puts them on somewhat equal footing based on the information given. The market odds of 50% seem reasonable, but if there's any historical data suggesting one player performs better on this surface, that could be a deciding factor. VALUE: Tabur might have a slight advantage if he has any historical success on this surface.",
-          "confidence": "low"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 53,
-      "reasoning": "Clement Tabur and Clement Chidekh have no recent matches to analyze, which puts them on somewhat equal footing based on the information given. The market odds of 50% seem reasonable, but if there's any historical data suggesting one player performs better on this surface, that could be a deciding factor. VALUE: Tabur might have a slight advantage if he has any historical success on this surface.",
-      "confidence": "low",
-      "expectedValue": 6,
-      "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
-      }
-    },
-    {
-      "id": "1435",
-      "league": "ATP",
-      "homeTeam": "Dylan Dietrich",
-      "awayTeam": "Daniil Glinka",
-      "startTime": "2026-02-25T12:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 13:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Dylan Dietrich",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 6,
-          "aiProbability": 53,
-          "reasoning": "Dylan Dietrich vs Daniil Glinka lacks recent form data, which aligns with the market's 50% assessment. Without more information, it's prudent to not significantly deviate from this odds line. VALUE: Dietrich could have a slight edge if he has shown any historical ability to perform well in early rounds or on this specific surface.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 53,
-      "reasoning": "Dylan Dietrich vs Daniil Glinka lacks recent form data, which aligns with the market's 50% assessment. Without more information, it's prudent to not significantly deviate from this odds line. VALUE: Dietrich could have a slight edge if he has shown any historical ability to perform well in early rounds or on this specific surface.",
-      "confidence": "medium",
-      "expectedValue": 6,
-      "evTier": {
-        "min": 6,
-        "max": 10,
-        "label": "Elite Edge",
-        "emoji": "⭐",
-        "color": "purple",
-        "tier": "ELITE"
-      }
-    },
-    {
-      "id": "1320",
-      "league": "ATP",
-      "homeTeam": "Camilo Ugo Carabelli",
-      "awayTeam": "Yannick Hanfmann",
-      "startTime": "2026-02-25T16:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 17:00",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Camilo Ugo Carabelli",
+          "outcome": "Francisco Cerundolo",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Given the lack of recent form data for both Camilo Ugo Carabelli and Yannick Hanfmann, and considering the market odds are at 50%, I'm inclined to stay close to the market odds. However, if I had to slightly favor one, it would be based on any historical data or surface suitability that might be available but not provided here. VALUE: Slight edge to Carabelli if he has any historical advantage on this surface.",
+          "reasoning": "Francisco Cerundolo and Elmer Moller have no recent matches, making it difficult to assess their current form. Given the lack of data, the market odds seem reasonable, and I wouldn't recommend a significant deviation from the implied probability. VALUE: No clear value bet due to insufficient data.",
           "confidence": "low"
         }
       ],
@@ -456,7 +121,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Given the lack of recent form data for both Camilo Ugo Carabelli and Yannick Hanfmann, and considering the market odds are at 50%, I'm inclined to stay close to the market odds. However, if I had to slightly favor one, it would be based on any historical data or surface suitability that might be available but not provided here. VALUE: Slight edge to Carabelli if he has any historical advantage on this surface.",
+      "reasoning": "Francisco Cerundolo and Elmer Moller have no recent matches, making it difficult to assess their current form. Given the lack of data, the market odds seem reasonable, and I wouldn't recommend a significant deviation from the implied probability. VALUE: No clear value bet due to insufficient data.",
       "confidence": "low",
       "expectedValue": 4,
       "evTier": {
@@ -467,25 +132,64 @@
         "color": "blue",
         "tier": "STRONG"
       }
-    },
+    }
+  ],
+  "allBets": [
     {
-      "id": "1390",
+      "id": "1364",
       "league": "ATP",
-      "homeTeam": "Robin Bertrand",
-      "awayTeam": "Buvaysar Gadamauri",
-      "startTime": "2026-02-25T13:00:00.000Z",
-      "startTimeFormatted": "Feb 25, 14:00",
+      "homeTeam": "Mikhail Kukushkin",
+      "awayTeam": "Hugo Gaston",
+      "startTime": "2026-02-26T13:00:00.000Z",
+      "startTimeFormatted": "Feb 26, 14:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Robin Bertrand",
+          "outcome": "Mikhail Kukushkin",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 10,
+          "aiProbability": 55,
+          "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 55,
+      "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
+      "confidence": "medium",
+      "expectedValue": 10,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1325",
+      "league": "ATP",
+      "homeTeam": "Francisco Cerundolo",
+      "awayTeam": "Elmer Moller",
+      "startTime": "2026-02-26T19:00:00.000Z",
+      "startTimeFormatted": "Feb 26, 20:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Francisco Cerundolo",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Robin Bertrand vs Buvaysar Gadamauri is a match where both players lack recent form data, making the market odds of 50% a reasonable starting point. Without additional information, it's challenging to assert a significant advantage for either player. VALUE: Bertrand might have a slight edge if he has more experience on this surface, but this is speculative without more data.",
+          "reasoning": "Francisco Cerundolo and Elmer Moller have no recent matches, making it difficult to assess their current form. Given the lack of data, the market odds seem reasonable, and I wouldn't recommend a significant deviation from the implied probability. VALUE: No clear value bet due to insufficient data.",
           "confidence": "low"
         }
       ],
@@ -493,7 +197,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Robin Bertrand vs Buvaysar Gadamauri is a match where both players lack recent form data, making the market odds of 50% a reasonable starting point. Without additional information, it's challenging to assert a significant advantage for either player. VALUE: Bertrand might have a slight edge if he has more experience on this surface, but this is speculative without more data.",
+      "reasoning": "Francisco Cerundolo and Elmer Moller have no recent matches, making it difficult to assess their current form. Given the lack of data, the market odds seem reasonable, and I wouldn't recommend a significant deviation from the implied probability. VALUE: No clear value bet due to insufficient data.",
       "confidence": "low",
       "expectedValue": 4,
       "evTier": {
