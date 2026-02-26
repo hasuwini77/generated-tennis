@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-25T06:32:43.129Z",
-  "scanDateCET": "2026-02-25",
-  "scanDateET": "2/25/2026",
-  "scanTimeCET": "2026-02-25 07:32:43",
+  "timestamp": "2026-02-26T06:29:58.581Z",
+  "scanDateCET": "2026-02-26",
+  "scanDateET": "2/26/2026",
+  "scanTimeCET": "2026-02-26 07:29:58",
   "leagueStats": {
     "atp": {
       "hasGames": true,
@@ -15,39 +15,39 @@
   },
   "summary": {
     "totalGamesAnalyzed": 10,
-    "valueBetsFound": 2,
+    "valueBetsFound": 5,
     "safeBetsFound": 0,
     "hasBetOfTheDay": true,
-    "avgEV": 7
+    "avgEV": 8
   },
   "betOfTheDay": {
-    "id": "1364",
+    "id": "1332",
     "league": "ATP",
-    "homeTeam": "Mikhail Kukushkin",
-    "awayTeam": "Hugo Gaston",
-    "startTime": "2026-02-26T13:00:00.000Z",
-    "startTimeFormatted": "Feb 26, 14:00",
+    "homeTeam": "Francisco Cerundolo",
+    "awayTeam": "Elmer Moller",
+    "startTime": "2026-02-26T21:00:00.000Z",
+    "startTimeFormatted": "Feb 26, 22:00",
     "marketOdd": 2,
     "marketProb": 50,
     "markets": [
       {
         "type": "h2h",
-        "outcome": "Mikhail Kukushkin",
+        "outcome": "Francisco Cerundolo",
         "odds": 2,
         "impliedProb": 50,
-        "expectedValue": 10,
-        "aiProbability": 55,
-        "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
+        "expectedValue": 12,
+        "aiProbability": 56,
+        "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
         "confidence": "medium"
       }
     ],
     "homeForm": "No recent matches",
     "awayForm": "No recent matches",
     "formData": {},
-    "aiProbability": 55,
-    "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
+    "aiProbability": 56,
+    "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
     "confidence": "medium",
-    "expectedValue": 10,
+    "expectedValue": 12,
     "evTier": {
       "min": 10,
       "max": null,
@@ -56,27 +56,64 @@
       "color": "red",
       "tier": "SICK"
     },
-    "score": 84.5
+    "score": 85.2
   },
   "featuredBets": [
     {
-      "id": "1364",
+      "id": "1332",
       "league": "ATP",
-      "homeTeam": "Mikhail Kukushkin",
-      "awayTeam": "Hugo Gaston",
-      "startTime": "2026-02-26T13:00:00.000Z",
-      "startTimeFormatted": "Feb 26, 14:00",
+      "homeTeam": "Francisco Cerundolo",
+      "awayTeam": "Elmer Moller",
+      "startTime": "2026-02-26T21:00:00.000Z",
+      "startTimeFormatted": "Feb 26, 22:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Mikhail Kukushkin",
+          "outcome": "Francisco Cerundolo",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 12,
+          "aiProbability": 56,
+          "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 56,
+      "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
+      "confidence": "medium",
+      "expectedValue": 12,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1519",
+      "league": "ATP",
+      "homeTeam": "Alastair Gray",
+      "awayTeam": "Federico Cina",
+      "startTime": "2026-02-27T08:30:00.000Z",
+      "startTimeFormatted": "Feb 27, 09:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Alastair Gray",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
+          "reasoning": "Alastair Gray might have a slight edge over Federico Cina if considering potential experience at the ATP level, but this is speculative without recent form. The surface and any head-to-head history could significantly influence the outcome. VALUE: Gray could be seen as a slight value based on potential experience advantages, but the market is generally efficient, and without strong evidence, this remains speculative.",
           "confidence": "medium"
         }
       ],
@@ -84,7 +121,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
+      "reasoning": "Alastair Gray might have a slight edge over Federico Cina if considering potential experience at the ATP level, but this is speculative without recent form. The surface and any head-to-head history could significantly influence the outcome. VALUE: Gray could be seen as a slight value based on potential experience advantages, but the market is generally efficient, and without strong evidence, this remains speculative.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -97,23 +134,97 @@
       }
     },
     {
-      "id": "1325",
+      "id": "1320",
       "league": "ATP",
-      "homeTeam": "Francisco Cerundolo",
-      "awayTeam": "Elmer Moller",
-      "startTime": "2026-02-26T19:00:00.000Z",
-      "startTimeFormatted": "Feb 26, 20:00",
+      "homeTeam": "Cristian Garin",
+      "awayTeam": "Sebastian Baez",
+      "startTime": "2026-02-27T00:30:00.000Z",
+      "startTimeFormatted": "Feb 27, 01:30",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Francisco Cerundolo",
+          "outcome": "Cristian Garin",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 8,
+          "aiProbability": 54,
+          "reasoning": "Cristian Garin vs Sebastian Baez could see Garin with a slight advantage based on ATP experience, but without recent form, this is difficult to assert strongly. The surface and head-to-head records would be crucial, but this data is not provided. VALUE: Garin might be considered a slight value based on potential experience and ranking trends, but the market odds are mostly in line with the available information.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 54,
+      "reasoning": "Cristian Garin vs Sebastian Baez could see Garin with a slight advantage based on ATP experience, but without recent form, this is difficult to assert strongly. The surface and head-to-head records would be crucial, but this data is not provided. VALUE: Garin might be considered a slight value based on potential experience and ranking trends, but the market odds are mostly in line with the available information.",
+      "confidence": "medium",
+      "expectedValue": 8,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1375",
+      "league": "ATP",
+      "homeTeam": "Laurent Lokoli",
+      "awayTeam": "Clement Chidekh",
+      "startTime": "2026-02-27T13:00:00.000Z",
+      "startTimeFormatted": "Feb 27, 14:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Laurent Lokoli",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Laurent Lokoli might have a slight advantage over Clement Chidekh if considering general ATP tour experience, but without recent form, this advantage is speculative. The surface could play a significant role, but without specific data on each player's surface preference, it's hard to lean heavily on this. VALUE: Lokoli could be considered a slight value based on potential experience, but the market odds are generally in line with the information available.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Laurent Lokoli might have a slight advantage over Clement Chidekh if considering general ATP tour experience, but without recent form, this advantage is speculative. The surface could play a significant role, but without specific data on each player's surface preference, it's hard to lean heavily on this. VALUE: Lokoli could be considered a slight value based on potential experience, but the market odds are generally in line with the information available.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1318",
+      "league": "ATP",
+      "homeTeam": "Yannick Hanfmann",
+      "awayTeam": "Vilius Gaubas",
+      "startTime": "2026-02-27T16:00:00.000Z",
+      "startTimeFormatted": "Feb 27, 17:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Yannick Hanfmann",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Francisco Cerundolo and Elmer Moller have no recent matches, making it difficult to assess their current form. Given the lack of data, the market odds seem reasonable, and I wouldn't recommend a significant deviation from the implied probability. VALUE: No clear value bet due to insufficient data.",
+          "reasoning": "Given the lack of recent form data for both Yannick Hanfmann and Vilius Gaubas, it's challenging to significantly deviate from market odds. However, considering the ATP tour level, a slight edge might be given to Hanfmann due to potential experience advantages. VALUE: The market seems to be missing any potential experience edge Hanfmann might have, making him a slight value bet at current odds.",
           "confidence": "low"
         }
       ],
@@ -121,7 +232,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Francisco Cerundolo and Elmer Moller have no recent matches, making it difficult to assess their current form. Given the lack of data, the market odds seem reasonable, and I wouldn't recommend a significant deviation from the implied probability. VALUE: No clear value bet due to insufficient data.",
+      "reasoning": "Given the lack of recent form data for both Yannick Hanfmann and Vilius Gaubas, it's challenging to significantly deviate from market odds. However, considering the ATP tour level, a slight edge might be given to Hanfmann due to potential experience advantages. VALUE: The market seems to be missing any potential experience edge Hanfmann might have, making him a slight value bet at current odds.",
       "confidence": "low",
       "expectedValue": 4,
       "evTier": {
@@ -136,23 +247,60 @@
   ],
   "allBets": [
     {
-      "id": "1364",
+      "id": "1332",
       "league": "ATP",
-      "homeTeam": "Mikhail Kukushkin",
-      "awayTeam": "Hugo Gaston",
-      "startTime": "2026-02-26T13:00:00.000Z",
-      "startTimeFormatted": "Feb 26, 14:00",
+      "homeTeam": "Francisco Cerundolo",
+      "awayTeam": "Elmer Moller",
+      "startTime": "2026-02-26T21:00:00.000Z",
+      "startTimeFormatted": "Feb 26, 22:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Mikhail Kukushkin",
+          "outcome": "Francisco Cerundolo",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 12,
+          "aiProbability": 56,
+          "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 56,
+      "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
+      "confidence": "medium",
+      "expectedValue": 12,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1519",
+      "league": "ATP",
+      "homeTeam": "Alastair Gray",
+      "awayTeam": "Federico Cina",
+      "startTime": "2026-02-27T08:30:00.000Z",
+      "startTimeFormatted": "Feb 27, 09:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Alastair Gray",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
+          "reasoning": "Alastair Gray might have a slight edge over Federico Cina if considering potential experience at the ATP level, but this is speculative without recent form. The surface and any head-to-head history could significantly influence the outcome. VALUE: Gray could be seen as a slight value based on potential experience advantages, but the market is generally efficient, and without strong evidence, this remains speculative.",
           "confidence": "medium"
         }
       ],
@@ -160,7 +308,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Mikhail Kukushkin and Hugo Gaston have no recent matches, but Kukushkin's overall ranking and experience might give him a slight edge. VALUE: Kukushkin might be a slight value bet, considering his higher ranking and potential advantage on the surface.",
+      "reasoning": "Alastair Gray might have a slight edge over Federico Cina if considering potential experience at the ATP level, but this is speculative without recent form. The surface and any head-to-head history could significantly influence the outcome. VALUE: Gray could be seen as a slight value based on potential experience advantages, but the market is generally efficient, and without strong evidence, this remains speculative.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -173,23 +321,97 @@
       }
     },
     {
-      "id": "1325",
+      "id": "1320",
       "league": "ATP",
-      "homeTeam": "Francisco Cerundolo",
-      "awayTeam": "Elmer Moller",
-      "startTime": "2026-02-26T19:00:00.000Z",
-      "startTimeFormatted": "Feb 26, 20:00",
+      "homeTeam": "Cristian Garin",
+      "awayTeam": "Sebastian Baez",
+      "startTime": "2026-02-27T00:30:00.000Z",
+      "startTimeFormatted": "Feb 27, 01:30",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Francisco Cerundolo",
+          "outcome": "Cristian Garin",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 8,
+          "aiProbability": 54,
+          "reasoning": "Cristian Garin vs Sebastian Baez could see Garin with a slight advantage based on ATP experience, but without recent form, this is difficult to assert strongly. The surface and head-to-head records would be crucial, but this data is not provided. VALUE: Garin might be considered a slight value based on potential experience and ranking trends, but the market odds are mostly in line with the available information.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 54,
+      "reasoning": "Cristian Garin vs Sebastian Baez could see Garin with a slight advantage based on ATP experience, but without recent form, this is difficult to assert strongly. The surface and head-to-head records would be crucial, but this data is not provided. VALUE: Garin might be considered a slight value based on potential experience and ranking trends, but the market odds are mostly in line with the available information.",
+      "confidence": "medium",
+      "expectedValue": 8,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1375",
+      "league": "ATP",
+      "homeTeam": "Laurent Lokoli",
+      "awayTeam": "Clement Chidekh",
+      "startTime": "2026-02-27T13:00:00.000Z",
+      "startTimeFormatted": "Feb 27, 14:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Laurent Lokoli",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 6,
+          "aiProbability": 53,
+          "reasoning": "Laurent Lokoli might have a slight advantage over Clement Chidekh if considering general ATP tour experience, but without recent form, this advantage is speculative. The surface could play a significant role, but without specific data on each player's surface preference, it's hard to lean heavily on this. VALUE: Lokoli could be considered a slight value based on potential experience, but the market odds are generally in line with the information available.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 53,
+      "reasoning": "Laurent Lokoli might have a slight advantage over Clement Chidekh if considering general ATP tour experience, but without recent form, this advantage is speculative. The surface could play a significant role, but without specific data on each player's surface preference, it's hard to lean heavily on this. VALUE: Lokoli could be considered a slight value based on potential experience, but the market odds are generally in line with the information available.",
+      "confidence": "medium",
+      "expectedValue": 6,
+      "evTier": {
+        "min": 6,
+        "max": 10,
+        "label": "Elite Edge",
+        "emoji": "⭐",
+        "color": "purple",
+        "tier": "ELITE"
+      }
+    },
+    {
+      "id": "1318",
+      "league": "ATP",
+      "homeTeam": "Yannick Hanfmann",
+      "awayTeam": "Vilius Gaubas",
+      "startTime": "2026-02-27T16:00:00.000Z",
+      "startTimeFormatted": "Feb 27, 17:00",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Yannick Hanfmann",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Francisco Cerundolo and Elmer Moller have no recent matches, making it difficult to assess their current form. Given the lack of data, the market odds seem reasonable, and I wouldn't recommend a significant deviation from the implied probability. VALUE: No clear value bet due to insufficient data.",
+          "reasoning": "Given the lack of recent form data for both Yannick Hanfmann and Vilius Gaubas, it's challenging to significantly deviate from market odds. However, considering the ATP tour level, a slight edge might be given to Hanfmann due to potential experience advantages. VALUE: The market seems to be missing any potential experience edge Hanfmann might have, making him a slight value bet at current odds.",
           "confidence": "low"
         }
       ],
@@ -197,7 +419,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Francisco Cerundolo and Elmer Moller have no recent matches, making it difficult to assess their current form. Given the lack of data, the market odds seem reasonable, and I wouldn't recommend a significant deviation from the implied probability. VALUE: No clear value bet due to insufficient data.",
+      "reasoning": "Given the lack of recent form data for both Yannick Hanfmann and Vilius Gaubas, it's challenging to significantly deviate from market odds. However, considering the ATP tour level, a slight edge might be given to Hanfmann due to potential experience advantages. VALUE: The market seems to be missing any potential experience edge Hanfmann might have, making him a slight value bet at current odds.",
       "confidence": "low",
       "expectedValue": 4,
       "evTier": {

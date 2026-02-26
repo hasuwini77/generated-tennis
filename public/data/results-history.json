@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "1332",
+      "date": "2026-02-26",
+      "matchTime": "2026-02-26T21:00:00.000Z",
+      "league": "ATP",
+      "homeTeam": "Francisco Cerundolo",
+      "awayTeam": "Elmer Moller",
+      "outcome": "Francisco Cerundolo",
+      "odds": 2,
+      "expectedValue": 12,
+      "confidence": "medium",
+      "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-26T06:29:58.584Z"
+    },
+    {
       "id": "1364",
       "date": "2026-02-25",
       "matchTime": "2026-02-26T13:00:00.000Z",
@@ -223,10 +240,10 @@
     }
   ],
   "stats": {
-    "totalBets": 13,
+    "totalBets": 14,
     "wins": 3,
     "losses": 3,
-    "pending": 7,
+    "pending": 8,
     "totalROI": 9.38,
     "winRate": 50
   },
