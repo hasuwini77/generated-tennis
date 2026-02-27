@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-26T06:29:58.581Z",
-  "scanDateCET": "2026-02-26",
-  "scanDateET": "2/26/2026",
-  "scanTimeCET": "2026-02-26 07:29:58",
+  "timestamp": "2026-02-27T06:25:53.113Z",
+  "scanDateCET": "2026-02-27",
+  "scanDateET": "2/27/2026",
+  "scanTimeCET": "2026-02-27 07:25:53",
   "leagueStats": {
     "atp": {
       "hasGames": true,
@@ -18,15 +18,15 @@
     "valueBetsFound": 5,
     "safeBetsFound": 0,
     "hasBetOfTheDay": true,
-    "avgEV": 8
+    "avgEV": 6.4
   },
   "betOfTheDay": {
-    "id": "1332",
+    "id": "1334",
     "league": "ATP",
     "homeTeam": "Francisco Cerundolo",
-    "awayTeam": "Elmer Moller",
-    "startTime": "2026-02-26T21:00:00.000Z",
-    "startTimeFormatted": "Feb 26, 22:00",
+    "awayTeam": "Emilio Nava",
+    "startTime": "2026-02-27T21:00:00.000Z",
+    "startTimeFormatted": "Feb 27, 22:00",
     "marketOdd": 2,
     "marketProb": 50,
     "markets": [
@@ -35,19 +35,19 @@
         "outcome": "Francisco Cerundolo",
         "odds": 2,
         "impliedProb": 50,
-        "expectedValue": 12,
-        "aiProbability": 56,
-        "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
+        "expectedValue": 10,
+        "aiProbability": 55,
+        "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
         "confidence": "medium"
       }
     ],
     "homeForm": "No recent matches",
     "awayForm": "No recent matches",
     "formData": {},
-    "aiProbability": 56,
-    "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
+    "aiProbability": 55,
+    "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
     "confidence": "medium",
-    "expectedValue": 12,
+    "expectedValue": 10,
     "evTier": {
       "min": 10,
       "max": null,
@@ -56,16 +56,16 @@
       "color": "red",
       "tier": "SICK"
     },
-    "score": 85.2
+    "score": 84.5
   },
   "featuredBets": [
     {
-      "id": "1332",
+      "id": "1334",
       "league": "ATP",
       "homeTeam": "Francisco Cerundolo",
-      "awayTeam": "Elmer Moller",
-      "startTime": "2026-02-26T21:00:00.000Z",
-      "startTimeFormatted": "Feb 26, 22:00",
+      "awayTeam": "Emilio Nava",
+      "startTime": "2026-02-27T21:00:00.000Z",
+      "startTimeFormatted": "Feb 27, 22:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
@@ -74,46 +74,9 @@
           "outcome": "Francisco Cerundolo",
           "odds": 2,
           "impliedProb": 50,
-          "expectedValue": 12,
-          "aiProbability": 56,
-          "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 56,
-      "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
-      "confidence": "medium",
-      "expectedValue": 12,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1519",
-      "league": "ATP",
-      "homeTeam": "Alastair Gray",
-      "awayTeam": "Federico Cina",
-      "startTime": "2026-02-27T08:30:00.000Z",
-      "startTimeFormatted": "Feb 27, 09:30",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Alastair Gray",
-          "odds": 2,
-          "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Alastair Gray might have a slight edge over Federico Cina if considering potential experience at the ATP level, but this is speculative without recent form. The surface and any head-to-head history could significantly influence the outcome. VALUE: Gray could be seen as a slight value based on potential experience advantages, but the market is generally efficient, and without strong evidence, this remains speculative.",
+          "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
           "confidence": "medium"
         }
       ],
@@ -121,7 +84,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Alastair Gray might have a slight edge over Federico Cina if considering potential experience at the ATP level, but this is speculative without recent form. The surface and any head-to-head history could significantly influence the outcome. VALUE: Gray could be seen as a slight value based on potential experience advantages, but the market is generally efficient, and without strong evidence, this remains speculative.",
+      "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -136,21 +99,21 @@
     {
       "id": "1320",
       "league": "ATP",
-      "homeTeam": "Cristian Garin",
-      "awayTeam": "Sebastian Baez",
-      "startTime": "2026-02-27T00:30:00.000Z",
-      "startTimeFormatted": "Feb 27, 01:30",
+      "homeTeam": "Yannick Hanfmann",
+      "awayTeam": "Vilius Gaubas",
+      "startTime": "2026-02-27T19:00:00.000Z",
+      "startTimeFormatted": "Feb 27, 20:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Cristian Garin",
+          "outcome": "Yannick Hanfmann",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 8,
           "aiProbability": 54,
-          "reasoning": "Cristian Garin vs Sebastian Baez could see Garin with a slight advantage based on ATP experience, but without recent form, this is difficult to assert strongly. The surface and head-to-head records would be crucial, but this data is not provided. VALUE: Garin might be considered a slight value based on potential experience and ranking trends, but the market odds are mostly in line with the available information.",
+          "reasoning": "Yannick Hanfmann vs Vilius Gaubas might see Hanfmann with a slight edge based on potential historical performance or ranking advantages, but without recent form data, this is speculative. The value could be in identifying if the market has underrated Hanfmann's chances, but given the lack of information, the confidence in this pick remains medium.",
           "confidence": "medium"
         }
       ],
@@ -158,7 +121,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 54,
-      "reasoning": "Cristian Garin vs Sebastian Baez could see Garin with a slight advantage based on ATP experience, but without recent form, this is difficult to assert strongly. The surface and head-to-head records would be crucial, but this data is not provided. VALUE: Garin might be considered a slight value based on potential experience and ranking trends, but the market odds are mostly in line with the available information.",
+      "reasoning": "Yannick Hanfmann vs Vilius Gaubas might see Hanfmann with a slight edge based on potential historical performance or ranking advantages, but without recent form data, this is speculative. The value could be in identifying if the market has underrated Hanfmann's chances, but given the lack of information, the confidence in this pick remains medium.",
       "confidence": "medium",
       "expectedValue": 8,
       "evTier": {
@@ -171,23 +134,23 @@
       }
     },
     {
-      "id": "1375",
+      "id": "1849",
       "league": "ATP",
-      "homeTeam": "Laurent Lokoli",
-      "awayTeam": "Clement Chidekh",
-      "startTime": "2026-02-27T13:00:00.000Z",
-      "startTimeFormatted": "Feb 27, 14:00",
+      "homeTeam": "Evan Bynoe",
+      "awayTeam": "Jeff Wolf",
+      "startTime": "2026-02-27T20:15:00.000Z",
+      "startTimeFormatted": "Feb 27, 21:15",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Laurent Lokoli",
+          "outcome": "Evan Bynoe",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 6,
           "aiProbability": 53,
-          "reasoning": "Laurent Lokoli might have a slight advantage over Clement Chidekh if considering general ATP tour experience, but without recent form, this advantage is speculative. The surface could play a significant role, but without specific data on each player's surface preference, it's hard to lean heavily on this. VALUE: Lokoli could be considered a slight value based on potential experience, but the market odds are generally in line with the information available.",
+          "reasoning": "Evan Bynoe vs Jeff Wolf presents a similar challenge with both players lacking recent form data. Any betting angle would need to focus on historical performance, potential surface advantages, or minor ranking differences. Given the market odds, there might be a slight value in backing the player with any historical edge, but this remains a medium confidence pick due to the lack of concrete information.",
           "confidence": "medium"
         }
       ],
@@ -195,7 +158,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 53,
-      "reasoning": "Laurent Lokoli might have a slight advantage over Clement Chidekh if considering general ATP tour experience, but without recent form, this advantage is speculative. The surface could play a significant role, but without specific data on each player's surface preference, it's hard to lean heavily on this. VALUE: Lokoli could be considered a slight value based on potential experience, but the market odds are generally in line with the information available.",
+      "reasoning": "Evan Bynoe vs Jeff Wolf presents a similar challenge with both players lacking recent form data. Any betting angle would need to focus on historical performance, potential surface advantages, or minor ranking differences. Given the market odds, there might be a slight value in backing the player with any historical edge, but this remains a medium confidence pick due to the lack of concrete information.",
       "confidence": "medium",
       "expectedValue": 6,
       "evTier": {
@@ -208,32 +171,69 @@
       }
     },
     {
-      "id": "1318",
+      "id": "1327",
       "league": "ATP",
-      "homeTeam": "Yannick Hanfmann",
-      "awayTeam": "Vilius Gaubas",
-      "startTime": "2026-02-27T16:00:00.000Z",
-      "startTimeFormatted": "Feb 27, 17:00",
+      "homeTeam": "Andrea Pellegrino",
+      "awayTeam": "Luciano Darderi",
+      "startTime": "2026-02-28T00:30:00.000Z",
+      "startTimeFormatted": "Feb 28, 01:30",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Yannick Hanfmann",
+          "outcome": "Andrea Pellegrino",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Given the lack of recent form data for both Yannick Hanfmann and Vilius Gaubas, it's challenging to significantly deviate from market odds. However, considering the ATP tour level, a slight edge might be given to Hanfmann due to potential experience advantages. VALUE: The market seems to be missing any potential experience edge Hanfmann might have, making him a slight value bet at current odds.",
-          "confidence": "low"
+          "reasoning": "Given the lack of recent form data for both Andrea Pellegrino and Luciano Darderi, it's challenging to significantly deviate from market odds. However, in early-round ATP matches, slight edges can be found in players with historically better performance on the specific surface or those with a slight ranking advantage. Since both players lack recent data, the market odds seem fair, but a slight edge could be given to the player with any minor historical advantage, making this a medium confidence pick due to the uncertainty.",
+          "confidence": "medium"
         }
       ],
       "homeForm": "No recent matches",
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Given the lack of recent form data for both Yannick Hanfmann and Vilius Gaubas, it's challenging to significantly deviate from market odds. However, considering the ATP tour level, a slight edge might be given to Hanfmann due to potential experience advantages. VALUE: The market seems to be missing any potential experience edge Hanfmann might have, making him a slight value bet at current odds.",
-      "confidence": "low",
+      "reasoning": "Given the lack of recent form data for both Andrea Pellegrino and Luciano Darderi, it's challenging to significantly deviate from market odds. However, in early-round ATP matches, slight edges can be found in players with historically better performance on the specific surface or those with a slight ranking advantage. Since both players lack recent data, the market odds seem fair, but a slight edge could be given to the player with any minor historical advantage, making this a medium confidence pick due to the uncertainty.",
+      "confidence": "medium",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "1912",
+      "league": "ATP",
+      "homeTeam": "Alan Fernando Rubio Fierros",
+      "awayTeam": "Blaise Bicknell",
+      "startTime": "2026-02-27T20:15:00.000Z",
+      "startTimeFormatted": "Feb 27, 21:15",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Alan Fernando Rubio Fierros",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "The match between Alan Fernando Rubio Fierros and Blaise Bicknell is another where the lack of recent form makes it difficult to deviate significantly from market odds. The value here could be in any minor historical advantages or surface suitability that one player might have over the other, but without clear data, this pick remains at medium confidence.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "The match between Alan Fernando Rubio Fierros and Blaise Bicknell is another where the lack of recent form makes it difficult to deviate significantly from market odds. The value here could be in any minor historical advantages or surface suitability that one player might have over the other, but without clear data, this pick remains at medium confidence.",
+      "confidence": "medium",
       "expectedValue": 4,
       "evTier": {
         "min": 3,
@@ -247,12 +247,12 @@
   ],
   "allBets": [
     {
-      "id": "1332",
+      "id": "1334",
       "league": "ATP",
       "homeTeam": "Francisco Cerundolo",
-      "awayTeam": "Elmer Moller",
-      "startTime": "2026-02-26T21:00:00.000Z",
-      "startTimeFormatted": "Feb 26, 22:00",
+      "awayTeam": "Emilio Nava",
+      "startTime": "2026-02-27T21:00:00.000Z",
+      "startTimeFormatted": "Feb 27, 22:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
@@ -261,46 +261,9 @@
           "outcome": "Francisco Cerundolo",
           "odds": 2,
           "impliedProb": 50,
-          "expectedValue": 12,
-          "aiProbability": 56,
-          "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 56,
-      "reasoning": "Francisco Cerundolo vs Elmer Moller could see Cerundolo with an advantage based on potential experience and ranking, but without recent form, this is speculative. The surface could significantly influence the outcome. VALUE: Cerundolo might be considered a value bet based on potential experience and surface suitability, but the market odds are generally efficient, and without strong evidence, this remains a cautious bet.",
-      "confidence": "medium",
-      "expectedValue": 12,
-      "evTier": {
-        "min": 10,
-        "max": null,
-        "label": "Sick Edge",
-        "emoji": "🔥",
-        "color": "red",
-        "tier": "SICK"
-      }
-    },
-    {
-      "id": "1519",
-      "league": "ATP",
-      "homeTeam": "Alastair Gray",
-      "awayTeam": "Federico Cina",
-      "startTime": "2026-02-27T08:30:00.000Z",
-      "startTimeFormatted": "Feb 27, 09:30",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Alastair Gray",
-          "odds": 2,
-          "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Alastair Gray might have a slight edge over Federico Cina if considering potential experience at the ATP level, but this is speculative without recent form. The surface and any head-to-head history could significantly influence the outcome. VALUE: Gray could be seen as a slight value based on potential experience advantages, but the market is generally efficient, and without strong evidence, this remains speculative.",
+          "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
           "confidence": "medium"
         }
       ],
@@ -308,7 +271,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Alastair Gray might have a slight edge over Federico Cina if considering potential experience at the ATP level, but this is speculative without recent form. The surface and any head-to-head history could significantly influence the outcome. VALUE: Gray could be seen as a slight value based on potential experience advantages, but the market is generally efficient, and without strong evidence, this remains speculative.",
+      "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -323,21 +286,21 @@
     {
       "id": "1320",
       "league": "ATP",
-      "homeTeam": "Cristian Garin",
-      "awayTeam": "Sebastian Baez",
-      "startTime": "2026-02-27T00:30:00.000Z",
-      "startTimeFormatted": "Feb 27, 01:30",
+      "homeTeam": "Yannick Hanfmann",
+      "awayTeam": "Vilius Gaubas",
+      "startTime": "2026-02-27T19:00:00.000Z",
+      "startTimeFormatted": "Feb 27, 20:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Cristian Garin",
+          "outcome": "Yannick Hanfmann",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 8,
           "aiProbability": 54,
-          "reasoning": "Cristian Garin vs Sebastian Baez could see Garin with a slight advantage based on ATP experience, but without recent form, this is difficult to assert strongly. The surface and head-to-head records would be crucial, but this data is not provided. VALUE: Garin might be considered a slight value based on potential experience and ranking trends, but the market odds are mostly in line with the available information.",
+          "reasoning": "Yannick Hanfmann vs Vilius Gaubas might see Hanfmann with a slight edge based on potential historical performance or ranking advantages, but without recent form data, this is speculative. The value could be in identifying if the market has underrated Hanfmann's chances, but given the lack of information, the confidence in this pick remains medium.",
           "confidence": "medium"
         }
       ],
@@ -345,7 +308,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 54,
-      "reasoning": "Cristian Garin vs Sebastian Baez could see Garin with a slight advantage based on ATP experience, but without recent form, this is difficult to assert strongly. The surface and head-to-head records would be crucial, but this data is not provided. VALUE: Garin might be considered a slight value based on potential experience and ranking trends, but the market odds are mostly in line with the available information.",
+      "reasoning": "Yannick Hanfmann vs Vilius Gaubas might see Hanfmann with a slight edge based on potential historical performance or ranking advantages, but without recent form data, this is speculative. The value could be in identifying if the market has underrated Hanfmann's chances, but given the lack of information, the confidence in this pick remains medium.",
       "confidence": "medium",
       "expectedValue": 8,
       "evTier": {
@@ -358,23 +321,23 @@
       }
     },
     {
-      "id": "1375",
+      "id": "1849",
       "league": "ATP",
-      "homeTeam": "Laurent Lokoli",
-      "awayTeam": "Clement Chidekh",
-      "startTime": "2026-02-27T13:00:00.000Z",
-      "startTimeFormatted": "Feb 27, 14:00",
+      "homeTeam": "Evan Bynoe",
+      "awayTeam": "Jeff Wolf",
+      "startTime": "2026-02-27T20:15:00.000Z",
+      "startTimeFormatted": "Feb 27, 21:15",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Laurent Lokoli",
+          "outcome": "Evan Bynoe",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 6,
           "aiProbability": 53,
-          "reasoning": "Laurent Lokoli might have a slight advantage over Clement Chidekh if considering general ATP tour experience, but without recent form, this advantage is speculative. The surface could play a significant role, but without specific data on each player's surface preference, it's hard to lean heavily on this. VALUE: Lokoli could be considered a slight value based on potential experience, but the market odds are generally in line with the information available.",
+          "reasoning": "Evan Bynoe vs Jeff Wolf presents a similar challenge with both players lacking recent form data. Any betting angle would need to focus on historical performance, potential surface advantages, or minor ranking differences. Given the market odds, there might be a slight value in backing the player with any historical edge, but this remains a medium confidence pick due to the lack of concrete information.",
           "confidence": "medium"
         }
       ],
@@ -382,7 +345,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 53,
-      "reasoning": "Laurent Lokoli might have a slight advantage over Clement Chidekh if considering general ATP tour experience, but without recent form, this advantage is speculative. The surface could play a significant role, but without specific data on each player's surface preference, it's hard to lean heavily on this. VALUE: Lokoli could be considered a slight value based on potential experience, but the market odds are generally in line with the information available.",
+      "reasoning": "Evan Bynoe vs Jeff Wolf presents a similar challenge with both players lacking recent form data. Any betting angle would need to focus on historical performance, potential surface advantages, or minor ranking differences. Given the market odds, there might be a slight value in backing the player with any historical edge, but this remains a medium confidence pick due to the lack of concrete information.",
       "confidence": "medium",
       "expectedValue": 6,
       "evTier": {
@@ -395,32 +358,69 @@
       }
     },
     {
-      "id": "1318",
+      "id": "1327",
       "league": "ATP",
-      "homeTeam": "Yannick Hanfmann",
-      "awayTeam": "Vilius Gaubas",
-      "startTime": "2026-02-27T16:00:00.000Z",
-      "startTimeFormatted": "Feb 27, 17:00",
+      "homeTeam": "Andrea Pellegrino",
+      "awayTeam": "Luciano Darderi",
+      "startTime": "2026-02-28T00:30:00.000Z",
+      "startTimeFormatted": "Feb 28, 01:30",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Yannick Hanfmann",
+          "outcome": "Andrea Pellegrino",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Given the lack of recent form data for both Yannick Hanfmann and Vilius Gaubas, it's challenging to significantly deviate from market odds. However, considering the ATP tour level, a slight edge might be given to Hanfmann due to potential experience advantages. VALUE: The market seems to be missing any potential experience edge Hanfmann might have, making him a slight value bet at current odds.",
-          "confidence": "low"
+          "reasoning": "Given the lack of recent form data for both Andrea Pellegrino and Luciano Darderi, it's challenging to significantly deviate from market odds. However, in early-round ATP matches, slight edges can be found in players with historically better performance on the specific surface or those with a slight ranking advantage. Since both players lack recent data, the market odds seem fair, but a slight edge could be given to the player with any minor historical advantage, making this a medium confidence pick due to the uncertainty.",
+          "confidence": "medium"
         }
       ],
       "homeForm": "No recent matches",
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Given the lack of recent form data for both Yannick Hanfmann and Vilius Gaubas, it's challenging to significantly deviate from market odds. However, considering the ATP tour level, a slight edge might be given to Hanfmann due to potential experience advantages. VALUE: The market seems to be missing any potential experience edge Hanfmann might have, making him a slight value bet at current odds.",
-      "confidence": "low",
+      "reasoning": "Given the lack of recent form data for both Andrea Pellegrino and Luciano Darderi, it's challenging to significantly deviate from market odds. However, in early-round ATP matches, slight edges can be found in players with historically better performance on the specific surface or those with a slight ranking advantage. Since both players lack recent data, the market odds seem fair, but a slight edge could be given to the player with any minor historical advantage, making this a medium confidence pick due to the uncertainty.",
+      "confidence": "medium",
+      "expectedValue": 4,
+      "evTier": {
+        "min": 3,
+        "max": 6,
+        "label": "Strong Edge",
+        "emoji": "💪",
+        "color": "blue",
+        "tier": "STRONG"
+      }
+    },
+    {
+      "id": "1912",
+      "league": "ATP",
+      "homeTeam": "Alan Fernando Rubio Fierros",
+      "awayTeam": "Blaise Bicknell",
+      "startTime": "2026-02-27T20:15:00.000Z",
+      "startTimeFormatted": "Feb 27, 21:15",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Alan Fernando Rubio Fierros",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 4,
+          "aiProbability": 52,
+          "reasoning": "The match between Alan Fernando Rubio Fierros and Blaise Bicknell is another where the lack of recent form makes it difficult to deviate significantly from market odds. The value here could be in any minor historical advantages or surface suitability that one player might have over the other, but without clear data, this pick remains at medium confidence.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 52,
+      "reasoning": "The match between Alan Fernando Rubio Fierros and Blaise Bicknell is another where the lack of recent form makes it difficult to deviate significantly from market odds. The value here could be in any minor historical advantages or surface suitability that one player might have over the other, but without clear data, this pick remains at medium confidence.",
+      "confidence": "medium",
       "expectedValue": 4,
       "evTier": {
         "min": 3,

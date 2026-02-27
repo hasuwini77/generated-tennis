@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "1334",
+      "date": "2026-02-27",
+      "matchTime": "2026-02-27T21:00:00.000Z",
+      "league": "ATP",
+      "homeTeam": "Francisco Cerundolo",
+      "awayTeam": "Emilio Nava",
+      "outcome": "Francisco Cerundolo",
+      "odds": 2,
+      "expectedValue": 10,
+      "confidence": "medium",
+      "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-27T06:25:53.115Z"
+    },
+    {
       "id": "1332",
       "date": "2026-02-26",
       "matchTime": "2026-02-26T21:00:00.000Z",
@@ -240,10 +257,10 @@
     }
   ],
   "stats": {
-    "totalBets": 14,
+    "totalBets": 15,
     "wins": 3,
     "losses": 3,
-    "pending": 8,
+    "pending": 9,
     "totalROI": 9.38,
     "winRate": 50
   },
