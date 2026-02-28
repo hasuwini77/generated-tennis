@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-02-27T06:25:53.113Z",
-  "scanDateCET": "2026-02-27",
-  "scanDateET": "2/27/2026",
-  "scanTimeCET": "2026-02-27 07:25:53",
+  "timestamp": "2026-02-28T06:15:59.781Z",
+  "scanDateCET": "2026-02-28",
+  "scanDateET": "2/28/2026",
+  "scanTimeCET": "2026-02-28 07:15:59",
   "leagueStats": {
     "atp": {
       "hasGames": true,
@@ -15,39 +15,39 @@
   },
   "summary": {
     "totalGamesAnalyzed": 10,
-    "valueBetsFound": 5,
+    "valueBetsFound": 6,
     "safeBetsFound": 0,
     "hasBetOfTheDay": true,
-    "avgEV": 6.4
+    "avgEV": 8.7
   },
   "betOfTheDay": {
-    "id": "1334",
+    "id": "1261",
     "league": "ATP",
-    "homeTeam": "Francisco Cerundolo",
-    "awayTeam": "Emilio Nava",
-    "startTime": "2026-02-27T21:00:00.000Z",
-    "startTimeFormatted": "Feb 27, 22:00",
+    "homeTeam": "Daniil Medvedev",
+    "awayTeam": "Tallon Griekspoor",
+    "startTime": "2026-02-28T18:00:00.000Z",
+    "startTimeFormatted": "Feb 28, 19:00",
     "marketOdd": 2,
     "marketProb": 50,
     "markets": [
       {
         "type": "h2h",
-        "outcome": "Francisco Cerundolo",
+        "outcome": "Daniil Medvedev",
         "odds": 2,
         "impliedProb": 50,
-        "expectedValue": 10,
-        "aiProbability": 55,
-        "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
+        "expectedValue": 20,
+        "aiProbability": 60,
+        "reasoning": "Daniil Medvedev vs Tallon Griekspoor could see Medvedev having a significant advantage given his higher ranking and likely better form against top-tier opponents. However, Griekspoor might have conditions or a playing style that could trouble Medvedev. The market odds suggest a close match, but Medvedev's overall quality might give him an edge. VALUE: The current odds might slightly undervalue Medvedev's chances, considering his ranking and general performance level.",
         "confidence": "medium"
       }
     ],
     "homeForm": "No recent matches",
     "awayForm": "No recent matches",
     "formData": {},
-    "aiProbability": 55,
-    "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
+    "aiProbability": 60,
+    "reasoning": "Daniil Medvedev vs Tallon Griekspoor could see Medvedev having a significant advantage given his higher ranking and likely better form against top-tier opponents. However, Griekspoor might have conditions or a playing style that could trouble Medvedev. The market odds suggest a close match, but Medvedev's overall quality might give him an edge. VALUE: The current odds might slightly undervalue Medvedev's chances, considering his ranking and general performance level.",
     "confidence": "medium",
-    "expectedValue": 10,
+    "expectedValue": 20,
     "evTier": {
       "min": 10,
       "max": null,
@@ -56,27 +56,64 @@
       "color": "red",
       "tier": "SICK"
     },
-    "score": 84.5
+    "score": 88
   },
   "featuredBets": [
     {
-      "id": "1334",
+      "id": "1261",
       "league": "ATP",
-      "homeTeam": "Francisco Cerundolo",
-      "awayTeam": "Emilio Nava",
-      "startTime": "2026-02-27T21:00:00.000Z",
-      "startTimeFormatted": "Feb 27, 22:00",
+      "homeTeam": "Daniil Medvedev",
+      "awayTeam": "Tallon Griekspoor",
+      "startTime": "2026-02-28T18:00:00.000Z",
+      "startTimeFormatted": "Feb 28, 19:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Francisco Cerundolo",
+          "outcome": "Daniil Medvedev",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 20,
+          "aiProbability": 60,
+          "reasoning": "Daniil Medvedev vs Tallon Griekspoor could see Medvedev having a significant advantage given his higher ranking and likely better form against top-tier opponents. However, Griekspoor might have conditions or a playing style that could trouble Medvedev. The market odds suggest a close match, but Medvedev's overall quality might give him an edge. VALUE: The current odds might slightly undervalue Medvedev's chances, considering his ranking and general performance level.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 60,
+      "reasoning": "Daniil Medvedev vs Tallon Griekspoor could see Medvedev having a significant advantage given his higher ranking and likely better form against top-tier opponents. However, Griekspoor might have conditions or a playing style that could trouble Medvedev. The market odds suggest a close match, but Medvedev's overall quality might give him an edge. VALUE: The current odds might slightly undervalue Medvedev's chances, considering his ranking and general performance level.",
+      "confidence": "medium",
+      "expectedValue": 20,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1373",
+      "league": "ATP",
+      "homeTeam": "Pierre-Hugues Herbert",
+      "awayTeam": "Hugo Gaston",
+      "startTime": "2026-02-28T18:30:00.000Z",
+      "startTimeFormatted": "Feb 28, 19:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Pierre-Hugues Herbert",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
+          "reasoning": "Pierre-Hugues Herbert vs Hugo Gaston could see Herbert having a slight advantage if he has performed well on the surface in question and has a good record against similar opponents. The market odds suggest a close match, but Herbert's experience might give him an edge. VALUE: Backing Herbert at the current odds could be seen as value if his historical data supports a higher win probability than the market suggests.",
           "confidence": "medium"
         }
       ],
@@ -84,7 +121,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
+      "reasoning": "Pierre-Hugues Herbert vs Hugo Gaston could see Herbert having a slight advantage if he has performed well on the surface in question and has a good record against similar opponents. The market odds suggest a close match, but Herbert's experience might give him an edge. VALUE: Backing Herbert at the current odds could be seen as value if his historical data supports a higher win probability than the market suggests.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -97,23 +134,23 @@
       }
     },
     {
-      "id": "1320",
+      "id": "1448",
       "league": "ATP",
-      "homeTeam": "Yannick Hanfmann",
-      "awayTeam": "Vilius Gaubas",
-      "startTime": "2026-02-27T19:00:00.000Z",
-      "startTimeFormatted": "Feb 27, 20:00",
+      "homeTeam": "Zsombor Piros",
+      "awayTeam": "Mika Brunold",
+      "startTime": "2026-02-28T17:00:00.000Z",
+      "startTimeFormatted": "Feb 28, 18:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Yannick Hanfmann",
+          "outcome": "Zsombor Piros",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 8,
           "aiProbability": 54,
-          "reasoning": "Yannick Hanfmann vs Vilius Gaubas might see Hanfmann with a slight edge based on potential historical performance or ranking advantages, but without recent form data, this is speculative. The value could be in identifying if the market has underrated Hanfmann's chances, but given the lack of information, the confidence in this pick remains medium.",
+          "reasoning": "Zsombor Piros vs Mika Brunold could see Piros having a slight advantage if he has performed well on the surface in question or has a favorable head-to-head record. The market odds suggest a competitive match, but Piros's experience and form might give him an edge. VALUE: Backing Piros at the current odds could be seen as value if his historical data supports a higher win probability than the market suggests.",
           "confidence": "medium"
         }
       ],
@@ -121,7 +158,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 54,
-      "reasoning": "Yannick Hanfmann vs Vilius Gaubas might see Hanfmann with a slight edge based on potential historical performance or ranking advantages, but without recent form data, this is speculative. The value could be in identifying if the market has underrated Hanfmann's chances, but given the lack of information, the confidence in this pick remains medium.",
+      "reasoning": "Zsombor Piros vs Mika Brunold could see Piros having a slight advantage if he has performed well on the surface in question or has a favorable head-to-head record. The market odds suggest a competitive match, but Piros's experience and form might give him an edge. VALUE: Backing Piros at the current odds could be seen as value if his historical data supports a higher win probability than the market suggests.",
       "confidence": "medium",
       "expectedValue": 8,
       "evTier": {
@@ -134,23 +171,23 @@
       }
     },
     {
-      "id": "1849",
+      "id": "1852",
       "league": "ATP",
-      "homeTeam": "Evan Bynoe",
-      "awayTeam": "Jeff Wolf",
-      "startTime": "2026-02-27T20:15:00.000Z",
-      "startTimeFormatted": "Feb 27, 21:15",
+      "homeTeam": "Jeff Wolf",
+      "awayTeam": "Maxwell Exsted",
+      "startTime": "2026-02-28T18:30:00.000Z",
+      "startTimeFormatted": "Feb 28, 19:30",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Evan Bynoe",
+          "outcome": "Jeff Wolf",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 6,
           "aiProbability": 53,
-          "reasoning": "Evan Bynoe vs Jeff Wolf presents a similar challenge with both players lacking recent form data. Any betting angle would need to focus on historical performance, potential surface advantages, or minor ranking differences. Given the market odds, there might be a slight value in backing the player with any historical edge, but this remains a medium confidence pick due to the lack of concrete information.",
+          "reasoning": "Jeff Wolf vs Maxwell Exsted might see Wolf having a slight advantage if he has shown better form in recent weeks or months, especially if that form includes wins over similar opponents. However, without specific data, this is speculative. The market odds suggest a close match, which is likely given the early-round nature of the contest. VALUE: If Wolf has a notable advantage in terms of recent performance or head-to-head, the current odds might undervalue him slightly.",
           "confidence": "medium"
         }
       ],
@@ -158,7 +195,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 53,
-      "reasoning": "Evan Bynoe vs Jeff Wolf presents a similar challenge with both players lacking recent form data. Any betting angle would need to focus on historical performance, potential surface advantages, or minor ranking differences. Given the market odds, there might be a slight value in backing the player with any historical edge, but this remains a medium confidence pick due to the lack of concrete information.",
+      "reasoning": "Jeff Wolf vs Maxwell Exsted might see Wolf having a slight advantage if he has shown better form in recent weeks or months, especially if that form includes wins over similar opponents. However, without specific data, this is speculative. The market odds suggest a close match, which is likely given the early-round nature of the contest. VALUE: If Wolf has a notable advantage in terms of recent performance or head-to-head, the current odds might undervalue him slightly.",
       "confidence": "medium",
       "expectedValue": 6,
       "evTier": {
@@ -171,69 +208,32 @@
       }
     },
     {
-      "id": "1327",
+      "id": "1336",
       "league": "ATP",
-      "homeTeam": "Andrea Pellegrino",
+      "homeTeam": "Sebastian Baez",
       "awayTeam": "Luciano Darderi",
-      "startTime": "2026-02-28T00:30:00.000Z",
-      "startTimeFormatted": "Feb 28, 01:30",
+      "startTime": "2026-03-01T01:30:00.000Z",
+      "startTimeFormatted": "Mar 1, 02:30",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Andrea Pellegrino",
+          "outcome": "Sebastian Baez",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Given the lack of recent form data for both Andrea Pellegrino and Luciano Darderi, it's challenging to significantly deviate from market odds. However, in early-round ATP matches, slight edges can be found in players with historically better performance on the specific surface or those with a slight ranking advantage. Since both players lack recent data, the market odds seem fair, but a slight edge could be given to the player with any minor historical advantage, making this a medium confidence pick due to the uncertainty.",
-          "confidence": "medium"
+          "reasoning": "Given the lack of recent form data for both Sebastian Baez and Luciano Darderi, it's challenging to significantly deviate from market odds. However, considering the general unpredictability of early-round matches and the ATP tour's competitive nature, there might be a slight edge to Baez if he has historically performed better in similar conditions or surfaces. VALUE: The market odds might slightly undervalue Baez, but the edge is minimal.",
+          "confidence": "low"
         }
       ],
       "homeForm": "No recent matches",
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Given the lack of recent form data for both Andrea Pellegrino and Luciano Darderi, it's challenging to significantly deviate from market odds. However, in early-round ATP matches, slight edges can be found in players with historically better performance on the specific surface or those with a slight ranking advantage. Since both players lack recent data, the market odds seem fair, but a slight edge could be given to the player with any minor historical advantage, making this a medium confidence pick due to the uncertainty.",
-      "confidence": "medium",
-      "expectedValue": 4,
-      "evTier": {
-        "min": 3,
-        "max": 6,
-        "label": "Strong Edge",
-        "emoji": "💪",
-        "color": "blue",
-        "tier": "STRONG"
-      }
-    },
-    {
-      "id": "1912",
-      "league": "ATP",
-      "homeTeam": "Alan Fernando Rubio Fierros",
-      "awayTeam": "Blaise Bicknell",
-      "startTime": "2026-02-27T20:15:00.000Z",
-      "startTimeFormatted": "Feb 27, 21:15",
-      "marketOdd": 2,
-      "marketProb": 50,
-      "markets": [
-        {
-          "type": "h2h",
-          "outcome": "Alan Fernando Rubio Fierros",
-          "odds": 2,
-          "impliedProb": 50,
-          "expectedValue": 4,
-          "aiProbability": 52,
-          "reasoning": "The match between Alan Fernando Rubio Fierros and Blaise Bicknell is another where the lack of recent form makes it difficult to deviate significantly from market odds. The value here could be in any minor historical advantages or surface suitability that one player might have over the other, but without clear data, this pick remains at medium confidence.",
-          "confidence": "medium"
-        }
-      ],
-      "homeForm": "No recent matches",
-      "awayForm": "No recent matches",
-      "formData": {},
-      "aiProbability": 52,
-      "reasoning": "The match between Alan Fernando Rubio Fierros and Blaise Bicknell is another where the lack of recent form makes it difficult to deviate significantly from market odds. The value here could be in any minor historical advantages or surface suitability that one player might have over the other, but without clear data, this pick remains at medium confidence.",
-      "confidence": "medium",
+      "reasoning": "Given the lack of recent form data for both Sebastian Baez and Luciano Darderi, it's challenging to significantly deviate from market odds. However, considering the general unpredictability of early-round matches and the ATP tour's competitive nature, there might be a slight edge to Baez if he has historically performed better in similar conditions or surfaces. VALUE: The market odds might slightly undervalue Baez, but the edge is minimal.",
+      "confidence": "low",
       "expectedValue": 4,
       "evTier": {
         "min": 3,
@@ -247,23 +247,60 @@
   ],
   "allBets": [
     {
-      "id": "1334",
+      "id": "1261",
       "league": "ATP",
-      "homeTeam": "Francisco Cerundolo",
-      "awayTeam": "Emilio Nava",
-      "startTime": "2026-02-27T21:00:00.000Z",
-      "startTimeFormatted": "Feb 27, 22:00",
+      "homeTeam": "Daniil Medvedev",
+      "awayTeam": "Tallon Griekspoor",
+      "startTime": "2026-02-28T18:00:00.000Z",
+      "startTimeFormatted": "Feb 28, 19:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Francisco Cerundolo",
+          "outcome": "Daniil Medvedev",
+          "odds": 2,
+          "impliedProb": 50,
+          "expectedValue": 20,
+          "aiProbability": 60,
+          "reasoning": "Daniil Medvedev vs Tallon Griekspoor could see Medvedev having a significant advantage given his higher ranking and likely better form against top-tier opponents. However, Griekspoor might have conditions or a playing style that could trouble Medvedev. The market odds suggest a close match, but Medvedev's overall quality might give him an edge. VALUE: The current odds might slightly undervalue Medvedev's chances, considering his ranking and general performance level.",
+          "confidence": "medium"
+        }
+      ],
+      "homeForm": "No recent matches",
+      "awayForm": "No recent matches",
+      "formData": {},
+      "aiProbability": 60,
+      "reasoning": "Daniil Medvedev vs Tallon Griekspoor could see Medvedev having a significant advantage given his higher ranking and likely better form against top-tier opponents. However, Griekspoor might have conditions or a playing style that could trouble Medvedev. The market odds suggest a close match, but Medvedev's overall quality might give him an edge. VALUE: The current odds might slightly undervalue Medvedev's chances, considering his ranking and general performance level.",
+      "confidence": "medium",
+      "expectedValue": 20,
+      "evTier": {
+        "min": 10,
+        "max": null,
+        "label": "Sick Edge",
+        "emoji": "🔥",
+        "color": "red",
+        "tier": "SICK"
+      }
+    },
+    {
+      "id": "1373",
+      "league": "ATP",
+      "homeTeam": "Pierre-Hugues Herbert",
+      "awayTeam": "Hugo Gaston",
+      "startTime": "2026-02-28T18:30:00.000Z",
+      "startTimeFormatted": "Feb 28, 19:30",
+      "marketOdd": 2,
+      "marketProb": 50,
+      "markets": [
+        {
+          "type": "h2h",
+          "outcome": "Pierre-Hugues Herbert",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 10,
           "aiProbability": 55,
-          "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
+          "reasoning": "Pierre-Hugues Herbert vs Hugo Gaston could see Herbert having a slight advantage if he has performed well on the surface in question and has a good record against similar opponents. The market odds suggest a close match, but Herbert's experience might give him an edge. VALUE: Backing Herbert at the current odds could be seen as value if his historical data supports a higher win probability than the market suggests.",
           "confidence": "medium"
         }
       ],
@@ -271,7 +308,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 55,
-      "reasoning": "Francisco Cerundolo might have a slight edge over Emilio Nava based on potential historical performance or surface suitability, but without recent form data, it's hard to assert this with high confidence. The value here could be in identifying any minor trends or past performances that the market might have overlooked, making Cerundolo a potential underdog with slightly generous odds or a favorite who is undervalued. This reasoning keeps the confidence at a medium level.",
+      "reasoning": "Pierre-Hugues Herbert vs Hugo Gaston could see Herbert having a slight advantage if he has performed well on the surface in question and has a good record against similar opponents. The market odds suggest a close match, but Herbert's experience might give him an edge. VALUE: Backing Herbert at the current odds could be seen as value if his historical data supports a higher win probability than the market suggests.",
       "confidence": "medium",
       "expectedValue": 10,
       "evTier": {
@@ -284,23 +321,23 @@
       }
     },
     {
-      "id": "1320",
+      "id": "1448",
       "league": "ATP",
-      "homeTeam": "Yannick Hanfmann",
-      "awayTeam": "Vilius Gaubas",
-      "startTime": "2026-02-27T19:00:00.000Z",
-      "startTimeFormatted": "Feb 27, 20:00",
+      "homeTeam": "Zsombor Piros",
+      "awayTeam": "Mika Brunold",
+      "startTime": "2026-02-28T17:00:00.000Z",
+      "startTimeFormatted": "Feb 28, 18:00",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Yannick Hanfmann",
+          "outcome": "Zsombor Piros",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 8,
           "aiProbability": 54,
-          "reasoning": "Yannick Hanfmann vs Vilius Gaubas might see Hanfmann with a slight edge based on potential historical performance or ranking advantages, but without recent form data, this is speculative. The value could be in identifying if the market has underrated Hanfmann's chances, but given the lack of information, the confidence in this pick remains medium.",
+          "reasoning": "Zsombor Piros vs Mika Brunold could see Piros having a slight advantage if he has performed well on the surface in question or has a favorable head-to-head record. The market odds suggest a competitive match, but Piros's experience and form might give him an edge. VALUE: Backing Piros at the current odds could be seen as value if his historical data supports a higher win probability than the market suggests.",
           "confidence": "medium"
         }
       ],
@@ -308,7 +345,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 54,
-      "reasoning": "Yannick Hanfmann vs Vilius Gaubas might see Hanfmann with a slight edge based on potential historical performance or ranking advantages, but without recent form data, this is speculative. The value could be in identifying if the market has underrated Hanfmann's chances, but given the lack of information, the confidence in this pick remains medium.",
+      "reasoning": "Zsombor Piros vs Mika Brunold could see Piros having a slight advantage if he has performed well on the surface in question or has a favorable head-to-head record. The market odds suggest a competitive match, but Piros's experience and form might give him an edge. VALUE: Backing Piros at the current odds could be seen as value if his historical data supports a higher win probability than the market suggests.",
       "confidence": "medium",
       "expectedValue": 8,
       "evTier": {
@@ -321,23 +358,23 @@
       }
     },
     {
-      "id": "1849",
+      "id": "1852",
       "league": "ATP",
-      "homeTeam": "Evan Bynoe",
-      "awayTeam": "Jeff Wolf",
-      "startTime": "2026-02-27T20:15:00.000Z",
-      "startTimeFormatted": "Feb 27, 21:15",
+      "homeTeam": "Jeff Wolf",
+      "awayTeam": "Maxwell Exsted",
+      "startTime": "2026-02-28T18:30:00.000Z",
+      "startTimeFormatted": "Feb 28, 19:30",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Evan Bynoe",
+          "outcome": "Jeff Wolf",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 6,
           "aiProbability": 53,
-          "reasoning": "Evan Bynoe vs Jeff Wolf presents a similar challenge with both players lacking recent form data. Any betting angle would need to focus on historical performance, potential surface advantages, or minor ranking differences. Given the market odds, there might be a slight value in backing the player with any historical edge, but this remains a medium confidence pick due to the lack of concrete information.",
+          "reasoning": "Jeff Wolf vs Maxwell Exsted might see Wolf having a slight advantage if he has shown better form in recent weeks or months, especially if that form includes wins over similar opponents. However, without specific data, this is speculative. The market odds suggest a close match, which is likely given the early-round nature of the contest. VALUE: If Wolf has a notable advantage in terms of recent performance or head-to-head, the current odds might undervalue him slightly.",
           "confidence": "medium"
         }
       ],
@@ -345,7 +382,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 53,
-      "reasoning": "Evan Bynoe vs Jeff Wolf presents a similar challenge with both players lacking recent form data. Any betting angle would need to focus on historical performance, potential surface advantages, or minor ranking differences. Given the market odds, there might be a slight value in backing the player with any historical edge, but this remains a medium confidence pick due to the lack of concrete information.",
+      "reasoning": "Jeff Wolf vs Maxwell Exsted might see Wolf having a slight advantage if he has shown better form in recent weeks or months, especially if that form includes wins over similar opponents. However, without specific data, this is speculative. The market odds suggest a close match, which is likely given the early-round nature of the contest. VALUE: If Wolf has a notable advantage in terms of recent performance or head-to-head, the current odds might undervalue him slightly.",
       "confidence": "medium",
       "expectedValue": 6,
       "evTier": {
@@ -358,32 +395,32 @@
       }
     },
     {
-      "id": "1327",
+      "id": "1336",
       "league": "ATP",
-      "homeTeam": "Andrea Pellegrino",
+      "homeTeam": "Sebastian Baez",
       "awayTeam": "Luciano Darderi",
-      "startTime": "2026-02-28T00:30:00.000Z",
-      "startTimeFormatted": "Feb 28, 01:30",
+      "startTime": "2026-03-01T01:30:00.000Z",
+      "startTimeFormatted": "Mar 1, 02:30",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Andrea Pellegrino",
+          "outcome": "Sebastian Baez",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "Given the lack of recent form data for both Andrea Pellegrino and Luciano Darderi, it's challenging to significantly deviate from market odds. However, in early-round ATP matches, slight edges can be found in players with historically better performance on the specific surface or those with a slight ranking advantage. Since both players lack recent data, the market odds seem fair, but a slight edge could be given to the player with any minor historical advantage, making this a medium confidence pick due to the uncertainty.",
-          "confidence": "medium"
+          "reasoning": "Given the lack of recent form data for both Sebastian Baez and Luciano Darderi, it's challenging to significantly deviate from market odds. However, considering the general unpredictability of early-round matches and the ATP tour's competitive nature, there might be a slight edge to Baez if he has historically performed better in similar conditions or surfaces. VALUE: The market odds might slightly undervalue Baez, but the edge is minimal.",
+          "confidence": "low"
         }
       ],
       "homeForm": "No recent matches",
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "Given the lack of recent form data for both Andrea Pellegrino and Luciano Darderi, it's challenging to significantly deviate from market odds. However, in early-round ATP matches, slight edges can be found in players with historically better performance on the specific surface or those with a slight ranking advantage. Since both players lack recent data, the market odds seem fair, but a slight edge could be given to the player with any minor historical advantage, making this a medium confidence pick due to the uncertainty.",
-      "confidence": "medium",
+      "reasoning": "Given the lack of recent form data for both Sebastian Baez and Luciano Darderi, it's challenging to significantly deviate from market odds. However, considering the general unpredictability of early-round matches and the ATP tour's competitive nature, there might be a slight edge to Baez if he has historically performed better in similar conditions or surfaces. VALUE: The market odds might slightly undervalue Baez, but the edge is minimal.",
+      "confidence": "low",
       "expectedValue": 4,
       "evTier": {
         "min": 3,
@@ -395,23 +432,23 @@
       }
     },
     {
-      "id": "1912",
+      "id": "1586",
       "league": "ATP",
-      "homeTeam": "Alan Fernando Rubio Fierros",
-      "awayTeam": "Blaise Bicknell",
-      "startTime": "2026-02-27T20:15:00.000Z",
-      "startTimeFormatted": "Feb 27, 21:15",
+      "homeTeam": "Facundo Diaz Acosta",
+      "awayTeam": "Alvaro Guillen Meza",
+      "startTime": "2026-02-28T17:30:00.000Z",
+      "startTimeFormatted": "Feb 28, 18:30",
       "marketOdd": 2,
       "marketProb": 50,
       "markets": [
         {
           "type": "h2h",
-          "outcome": "Alan Fernando Rubio Fierros",
+          "outcome": "Facundo Diaz Acosta",
           "odds": 2,
           "impliedProb": 50,
           "expectedValue": 4,
           "aiProbability": 52,
-          "reasoning": "The match between Alan Fernando Rubio Fierros and Blaise Bicknell is another where the lack of recent form makes it difficult to deviate significantly from market odds. The value here could be in any minor historical advantages or surface suitability that one player might have over the other, but without clear data, this pick remains at medium confidence.",
+          "reasoning": "Facundo Diaz Acosta vs Alvaro Guillen Meza is a match where Diaz Acosta might have a slight edge if he has performed better in recent weeks or has a favorable head-to-head record. However, without specific data, this is speculative. The market odds suggest a competitive match, which is reasonable given the nature of early-round contests. VALUE: If Diaz Acosta has a notable advantage in terms of form or head-to-head, the current odds might offer slight value.",
           "confidence": "medium"
         }
       ],
@@ -419,7 +456,7 @@
       "awayForm": "No recent matches",
       "formData": {},
       "aiProbability": 52,
-      "reasoning": "The match between Alan Fernando Rubio Fierros and Blaise Bicknell is another where the lack of recent form makes it difficult to deviate significantly from market odds. The value here could be in any minor historical advantages or surface suitability that one player might have over the other, but without clear data, this pick remains at medium confidence.",
+      "reasoning": "Facundo Diaz Acosta vs Alvaro Guillen Meza is a match where Diaz Acosta might have a slight edge if he has performed better in recent weeks or has a favorable head-to-head record. However, without specific data, this is speculative. The market odds suggest a competitive match, which is reasonable given the nature of early-round contests. VALUE: If Diaz Acosta has a notable advantage in terms of form or head-to-head, the current odds might offer slight value.",
       "confidence": "medium",
       "expectedValue": 4,
       "evTier": {

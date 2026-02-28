@@ -1,6 +1,23 @@
 {
   "bets": [
     {
+      "id": "1261",
+      "date": "2026-02-28",
+      "matchTime": "2026-02-28T18:00:00.000Z",
+      "league": "ATP",
+      "homeTeam": "Daniil Medvedev",
+      "awayTeam": "Tallon Griekspoor",
+      "outcome": "Daniil Medvedev",
+      "odds": 2,
+      "expectedValue": 20,
+      "confidence": "medium",
+      "reasoning": "Daniil Medvedev vs Tallon Griekspoor could see Medvedev having a significant advantage given his higher ranking and likely better form against top-tier opponents. However, Griekspoor might have conditions or a playing style that could trouble Medvedev. The market odds suggest a close match, but Medvedev's overall quality might give him an edge. VALUE: The current odds might slightly undervalue Medvedev's chances, considering his ranking and general performance level.",
+      "status": "pending",
+      "result": null,
+      "roi": null,
+      "addedAt": "2026-02-28T06:15:59.783Z"
+    },
+    {
       "id": "1334",
       "date": "2026-02-27",
       "matchTime": "2026-02-27T21:00:00.000Z",
@@ -257,10 +274,10 @@
     }
   ],
   "stats": {
-    "totalBets": 15,
+    "totalBets": 16,
     "wins": 3,
     "losses": 3,
-    "pending": 9,
+    "pending": 10,
     "totalROI": 9.38,
     "winRate": 50
   },
